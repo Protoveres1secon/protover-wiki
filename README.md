@@ -26,4 +26,4 @@ Ai cũng có thể tham gia đóng góp.
 Một vài quy tắc cơ bản.
 
 ## 📫 Contact
-Discord / Email / Patreon / DeviantArt...
+Discord / Email / Patreon / DeviantArt..
