@@ -1,151 +1,41 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Protoveres — Cổng tài khoản</title>
 <style>
-:root{
-  --bg:#060817;--panel:rgba(15,20,42,.76);--panel2:rgba(10,14,30,.9);
-  --text:#f7f8ff;--muted:#aab1ca;--line:rgba(255,255,255,.12);
-  --violet:#7c6cff;--cyan:#00d9ff;--pink:#ff6ec7;
-}
-*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
-body{background:
-radial-gradient(circle at 15% 20%,rgba(124,108,255,.20),transparent 32%),
-radial-gradient(circle at 85% 22%,rgba(0,217,255,.13),transparent 30%),
-radial-gradient(circle at 50% 88%,rgba(255,110,199,.10),transparent 34%),var(--bg);
-overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;
-background-image:radial-gradient(1px 1px at 12% 18%,#fff 60%,transparent 61%),
-radial-gradient(1px 1px at 36% 72%,#fff 60%,transparent 61%),
-radial-gradient(1px 1px at 70% 30%,#fff 60%,transparent 61%),
-radial-gradient(1px 1px at 90% 76%,#fff 60%,transparent 61%);
-background-size:240px 240px,310px 310px,280px 280px,360px 360px}
-.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
-header{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.5px}
-.logo{width:44px;height:44px;border-radius:14px;background:conic-gradient(from 160deg,var(--violet),var(--cyan),var(--pink),var(--violet));display:grid;place-items:center;box-shadow:0 0 38px rgba(124,108,255,.35);color:#07101a;font-weight:1000}
-.logo:after{content:"P"}
-.pill{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.04)}
-main{min-height:calc(100vh - 95px);display:grid;place-items:center;padding:20px 0 56px}
-.grid{width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:24px}
-.hero,.card{border:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 30px 90px rgba(0,0,0,.45)}
-.hero{min-height:650px;border-radius:32px;padding:56px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),var(--panel);position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;width:380px;height:380px;right:-150px;top:-150px;border-radius:50%;background:radial-gradient(circle,rgba(0,217,255,.18),transparent 65%);filter:blur(8px)}
-.kicker{text-transform:uppercase;letter-spacing:1.8px;font-size:12px;font-weight:900;color:#ced3ff}
-h1{font-size:clamp(46px,6vw,80px);line-height:.94;letter-spacing:-3px;margin:16px 0 18px}
-.grad{color:transparent;background:linear-gradient(90deg,#fff,var(--cyan),#c7c0ff,var(--pink));background-clip:text;-webkit-background-clip:text}
-.lead{max-width:640px;color:var(--muted);font-size:18px;line-height:1.7}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
-.feature{padding:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}
-.feature strong{display:block;font-size:14px}.feature span{display:block;margin-top:5px;color:var(--muted);font-size:12px;line-height:1.45}
-.quote{margin-top:28px;border-left:3px solid var(--cyan);background:rgba(0,217,255,.05);border-radius:0 16px 16px 0;padding:18px 20px;color:#d9def0;font-style:italic}
-.card{border-radius:28px;padding:28px;background:var(--panel2)}
-.tabs{display:flex;gap:8px;padding:5px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.04);margin-bottom:22px}
-.tab{flex:1;border:0;background:transparent;color:var(--muted);padding:11px;border-radius:11px;font-weight:900;cursor:pointer}
-.tab.active{background:#fff;color:#0a1020}
-.form{display:grid;gap:14px}label{font-size:12px;font-weight:800;color:#cbd1e5}
-input{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.045);color:#fff;font-size:14px;outline:none}
-input:focus{border-color:rgba(0,217,255,.6);box-shadow:0 0 0 4px rgba(0,217,255,.08)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{width:100%;padding:14px 16px;border:0;border-radius:14px;font-weight:950;cursor:pointer;transition:transform .18s}
-.btn:hover{transform:translateY(-1px)}.primary{background:linear-gradient(135deg,var(--violet),#5a9dff);color:#fff}
-.google{background:#fff;color:#111827;display:flex;justify-content:center;align-items:center;gap:10px}
-.google .g{font-weight:1000}
-.divider{display:flex;align-items:center;gap:10px;color:#6f7690;font-size:11px}.divider:before,.divider:after{content:"";height:1px;flex:1;background:var(--line)}
-.small{font-size:11px;line-height:1.5;color:#7f87a1}
-.notice{display:none;margin-top:12px;padding:12px 13px;border-radius:12px;border:1px solid var(--line);font-size:12px}
-.notice.show{display:block}.ok{background:rgba(85,230,165,.08);color:#a9f4d0}.err{background:rgba(255,111,143,.08);color:#ffc1d0}
-.profile{display:none}.profile.show{display:block}.profile-head{display:flex;gap:16px;align-items:center}
-.avatar{width:68px;height:68px;border-radius:22px;background:linear-gradient(135deg,var(--cyan),var(--violet),var(--pink));display:grid;place-items:center;font-size:24px;font-weight:1000}
-.muted{color:var(--muted)}.actions{display:flex;gap:10px;margin-top:18px}.ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--line)}
-.footer{text-align:center;color:#666e88;font-size:11px;margin-top:18px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.hero{min-height:auto;padding:36px}.features{grid-template-columns:1fr}.card{order:-1}}
+:root{--bg:#050714;--panel:rgba(15,20,42,.80);--line:rgba(255,255,255,.12);--text:#f7f8ff;--muted:#aab1ca;--v:#7c6cff;--c:#00dcff;--p:#ff6ec7}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh;background:radial-gradient(circle at 12% 18%,rgba(124,108,255,.22),transparent 30%),radial-gradient(circle at 88% 22%,rgba(0,220,255,.15),transparent 28%),radial-gradient(circle at 50% 90%,rgba(255,110,199,.11),transparent 34%),var(--bg)}
+.wrap{width:min(1100px,calc(100% - 30px));margin:auto}.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.logo{width:44px;height:44px;border-radius:14px;background:conic-gradient(var(--v),var(--c),var(--p),var(--v));display:grid;place-items:center;color:#06101a;font-weight:1000;box-shadow:0 0 36px rgba(124,108,255,.35)}.logo:after{content:"P"}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:11px;color:var(--muted);background:#ffffff08}
+main{min-height:calc(100vh - 90px);display:grid;place-items:center;padding:18px 0 50px}.grid{width:100%;display:grid;grid-template-columns:1.08fr .92fr;gap:22px}.panel{border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 90px #0009}.hero{border-radius:32px;padding:54px;min-height:640px;background:linear-gradient(180deg,#ffffff0a,#ffffff02),var(--panel)}.kicker{text-transform:uppercase;letter-spacing:1.7px;font-size:11px;font-weight:900;color:#cdd3ff}h1{font-size:clamp(44px,6vw,78px);line-height:.95;letter-spacing:-3px;margin:15px 0}.grad{color:transparent;background:linear-gradient(90deg,#fff,var(--c),#cec8ff,var(--p));background-clip:text;-webkit-background-clip:text}.lead{font-size:18px;line-height:1.7;color:var(--muted);max-width:650px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.f{padding:16px;border:1px solid var(--line);border-radius:18px;background:#ffffff06}.f b{display:block}.f span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}.quote{margin-top:28px;padding:18px 20px;border-left:3px solid var(--c);background:#00dcff08;border-radius:0 16px 16px 0;color:#dde3f4;font-style:italic}
+.card{border-radius:28px;padding:28px;background:rgba(10,14,30,.92)}.tabs{display:flex;gap:8px;padding:5px;border:1px solid var(--line);border-radius:15px;background:#ffffff08;margin-bottom:20px}.tab{flex:1;border:0;background:transparent;color:var(--muted);padding:11px;border-radius:11px;font-weight:900;cursor:pointer}.tab.active{background:#fff;color:#0a1020}.form{display:grid;gap:13px}label{font-size:12px;font-weight:800;color:#cbd2e5}input{width:100%;padding:14px 15px;margin-top:6px;border:1px solid var(--line);border-radius:14px;background:#ffffff08;color:#fff;outline:none;font-size:14px}input:focus{border-color:#00dcff99;box-shadow:0 0 0 4px #00dcff12}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{width:100%;padding:14px 16px;border:0;border-radius:14px;font-weight:950;cursor:pointer}.primary{background:linear-gradient(135deg,var(--v),#5d9dff);color:#fff}.google{background:#fff;color:#111827}.notice{display:none;margin-top:12px;padding:12px 13px;border-radius:12px;font-size:12px;border:1px solid var(--line)}.show{display:block}.ok{background:#55e6a514;color:#a9f4d0}.err{background:#ff6f8f14;color:#ffc1d0}.hide{display:none!important}.small{color:#7f87a1;font-size:11px;line-height:1.5}
+.dashboard{display:none}.dashboard.show{display:block}.welcome{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:23px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#7c6cff18,#00dcff09)}.avatar{width:70px;height:70px;border-radius:22px;background:linear-gradient(135deg,var(--c),var(--v),var(--p));display:grid;place-items:center;font-size:25px;font-weight:1000}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.stat{padding:19px;border:1px solid var(--line);border-radius:18px;background:#ffffff05}.stat b{font-size:22px}.muted{color:var(--muted)}.dashnav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.dashnav button{padding:12px;border-radius:12px;border:1px solid var(--line);background:#ffffff06;color:#fff;font-weight:800}.logout{margin-top:18px;background:#ffffff0b;color:#fff;border:1px solid var(--line)}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.hero{min-height:auto;padding:35px}.features,.stats,.dashnav{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <div class="brand"><div class="logo"></div><div>PROTOVERES<br><span class="muted" style="font-size:11px">CỔNG TÀI KHOẢN</span></div></div>
-  <div class="pill">Bản thử nghiệm • Sẵn sàng kết nối hệ thống</div>
-</header>
+<header class="top"><div class="brand"><div class="logo"></div><div>PROTOVERES<br><span class="muted" style="font-size:10px">CỔNG TÀI KHOẢN</span></div></div><div class="pill" id="status">Chưa đăng nhập</div></header>
 <main>
-<section class="grid">
-  <div class="hero">
-    <div class="kicker">Chào mừng đến Protoveres</div>
-    <h1>Nơi của bạn trong <span class="grad">vũ trụ.</span></h1>
-    <div class="lead">Cổng tài khoản hiện đại dành cho Protoveres — được thiết kế để sau này mở rộng thành hồ sơ, bài đăng, thông báo và mạng xã hội.</div>
-    <div class="features">
-      <div class="feature"><strong>⚡ Nhanh</strong><span>Chỉ một file HTML nhẹ, không cần framework.</span></div>
-      <div class="feature"><strong>🪐 Hiện đại</strong><span>Giao diện vũ trụ tối với hiệu ứng kính và bố cục thích ứng.</span></div>
-      <div class="feature"><strong>🔐 Có thể mở rộng</strong><span>Sẵn sàng để kết nối hệ thống đăng nhập thật sau này.</span></div>
-    </div>
-    <div class="quote">“Tự do sáng tạo. Tôn trọng người khác. Ghi công. Hãy cư xử văn minh.”</div>
-  </div>
-  <div class="card">
-    <div id="authView">
-      <div class="tabs">
-        <button class="tab active" data-mode="login">Đăng nhập</button>
-        <button class="tab" data-mode="register">Tạo tài khoản</button>
-      </div>
-      <form class="form" id="form">
-        <div id="usernameWrap" style="display:none">
-          <label>Tên người dùng</label>
-          <input id="username" autocomplete="username" placeholder="Tên Protoveres của bạn">
-        </div>
-        <div class="row">
-          <div><label>Email</label><input id="email" type="email" autocomplete="email" placeholder="ban@example.com" required></div>
-          <div><label>Mật khẩu</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••" minlength="8" required></div>
-        </div>
-        <div id="dobWrap" style="display:none">
-          <label>Ngày sinh</label><input id="dob" type="date">
-          <div class="small" style="margin-top:6px">Nếu dùng website công khai thật, hãy giữ thông tin này ở chế độ riêng tư và chỉ thu thập thứ thật sự cần.</div>
-        </div>
-        <button class="btn primary" id="submit" type="submit">Đăng nhập</button>
-        <div class="divider">HOẶC</div>
-        <button class="btn google" id="google" type="button"><span class="g">G</span> Tiếp tục với Google</button>
-      </form>
-      <div class="notice" id="notice"></div>
-      <div class="small" style="margin-top:16px">Đây là bản giao diện thử nghiệm. Tài khoản demo dùng bộ nhớ trình duyệt và không phù hợp để làm hệ thống đăng nhập thật.</div>
-    </div>
-    <div class="profile" id="profile">
-      <div class="kicker">Đã đăng nhập</div>
-      <div class="profile-head" style="margin-top:12px">
-        <div class="avatar" id="avatar">P</div>
-        <div><h2 id="pname" style="margin:0 0 5px">Người dùng Protoveres</h2><div class="muted" id="pemail">user@example.com</div></div>
-      </div>
-      <div class="feature" style="margin-top:22px"><strong>Bảng điều khiển tài khoản</strong><span>Hồ sơ, Bài đăng, Thông báo và Mạng xã hội có thể được kết nối tại đây.</span></div>
-      <div class="actions"><button class="btn ghost" id="logout">Đăng xuất</button><button class="btn primary" id="enter">Vào Protoveres</button></div>
-    </div>
-    <div class="footer">PROTO​VERES • giao diện tài khoản thử nghiệm</div>
-  </div>
-</section>
-</main>
+<div id="auth" class="grid">
+<section class="panel hero"><div class="kicker">Chào mừng đến Protoveres</div><h1>Nơi của bạn trong <span class="grad">vũ trụ.</span></h1><p class="lead">Cổng tài khoản Protoveres. Bản này đã nối Firebase Authentication để đăng ký, đăng nhập bằng email/mật khẩu và đăng nhập Google.</p><div class="features"><div class="f"><b>⚡ Nhẹ</b><span>Một trang HTML/CSS/JS.</span></div><div class="f"><b>🪐 Cosmic</b><span>Giao diện hiện đại theo phong cách Protoveres.</span></div><div class="f"><b>🔐 Xác thực</b><span>Email/mật khẩu + Google.</span></div></div><div class="quote">“Tự do sáng tạo. Tôn trọng người khác. Ghi công. Hãy cư xử văn minh.”</div></section>
+<section class="panel card"><div class="tabs"><button class="tab active" data-mode="login">Đăng nhập</button><button class="tab" data-mode="register">Tạo tài khoản</button></div><form id="form" class="form"><div id="urow" class="hide"><label>Tên người dùng<input id="username" placeholder="Tên Protoveres của bạn"></label></div><div class="row"><label>Email<input id="email" type="email" required placeholder="ban@example.com"></label><label>Mật khẩu<input id="password" type="password" minlength="8" required placeholder="Ít nhất 8 ký tự"></label></div><div id="drow" class="hide"><label>Ngày sinh<input id="birthday" type="date"></label><div class="small" style="margin-top:6px">Ngày sinh chỉ dùng cho hồ sơ nội bộ, không hiển thị công khai.</div></div><button class="btn primary" id="submit">Đăng nhập</button><div style="display:flex;align-items:center;gap:10px;color:#6f7690;font-size:11px"><span style="height:1px;flex:1;background:var(--line)"></span>HOẶC<span style="height:1px;flex:1;background:var(--line)"></span></div><button class="btn google" type="button" id="google">G&nbsp; Tiếp tục với Google</button></form><div id="notice" class="notice"></div><div class="small" style="margin-top:15px">Đăng nhập Google dùng cửa sổ xác thực của Google. Không nhập mật khẩu Google vào Protoveres.</div></section>
 </div>
-<script>
+<section id="dashboard" class="panel card dashboard"><div class="welcome"><div><div class="kicker">Đăng nhập thành công</div><h2 style="margin:8px 0 5px;font-size:30px">Chào mừng, <span id="dname">Protoveres User</span> 👋</h2><div class="muted" id="demail"></div></div><div class="avatar" id="avatar">P</div></div><div class="stats"><div class="stat"><div class="muted">Bài đăng</div><b>0</b></div><div class="stat"><div class="muted">Thông báo</div><b>0</b></div><div class="stat"><div class="muted">Tài khoản</div><b id="did">Đang tải…</b></div></div><div class="dashnav"><button>👤 Tài khoản</button><button>📝 Bài đăng</button><button>🔔 Thông báo</button><button>🌐 Mạng xã hội</button></div><button class="btn logout" id="logout">Đăng xuất</button></section>
+</main></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
+const app=initializeApp(firebaseConfig); const auth=getAuth(app); const db=getFirestore(app); const provider=new GoogleAuthProvider();
 let mode="login"; const $=s=>document.querySelector(s);
 function note(t,c="ok"){const n=$("#notice");n.textContent=t;n.className="notice show "+c}
-function setMode(m){mode=m;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.mode===m));$("#usernameWrap").style.display=m==="register"?"block":"none";$("#dobWrap").style.display=m==="register"?"block":"none";$("#submit").textContent=m==="register"?"Tạo tài khoản":"Đăng nhập";$("#notice").className="notice"}
+function setMode(m){mode=m;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.mode===m));$("#urow").classList.toggle("hide",m!=="register");$("#drow").classList.toggle("hide",m!=="register");$("#submit").textContent=m==="register"?"Tạo tài khoản":"Đăng nhập";$("#notice").className="notice"}
 document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>setMode(x.dataset.mode));
-$("#form").onsubmit=e=>{
- e.preventDefault(); const email=$("#email").value.trim().toLowerCase(),pw=$("#password").value;
- if(mode==="register"){
-   const username=$("#username").value.trim();
-   if(!username){note("Hãy nhập tên người dùng.","err");return}
-   if(!email||pw.length<8){note("Hãy dùng email hợp lệ và mật khẩu từ 8 ký tự trở lên.","err");return}
-   localStorage.setItem("proto_demo_user",JSON.stringify({username,email}));
-   signIn({username,email});note("Đã tạo tài khoản demo trên thiết bị này.");
- }else{
-   const saved=JSON.parse(localStorage.getItem("proto_demo_user")||"null");
-   if(!saved||saved.email!==email){note("Không tìm thấy tài khoản demo khớp trên thiết bị này.","err");return}
-   signIn(saved);note("Đã đăng nhập tài khoản demo.");
- }
-};
-function signIn(u){$("#authView").style.display="none";$("#profile").classList.add("show");$("#pname").textContent=u.username||"Người dùng Google";$("#pemail").textContent=u.email||"Tài khoản Google";$("#avatar").textContent=(u.username||u.email||"P").charAt(0).toUpperCase()}
-$("#logout").onclick=()=>{$("#profile").classList.remove("show");$("#authView").style.display="block";note("Đã đăng xuất.")}
-$("#enter").onclick=()=>note("Hãy nối nút này với trang chủ Protoveres của bạn.")
-$("#google").onclick=()=>note("Nút Google đã có giao diện, nhưng muốn đăng nhập Google thật cần cấu hình Google OAuth và máy chủ xác minh an toàn.","err")
-</script>
-</body>
-</html>
+$("#form").onsubmit=async e=>{e.preventDefault(); try{const email=$("#email").value.trim();const pw=$("#password").value;if(mode==="register"){const username=$("#username").value.trim();if(!username)return note("Hãy nhập tên người dùng.","err");if(pw.length<8)return note("Mật khẩu cần ít nhất 8 ký tự.","err");const cred=await createUserWithEmailAndPassword(auth,email,pw);await updateProfile(cred.user,{displayName:username});await setDoc(doc(db,"users",cred.user.uid),{username,email,birthday:$("#birthday").value||null,createdAt:serverTimestamp()},{merge:true});note("Tạo tài khoản thành công!")}else{await signInWithEmailAndPassword(auth,email,pw);note("Đăng nhập thành công!")}}catch(err){const map={"auth/email-already-in-use":"Email này đã được sử dụng.","auth/invalid-credential":"Email hoặc mật khẩu không đúng.","auth/invalid-email":"Email không hợp lệ.","auth/weak-password":"Mật khẩu quá yếu.","auth/popup-closed-by-user":"Ông đã đóng cửa sổ Google.","auth/popup-blocked":"Trình duyệt đã chặn cửa sổ Google. Hãy cho phép popup cho trang này."};note(map[err.code]||("Có lỗi: "+err.message),"err")}};
+$("#google").onclick=async()=>{try{const cred=await signInWithPopup(auth,provider);const u=cred.user;await setDoc(doc(db,"users",u.uid),{username:u.displayName||"Google User",email:u.email||null,photoURL:u.photoURL||null,createdAt:serverTimestamp()},{merge:true})}catch(err){const map={"auth/popup-closed-by-user":"Ông đã đóng cửa sổ Google.","auth/popup-blocked":"Trình duyệt đã chặn cửa sổ Google.","auth/unauthorized-domain":"Tên miền này chưa được cho phép trong Firebase Authentication."};note(map[err.code]||("Google Login lỗi: "+err.message),"err")}};
+$("#logout").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{if(u){$("#auth").classList.add("hide");$("#dashboard").classList.add("show");$("#status").textContent="Đã đăng nhập";$("#dname").textContent=u.displayName||u.email||"Người dùng Google";$("#demail").textContent=u.email||"";$("#did").textContent=u.uid.slice(0,10);$("#avatar").textContent=(u.displayName||u.email||"P").charAt(0).toUpperCase()}else{$("#auth").classList.remove("hide");$("#dashboard").classList.remove("show");$("#status").textContent="Chưa đăng nhập"}});
+</script></body></html>
