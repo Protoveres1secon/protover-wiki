@@ -6,5 +6,3 @@ Profile sync: custom avatar and cover are stored in Firestore as avatarURL / cov
 Google profile data: googlePhotoURL is kept separately and does not overwrite a custom Protoveres avatar/name.
 
 Important: publish firestore.rules in Firebase Console > Firestore Database > Rules.
-
-Thu hoi tin nhan: chi cap nhat dung document cua tin nhan thanh revoked=true; khong xoa ca doan chat.
