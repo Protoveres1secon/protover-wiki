@@ -148,13 +148,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 
 <div id="editModal" class="modal"><div class="modalCard"><div class="modalHead"><div><div class="eyebrow">TÀI KHOẢN</div><h2 style="margin:5px 0 0">Chỉnh sửa hồ sơ</h2></div><button class="close" id="closeModal" type="button">✕</button></div><div class="cover" id="coverPreview"><div class="coverHint">Chưa có ảnh bìa</div></div><div class="editGrid"><div class="field"><label>Tên hiển thị<input id="editName" maxlength="40" placeholder="Tên Protoveres"></label></div><div class="field"><label>Ở quốc gia<select id="editCountry"><option value="">Chọn quốc gia</option><option>Việt Nam</option><option>Hoa Kỳ</option><option>Nhật Bản</option><option>Hàn Quốc</option><option>Pháp</option><option>Đức</option><option>Vương quốc Anh</option><option>Canada</option><option>Úc</option><option>Khác</option></select></label></div><div class="field"><label>Tuổi<input id="editAge" type="number" min="1" max="120" placeholder="Tuổi"></label></div><div class="field"><label>Avatar<input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp"></label></div><div class="field full"><label>Ảnh bìa<input id="coverFile" type="file" accept="image/png,image/jpeg,image/webp"></label><div class="hint">Chọn ảnh từ máy. Ảnh sẽ được tối ưu để tải nhanh.</div></div></div><div id="saveMsg" class="msg"></div><div class="editActions"><button class="cta" id="cancelEdit" type="button">Hủy</button><button class="cta primary" id="saveProfile" type="button">💾 Lưu hồ sơ</button></div></div></div>
 
+<div id="protoBootError" style="display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:99999;padding:12px 14px;border:1px solid rgba(255,80,120,.45);border-radius:12px;background:rgba(20,5,15,.96);color:#ffd8e2;font:14px/1.4 system-ui;box-shadow:0 10px 30px rgba(0,0,0,.5)" ></div>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
-await setPersistence(auth,browserSessionPersistence);
+setPersistence(auth,browserSessionPersistence).catch(err=>console.warn("Firebase persistence:",err));
 let mode="login",user=null,pendingAvatar="",pendingCover="";
 const views={home:$("#homeView"),account:$("#accountView"),posts:$("#postsView"),notifications:$("#notificationsView"),community:$("#communityView"),wiki:$("#wikiView")};
 function showView(v){Object.entries(views).forEach(([k,e])=>e.classList.toggle("active",k===v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v));window.scrollTo({top:0,behavior:"smooth"})}
@@ -203,5 +204,15 @@ function initNotifications(){if(notificationUnsub){try{notificationUnsub()}catch
 $('#copyUidBtn').onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||'');$('#copyUidBtn').textContent='✅ Đã chép';setTimeout(()=>$('#copyUidBtn').textContent='📋 Sao chép UID',1200)}catch{const r=document.createElement('textarea');r.value=user?.uid||'';document.body.appendChild(r);r.select();document.execCommand('copy');r.remove();$('#copyUidBtn').textContent='✅ Đã chép';setTimeout(()=>$('#copyUidBtn').textContent='📋 Sao chép UID',1200)}};
 $('#uidSearchBtn').onclick=()=>searchUid();$('#uidSearchInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchUid()});$('#chatForm').onsubmit=e=>{e.preventDefault();sendChat()};$('#publicProfileClose').onclick=()=>$('#publicProfileOverlay').classList.remove('open');$('#publicProfileOverlay').addEventListener('click',e=>{if(e.target===$('#publicProfileOverlay'))$('#publicProfileOverlay').classList.remove('open')});
 
-onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$('#loginView').classList.toggle('active',!logged);$('#appView').style.display=logged?'block':'none';$('#mainNav').style.display=logged?'flex':'none';if(logged){$('#status').textContent='Đã đăng nhập';renderProfile();ensureCommunityUserDoc(u).then(()=>syncLocalProfileToFirestore(u)).catch(err=>console.error('community profile sync',err));showView('home');initCommunity()}else{$('#status').textContent='Chưa đăng nhập';clearCommunityListeners();if(notificationUnsub){try{notificationUnsub()}catch{}notificationUnsub=null}notificationsCache={};$('#notificationsBadge').style.display='none';closeEdit();$('#publicProfileOverlay')?.classList.remove('open')}});</script>
+onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$('#loginView').classList.toggle('active',!logged);$('#appView').style.display=logged?'block':'none';$('#mainNav').style.display=logged?'flex':'none';if(logged){$('#status').textContent='Đã đăng nhập';renderProfile();ensureCommunityUserDoc(u).then(()=>syncLocalProfileToFirestore(u)).catch(err=>console.error('community profile sync',err));showView('home');initCommunity()}else{$('#status').textContent='Chưa đăng nhập';clearCommunityListeners();if(notificationUnsub){try{notificationUnsub()}catch{}notificationUnsub=null}notificationsCache={};$('#notificationsBadge').style.display='none';closeEdit();$('#publicProfileOverlay')?.classList.remove('open')}});
+window.addEventListener("error",e=>{
+  const b=document.getElementById("protoBootError");
+  if(b && e?.message){b.textContent="Web gặp lỗi khi khởi động: "+e.message;b.style.display="block";}
+});
+window.addEventListener("unhandledrejection",e=>{
+  const b=document.getElementById("protoBootError");
+  const r=e?.reason;
+  if(b && r){b.textContent="Web gặp lỗi Firebase: "+(r.message||String(r));b.style.display="block";}
+});
+</script>
 </body></html>
