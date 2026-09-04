@@ -179,9 +179,21 @@ let chatUnsub=null;
 const esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 function initials(name){return (String(name||'P').trim().charAt(0)||'P').toUpperCase()}
 function avatarHtml(profile,cls='ciAvatar'){return profile?.photoURL?`<div class="${cls}"><img src="${esc(profile.photoURL)}" alt=""></div>`:`<div class="${cls}">${esc(initials(profile?.username||profile?.displayName))}</div>`}
+async function ensureCommunityUserDoc(u){
+  if(!u) return;
+  const ref=doc(db,'users',u.uid);
+  await setDoc(ref,{
+    uid:u.uid,
+    username:u.displayName||'Protoveres User',
+    displayName:u.displayName||null,
+    email:u.email||null,
+    photoURL:u.photoURL||null,
+    updatedAt:serverTimestamp()
+  },{merge:true});
+}
 async function hydrateCommunityUser(uid){
   const snap=await getDoc(doc(db,'users',uid));
-  if(!snap.exists()) return {uid,username:'Protoveres User'};
+  if(!snap.exists()) return null;
   return {uid,...snap.data()};
 }
 function clearCommunityListeners(){communityUnsubs.forEach(x=>x&&x());communityUnsubs=[];if(chatUnsub){chatUnsub();chatUnsub=null}}
@@ -219,7 +231,7 @@ async function openChat(friendUid){
   chatUnsub=onSnapshot(q,snap=>{const root=$('#chatMessages');root.innerHTML='';snap.forEach(d=>{const m=d.data();const bubble=document.createElement('div');bubble.className='bubble '+(m.senderUid===user.uid?'mine':'');bubble.innerHTML=`${esc(m.text)}<div class="bubbleMeta">${esc(m.senderUid===user.uid?'Bạn':friend.name||friend.username||'Thành viên')}</div>`;root.appendChild(bubble)});root.scrollTop=root.scrollHeight},err=>{$('#chatMessages').innerHTML='<div class="emptyState">Không thể tải chat. Kiểm tra quyền Firestore.</div>'});
 }
 async function sendChat(){if(!user||!activeChatFriend)return;const input=$('#chatText'),text=input.value.trim();if(!text)return;const chatId=[user.uid,activeChatFriend].sort().join('__');input.value='';await addDoc(collection(db,'chats',chatId,'messages'),{senderUid:user.uid,text,createdAt:serverTimestamp()})}
-async function searchUid(){const root=$('#uidSearchResult'),uid=$('#uidSearchInput').value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await hydrateCommunityUser(uid);if(!p||p.username==='Protoveres User'&&!p.email&&!p.displayName){root.innerHTML='<div class="msg show err">Không tìm thấy UID này.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||'Protoveres User')}</b><p>${esc(uid)}</p><div class="actionRow">${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;const b=$('#sendReqBtn');if(b)b.onclick=()=>sendFriendRequest(uid)}catch(e){root.innerHTML='<div class="msg show err">Không thể tìm UID. Kiểm tra quyền Firestore.</div>'}}
+async function searchUid(){const root=$('#uidSearchResult'),uid=$('#uidSearchInput').value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await hydrateCommunityUser(uid);if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này. Hãy chắc chắn tài khoản đó đã đăng nhập ít nhất một lần.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||'Protoveres User')}</b><p>${esc(uid)}</p><div class="actionRow">${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;const b=$('#sendReqBtn');if(b)b.onclick=()=>sendFriendRequest(uid)}catch(e){console.error(e);root.innerHTML='<div class="msg show err">Không thể tìm UID. Kiểm tra quyền Firestore.</div>'}}
 function initCommunity(){
   clearCommunityListeners();if(!user)return;$('#myUid').textContent=user.uid;
   const rq=onSnapshot(collection(db,'users',user.uid,'friendRequests'),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests()},err=>{$('#friendRequests').innerHTML='<div class="msg show err">Không đọc được lời mời. Kiểm tra Firestore Rules.</div>'});
@@ -231,6 +243,6 @@ $('#uidSearchBtn').onclick=searchUid;
 $('#uidSearchInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchUid()});
 $('#chatForm').onsubmit=e=>{e.preventDefault();sendChat().catch(()=>{})};
 
-onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){$("#status").textContent="Đã đăng nhập";renderProfile();showView("home");initCommunity()}else{$("#status").textContent="Chưa đăng nhập";clearCommunityListeners();closeEdit()}});
+onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){$("#status").textContent="Đã đăng nhập";renderProfile();showView("home");ensureCommunityUserDoc(u).catch(err=>console.error('ensureCommunityUserDoc',err));initCommunity()}else{$("#status").textContent="Chưa đăng nhập";clearCommunityListeners();closeEdit()}});
 </script>
 </body></html>
