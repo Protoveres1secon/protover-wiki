@@ -24,14 +24,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.chip{font-size:10px;border:1px solid var(--line);background:#ffffff08;border-radius:999px;padding:7px 9px;color:#dbe4f7}
 .bigavatar img,.avatar img{width:100%;height:100%;object-fit:cover}.list{display:grid;gap:11px;margin-top:12px}.listItem{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:16px;background:#ffffff04}.listIcon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:#ffffff08;font-size:18px}.listItem b{font-size:12px}.listItem p{margin:4px 0 0;font-size:10px;color:var(--muted)}
-.modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:60}.modal.open{display:grid}.modalCard{width:min(820px,100%);max-height:92vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(180deg,#0a1228f5,#040915f8);box-shadow:0 40px 120px #000e}.modalHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.close{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:11px;padding:8px 11px;cursor:pointer}.cover{height:185px;border:1px solid var(--line);border-radius:18px;margin:14px 0;overflow:hidden;position:relative;background:linear-gradient(135deg,#131c48,#041022)}.cover img{width:100%;height:100%;object-fit:cover}.coverHint{position:absolute;inset:0;display:grid;place-items:center;color:#8f9db7;font-size:12px} .accountCover{height:240px;border:1px solid var(--line);border-radius:22px;margin:0 0 18px;overflow:hidden;position:relative;background:linear-gradient(135deg,#131c48,#041022);box-shadow:0 18px 45px #0006}.accountCover img{width:100%;height:100%;object-fit:cover;display:block}.accountCover:after{content:"";position:absolute;inset:auto 0 0;height:70px;background:linear-gradient(transparent,rgba(4,10,25,.7));pointer-events:none}.editGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#cbd5eb;font-weight:850}.field input,.field select{margin-top:6px}.hint{font-size:10px;color:#7b88a2;line-height:1.5}.editActions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.editActions .cta{min-width:125px;justify-content:center}.msg{display:none;margin-top:12px;padding:11px;border-radius:12px;border:1px solid var(--line);font-size:12px;line-height:1.5}.msg.show{display:block}.msg.ok{color:#a8ffd9;background:#4affaa10}.msg.err{color:#ffc7d5;background:#ff668510}
+.modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:60}.modal.open{display:grid}.modalCard{width:min(820px,100%);max-height:92vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(180deg,#0a1228f5,#040915f8);box-shadow:0 40px 120px #000e}.modalHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.close{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:11px;padding:8px 11px;cursor:pointer}.cover{height:185px;border:1px solid var(--line);border-radius:18px;margin:14px 0;overflow:hidden;position:relative;background:linear-gradient(135deg,#131c48,#041022)}.cover img{width:100%;height:100%;object-fit:cover}.coverHint{position:absolute;inset:0;display:grid;place-items:center;color:#8f9db7;font-size:12px}.editGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#cbd5eb;font-weight:850}.field input,.field select{margin-top:6px}.hint{font-size:10px;color:#7b88a2;line-height:1.5}.editActions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.editActions .cta{min-width:125px;justify-content:center}.msg{display:none;margin-top:12px;padding:11px;border-radius:12px;border:1px solid var(--line);font-size:12px;line-height:1.5}.msg.show{display:block}.msg.ok{color:#a8ffd9;background:#4affaa10}.msg.err{color:#ffc7d5;background:#ff668510}
 @media(max-width:600px){.editGrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 
-/* COMMUNITY ADD-ON */
-.communityGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-.communitySearch{display:flex;gap:8px;flex-wrap:wrap}.communitySearch input{flex:1;min-width:220px}.uidBox{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.uidValue{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;color:#9feaff;word-break:break-all}
-.actionRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.actionBtn{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:10px;padding:9px 11px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.actionBtn:hover{background:#ffffff14}.actionBtn.primary{background:linear-gradient(135deg,#735cff66,#00cfff22);border-color:#8acfff55}.actionBtn.danger{background:#ff668510;border-color:#ff668533}.communityList{display:grid;gap:9px;margin-top:12px}.communityItem{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);border-radius:14px;background:#ffffff04}.communityItem .ciAvatar{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000;overflow:hidden;flex:none}.ciAvatar img{width:100%;height:100%;object-fit:cover}.communityItem .ciMain{min-width:0;flex:1}.communityItem .ciMain b{font-size:12px}.communityItem .ciMain p{margin:3px 0 0;color:var(--muted);font-size:9px;word-break:break-all}.emptyState{padding:16px;border:1px dashed var(--line);border-radius:14px;color:#7f8ca7;font-size:11px;text-align:center;margin-top:10px}.chatWrap{display:grid;grid-template-columns:260px 1fr;gap:12px;margin-top:12px}.chatFriends{max-height:420px;overflow:auto}.chatFriend{display:flex;gap:9px;align-items:center;padding:9px;border:1px solid transparent;border-radius:12px;cursor:pointer}.chatFriend:hover,.chatFriend.active{background:#ffffff08;border-color:var(--line)}.chatFriend .cfAvatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#617eff,#ad60ff);display:grid;place-items:center;overflow:hidden;font-weight:900}.cfAvatar img{width:100%;height:100%;object-fit:cover}.chatPanel{min-height:420px;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;background:#00000022;overflow:hidden}.chatHead{padding:12px;border-bottom:1px solid var(--line);font-size:12px;font-weight:900}.chatMessages{padding:12px;display:flex;flex-direction:column;gap:8px;overflow:auto;flex:1;min-height:300px}.bubble{max-width:min(78%,560px);padding:9px 11px;border-radius:14px;border:1px solid var(--line);background:#ffffff07;font-size:11px;line-height:1.45}.bubble.mine{align-self:flex-end;background:linear-gradient(135deg,#735cff20,#00cfff10)}.bubbleMeta{margin-top:4px;color:#72809a;font-size:8px}.chatInput{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.chatInput input{margin:0}.chatInput button{flex:none}
-@media(max-width:800px){.communityGrid,.chatWrap{grid-template-columns:1fr}}
+.communityGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.communityFull{grid-column:1/-1}.communityTools{display:flex;gap:9px;flex-wrap:wrap;align-items:end}.communityTools .field{flex:1;min-width:220px}.communityItem{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:15px;background:#ffffff04;margin-top:9px}.communityItem:first-child{margin-top:0}.ciAvatar,.cfAvatar{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;flex:none;font-weight:1000;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);overflow:hidden}.ciAvatar img,.cfAvatar img,.profileLargeAvatar img{width:100%;height:100%;object-fit:cover}.ciMain{min-width:0;flex:1}.ciMain b{font-size:12px}.ciMain p{margin:4px 0 0;font-size:9px;color:var(--muted);word-break:break-all}.actionRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.actionBtn{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:900;cursor:pointer}.actionBtn:hover{background:#ffffff12}.actionBtn.primary{background:linear-gradient(135deg,#735cff,#00bfff);border-color:#a4ecff44}.actionBtn.danger{background:#ff4f6b12;border-color:#ff769044;color:#ffd5dc}.emptyState{padding:16px;border:1px dashed var(--line);border-radius:14px;color:#8795af;font-size:11px;margin-top:9px}.uidBox{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.uidValue{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;word-break:break-all;color:#bfefff;background:#00dfff08;border:1px solid #00dfff22;border-radius:10px;padding:10px}.chatLayout{display:grid;grid-template-columns:280px 1fr;gap:12px}.chatList{min-height:420px;max-height:520px;overflow:auto}.chatFriend{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid transparent;border-radius:13px;cursor:pointer}.chatFriend:hover,.chatFriend.active{background:#ffffff08;border-color:var(--line)}.cfAvatar{width:38px;height:38px;border-radius:12px;font-size:12px}.chatPanel{min-height:420px;border:1px solid var(--line);border-radius:18px;background:#020711aa;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}.chatHead{padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px;font-weight:900}.chatMessages{padding:13px;overflow:auto;display:flex;flex-direction:column;gap:8px;min-height:0}.bubble{max-width:78%;padding:9px 11px;border:1px solid var(--line);background:#ffffff07;border-radius:14px 14px 14px 4px;font-size:11px;line-height:1.5;align-self:flex-start}.bubble.mine{align-self:flex-end;background:linear-gradient(135deg,#735cff2a,#00bfff12);border-color:#8178ff55;border-radius:14px 14px 4px 14px}.bubbleMeta{font-size:8px;color:#8290ad;margin-top:4px}.chatForm{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.chatForm input{margin:0}.profileOverlay{position:fixed;inset:0;background:#000c;backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:70}.profileOverlay.open{display:grid}.profileCard{width:min(700px,100%);max-height:90vh;overflow:auto;padding:0;border:1px solid var(--line);border-radius:24px;background:#050b19f5;box-shadow:0 40px 120px #000e;overflow:hidden}.publicCover{height:210px;background:linear-gradient(135deg,#111a46,#041022);position:relative;overflow:hidden}.publicCover img{width:100%;height:100%;object-fit:cover}.publicProfileBody{padding:18px 20px 22px;position:relative}.profileLargeAvatar{width:92px;height:92px;border-radius:26px;display:grid;place-items:center;font-size:36px;font-weight:1000;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);box-shadow:0 15px 40px #0008;overflow:hidden;border:4px solid #050b19;position:absolute;top:-52px;left:20px}.publicInfo{padding-top:54px}.publicInfo h2{margin:0 0 5px;font-size:25px}.publicInfo p{margin:0;color:var(--muted);font-size:12px}.publicUid{margin-top:10px}.publicActions{display:flex;justify-content:flex-end;margin-top:14px}.publicMeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.publicMeta .chip{font-size:10px}
+@media(max-width:760px){.communityGrid,.chatLayout{grid-template-columns:1fr}.communityFull{grid-column:auto}.chatList{min-height:auto;max-height:260px}.publicCover{height:170px}}
 
 </style>
 </head>
@@ -80,8 +77,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
   </section>
 
   <section id="accountView" class="view">
-    <div class="eyebrow">PROTOVERES • TÀI KHOẢN</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Hồ sơ <span class="grad">của bạn.</span></h1>
-    <div class="accountCover" id="accountCover"><div class="coverHint">Chưa có ảnh bìa</div></div>
+    <div class="eyebrow">PROTOVERES • TÀI KHOẢN</div>
+    <div class="cover" id="accountCover" style="height:230px;margin:14px 0 14px"><div class="coverHint">Chưa có ảnh bìa</div></div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Hồ sơ <span class="grad">của bạn.</span></h1>
     <section class="accountHero"><div class="bigavatar" id="accountAvatar">T</div><div><h2 id="accountName">TheProto</h2><p>Thành viên Protoveres</p><div class="chips"><span class="chip" id="countryChip">🌍 Chưa đặt quốc gia</span><span class="chip" id="ageChip">🎂 Chưa đặt tuổi</span></div></div><span class="private">THÔNG TIN RIÊNG TƯ</span></section>
     <div class="actions"><button class="cta primary" id="editBtn">⚙ Chỉnh sửa tài khoản</button></div>
     <div class="split"><section class="card"><h3>✨ Thông tin hiển thị</h3><p>Tên hiển thị, quốc gia và tuổi của bạn. Email đăng nhập không hiển thị công khai.</p><div class="profile" style="margin-top:14px"><div class="avatar" id="accountMiniAvatar">T</div><div><div class="name" id="accountMiniName">TheProto</div><div class="sub">Tài khoản đang hoạt động</div></div></div></section><aside class="card"><h3>🔐 Xác thực</h3><p>Hệ thống đăng nhập được kết nối với Firebase Authentication.</p><p style="margin-top:10px;color:#9feaff">Email/Password + Google</p></aside></div>
@@ -90,47 +87,57 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
   <section id="postsView" class="view"><div class="eyebrow">PROTOVERES • BÀI ĐĂNG</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Bài <span class="grad">đăng.</span></h1><div class="card"><h3>📝 Khu vực bài đăng</h3><p>Nơi dành cho các bài đăng và cập nhật của Protoveres.</p><div class="list"><div class="listItem"><div class="listIcon">✨</div><div><b>Chưa có bài đăng mới</b><p>Khu vực này sẵn sàng cho nội dung tiếp theo.</p></div></div></div></div></section>
   <section id="notificationsView" class="view"><div class="eyebrow">PROTOVERES • THÔNG BÁO</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Thông <span class="grad">báo.</span></h1><div class="card"><h3>🔔 Trung tâm thông báo</h3><p>Chưa có thông báo mới.</p></div></section>
   <section id="communityView" class="view">
-    <div class="eyebrow">PROTOVERES • CỘNG ĐỒNG</div>
-    <h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Cộng <span class="grad">đồng.</span></h1>
-    <div class="card">
-      <h3>🆔 ID Protoveres của bạn</h3>
-      <p>Mỗi tài khoản có một UID Firebase riêng. Dùng UID để tìm và kết bạn.</p>
-      <div class="uidBox" style="margin-top:12px"><span class="uidValue" id="myUid">Đang tải…</span><button class="actionBtn" id="copyUidBtn" type="button">📋 Sao chép UID</button></div>
-    </div>
+  <div class="eyebrow">PROTOVERES • CỘNG ĐỒNG</div>
+  <h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Cộng <span class="grad">đồng.</span></h1>
 
-    <div class="communityGrid">
-      <section class="card">
-        <h3>🔎 Tìm thành viên</h3>
-        <p>Dán UID của người bạn muốn tìm.</p>
-        <div class="communitySearch" style="margin-top:12px"><input id="uidSearchInput" placeholder="UID Firebase…" autocomplete="off"><button class="actionBtn primary" id="uidSearchBtn" type="button">🔎 Tìm</button></div><div class="small" style="margin-top:8px;color:#9aa7c2">Tìm UID cần Firestore Rules cho phép người đã đăng nhập đọc hồ sơ thành viên.</div>
-        <div id="uidSearchResult"></div>
-      </section>
+  <div class="card">
+    <h3>🪪 UID thành viên</h3>
+    <p>UID là mã định danh Firebase riêng của tài khoản này. Có thể dùng UID để tìm bạn bè.</p>
+    <div class="uidBox" style="margin-top:12px"><div id="myUid" class="uidValue">Đang tải…</div><button class="actionBtn" id="copyUidBtn" type="button">📋 Sao chép UID</button></div>
+  </div>
 
-      <section class="card">
-        <h3>📨 Lời mời kết bạn</h3>
-        <div id="friendRequests" class="communityList"><div class="emptyState">Chưa có lời mời.</div></div>
-      </section>
-    </div>
+  <div class="communityGrid">
+    <section class="card">
+      <h3>🔎 Tìm thành viên</h3>
+      <p>Dán UID của người bạn muốn tìm.</p>
+      <div class="communityTools" style="margin-top:10px"><div class="field"><label for="uidSearchInput">UID</label><input id="uidSearchInput" placeholder="Dán UID tại đây"></div><button class="actionBtn primary" id="uidSearchBtn" type="button">🔎 Tìm</button></div>
+      <div id="uidSearchResult"></div>
+    </section>
 
-    <div class="communityGrid">
-      <section class="card">
-        <h3>👥 Bạn bè</h3>
-        <div id="friendsList" class="communityList"><div class="emptyState">Chưa có bạn bè.</div></div>
-      </section>
-      <section class="card">
-        <h3>💬 Chat 1–1</h3>
-        <div id="chatEmpty" class="emptyState">Chọn một người bạn để bắt đầu chat.</div>
-        <div id="chatArea" class="chatWrap" style="display:none">
-          <div class="chatFriends" id="chatFriends"></div>
-          <div class="chatPanel">
-            <div class="chatHead" id="chatHead">Chưa chọn cuộc trò chuyện</div>
-            <div class="chatMessages" id="chatMessages"></div>
-            <form class="chatInput" id="chatForm"><input id="chatText" placeholder="Viết tin nhắn…" autocomplete="off"><button class="actionBtn primary" type="submit">Gửi</button></form>
-          </div>
+    <section class="card">
+      <h3>📨 Lời mời kết bạn</h3>
+      <div id="friendRequests"><div class="emptyState">Chưa có lời mời.</div></div>
+    </section>
+
+    <section class="card communityFull">
+      <h3>👥 Bạn bè</h3>
+      <div id="friendsList"><div class="emptyState">Chưa có bạn bè.</div></div>
+    </section>
+
+    <section class="card communityFull">
+      <h3>💬 Chat 1–1</h3>
+      <div class="chatLayout" style="margin-top:10px">
+        <div id="chatFriends" class="chatList"><div class="emptyState">Chưa có bạn bè.</div></div>
+        <div class="chatPanel">
+          <div id="chatHead" class="chatHead">Chọn một người bạn để bắt đầu chat.</div>
+          <div id="chatMessages" class="chatMessages"><div id="chatEmpty" class="emptyState" style="margin:auto">Chưa chọn cuộc trò chuyện.</div></div>
+          <form id="chatForm" class="chatForm"><input id="chatText" placeholder="Viết tin nhắn…" autocomplete="off"><button class="actionBtn primary" type="submit">Gửi</button></form>
         </div>
-      </section>
+      </div>
+    </section>
+  </div>
+
+  <div class="profileOverlay" id="publicProfileOverlay">
+    <div class="profileCard">
+      <div id="publicCover" class="publicCover"><div class="coverHint">Chưa có ảnh bìa</div></div>
+      <div class="publicProfileBody">
+        <div id="publicAvatar" class="profileLargeAvatar">P</div>
+        <div class="publicInfo"><h2 id="publicName">Protoveres User</h2><p id="publicUid">UID</p><div id="publicMeta" class="publicMeta"></div></div>
+        <div class="publicActions"><button id="publicProfileClose" class="actionBtn" type="button">Đóng</button></div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
   <section id="wikiView" class="view">
     <div class="eyebrow">PROTOVERES • WIKI</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Khám phá <span class="grad">Wiki.</span></h1>
     <div class="hero"><p>Wiki công khai của Protoveres vẫn nằm trên Google Sites. Nút bên dưới mở thẳng trang Wiki để người dùng có thể đọc lore và nội dung công khai.</p><div class="actions"><a class="cta primary" href="https://sites.google.com/view/protoveres-wiki/trang-chu">📖 Mở Protoveres Wiki</a></div></div>
@@ -144,7 +151,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,updateDoc,deleteDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
 await setPersistence(auth,browserSessionPersistence);
@@ -167,108 +174,30 @@ $("#logoutBtn").onclick=async()=>{const b=$("#logoutBtn");if(b.disabled)return;b
 $("#editBtn").onclick=openEdit;$("#closeModal").onclick=closeEdit;$("#cancelEdit").onclick=closeEdit;
 $("#avatarFile").onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(f.size>5*1024*1024)return saveMsg("Avatar tối đa 5 MB.");try{pendingAvatar=await readFile(f,512,512,.86);renderProfile();saveMsg("Avatar đã chọn. Bấm Lưu hồ sơ để xác nhận.",true)}catch{saveMsg("Không đọc được avatar.")}};
 $("#coverFile").onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(f.size>8*1024*1024)return saveMsg("Ảnh bìa tối đa 8 MB.");try{pendingCover=await readFile(f,1400,700,.82);renderProfile();saveMsg("Ảnh bìa đã chọn. Bấm Lưu hồ sơ để xác nhận.",true)}catch{saveMsg("Không đọc được ảnh bìa.")}};
-$("#saveProfile").onclick=async()=>{if(!user)return;const b=$("#saveProfile");if(b.disabled)return;const n=$("#editName").value.trim()||"Protoveres User",c=$("#editCountry").value,a=$("#editAge").value;if(a&&(Number(a)<1||Number(a)>120))return saveMsg("Tuổi phải từ 1 đến 120.");b.disabled=true;b.textContent="💾 Đang lưu…";try{if(user.displayName!==n)await updateProfile(user,{displayName:n});localStorage.setItem(key("country"),c);localStorage.setItem(key("age"),a);if(pendingAvatar)localStorage.setItem(key("avatar"),pendingAvatar);if(pendingCover)localStorage.setItem(key("cover"),pendingCover);await setDoc(doc(db,"users",user.uid),{username:n,country:c||null,age:a?Number(a):null,updatedAt:serverTimestamp()},{merge:true});await user.reload();user=auth.currentUser;renderProfile();b.textContent="✅ Đã lưu";saveMsg("Đã lưu hồ sơ thành công.",true);setTimeout(()=>{closeEdit();b.disabled=false;b.textContent="💾 Lưu hồ sơ"},450)}catch(err){console.error(err);saveMsg("Lưu hồ sơ lỗi. Hãy kiểm tra mạng/Firebase.");b.disabled=false;b.textContent="💾 Lưu hồ sơ"}};
+$("#saveProfile").onclick=async()=>{if(!user)return;const b=$("#saveProfile");if(b.disabled)return;const n=$("#editName").value.trim()||"Protoveres User",c=$("#editCountry").value,a=$("#editAge").value;if(a&&(Number(a)<1||Number(a)>120))return saveMsg("Tuổi phải từ 1 đến 120.");b.disabled=true;b.textContent="💾 Đang lưu…";try{if(user.displayName!==n)await updateProfile(user,{displayName:n});localStorage.setItem(key("country"),c);localStorage.setItem(key("age"),a);if(pendingAvatar)localStorage.setItem(key("avatar"),pendingAvatar);if(pendingCover)localStorage.setItem(key("cover"),pendingCover);await setDoc(doc(db,"users",user.uid),{uid:user.uid,username:n,displayName:n,country:c||null,age:a?Number(a):null,photoURL:pendingAvatar||localStorage.getItem(key("avatar"))||user.photoURL||null,coverURL:pendingCover||localStorage.getItem(key("cover"))||null,updatedAt:serverTimestamp()},{merge:true});await user.reload();user=auth.currentUser;renderProfile();b.textContent="✅ Đã lưu";saveMsg("Đã lưu hồ sơ thành công.",true);setTimeout(()=>{closeEdit();b.disabled=false;b.textContent="💾 Lưu hồ sơ"},450)}catch(err){console.error(err);saveMsg("Lưu hồ sơ lỗi. Hãy kiểm tra mạng/Firebase.");b.disabled=false;b.textContent="💾 Lưu hồ sơ"}};
 window.addEventListener("click",e=>{if(e.target===$("#editModal"))closeEdit()});
 
-// COMMUNITY ADD-ON — chỉ bổ sung tính năng, không thay đổi trang chủ/account/login
-let communityUnsubs=[];
-let friendsCache={};
-let requestsCache={};
-let activeChatFriend=null;
-let chatUnsub=null;
-const esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+// COMMUNITY ADD-ON — giữ nguyên hệ thống gốc, chỉ mở rộng khu Cộng đồng.
+let communityUnsubs=[];let friendsCache={};let requestsCache={};let activeChatFriend=null;let chatUnsub=null;
+const esc=s=>String(s??'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 function initials(name){return (String(name||'P').trim().charAt(0)||'P').toUpperCase()}
-function avatarHtml(profile,cls='ciAvatar'){return profile?.photoURL?`<div class="${cls}"><img src="${esc(profile.photoURL)}" alt=""></div>`:`<div class="${cls}">${esc(initials(profile?.username||profile?.displayName))}</div>`}
-async function ensureCommunityUserDoc(u){
-  if(!u) return;
-  const ref=doc(db,'users',u.uid);
-  await setDoc(ref,{
-    uid:u.uid,
-    username:u.displayName||'Protoveres User',
-    displayName:u.displayName||null,
-    email:u.email||null,
-    photoURL:u.photoURL||null,
-    updatedAt:serverTimestamp()
-  },{merge:true});
-}
-async function hydrateCommunityUser(uid){
-  const snap=await getDoc(doc(db,'users',uid));
-  if(!snap.exists()) return null;
-  return {uid,...snap.data()};
-}
-function clearCommunityListeners(){communityUnsubs.forEach(x=>x&&x());communityUnsubs=[];if(chatUnsub){chatUnsub();chatUnsub=null}}
-async function sendFriendRequest(targetUid){
-  if(!user||!targetUid||targetUid===user.uid) return;
-  const existing=await getDoc(doc(db,'users',targetUid,'friendRequests',user.uid));
-  if(existing.exists()) return;
-  const me=await hydrateCommunityUser(user.uid);
-  await setDoc(doc(db,'users',targetUid,'friendRequests',user.uid),{fromUid:user.uid,fromName:me.username||user.displayName||'Protoveres User',fromPhotoURL:me.photoURL||user.photoURL||null,createdAt:serverTimestamp()});
-  const r=$('#uidSearchResult'); if(r) r.innerHTML+='<div class="msg show ok" style="margin-top:10px">📨 Đã gửi lời mời kết bạn.</div>';
-}
-async function acceptFriend(uid){
-  if(!user) return;
-  const me=await hydrateCommunityUser(user.uid), other=await hydrateCommunityUser(uid);
-  const now={since:serverTimestamp()};
-  await Promise.all([
-    setDoc(doc(db,'users',user.uid,'friends',uid),{uid,name:other.username||other.displayName||'Protoveres User',photoURL:other.photoURL||null,...now}),
-    setDoc(doc(db,'users',uid,'friends',user.uid),{uid:user.uid,name:me.username||me.displayName||'Protoveres User',photoURL:me.photoURL||null,...now}),
-    deleteDoc(doc(db,'users',user.uid,'friendRequests',uid))
-  ]);
-}
-async function rejectFriend(uid){if(user) await deleteDoc(doc(db,'users',user.uid,'friendRequests',uid))}
-function renderRequests(){const root=$('#friendRequests');if(!root)return;const vals=Object.values(requestsCache);if(!vals.length){root.innerHTML='<div class="emptyState">Chưa có lời mời.</div>';return}root.innerHTML=vals.map(r=>`<div class="communityItem">${avatarHtml(r)}</div><div class="ciMain"><b>${esc(r.fromName||'Protoveres User')}</b><p>${esc(r.fromUid)}</p><div class="actionRow"><button class="actionBtn primary" data-accept="${esc(r.fromUid)}">✅ Chấp nhận</button><button class="actionBtn danger" data-reject="${esc(r.fromUid)}">✕ Từ chối</button></div></div>`).join('');
-  // normalize malformed wrapper from template mapping
-  root.querySelectorAll('.communityItem').forEach((item,i)=>{const inner=vals[i];item.innerHTML=`${avatarHtml(inner)}<div class="ciMain"><b>${esc(inner.fromName||'Protoveres User')}</b><p>${esc(inner.fromUid)}</p><div class="actionRow"><button class="actionBtn primary" data-accept="${esc(inner.fromUid)}">✅ Chấp nhận</button><button class="actionBtn danger" data-reject="${esc(inner.fromUid)}">✕ Từ chối</button></div></div>`});
-  root.querySelectorAll('[data-accept]').forEach(b=>b.onclick=()=>acceptFriend(b.dataset.accept));root.querySelectorAll('[data-reject]').forEach(b=>b.onclick=()=>rejectFriend(b.dataset.reject));
-}
-function renderFriends(){const root=$('#friendsList');if(!root)return;const vals=Object.values(friendsCache);if(!vals.length){root.innerHTML='<div class="emptyState">Chưa có bạn bè.</div>';return}root.innerHTML=vals.map(f=>`<div class="communityItem">${avatarHtml(f)}<div class="ciMain"><b>${esc(f.name||'Protoveres User')}</b><p>${esc(f.uid)}</p><div class="actionRow"><button class="actionBtn primary" data-chat="${esc(f.uid)}">💬 Chat</button></div></div></div>`).join('');root.querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat));renderChatFriends()}
-function renderChatFriends(){const root=$('#chatFriends');if(!root)return;const vals=Object.values(friendsCache);root.innerHTML=vals.length?vals.map(f=>`<div class="chatFriend ${activeChatFriend===f.uid?'active':''}" data-cf="${esc(f.uid)}">${avatarHtml(f,'cfAvatar')}<div style="min-width:0"><b style="font-size:11px">${esc(f.name||'Protoveres User')}</b><div style="font-size:8px;color:#7f8ca7;word-break:break-all">${esc(f.uid)}</div></div></div>`).join(''):'<div class="emptyState">Chưa có bạn bè.</div>';root.querySelectorAll('[data-cf]').forEach(el=>el.onclick=()=>openChat(el.dataset.cf))}
-async function openChat(friendUid){
-  activeChatFriend=friendUid;renderChatFriends();$('#chatEmpty').style.display='none';$('#chatArea').style.display='grid';
-  const friend=friendsCache[friendUid]||await hydrateCommunityUser(friendUid);$('#chatHead').textContent=`💬 ${friend.name||friend.username||'Protoveres User'}`;if(chatUnsub){chatUnsub();chatUnsub=null}
-  const chatId=[user.uid,friendUid].sort().join('__');
-  const q=query(collection(db,'chats',chatId,'messages'),orderBy('createdAt','asc'));
-  chatUnsub=onSnapshot(q,snap=>{const root=$('#chatMessages');root.innerHTML='';snap.forEach(d=>{const m=d.data();const bubble=document.createElement('div');bubble.className='bubble '+(m.senderUid===user.uid?'mine':'');bubble.innerHTML=`${esc(m.text)}<div class="bubbleMeta">${esc(m.senderUid===user.uid?'Bạn':friend.name||friend.username||'Thành viên')}</div>`;root.appendChild(bubble)});root.scrollTop=root.scrollHeight},err=>{$('#chatMessages').innerHTML='<div class="emptyState">Không thể tải chat. Kiểm tra quyền Firestore.</div>'});
-}
-async function sendChat(){if(!user||!activeChatFriend)return;const input=$('#chatText'),text=input.value.trim();if(!text)return;const chatId=[user.uid,activeChatFriend].sort().join('__');input.value='';await addDoc(collection(db,'chats',chatId,'messages'),{senderUid:user.uid,text,createdAt:serverTimestamp()})}
-async function searchUid(){
-  const root=$('#uidSearchResult'),uid=$('#uidSearchInput').value.trim();
-  if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}
-  if(!user){root.innerHTML='<div class="msg show err">Hãy đăng nhập trước.</div>';return}
-  if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}
-  root.innerHTML='<div class="emptyState">Đang tìm…</div>';
-  try{
-    const p=await Promise.race([
-      hydrateCommunityUser(uid),
-      new Promise((_,reject)=>setTimeout(()=>reject(Object.assign(new Error('timeout'),{code:'deadline-exceeded'})),8000))
-    ]);
-    if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này. Hãy chắc chắn tài khoản đó đã đăng nhập ít nhất một lần.</div>';return}
-    const already=!!friendsCache[uid];
-    root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||'Protoveres User')}</b><p>${esc(uid)}</p><div class="actionRow">${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;
-    const b=$('#sendReqBtn');if(b)b.onclick=()=>sendFriendRequest(uid)
-  }catch(e){
-    console.error('searchUid:',e);
-    const code=e?.code||'';
-    if(code==='permission-denied'){
-      root.innerHTML='<div class="msg show err">🔒 Firestore đang chặn đọc hồ sơ thành viên. Hãy Publish Rules cho Community trong Firebase Console.</div>';
-    }else if(code==='deadline-exceeded'){
-      root.innerHTML='<div class="msg show err">⏱️ Firestore không phản hồi. Kiểm tra mạng hoặc Firestore Database.</div>';
-    }else{
-      root.innerHTML='<div class="msg show err">Không thể tìm UID. Lỗi Firestore: '+esc(e?.message||'unknown')+'</div>';
-    }
-  }
-}
-function initCommunity(){
-  clearCommunityListeners();if(!user)return;$('#myUid').textContent=user.uid;
-  const rq=onSnapshot(collection(db,'users',user.uid,'friendRequests'),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests()},err=>{$('#friendRequests').innerHTML='<div class="msg show err">Không đọc được lời mời. Kiểm tra Firestore Rules.</div>'});
-  const fr=onSnapshot(collection(db,'users',user.uid,'friends'),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},err=>{$('#friendsList').innerHTML='<div class="msg show err">Không đọc được danh sách bạn bè. Kiểm tra Firestore Rules.</div>'});
-  communityUnsubs=[rq,fr];
-}
-$('#copyUidBtn').onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||'');$('#copyUidBtn').textContent='✅ Đã chép';setTimeout(()=>$('#copyUidBtn').textContent='📋 Sao chép UID',1200)}catch{}};
-$('#uidSearchBtn').onclick=searchUid;
-$('#uidSearchInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchUid()});
-$('#chatForm').onsubmit=e=>{e.preventDefault();sendChat().catch(()=>{})};
+function avatarHtml(profile,cls='ciAvatar'){return profile?.photoURL?`<div class="${cls}"><img src="${esc(profile.photoURL)}" alt=""></div>`:`<div class="${cls}">${esc(initials(profile?.username||profile?.displayName||profile?.name))}</div>`}
+async function getCommunityUser(uid){const s=await getDoc(doc(db,'users',uid));return s.exists()?{uid,...s.data()}:null}
+async function ensureCommunityUserDoc(u){if(!u)return;const ref=doc(db,'users',u.uid);const snap=await getDoc(ref);const existing=snap.exists()?snap.data():{};const patch={uid:u.uid,username:existing.username||u.displayName||'Protoveres User',displayName:existing.displayName||u.displayName||null,email:existing.email||u.email||null,updatedAt:serverTimestamp()};if(!existing.photoURL&&u.photoURL)patch.photoURL=u.photoURL;if(existing.coverURL===undefined)patch.coverURL=null;await setDoc(ref,patch,{merge:true})}
+function clearCommunityListeners(){communityUnsubs.forEach(fn=>{try{fn&&fn()}catch{}});communityUnsubs=[];if(chatUnsub){try{chatUnsub()}catch{}chatUnsub=null}}
+async function sendFriendRequest(targetUid){if(!user||!targetUid||targetUid===user.uid)return;const btn=$('#sendReqBtn');if(btn){btn.disabled=true;btn.textContent='⏳ Gửi…'}try{const me=await getCommunityUser(user.uid);await setDoc(doc(db,'users',targetUid,'friendRequests',user.uid),{fromUid:user.uid,fromName:me?.username||me?.displayName||user.displayName||'Protoveres User',fromPhotoURL:me?.photoURL||user.photoURL||null,createdAt:serverTimestamp()});if(btn){btn.textContent='✅ Đã gửi';btn.disabled=true}}catch(err){console.error(err);if(btn){btn.disabled=false;btn.textContent='➕ Gửi lời mời'}const r=$('#uidSearchResult');if(r)r.insertAdjacentHTML('beforeend','<div class="msg show err" style="margin-top:10px">Không gửi được lời mời. Kiểm tra Firestore Rules.</div>')}}
+async function openPublicProfile(uid){try{const p=await getCommunityUser(uid);if(!p)return;$('#publicName').textContent=p.username||p.displayName||'Protoveres User';$('#publicUid').textContent=p.uid;const av=$('#publicAvatar');if(p.photoURL)av.innerHTML=`<img src="${esc(p.photoURL)}" alt="Avatar">`;else av.textContent=initials(p.username||p.displayName);const cover=$('#publicCover');cover.innerHTML=p.coverURL?`<img src="${esc(p.coverURL)}" alt="Ảnh bìa">`:`<div class="coverHint">Chưa có ảnh bìa</div>`;const meta=[];if(p.country)meta.push(`<span class="chip">🌍 ${esc(p.country)}</span>`);if(p.age)meta.push(`<span class="chip">🎂 ${esc(p.age)} tuổi</span>`);$('#publicMeta').innerHTML=meta.join('');$('#publicProfileOverlay').classList.add('open')}catch(err){console.error(err);const r=$('#uidSearchResult');if(r)r.insertAdjacentHTML('beforeend','<div class="msg show err" style="margin-top:10px">Không mở được hồ sơ. Kiểm tra Firestore Rules.</div>')}}
+async function acceptFriend(uid){if(!user)return;try{const me=await getCommunityUser(user.uid),other=await getCommunityUser(uid);if(!other)throw new Error('missing profile');await Promise.all([setDoc(doc(db,'users',user.uid,'friends',uid),{uid,name:other.username||other.displayName||'Protoveres User',photoURL:other.photoURL||null,coverURL:other.coverURL||null,since:serverTimestamp()}),setDoc(doc(db,'users',uid,'friends',user.uid),{uid:user.uid,name:me?.username||me?.displayName||'Protoveres User',photoURL:me?.photoURL||null,coverURL:me?.coverURL||null,since:serverTimestamp()}),deleteDoc(doc(db,'users',user.uid,'friendRequests',uid))])}catch(err){console.error(err);alert('Không thể chấp nhận lời mời. Kiểm tra Firestore Rules.')}}
+async function rejectFriend(uid){if(!user)return;try{await deleteDoc(doc(db,'users',user.uid,'friendRequests',uid))}catch(err){console.error(err);alert('Không thể từ chối lời mời. Kiểm tra Firestore Rules.')}}
+function renderRequests(){const root=$('#friendRequests');if(!root)return;const vals=Object.values(requestsCache);if(!vals.length){root.innerHTML='<div class="emptyState">Chưa có lời mời.</div>';return}root.innerHTML=vals.map(r=>`<div class="communityItem">${avatarHtml(r)}<div class="ciMain"><b>${esc(r.fromName||'Protoveres User')}</b><p>${esc(r.fromUid)}</p><div class="actionRow"><button class="actionBtn primary" data-accept="${esc(r.fromUid)}" type="button">✅ Chấp nhận</button><button class="actionBtn danger" data-reject="${esc(r.fromUid)}" type="button">✕ Từ chối</button><button class="actionBtn" data-profile="${esc(r.fromUid)}" type="button">👤 Hồ sơ</button></div></div></div>`).join('');root.querySelectorAll('[data-accept]').forEach(b=>b.onclick=()=>acceptFriend(b.dataset.accept));root.querySelectorAll('[data-reject]').forEach(b=>b.onclick=()=>rejectFriend(b.dataset.reject));root.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>openPublicProfile(b.dataset.profile))}
+function renderFriends(){const root=$('#friendsList');if(!root)return;const vals=Object.values(friendsCache);if(!vals.length){root.innerHTML='<div class="emptyState">Chưa có bạn bè.</div>';renderChatFriends();return}root.innerHTML=vals.map(f=>`<div class="communityItem">${avatarHtml({photoURL:f.photoURL,name:f.name})}<div class="ciMain"><b>${esc(f.name||'Protoveres User')}</b><p>${esc(f.uid)}</p><div class="actionRow"><button class="actionBtn primary" data-chat="${esc(f.uid)}" type="button">💬 Chat</button><button class="actionBtn" data-profile="${esc(f.uid)}" type="button">👤 Hồ sơ</button></div></div></div>`).join('');root.querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat));root.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>openPublicProfile(b.dataset.profile));renderChatFriends()}
+function renderChatFriends(){const root=$('#chatFriends');if(!root)return;const vals=Object.values(friendsCache);root.innerHTML=vals.length?vals.map(f=>`<div class="chatFriend ${activeChatFriend===f.uid?'active':''}" data-cf="${esc(f.uid)}">${avatarHtml({photoURL:f.photoURL,name:f.name},'cfAvatar')}<div style="min-width:0"><b style="font-size:11px">${esc(f.name||'Protoveres User')}</b><div style="font-size:8px;color:#7f8ca7;word-break:break-all">${esc(f.uid)}</div></div></div>`).join(''):'<div class="emptyState">Chưa có bạn bè.</div>';root.querySelectorAll('[data-cf]').forEach(el=>el.onclick=()=>openChat(el.dataset.cf))}
+async function openChat(friendUid){activeChatFriend=friendUid;renderChatFriends();$('#chatEmpty').style.display='none';const fr=friendsCache[friendUid];$('#chatArea')?.style;const friend=fr||await getCommunityUser(friendUid);$('#chatHead').textContent=`💬 ${friend?.name||friend?.username||friend?.displayName||'Protoveres User'}`;if(chatUnsub){try{chatUnsub()}catch{}chatUnsub=null}const chatId=[user.uid,friendUid].sort().join('__');const q=query(collection(db,'chats',chatId,'messages'),orderBy('createdAt','asc'));chatUnsub=onSnapshot(q,snap=>{const root=$('#chatMessages');root.innerHTML='';snap.forEach(d=>{const m=d.data();const bubble=document.createElement('div');bubble.className='bubble '+(m.senderUid===user.uid?'mine':'');bubble.innerHTML=`${esc(m.text)}<div class="bubbleMeta">${esc(m.senderUid===user.uid?'Bạn':friend?.name||friend?.username||'Thành viên')}</div>`;root.appendChild(bubble)});root.scrollTop=root.scrollHeight},err=>{$('#chatMessages').innerHTML='<div class="emptyState">Không thể tải chat. Kiểm tra Firestore Rules.</div>'})}
+async function sendChat(){if(!user||!activeChatFriend)return;const input=$('#chatText'),text=input.value.trim();if(!text)return;const chatId=[user.uid,activeChatFriend].sort().join('__');input.value='';try{await addDoc(collection(db,'chats',chatId,'messages'),{senderUid:user.uid,text,createdAt:serverTimestamp()})}catch(err){console.error(err);input.value=text;alert('Không gửi được tin nhắn. Kiểm tra Firestore Rules.')}}
+async function searchUid(){const root=$('#uidSearchResult'),uid=$('#uidSearchInput').value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await getCommunityUser(uid);if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||'Protoveres User')}</b><p>${esc(uid)}</p><div class="actionRow"><button class="actionBtn" id="viewProfileBtn" type="button">👤 Xem hồ sơ</button>${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;const vb=$('#viewProfileBtn');if(vb)vb.onclick=()=>openPublicProfile(uid);const sb=$('#sendReqBtn');if(sb)sb.onclick=()=>sendFriendRequest(uid)}catch(e){console.error(e);root.innerHTML='<div class="msg show err">Không thể tìm UID. Kiểm tra quyền Firestore.</div>'}}
+function initCommunity(){clearCommunityListeners();if(!user)return;$('#myUid').textContent=user.uid;requestsCache={};friendsCache={};const rq=onSnapshot(collection(db,'users',user.uid,'friendRequests'),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests()},err=>{$('#friendRequests').innerHTML='<div class="msg show err">Không đọc được lời mời. Kiểm tra Firestore Rules.</div>'});const fr=onSnapshot(collection(db,'users',user.uid,'friends'),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},err=>{$('#friendsList').innerHTML='<div class="msg show err">Không đọc được danh sách bạn bè. Kiểm tra Firestore Rules.</div>'});communityUnsubs=[rq,fr]}
+$('#copyUidBtn').onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||'');$('#copyUidBtn').textContent='✅ Đã chép';setTimeout(()=>$('#copyUidBtn').textContent='📋 Sao chép UID',1200)}catch{const r=document.createElement('textarea');r.value=user?.uid||'';document.body.appendChild(r);r.select();document.execCommand('copy');r.remove();$('#copyUidBtn').textContent='✅ Đã chép';setTimeout(()=>$('#copyUidBtn').textContent='📋 Sao chép UID',1200)}};
+$('#uidSearchBtn').onclick=()=>searchUid();$('#uidSearchInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchUid()});$('#chatForm').onsubmit=e=>{e.preventDefault();sendChat()};$('#publicProfileClose').onclick=()=>$('#publicProfileOverlay').classList.remove('open');$('#publicProfileOverlay').addEventListener('click',e=>{if(e.target===$('#publicProfileOverlay'))$('#publicProfileOverlay').classList.remove('open')});
 
-onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){$("#status").textContent="Đã đăng nhập";renderProfile();showView("home");ensureCommunityUserDoc(u).catch(err=>console.error('ensureCommunityUserDoc',err));initCommunity()}else{$("#status").textContent="Chưa đăng nhập";clearCommunityListeners();closeEdit()}});
-</script>
+onAuthStateChanged(auth,u=>{user=u;const logged=!!u;$('#loginView').classList.toggle('active',!logged);$('#appView').style.display=logged?'block':'none';$('#mainNav').style.display=logged?'flex':'none';if(logged){$('#status').textContent='Đã đăng nhập';renderProfile();ensureCommunityUserDoc(u).then(()=>{const localAv=localStorage.getItem(key('avatar'));const localCover=localStorage.getItem(key('cover'));if(localAv||localCover)return setDoc(doc(db,'users',u.uid),{photoURL:localAv||null,coverURL:localCover||null},{merge:true})}).catch(err=>console.error('community profile sync',err));showView('home');initCommunity()}else{$('#status').textContent='Chưa đăng nhập';clearCommunityListeners();closeEdit();$('#publicProfileOverlay')?.classList.remove('open')}});</script>
 </body></html>
