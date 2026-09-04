@@ -25,10 +25,6 @@ service cloud.firestore {
       allow create: if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && request.resource.data.senderUid == request.auth.uid;
-      allow update: if request.auth != null
-        && chatId.split('__').hasAny([request.auth.uid])
-        && resource.data.senderUid == request.auth.uid
-        && request.resource.data.senderUid == resource.data.senderUid;
       allow delete: if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && resource.data.senderUid == request.auth.uid;
