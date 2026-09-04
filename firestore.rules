@@ -23,6 +23,13 @@ service cloud.firestore {
       }
     }
 
+    // Notifications inbox. Sender may create a notification for the recipient; recipient may read/delete it.
+    match /notifications/{recipientUid}/items/{notificationId} {
+      allow read: if request.auth != null && request.auth.uid == recipientUid;
+      allow create: if request.auth != null && request.resource.data.fromUid == request.auth.uid;
+      allow update, delete: if request.auth != null && request.auth.uid == recipientUid;
+    }
+
     // 1-to-1 chats. The chat ID is the two UIDs sorted and joined with "__".
     match /chats/{chatId}/messages/{messageId} {
       allow read: if request.auth != null && chatId.split('__').hasAny([request.auth.uid]);
