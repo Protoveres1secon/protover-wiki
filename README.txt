@@ -1,11 +1,8 @@
-PROTOVERES MAIN WEB — CHAT VIDEO / NOTIFICATIONS AUDITED
+PROTOVERES MAIN WEB — COMMUNITY AUDITED BUILD
 
-Base: Protoveres_Auth_Session_FINAL_FULL_CHAT_AUDITED
-Additions only:
-- Chat media: GIF, image upload, camera photo, mobile camera video / video upload.
-- Chat message notifications with NEW badge and jump-to-chat button.
-- Update button checks version.json and reloads only when a newer build exists.
+Base: Protoveres_Auth_Session_FINAL_FULL
+Add-ons: Community UID search, member profile view, friend requests, notification badge/center, friends, 1-1 chat.
+Profile sync: custom avatar and cover are stored in Firestore as avatarURL / coverURL.
+Google profile data: googlePhotoURL is kept separately and does not overwrite a custom Protoveres avatar/name.
 
-Firebase:
-- Publish firestore.rules in Firestore Database > Rules.
-- Publish storage.rules in Firebase Storage > Rules.
+Important: publish firestore.rules in Firebase Console > Firestore Database > Rules.
