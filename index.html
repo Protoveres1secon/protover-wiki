@@ -46,6 +46,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 .rankNum{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#ffffff08;font-weight:1000;color:#d8e2f6}.rankAvatar{width:42px;height:42px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000}.rankAvatar img{width:100%;height:100%;object-fit:cover}.rankMain{min-width:0}.rankMain b{font-size:12px}.rankMain p{margin:3px 0 0;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.totalUsers{min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.totalUsers .count{font-size:42px;font-weight:1000;line-height:1;background:linear-gradient(90deg,#fff,#73eaff,#c0abff);color:transparent;background-clip:text;-webkit-background-clip:text}.totalUsers .label{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.5}
 @media(max-width:700px){.rankBox{grid-template-columns:1fr}.totalUsers{min-height:120px}}
 .notificationItem{text-align:left;width:100%;cursor:pointer}.notificationItem.unread{border-color:#8c7cff66;background:#7b6cff10}.notificationItem:hover{background:#ffffff0a}.notifyToastHost{position:fixed;right:18px;bottom:18px;z-index:9999;display:grid;gap:10px;width:min(380px,calc(100vw - 36px));pointer-events:none}.notifyToast{pointer-events:auto;display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border:1px solid #8c7cff55;border-radius:16px;background:rgba(11,13,28,.96);box-shadow:0 16px 40px rgba(0,0,0,.45);backdrop-filter:blur(12px);cursor:pointer}.notifyToast .tclose{margin-left:auto;opacity:.65}.notifyToast b{font-size:13px}.notifyToast p{margin:3px 0 0;color:#9da4bd;font-size:11px}.rankActions{margin-top:7px;display:flex;gap:6px;flex-wrap:wrap}
+.chatArchiveNotice{order:-1;display:none;margin:8px 10px 12px;padding:10px 12px;border:1px solid #8c7cff55;border-radius:12px;background:#7b6cff0d;color:#bfc8e1;font-size:9px;line-height:1.55;text-align:center}.chatArea #chatMessages{display:flex;flex-direction:column;min-height:0}
 </style>
 </head>
 <body>
@@ -68,7 +69,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
     <div class="loginPanel hero">
       <div class="eyebrow">CỔNG PROTOVERES</div>
       <h1>Cánh cửa vào <span class="grad">vũ trụ.</span></h1>
-      <p>Đăng nhập để bước vào không gian chính của Protoveres. Hệ thống dùng Firebase Authentication cho Email/Mật khẩu và Google.</p>
+      <p>Đăng nhập để bước vào không gian chính của Protoveres. Hệ thống dùng Firebase Authentication cho Email/Mật khẩu, Google và Facebook.</p>
     </div>
     <div class="loginPanel loginCard">
       <div class="tabs"><button class="tab active" id="loginTab">Đăng nhập</button><button class="tab" id="registerTab">Tạo tài khoản</button></div>
@@ -80,6 +81,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
       </form>
       <div style="display:flex;align-items:center;gap:10px;color:#72809a;font-size:10px;margin:15px 0"><span style="height:1px;flex:1;background:var(--line)"></span>HOẶC<span style="height:1px;flex:1;background:var(--line)"></span></div>
       <button class="cta" id="googleBtn" style="width:100%;justify-content:center;background:#fff;color:#111">G&nbsp; Tiếp tục với Google</button>
+      <button class="cta" id="facebookBtn" style="width:100%;justify-content:center;background:#1877f2;color:#fff;margin-top:8px">f&nbsp; Tiếp tục với Facebook</button>
+      <div style="margin-top:8px;color:#687796;font-size:9px;line-height:1.5">Facebook Login cần được bật trong Firebase Authentication và cấu hình OAuth của Facebook Developer.</div>
       <div id="loginMsg" class="msg"></div>
     </div>
   </div>
@@ -204,10 +207,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs,getCountFromServer,increment}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,FacebookAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs,getCountFromServer,increment,limitToLast}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),facebookProvider=new FacebookAuthProvider(),$=s=>document.querySelector(s);
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
 let mode="login",user=null,pendingAvatar="",pendingCover="";
 let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="";
@@ -227,6 +230,7 @@ function closeEdit(){$("#editModal").classList.remove("open");pendingAvatar="";p
 $("#loginTab").onclick=()=>setMode("login");$("#registerTab").onclick=()=>setMode("register");document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{if(user)showView(b.dataset.view)});
 $("#authForm").onsubmit=async e=>{e.preventDefault();try{const email=$("#email").value.trim(),pw=$("#password").value;if(mode==="register"){const n=$("#username").value.trim();if(!n)return msg("Hãy nhập tên người dùng.");const c=await createUserWithEmailAndPassword(auth,email,pw);await updateProfile(c.user,{displayName:n});await setDoc(doc(db,"users",c.user.uid),{username:n,email,createdAt:serverTimestamp()},{merge:true})}else{await signInWithEmailAndPassword(auth,email,pw)}$("#authForm").reset();msg(mode==="register"?"Tạo tài khoản thành công!":"Đăng nhập thành công!",true)}catch(err){const m={"auth/email-already-in-use":"Email này đã được sử dụng.","auth/invalid-credential":"Email hoặc mật khẩu không đúng.","auth/invalid-email":"Email không hợp lệ.","auth/weak-password":"Mật khẩu cần ít nhất 8 ký tự."};msg(m[err.code]||"Có lỗi khi đăng nhập.")}};
 $("#googleBtn").onclick=async()=>{try{const c=await signInWithPopup(auth,provider);const ref=doc(db,"users",c.user.uid),snap=await getDoc(ref);if(!snap.exists())await setDoc(ref,{username:c.user.displayName||"Google User",email:c.user.email||null,googlePhotoURL:c.user.photoURL||null,createdAt:serverTimestamp()});else await setDoc(ref,{email:c.user.email||null,googlePhotoURL:c.user.photoURL||null,updatedAt:serverTimestamp()},{merge:true})}catch(err){const m={"auth/popup-closed-by-user":"Ông đã đóng cửa sổ Google.","auth/popup-blocked":"Trình duyệt đã chặn cửa sổ Google.","auth/unauthorized-domain":"Tên miền này chưa được cho phép trong Firebase."};msg(m[err.code]||"Google Login gặp lỗi.")}};
+$("#facebookBtn").onclick=async()=>{try{$("#facebookBtn").disabled=true;msg('Đang mở Facebook…',true);facebookProvider.setCustomParameters({display:'popup'});await signInWithPopup(auth,facebookProvider)}catch(e){console.error('facebook login',e);const code=e?.code||'';if(code==='auth/account-exists-with-different-credential')msg('Email này đã có tài khoản bằng phương thức đăng nhập khác. Hãy đăng nhập bằng phương thức cũ rồi dùng liên kết tài khoản sau.',false);else if(code==='auth/operation-not-allowed')msg('Facebook Login chưa được bật trong Firebase Authentication.',false);else msg(friendlyError(e),false)}finally{$("#facebookBtn").disabled=false}};
 $("#logoutBtn").onclick=async()=>{const b=$("#logoutBtn");if(b.disabled)return;b.disabled=true;b.textContent="↪ Đang đăng xuất…";try{await signOut(auth)}finally{b.disabled=false;b.textContent="↪ Đăng xuất"}};
 $("#editBtn").onclick=openEdit;$("#closeModal").onclick=closeEdit;$("#cancelEdit").onclick=closeEdit;
 $("#avatarFile").onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(f.size>5*1024*1024)return saveMsg("Avatar tối đa 5 MB.");try{pendingAvatar=await readFile(f,512,512,.86);renderProfile(await getMyProfile());saveMsg("Avatar đã chọn. Bấm Lưu hồ sơ để xác nhận.",true)}catch{saveMsg("Không đọc được avatar.")}};
@@ -328,7 +332,60 @@ function bindBubbleActions(){
   document.querySelectorAll('[data-chat-recall]').forEach(b=>b.onclick=async()=>{const id=b.dataset.chatRecall;try{await updateDoc(doc(db,'chats',[user.uid,activeChatFriend].sort().join('__'),'messages',id),{revoked:true,revokedAt:serverTimestamp()})}catch(e){alert(friendlyError(e))}});
   document.querySelectorAll('[data-chat-share]').forEach(b=>b.onclick=()=>openSharePicker(b._message));
 }
-async function openChat(friendUid){if(!user||!friendUid)return;activeChatFriend=friendUid;renderChatFriends();$('#chatEmpty').style.display='none';$('#chatArea').style.display='grid';const friend=friendsCache[friendUid]||await profileByUid(friendUid);$('#chatHead').textContent=`💬 ${friend?.name||friend?.username||'Protoveres User'}`;if(chatUnsub){chatUnsub();chatUnsub=null}const chatId=[user.uid,friendUid].sort().join('__'),q=query(collection(db,'chats',chatId,'messages'),orderBy('createdAt','asc'));chatUnsub=onSnapshot(q,snap=>{const root=$('#chatMessages');root.innerHTML='';snap.forEach(d=>{const m={id:d.id,...d.data()},mine=m.senderUid===user.uid;const wrap=document.createElement('div');wrap.className='bubbleWrap '+(mine?'mine':'');const bubble=document.createElement('div');bubble.className='bubble '+(mine?'mine':'');bubble.innerHTML=messagePreviewHtml(m,friend?.name||friend?.username||'Thành viên');wrap.appendChild(bubble);const acts=document.createElement('div');acts.className='bubbleActions';if(!m.revoked){const copy=document.createElement('button');copy.className='bubbleAction';copy.textContent='📋';copy.type='button';copy.dataset.chatCopy='1';copy._message=m;acts.appendChild(copy);if(mine){const recall=document.createElement('button');recall.className='bubbleAction';recall.textContent='↩️ Thu hồi';recall.type='button';recall.dataset.chatRecall=m.id;acts.appendChild(recall)}const share=document.createElement('button');share.className='bubbleAction';share.textContent='↗️ Chia sẻ';share.type='button';share.dataset.chatShare='1';share._message=m;acts.appendChild(share)}wrap.appendChild(acts);root.appendChild(wrap)});root.scrollTop=root.scrollHeight;bindBubbleActions()},e=>{$('#chatMessages').innerHTML=`<div class="emptyState">${esc(friendlyError(e))}</div>`})}
+async function renderChatArchiveNotice(chatId, loadedCount){
+  const root=$('#chatMessages');
+  if(!root||loadedCount<70)return;
+  try{
+    const totalSnap=await getCountFromServer(collection(db,'chats',chatId,'messages'));
+    const total=Number(totalSnap.data().count||0);
+    let n=root.querySelector('.chatArchiveNotice');
+    if(total>=100){
+      if(!n){n=document.createElement('div');n.className='chatArchiveNotice';root.prepend(n)}
+      n.textContent=`🧹 Cuộc chat đã có ${total} tin nhắn. Để giảm lag, ${Math.max(0,total-70)} tin nhắn cũ nhất đang được ẩn khỏi màn hình. Lịch sử vẫn được giữ trên Firebase.`;
+      n.style.display='block';
+    }else if(n){n.remove()}
+  }catch(e){console.warn('chat archive count',e)}
+}
+
+async function openChat(friendUid){
+  if(!user||!friendUid)return;
+  activeChatFriend=friendUid;
+  renderChatFriends();
+  $('#chatEmpty').style.display='none';
+  $('#chatArea').style.display='grid';
+  const friend=friendsCache[friendUid]||await profileByUid(friendUid);
+  $('#chatHead').textContent=`💬 ${friend?.name||friend?.username||'Protoveres User'}`;
+  if(chatUnsub){chatUnsub();chatUnsub=null}
+  const chatId=[user.uid,friendUid].sort().join('__');
+  const q=query(collection(db,'chats',chatId,'messages'),orderBy('createdAt','asc'),limitToLast(70));
+  chatUnsub=onSnapshot(q,snap=>{
+    const root=$('#chatMessages');
+    root.innerHTML='';
+    snap.forEach(d=>{
+      const m={id:d.id,...d.data()},mine=m.senderUid===user.uid;
+      const wrap=document.createElement('div');
+      wrap.className='bubbleWrap '+(mine?'mine':'');
+      const bubble=document.createElement('div');
+      bubble.className='bubble '+(mine?'mine':'');
+      bubble.innerHTML=messagePreviewHtml(m,friend?.name||friend?.username||'Thành viên');
+      wrap.appendChild(bubble);
+      const acts=document.createElement('div');
+      acts.className='bubbleActions';
+      if(!m.revoked){
+        const copy=document.createElement('button');
+        copy.className='bubbleAction';copy.textContent='📋';copy.type='button';copy.dataset.chatCopy='1';copy._message=m;acts.appendChild(copy);
+        if(mine){const recall=document.createElement('button');recall.className='bubbleAction';recall.textContent='↩️ Thu hồi';recall.type='button';recall.dataset.chatRecall=m.id;acts.appendChild(recall)}
+        const share=document.createElement('button');
+        share.className='bubbleAction';share.textContent='↗️ Chia sẻ';share.type='button';share.dataset.chatShare='1';share._message=m;acts.appendChild(share);
+      }
+      wrap.appendChild(acts);
+      root.appendChild(wrap);
+    });
+    renderChatArchiveNotice(chatId,snap.size);
+    root.scrollTop=root.scrollHeight;
+    bindBubbleActions();
+  },e=>{$('#chatMessages').innerHTML=`<div class="emptyState">${esc(friendlyError(e))}</div>`});
+}
 async function compressChatImage(file){return new Promise((resolve,reject)=>{if(file.type==='image/gif'){const fr=new FileReader();fr.onload=()=>{const s=String(fr.result||'');if(s.length>950000)reject(new Error('GIF quá lớn. Hãy chọn GIF dưới khoảng 700 KB.'));else resolve({url:s,type:'gif'});};fr.onerror=reject;fr.readAsDataURL(file);return}const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const scale=Math.min(1,960/im.width,960/im.height),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));c.getContext('2d').drawImage(im,0,0,c.width,c.height);const s=c.toDataURL('image/jpeg',.76);resolve({url:s,type:'image'})};im.onerror=reject;im.src=String(fr.result)};fr.onerror=reject;fr.readAsDataURL(file)})}
 async function uploadChatVideo(file){
   if(!user||!activeChatFriend||!file)return;
