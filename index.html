@@ -330,6 +330,36 @@ function bindBubbleActions(){
 }
 async function openChat(friendUid){if(!user||!friendUid)return;activeChatFriend=friendUid;renderChatFriends();$('#chatEmpty').style.display='none';$('#chatArea').style.display='grid';const friend=friendsCache[friendUid]||await profileByUid(friendUid);$('#chatHead').textContent=`💬 ${friend?.name||friend?.username||'Protoveres User'}`;if(chatUnsub){chatUnsub();chatUnsub=null}const chatId=[user.uid,friendUid].sort().join('__'),q=query(collection(db,'chats',chatId,'messages'),orderBy('createdAt','asc'));chatUnsub=onSnapshot(q,snap=>{const root=$('#chatMessages');root.innerHTML='';snap.forEach(d=>{const m={id:d.id,...d.data()},mine=m.senderUid===user.uid;const wrap=document.createElement('div');wrap.className='bubbleWrap '+(mine?'mine':'');const bubble=document.createElement('div');bubble.className='bubble '+(mine?'mine':'');bubble.innerHTML=messagePreviewHtml(m,friend?.name||friend?.username||'Thành viên');wrap.appendChild(bubble);const acts=document.createElement('div');acts.className='bubbleActions';if(!m.revoked){const copy=document.createElement('button');copy.className='bubbleAction';copy.textContent='📋';copy.type='button';copy.dataset.chatCopy='1';copy._message=m;acts.appendChild(copy);if(mine){const recall=document.createElement('button');recall.className='bubbleAction';recall.textContent='↩️ Thu hồi';recall.type='button';recall.dataset.chatRecall=m.id;acts.appendChild(recall)}const share=document.createElement('button');share.className='bubbleAction';share.textContent='↗️ Chia sẻ';share.type='button';share.dataset.chatShare='1';share._message=m;acts.appendChild(share)}wrap.appendChild(acts);root.appendChild(wrap)});root.scrollTop=root.scrollHeight;bindBubbleActions()},e=>{$('#chatMessages').innerHTML=`<div class="emptyState">${esc(friendlyError(e))}</div>`})}
 async function compressChatImage(file){return new Promise((resolve,reject)=>{if(file.type==='image/gif'){const fr=new FileReader();fr.onload=()=>{const s=String(fr.result||'');if(s.length>950000)reject(new Error('GIF quá lớn. Hãy chọn GIF dưới khoảng 700 KB.'));else resolve({url:s,type:'gif'});};fr.onerror=reject;fr.readAsDataURL(file);return}const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const scale=Math.min(1,960/im.width,960/im.height),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));c.getContext('2d').drawImage(im,0,0,c.width,c.height);const s=c.toDataURL('image/jpeg',.76);resolve({url:s,type:'image'})};im.onerror=reject;im.src=String(fr.result)};fr.onerror=reject;fr.readAsDataURL(file)})}
+async function uploadChatVideo(file){
+  if(!user||!activeChatFriend||!file)return;
+  if(!file.type.startsWith('video/')){alert('Hãy chọn một video.');return}
+  const MAX_VIDEO=100*1024*1024;
+  if(file.size>MAX_VIDEO){alert('Video quá lớn. Giới hạn 100 MB mỗi video.');return}
+  const btn=$('#videoBtn');
+  if(btn){btn.disabled=true;btn.textContent='🎥 Đang tải…'}
+  try{
+    const {getStorage,ref,uploadBytesResumable,getDownloadURL}=await import('https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js');
+    const storage=getStorage(app);
+    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_')||'video.mp4';
+    const path=`chatVideos/${user.uid}/${Date.now()}_${safeName}`;
+    const task=uploadBytesResumable(ref(storage,path),file,{contentType:file.type||'video/mp4'});
+    await new Promise((resolve,reject)=>{
+      task.on('state_changed',snap=>{
+        const pct=Math.round((snap.bytesTransferred/snap.totalBytes)*100);
+        if(btn)btn.textContent=`🎥 ${pct}%`;
+      },reject,resolve);
+    });
+    const url=await getDownloadURL(task.snapshot.ref);
+    await sendChat({mediaUrl:url,type:'video',caption:''});
+  }catch(e){console.error(e);alert('Không tải được video. '+friendlyError(e))}
+  finally{if(btn){btn.disabled=false;btn.textContent='🎥 Video'}}
+}
+async function sendChatFile(file){
+  try{
+    const media=await compressChatImage(file);
+    await sendChat({mediaUrl:media.url,type:media.type,caption:''});
+  }catch(e){alert(e.message||'Không gửi được ảnh.')}
+}
 async function sendChat(payload={}){if(!user||!activeChatFriend)return;const input=$('#chatText'),text=(payload.caption??input.value).trim();if(!payload.mediaUrl&&!text)return;const chatId=[user.uid,activeChatFriend].sort().join('__');input.value='';try{const msgRef=await addDoc(collection(db,'chats',chatId,'messages'),{senderUid:user.uid,text:text||'',type:payload.type||'text',mediaUrl:payload.mediaUrl||null,caption:payload.mediaUrl?text||null:null,forwardedFromName:payload.forwardedFromName||null,forwardedFromUid:payload.forwardedFromUid||null,createdAt:serverTimestamp()});const nt=payload.type==='video'?'chat_video':payload.type==='image'?'chat_image':payload.type==='gif'?'chat_gif':'chat_text';const lastText=text||null;createUserNotification(activeChatFriend,{type:nt,targetType:'chat',targetUid:user.uid,chatId,message:lastText||'',messageId:msgRef.id}).catch(()=>{});}catch(e){if(!payload.mediaUrl)input.value=text;alert(friendlyError(e))}}
 
 function openSharePicker(message){if(!message)return;const ov=$('#shareOverlay'),list=$('#shareList');list.innerHTML='';const vals=Object.values(friendsCache);if(!vals.length){list.innerHTML='<div class="emptyState">Chưa có người bạn nào để chia sẻ.</div>';ov.classList.add('open');return}vals.filter(f=>f.uid!==activeChatFriend).forEach(f=>{const b=document.createElement('button');b.className='actionBtn';b.type='button';b.textContent=`↗️ ${f.name||'Protoveres User'}`;b.onclick=async()=>{const chatId=[user.uid,f.uid].sort().join('__');try{await addDoc(collection(db,'chats',chatId,'messages'),{senderUid:user.uid,text:message.text||'',type:message.type||'text',mediaUrl:message.mediaUrl||null,caption:message.caption||null,forwardedFromName:message.senderUid===user.uid?'Bạn':message.forwardedFromName||'Một người bạn',forwardedFromUid:message.senderUid||null,createdAt:serverTimestamp()});ov.classList.remove('open');if(f.uid===activeChatFriend)openChat(f.uid)}catch(e){alert(friendlyError(e))}};list.appendChild(b)});ov.classList.add('open')}
