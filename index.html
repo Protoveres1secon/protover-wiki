@@ -39,6 +39,12 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 /* ===== PROTOVERES SOCIAL POSTS: isolated addition ===== */
 .socialTop{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;margin-top:16px}.socialCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff08,#ffffff03);padding:18px}.socialCard h3{margin:0}.socialHint{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}.postComposer{margin-top:14px}.postTextarea{width:100%;min-height:130px;resize:vertical;box-sizing:border-box;padding:14px;border-radius:15px;border:1px solid var(--line);background:#050a16;color:#fff;outline:none;font:inherit;font-size:12px;line-height:1.6}.postToolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.postFileLabel,.postPrivacy,.postPublish{border:1px solid var(--line);background:#ffffff07;color:#eef3ff;border-radius:11px;padding:9px 12px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}.postFileLabel:hover,.postPrivacy:hover,.postPublish:hover{background:#ffffff10}.postPublish:disabled{opacity:.55;cursor:wait}.postPreview{display:none;margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#050812}.postPreview img{display:block;width:100%;max-height:360px;object-fit:contain;background:#02040a}.postPreviewMeta{padding:8px 10px;color:#8d9bb6;font-size:9px}.postStatus{display:none;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);font-size:10px}.postStatus.show{display:block}.postStatus.ok{background:#55e6a512;border-color:#55e6a544;color:#a9f4d0}.postStatus.err{background:#ff6f8f10;border-color:#ff6f8f44;color:#ffc1d0}.postJump{display:none;justify-content:space-between;gap:10px;align-items:center;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid #55e6a544;background:#55e6a508;color:#b8ffe0;font-size:10px}.postJump.show{display:flex}.postJump button{border:1px solid #55e6a566;background:#55e6a50d;color:#c6ffe6;border-radius:9px;padding:7px 10px;font:inherit;font-size:10px;font-weight:850;cursor:pointer}.socialFeedHead{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.socialFeed{display:grid;gap:14px;margin-top:12px}.postCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff07,#ffffff02);overflow:hidden;scroll-margin-top:85px}.postHead{display:flex;gap:11px;align-items:center;padding:15px 16px 10px}.postAvatar{width:44px;height:44px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000;flex:none}.postAvatar img{width:100%;height:100%;object-fit:cover}.postMeta{min-width:0}.postMeta b{font-size:12px}.postMeta span{display:block;color:#7f8ca7;font-size:9px;margin-top:3px}.postScope{margin-left:auto;font-size:9px;color:#aeb9d1;border:1px solid var(--line);border-radius:999px;padding:5px 8px;background:#ffffff06}.postText{padding:0 16px 14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.75;color:#eef3ff}.postImage{display:block;width:100%;max-height:600px;object-fit:contain;background:#02040a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.postActions{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px 12px}.postAction{border:1px solid var(--line);background:#ffffff06;color:#dbe8ff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:850;cursor:pointer}.postAction:hover{background:#ffffff12}.postAction.active{background:#735cff22;border-color:#9a8cff66}.postCounts{margin-left:auto;align-self:center;color:#7786a5;font-size:9px}.postEmpty{padding:20px;text-align:center;color:#74839d;border:1px dashed #ffffff1b;border-radius:16px}.postPrivateNote{padding:8px 12px;font-size:9px;color:#9eb0cf;border-top:1px solid var(--line);background:#ffffff03}@media(max-width:900px){.socialTop{grid-template-columns:1fr}}
 
+
+/* RANKING ADD-ON */
+.rankBox{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;margin-top:16px}
+.rankList{display:grid;gap:9px;margin-top:12px}.rankItem{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#ffffff06,#ffffff02)}
+.rankNum{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#ffffff08;font-weight:1000;color:#d8e2f6}.rankAvatar{width:42px;height:42px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000}.rankAvatar img{width:100%;height:100%;object-fit:cover}.rankMain{min-width:0}.rankMain b{font-size:12px}.rankMain p{margin:3px 0 0;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.totalUsers{min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.totalUsers .count{font-size:42px;font-weight:1000;line-height:1;background:linear-gradient(90deg,#fff,#73eaff,#c0abff);color:transparent;background-clip:text;-webkit-background-clip:text}.totalUsers .label{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.5}
+@media(max-width:700px){.rankBox{grid-template-columns:1fr}.totalUsers{min-height:120px}}
 </style>
 </head>
 <body>
@@ -166,6 +172,18 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
       </section>
     </div>
   </section>
+
+    <div class="rankBox">
+      <section class="card">
+        <h3>🏆 Bảng xếp hạng người mới</h3>
+        <p>10 tài khoản đăng ký gần đây nhất trên Protoveres.</p>
+        <div id="newUsersRank" class="rankList"><div class="emptyState">Đang tải bảng xếp hạng…</div></div>
+      </section>
+      <aside class="card totalUsers">
+        <div class="count" id="totalUsersCount">—</div>
+        <div class="label">👥 Thành viên đã đăng ký<br>trên Protoveres</div>
+      </aside>
+    </div>
   <section id="wikiView" class="view">
     <div class="eyebrow">PROTOVERES • WIKI</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Khám phá <span class="grad">Wiki.</span></h1>
     <div class="hero"><p>Wiki công khai của Protoveres vẫn nằm trên Google Sites. Nút bên dưới mở thẳng trang Wiki để người dùng có thể đọc lore và nội dung công khai.</p><div class="actions"><a class="cta primary" href="https://sites.google.com/view/protoveres-wiki/trang-chu">📖 Mở Protoveres Wiki</a></div></div>
@@ -180,7 +198,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs,getCountFromServer}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
@@ -282,7 +300,36 @@ async function openMemberProfile(uid){const p=await profileByUid(uid);const r=$(
 async function searchUid(){const root=$("#uidSearchResult"),uid=$("#uidSearchInput").value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}const btn=$("#uidSearchBtn");btn.disabled=true;root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await profileByUid(uid);if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||"Protoveres User")}</b><p>${esc(uid)}</p><div class="actionRow"><button class="actionBtn" id="viewMemberBtn" type="button">👤 Xem hồ sơ</button>${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;$("#viewMemberBtn").onclick=()=>openMemberProfile(uid);$("#sendReqBtn")?.addEventListener("click",()=>sendFriendRequest(uid))}catch(e){console.error(e);root.innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}finally{btn.disabled=false}}
 function renderNotifications(){const root=$("#notificationsList");if(!root)return;const vals=Object.values(requestsCache);root.innerHTML=vals.length?vals.map(r=>`<div class="communityItem"><div class="ciAvatar">${esc(initials(r.fromName))}</div><div class="ciMain"><b>👥 ${esc(r.fromName||"Một thành viên")} muốn kết bạn với bạn</b><p>${esc(r.fromUid)} · Lời mời mới</p><div class="actionRow"><button class="actionBtn primary" data-naccept="${esc(r.fromUid)}">✅ Chấp nhận kết bạn</button><button class="actionBtn danger" data-nreject="${esc(r.fromUid)}">✕ Từ chối</button><button class="actionBtn" data-nprofile="${esc(r.fromUid)}">👤 Xem hồ sơ</button></div></div></div>`).join(""):'<div class="emptyState">Chưa có thông báo mới.</div>';root.querySelectorAll('[data-naccept]').forEach(b=>b.onclick=async()=>{b.disabled=true;await acceptFriend(b.dataset.naccept);renderNotifications()});root.querySelectorAll('[data-nreject]').forEach(b=>b.onclick=async()=>{await rejectFriend(b.dataset.nreject);renderNotifications()});root.querySelectorAll('[data-nprofile]').forEach(b=>b.onclick=()=>{showView('community');openMemberProfile(b.dataset.nprofile)})}
 function updateNotificationBadge(){const n=Object.keys(requestsCache).length;const badge=$("#notificationsBadge");if(badge){badge.hidden=!n;badge.textContent=n?`NEW${n>1?" "+n:""}`:"NEW"}}
-function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
+
+async function loadNewUserRanking(){
+  const root=$("#newUsersRank"),countEl=$("#totalUsersCount");
+  if(!root)return;
+  root.innerHTML='<div class="emptyState">Đang tải bảng xếp hạng…</div>';
+  try{
+    const usersCol=collection(db,"users");
+    const rankSnap=await getDocs(usersCol);
+    const docs=rankSnap.docs.slice().sort((a,b)=>{
+      const da=a.data()||{},dbb=b.data()||{};
+      const ta=da.createdAt?.toMillis?.() ?? (da.createdAt?.seconds ? da.createdAt.seconds*1000 : 0);
+      const tb=dbb.createdAt?.toMillis?.() ?? (dbb.createdAt?.seconds ? dbb.createdAt.seconds*1000 : 0);
+      return tb-ta;
+    }).slice(0,10);
+    if(!docs.length){root.innerHTML='<div class="emptyState">Chưa có dữ liệu thành viên.</div>';}
+    else{
+      root.innerHTML='';
+      docs.forEach((d,i)=>{
+        const p=d.data()||{},name=p.username||p.displayName||"Protoveres User",av=p.avatarURL||p.photoURL||p.googlePhotoURL||"";
+        const el=document.createElement("div");el.className="rankItem";
+        const safeName=esc(name), safeUid=esc(d.id), safeAv=esc(av);
+        el.innerHTML=`<div class="rankNum">#${i+1}</div><div class="rankAvatar">${av?`<img src="${safeAv}" alt="">`:esc(initials(name))}</div><div class="rankMain"><b>${safeName}</b><p>UID: ${safeUid}</p></div>`;
+        root.appendChild(el);
+      });
+    }
+    try{const totalSnap=await getCountFromServer(usersCol);if(countEl)countEl.textContent=String(totalSnap.data().count)}catch(e){if(countEl)countEl.textContent=String(rankSnap.size)}
+  }catch(e){console.error("ranking",e);root.innerHTML=`<div class="msg show err">Không tải được bảng xếp hạng. ${esc(friendlyError(e))}</div>`;if(countEl)countEl.textContent="—"}
+}
+
+function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;loadNewUserRanking();communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
 $("#copyUidBtn").onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||"");$("#copyUidBtn").textContent="✅ Đã chép";setTimeout(()=>$("#copyUidBtn").textContent="📋 Sao chép UID",1200)}catch{alert("Không sao chép được UID.")}};
 $("#uidSearchBtn").onclick=searchUid;$("#uidSearchInput").addEventListener("keydown",e=>{if(e.key==="Enter")searchUid()});$("#chatForm").onsubmit=e=>{e.preventDefault();sendChat()};
 
