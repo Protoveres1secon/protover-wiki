@@ -17,19 +17,6 @@ service cloud.firestore {
         allow create, update, delete:
           if request.auth != null && (request.auth.uid == uid || request.auth.uid == friendUid);
       }
-
-      // Activity notifications owned by the recipient.
-      // The sender may create a notification for another user; only the
-      // recipient can read, mark read, or delete it.
-      match /notifications/{notificationId} {
-        allow read: if request.auth != null && request.auth.uid == uid;
-        allow create:
-          if request.auth != null
-          && request.resource.data.fromUid == request.auth.uid
-          && request.resource.data.type is string;
-        allow update, delete:
-          if request.auth != null && request.auth.uid == uid;
-      }
     }
 
     match /chats/{chatId}/messages/{messageId} {
