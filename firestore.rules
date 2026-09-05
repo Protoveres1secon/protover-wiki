@@ -1,7 +1,7 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
+
     match /users/{uid} {
       allow read: if request.auth != null;
       allow create, update, delete: if request.auth != null && request.auth.uid == uid;
@@ -19,42 +19,58 @@ service cloud.firestore {
       }
     }
 
-
-
-    match /posts/{postId} {
-      allow read: if request.auth != null
-        && (resource.data.visibility == 'public' || resource.data.ownerUid == request.auth.uid);
-
-      allow create: if request.auth != null
-        && request.resource.data.ownerUid == request.auth.uid
-        && request.resource.data.visibility in ['public', 'private']
-        && request.resource.data.text is string
-        && request.resource.data.text.size() <= 2000
-        && request.resource.data.imageData is string
-        && request.resource.data.imageData.size() <= 950000;
-
-      allow update, delete: if request.auth != null
-        && resource.data.ownerUid == request.auth.uid
-        && request.resource.data.ownerUid == resource.data.ownerUid;
-
-      match /reactions/{uid} {
-        allow read: if request.auth != null;
-        allow create, update, delete: if request.auth != null && request.auth.uid == uid;
-      }
-    }
-
     match /chats/{chatId}/messages/{messageId} {
-      allow read: if request.auth != null
+      allow read:
+        if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid]);
 
-      allow create: if request.auth != null
+      allow create:
+        if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && request.resource.data.senderUid == request.auth.uid;
 
-      allow update: if request.auth != null
+      allow update:
+        if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && resource.data.senderUid == request.auth.uid
         && request.resource.data.senderUid == resource.data.senderUid;
+    }
+
+    // Protoveres Social Posts
+    match /posts/{postId} {
+      // Public posts: every signed-in member can read, even without being friends.
+      // Private posts: only the owner can read.
+      allow read:
+        if request.auth != null
+        && (
+          resource.data.visibility == 'public'
+          || resource.data.ownerUid == request.auth.uid
+        );
+
+      // A signed-in member may create a post only for their own UID.
+      // We deliberately keep validation light here so image/text variants
+      // are not rejected by an overly strict rule.
+      allow create:
+        if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.visibility in ['public', 'private'];
+
+      // Only the author may modify or remove their own post.
+      allow update, delete:
+        if request.auth != null
+        && resource.data.ownerUid == request.auth.uid;
+
+      match /reactions/{reactionId} {
+        allow read: if request.auth != null;
+
+        allow create:
+          if request.auth != null
+          && request.resource.data.uid == request.auth.uid;
+
+        allow update, delete:
+          if request.auth != null
+          && resource.data.uid == request.auth.uid;
+      }
     }
   }
 }

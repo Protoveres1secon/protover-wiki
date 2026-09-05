@@ -1,15 +1,10 @@
-Protoveres Auth Session FINAL FULL — Chat Video Fix
+PROTO­VERES — SOCIAL POSTS RULE FIX
 
-Base: Protoveres_Auth_Session_FINAL_FULL_CHAT_AUDITED_REPAIRED
+1. Giữ nguyên index.html của bản Social đang chạy.
+2. Firebase Console → Firestore Database → Rules.
+3. Thay toàn bộ Rules hiện tại bằng nội dung trong firestore.rules.
+4. Bấm Publish / Publier.
+5. F5 trang web rồi đăng bài.
 
-This build keeps the existing web and only adds/fixes chat video support and profile-cover persistence.
-
-Changes:
-- Profile cover is preserved when saving other profile fields instead of being overwritten by null.
-- Chat adds a Video button with mobile camera capture support.
-- Video upload limit: 100 MB per file (not a 30-second limit).
-- Video is uploaded to Firebase Storage and shown with an HTML5 player.
-
-Firebase:
-- Publish firestore.rules only if you changed yours; it remains compatible with the current chat recall rules.
-- Publish storage.rules in Firebase Storage -> Rules before sending videos.
+Public = mọi thành viên đã đăng nhập đều xem được, không cần kết bạn.
+Private = chỉ chủ bài xem được.
