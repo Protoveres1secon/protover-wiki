@@ -27,12 +27,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 .modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:60}.modal.open{display:grid}.modalCard{width:min(820px,100%);max-height:92vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(180deg,#0a1228f5,#040915f8);box-shadow:0 40px 120px #000e}.modalHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.close{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:11px;padding:8px 11px;cursor:pointer}.cover{height:185px;border:1px solid var(--line);border-radius:18px;margin:14px 0;overflow:hidden;position:relative;background:linear-gradient(135deg,#131c48,#041022)}.cover img{width:100%;height:100%;object-fit:cover}.coverHint{position:absolute;inset:0;display:grid;place-items:center;color:#8f9db7;font-size:12px}.editGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#cbd5eb;font-weight:850}.field input,.field select{margin-top:6px}.hint{font-size:10px;color:#7b88a2;line-height:1.5}.editActions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.editActions .cta{min-width:125px;justify-content:center}.msg{display:none;margin-top:12px;padding:11px;border-radius:12px;border:1px solid var(--line);font-size:12px;line-height:1.5}.msg.show{display:block}.msg.ok{color:#a8ffd9;background:#4affaa10}.msg.err{color:#ffc7d5;background:#ff668510}
 @media(max-width:600px){.editGrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 
-/* RANKING ADD-ON */
-.rankBox{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;margin-top:16px}
-.rankList{display:grid;gap:9px;margin-top:12px}.rankItem{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#ffffff06,#ffffff02)}
-.rankNum{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#ffffff08;font-weight:1000;color:#d8e2f6}.rankAvatar{width:42px;height:42px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000}.rankAvatar img{width:100%;height:100%;object-fit:cover}.rankMain{min-width:0}.rankMain b{font-size:12px}.rankMain p{margin:3px 0 0;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.totalUsers{min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.totalUsers .count{font-size:42px;font-weight:1000;line-height:1;background:linear-gradient(90deg,#fff,#73eaff,#c0abff);color:transparent;background-clip:text;-webkit-background-clip:text}.totalUsers .label{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.5}
-@media(max-width:700px){.rankBox{grid-template-columns:1fr}.totalUsers{min-height:120px}}
-
 /* COMMUNITY ADD-ON */
 .communityGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
 .communitySearch{display:flex;gap:8px;flex-wrap:wrap}.communitySearch input{flex:1;min-width:220px}.uidBox{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.uidValue{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;color:#9feaff;word-break:break-all}
@@ -41,8 +35,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 
 
 .navBadge{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:999px;background:#ff4fa3;color:#fff;font-size:8px;font-weight:900;letter-spacing:.4px}.profileView{padding:14px;border:1px solid var(--line);border-radius:16px;background:#ffffff05;margin-top:12px}.profileCover{height:150px;border-radius:12px;overflow:hidden;background:#ffffff08;margin-bottom:14px}.profileCover img{width:100%;height:100%;object-fit:cover}.profileViewHead{display:flex;gap:12px;align-items:center}.profileViewAvatar{width:64px;height:64px;border-radius:18px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000;font-size:22px;flex:none}.profileViewAvatar img{width:100%;height:100%;object-fit:cover}.profileMeta{color:var(--muted);font-size:10px;line-height:1.6}
-/* SOCIAL FEED ADD-ON */
-.socialGrid{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin-top:16px}.socialComposerHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.postTextarea{width:100%;min-height:120px;resize:vertical;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:15px;background:#ffffff06;color:#fff;outline:none;font:inherit;font-size:12px;line-height:1.6}.postComposerRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.postSelect{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:10px;padding:9px 11px;font:inherit;font-size:11px}.postSelect option{background:#091124;color:#fff}.dragOver{outline:2px dashed #7ee9ff55;outline-offset:4px}.postImagePreview{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:520px}.postImagePreview img{display:block;width:100%;max-height:320px;object-fit:cover}.socialStatsCard{align-self:start}.socialFeed{display:grid;gap:14px;margin-top:12px} .postSuccessJump{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;padding:10px 12px;border:1px solid #55e6a544;border-radius:12px;background:#55e6a508;color:#a9f4d0;font-size:11px}.postSuccessJump[hidden]{display:none}.postJumpBtn{border:1px solid #55e6a566;background:#55e6a510;color:#b7ffe0;border-radius:9px;padding:7px 10px;font:inherit;font-size:10px;font-weight:850;cursor:pointer}.postJumpBtn:hover{background:#55e6a522}.postCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff06,#ffffff02);overflow:hidden}.postHead{display:flex;gap:11px;align-items:center;padding:15px 16px 10px}.postAuthorAvatar{width:44px;height:44px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000;flex:none}.postAuthorAvatar img{width:100%;height:100%;object-fit:cover}.postAuthorMeta{min-width:0}.postAuthorMeta b{font-size:12px}.postAuthorMeta span{display:block;margin-top:3px;color:#7f8ca7;font-size:9px}.postVisibility{margin-left:auto;font-size:9px;color:#aeb9d1;border:1px solid var(--line);border-radius:999px;padding:5px 8px;background:#ffffff06}.postBody{padding:0 16px 14px}.postBodyText{font-size:12px;line-height:1.7;color:#eef3ff;white-space:pre-wrap;overflow-wrap:anywhere}.postMedia{display:block;width:100%;max-height:520px;object-fit:cover;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#000}.postActions{display:flex;gap:7px;padding:10px 12px 12px;flex-wrap:wrap}.postAction{border:1px solid var(--line);background:#ffffff06;color:#dbe8ff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:850;cursor:pointer}.postAction:hover{background:#ffffff12}.postAction.active{background:#735cff22;border-color:#9a8cff66}.postCount{margin-left:auto;font-size:9px;color:#7786a5;align-self:center}.postPrivateNote{padding:8px 12px;font-size:9px;color:#9eb0cf;border-top:1px solid var(--line);background:#ffffff03}@media(max-width:800px){.socialGrid{grid-template-columns:1fr}}
+
+/* ===== PROTOVERES SOCIAL POSTS: isolated addition ===== */
+.socialTop{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;margin-top:16px}.socialCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff08,#ffffff03);padding:18px}.socialCard h3{margin:0}.socialHint{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}.postComposer{margin-top:14px}.postTextarea{width:100%;min-height:130px;resize:vertical;box-sizing:border-box;padding:14px;border-radius:15px;border:1px solid var(--line);background:#050a16;color:#fff;outline:none;font:inherit;font-size:12px;line-height:1.6}.postToolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.postFileLabel,.postPrivacy,.postPublish{border:1px solid var(--line);background:#ffffff07;color:#eef3ff;border-radius:11px;padding:9px 12px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}.postFileLabel:hover,.postPrivacy:hover,.postPublish:hover{background:#ffffff10}.postPublish:disabled{opacity:.55;cursor:wait}.postPreview{display:none;margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#050812}.postPreview img{display:block;width:100%;max-height:360px;object-fit:contain;background:#02040a}.postPreviewMeta{padding:8px 10px;color:#8d9bb6;font-size:9px}.postStatus{display:none;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);font-size:10px}.postStatus.show{display:block}.postStatus.ok{background:#55e6a512;border-color:#55e6a544;color:#a9f4d0}.postStatus.err{background:#ff6f8f10;border-color:#ff6f8f44;color:#ffc1d0}.postJump{display:none;justify-content:space-between;gap:10px;align-items:center;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid #55e6a544;background:#55e6a508;color:#b8ffe0;font-size:10px}.postJump.show{display:flex}.postJump button{border:1px solid #55e6a566;background:#55e6a50d;color:#c6ffe6;border-radius:9px;padding:7px 10px;font:inherit;font-size:10px;font-weight:850;cursor:pointer}.socialFeedHead{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.socialFeed{display:grid;gap:14px;margin-top:12px}.postCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#ffffff07,#ffffff02);overflow:hidden;scroll-margin-top:85px}.postHead{display:flex;gap:11px;align-items:center;padding:15px 16px 10px}.postAvatar{width:44px;height:44px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000;flex:none}.postAvatar img{width:100%;height:100%;object-fit:cover}.postMeta{min-width:0}.postMeta b{font-size:12px}.postMeta span{display:block;color:#7f8ca7;font-size:9px;margin-top:3px}.postScope{margin-left:auto;font-size:9px;color:#aeb9d1;border:1px solid var(--line);border-radius:999px;padding:5px 8px;background:#ffffff06}.postText{padding:0 16px 14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.75;color:#eef3ff}.postImage{display:block;width:100%;max-height:600px;object-fit:contain;background:#02040a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.postActions{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px 12px}.postAction{border:1px solid var(--line);background:#ffffff06;color:#dbe8ff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:850;cursor:pointer}.postAction:hover{background:#ffffff12}.postAction.active{background:#735cff22;border-color:#9a8cff66}.postCounts{margin-left:auto;align-self:center;color:#7786a5;font-size:9px}.postEmpty{padding:20px;text-align:center;color:#74839d;border:1px dashed #ffffff1b;border-radius:16px}.postPrivateNote{padding:8px 12px;font-size:9px;color:#9eb0cf;border-top:1px solid var(--line);background:#ffffff03}@media(max-width:900px){.socialTop{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -99,23 +95,32 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
   <section id="postsView" class="view">
     <div class="eyebrow">PROTOVERES • MẠNG XÃ HỘI</div>
     <h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Mạng xã hội <span class="grad">Protoveres.</span></h1>
-    <div class="socialGrid">
-      <section class="card">
-        <div class="socialComposerHead"><div><h3 style="margin:0">✍️ Tạo bài đăng</h3><p style="margin-top:6px">Chia sẻ điều gì đó với cộng đồng Protoveres.</p></div><span class="chip">🌐 Protoveres</span></div>
-        <textarea id="postText" class="postTextarea" maxlength="2000" placeholder="Bạn đang nghĩ gì? Ví dụ: Ê tôi đang đập trứng và được 2 lòng đỏ may mắn 😭🥚"></textarea>
-        <div id="postImagePreview" class="postImagePreview" style="display:none"></div>
-        <div class="postComposerRow">
-          <label class="actionBtn" style="cursor:pointer">🖼️ Ảnh <input id="postImageFile" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"></label>
-          <select id="postVisibility" class="postSelect" aria-label="Quyền riêng tư"><option value="public">🌎 Công khai</option><option value="private">🔒 Riêng tư</option></select>
-          <button class="actionBtn primary" id="publishPostBtn" type="button">🚀 Đăng bài</button>
+    <div class="socialTop">
+      <section class="socialCard" id="socialComposerCard">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+          <div><h3>✍️ Tạo bài đăng</h3><div class="socialHint">Chia sẻ điều gì đó với cộng đồng Protoveres.</div></div>
+          <span class="chip">🌐 Protoveres</span>
         </div>
-        <div id="postComposerMsg" class="msg"></div>
-        <div id="postSuccessJump" class="postSuccessJump" hidden><span>✅ Đã đăng bài thành công.</span><button class="postJumpBtn" type="button">➡️ Chuyển đến bài đăng của bạn</button></div>
+        <div class="postComposer">
+          <textarea id="socialPostText" class="postTextarea" maxlength="2000" placeholder="Bạn đang nghĩ gì? Ví dụ: Ê tôi đang đập trứng và được 2 lòng đỏ may mắn 😭🥚"></textarea>
+          <div id="socialPostPreview" class="postPreview"></div>
+          <div class="postToolbar">
+            <label class="postFileLabel" for="socialPostImage">🖼️ Ảnh<input id="socialPostImage" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"></label>
+            <select id="socialPostPrivacy" class="postPrivacy" aria-label="Quyền riêng tư"><option value="public">🌎 Công khai</option><option value="private">🔒 Riêng tư</option></select>
+            <button id="socialPostPublish" class="postPublish primary" type="button">🚀 Đăng bài</button>
+          </div>
+          <div id="socialPostStatus" class="postStatus" aria-live="polite"></div>
+          <div id="socialPostJump" class="postJump"><span>✅ Bài đăng của bạn đã được đăng.</span><button id="socialPostJumpBtn" type="button">➡️ Chuyển đến bài đăng</button></div>
+        </div>
       </section>
-      <aside class="card socialStatsCard"><h3>📡 Bảng tin Protoveres</h3><p>Bài <b>công khai</b> sẽ xuất hiện với mọi thành viên. Bài <b>riêng tư</b> chỉ bạn nhìn thấy.</p><div class="chips"><span class="chip">❤️ Thả tim</span><span class="chip">👍 Like</span><span class="chip">↗️ Chia sẻ</span></div></aside>
+      <aside class="socialCard">
+        <h3>📡 Bảng tin Protoveres</h3>
+        <div class="socialHint" style="margin-top:8px">Bài <b>công khai</b> xuất hiện với mọi thành viên. Bài <b>riêng tư</b> chỉ người đăng nhìn thấy.</div>
+        <div class="chips" style="margin-top:14px"><span class="chip">👍 Like</span><span class="chip">❤️ Thả tim</span><span class="chip">↗️ Chia sẻ</span></div>
+      </aside>
     </div>
-    <div class="sectionhead" style="margin-top:22px"><h2>📰 Bảng tin</h2><span id="socialFeedStatus">Đang tải…</span></div>
-    <div id="socialFeed" class="socialFeed"><div class="emptyState">Đang tải bài đăng…</div></div>
+    <div class="socialFeedHead"><h2>📰 Bảng tin</h2><span id="socialFeedStatus" class="socialHint">Chưa tải</span></div>
+    <div id="socialFeed" class="socialFeed"><div class="postEmpty">Chưa tải bài đăng.</div></div>
   </section>
   <section id="notificationsView" class="view"><div class="eyebrow">PROTOVERES • THÔNG BÁO</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Thông <span class="grad">báo.</span></h1><div class="card"><h3>🔔 Trung tâm thông báo</h3><div id="notificationsList" class="communityList"><div class="emptyState">Chưa có thông báo mới.</div></div></div></section>
   <section id="communityView" class="view">
@@ -160,18 +165,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
         </div>
       </section>
     </div>
-
-    <div class="rankBox">
-      <section class="card">
-        <h3>🏆 Bảng xếp hạng người mới</h3>
-        <p>10 tài khoản đăng ký gần đây nhất trên Protoveres.</p>
-        <div id="newUsersRank" class="rankList"><div class="emptyState">Đang tải bảng xếp hạng…</div></div>
-      </section>
-      <aside class="card totalUsers">
-        <div class="count" id="totalUsersCount">—</div>
-        <div class="label">👥 Thành viên đã đăng ký<br>trên Protoveres</div>
-      </aside>
-    </div>
   </section>
   <section id="wikiView" class="view">
     <div class="eyebrow">PROTOVERES • WIKI</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Khám phá <span class="grad">Wiki.</span></h1>
@@ -187,14 +180,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,limit,getDocs,getCountFromServer,onSnapshot,deleteDoc,updateDoc,where}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
 let mode="login",user=null,pendingAvatar="",pendingCover="";
-let socialPostUnsubs=[],socialPostsCache=[],postImageData="";
+let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="";
 const views={home:$("#homeView"),account:$("#accountView"),posts:$("#postsView"),notifications:$("#notificationsView"),community:$("#communityView"),wiki:$("#wikiView")};
-function showView(v){Object.entries(views).forEach(([k,e])=>e?.classList.toggle("active",k===v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v));window.scrollTo({top:0,behavior:"smooth"});if(v==="notifications")renderNotifications();if(v==="posts")initSocialPosts()}
+function showView(v){Object.entries(views).forEach(([k,e])=>e?.classList.toggle("active",k===v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v));window.scrollTo({top:0,behavior:"smooth"});if(v==="notifications")renderNotifications();if(v==="posts")initSocialFeed()}
 function setMode(m){mode=m;$("#loginTab").classList.toggle("active",m==="login");$("#registerTab").classList.toggle("active",m==="register");$("#usernameWrap").style.display=m==="register"?"block":"none";$("#username").required=m==="register";$("#authSubmit").textContent=m==="register"?"Tạo tài khoản":"Đăng nhập";$("#loginMsg").className="msg"}
 function msg(t,ok=false){const e=$("#loginMsg");e.textContent=t;e.className="msg show "+(ok?"ok":"err")}
 function saveMsg(t,ok=false){const e=$("#saveMsg");e.textContent=t;e.className=t?"msg show "+(ok?"ok":"err"):"msg"}
@@ -222,80 +215,20 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&g
 function initials(n){return(String(n||"P").trim().charAt(0)||"P").toUpperCase()}
 function avatarHtml(p,cls="ciAvatar"){const src=p?.avatarURL||p?.photoURL||"";return src?`<div class="${cls}"><img src="${esc(src)}" alt=""></div>`:`<div class="${cls}">${esc(initials(p?.username||p?.name||p?.displayName))}</div>`}
 
-// ==================== SOCIAL POSTS (stable add-on) ====================
-let socialPostUnsubs = [], socialPostsCache = [], postImageData = "", postSelectedFileName = "";
-function clearSocialPostListeners(){ socialPostUnsubs.forEach(fn=>{try{fn()}catch{}}); socialPostUnsubs=[]; }
-function socialPostTime(p){ try{ const d=p?.createdAt?.toDate?p.createdAt.toDate():new Date(p?.createdAt||0); return Number.isNaN(d.getTime())?"Vừa đăng":d.toLocaleString("vi-VN",{dateStyle:"medium",timeStyle:"short"}); }catch{return "Vừa đăng"} }
-function socialPostsMerge(a,b){ const m=new Map(); [...a,...b].forEach(p=>m.set(p.id,p)); return [...m.values()].sort((x,y)=>{const tx=x.createdAt?.toMillis?x.createdAt.toMillis():0,ty=y.createdAt?.toMillis?y.createdAt.toMillis():0;return ty-tx;}); }
-function postAuthorAvatar(p){ const src=p?.authorAvatarURL||""; return src?`<div class="postAuthorAvatar"><img src="${esc(src)}" alt=""></div>`:`<div class="postAuthorAvatar">${esc(initials(p?.authorName))}</div>`; }
-async function refreshPostCounts(id){ const el=document.querySelector(`[data-post-counts="${CSS.escape(id)}"]`); if(!el)return; try{const s=await getDocs(collection(db,"posts",id,"reactions"));let l=0,h=0;s.forEach(d=>{const t=d.data()?.type;if(t==="like")l++;if(t==="heart")h++;});el.textContent=`👍 ${l} · ❤️ ${h}`;}catch{el.textContent="";} }
-function renderSocialFeed(){
-  const root=$("#socialFeed"),status=$("#socialFeedStatus"); if(!root)return; const vals=socialPostsCache;
-  if(status)status.textContent=vals.length?`${vals.length} bài đang hiển thị`:"Chưa có bài nào";
-  root.innerHTML=vals.length?vals.map(p=>{
-    const media=p.mediaUrl?(p.mediaType==="video"?`<video class="postMedia" src="${esc(p.mediaUrl)}" controls playsinline preload="metadata"></video>`:`<img class="postMedia" src="${esc(p.mediaUrl)}" alt="Ảnh bài đăng" loading="lazy">`):"";
-    return `<article class="postCard" data-post-card="${esc(p.id)}"><div class="postHead">${postAuthorAvatar(p)}<div class="postAuthorMeta"><b>${esc(p.authorName||"Protoveres User")}</b><span>${esc(socialPostTime(p))}</span></div><span class="postVisibility">${p.visibility==="private"?"🔒 Riêng tư":"🌎 Công khai"}</span></div><div class="postBody"><div class="postBodyText">${esc(p.text||"")}</div></div>${media}<div class="postActions"><button class="postAction" type="button" data-post-reaction="like" data-post-id="${esc(p.id)}">👍 Like</button><button class="postAction" type="button" data-post-reaction="heart" data-post-id="${esc(p.id)}">❤️ Thả tim</button><button class="postAction" type="button" data-post-share="${esc(p.id)}">↗️ Share</button><span class="postCount" data-post-counts="${esc(p.id)}">Đang tải…</span></div>${p.visibility==="private"?'<div class="postPrivateNote">🔒 Bài đăng riêng tư — chỉ bạn nhìn thấy.</div>':""}</article>`;
-  }).join(""):'<div class="emptyState">Chưa có bài đăng. Hãy là người đầu tiên đăng gì đó 🚀</div>';
-  root.querySelectorAll("[data-post-reaction]").forEach(b=>b.onclick=()=>togglePostReaction(b.dataset.postId,b.dataset.postReaction,b));
-  root.querySelectorAll("[data-post-share]").forEach(b=>b.onclick=()=>sharePost(b.dataset.postShare));
-  vals.forEach(p=>refreshPostCounts(p.id));
-}
-async function togglePostReaction(id,type,btn){
-  if(!user)return; const ref=doc(db,"posts",id,"reactions",`${user.uid}_${type}`);
-  try{const s=await getDoc(ref);if(s.exists()){await deleteDoc(ref);btn.classList.remove("active")}else{await setDoc(ref,{uid:user.uid,type,createdAt:serverTimestamp()});btn.classList.add("active")}refreshPostCounts(id)}catch(e){alert(friendlyError(e));}
-}
-async function sharePost(id){
-  const p=socialPostsCache.find(x=>x.id===id);if(!p)return; const text=`${p.authorName||"Protoveres User"} trên Protoveres:\n${p.text||""}`;
-  try{if(navigator.share)await navigator.share({title:"Protoveres",text,url:location.href});else{await navigator.clipboard.writeText(text);alert("✅ Đã sao chép bài đăng để chia sẻ.")}}
-  catch(e){if(e?.name!=="AbortError")try{await navigator.clipboard.writeText(text);alert("✅ Đã sao chép bài đăng để chia sẻ.")}catch{alert("Không thể chia sẻ bài đăng.")}}
-}
-async function processPostImage(file){
-  if(!file)return; const msgEl=$("#postComposerMsg"),preview=$("#postImagePreview"),input=$("#postImageFile");
-  if(!file.type?.startsWith("image/")){postImageData="";if(input)input.value="";msgEl.textContent="❌ Chỉ nhận ảnh PNG, JPG hoặc WebP.";msgEl.className="msg show err";return;}
-  if(file.size>15*1024*1024){postImageData="";if(input)input.value="";msgEl.textContent="❌ Ảnh gốc tối đa 15 MB.";msgEl.className="msg show err";return;}
-  try{
-    let q=.86,data=await readFile(file,1400,1400,q);
-    while(data.length>700000&&q>.42){q-=.07;data=await readFile(file,1200,1200,q)}
-    if(data.length>760000)throw new Error("Ảnh sau khi nén vẫn quá lớn. Hãy chọn ảnh nhẹ hơn.");
-    postImageData=data;postSelectedFileName=file.name||"Ảnh";preview.style.display="block";preview.innerHTML=`<img src="${esc(data)}" alt="Xem trước ảnh"><div style="padding:8px 10px;font-size:9px;color:#8d9bb6">${esc(postSelectedFileName)} · Đã sẵn sàng đăng</div>`;msgEl.className="msg";msgEl.textContent="";
-  }catch(e){postImageData="";postSelectedFileName="";if(input)input.value="";msgEl.textContent=`❌ ${e?.message||"Không đọc được ảnh."}`;msgEl.className="msg show err";}
-}
-async function publishPost(){
-  if(!user){$("#postComposerMsg").textContent="Hãy đăng nhập trước.";$("#postComposerMsg").className="msg show err";return;}
-  const btn=$("#publishPostBtn"),msgEl=$("#postComposerMsg"),txt=$("#postText").value.trim(),vis=$("#postVisibility").value;
-  if(!txt&&!postImageData){msgEl.textContent="Hãy viết nội dung hoặc chọn ảnh trước khi đăng.";msgEl.className="msg show err";return;}
-  if(btn.disabled)return;
-  btn.disabled=true;btn.textContent="🚀 Đang đăng…";msgEl.className="msg";msgEl.textContent="";
-  const success=$("#postSuccessJump");if(success)success.hidden=true;
-  try{
-    const p=await getMyProfile();
-    const postRef=await addDoc(collection(db,"posts"),{ownerUid:user.uid,authorName:p.username||user.displayName||"Protoveres User",authorAvatarURL:p.avatarURL||null,googlePhotoURL:p.googlePhotoURL||user.photoURL||null,text:txt,visibility:vis,mediaUrl:postImageData||null,mediaType:postImageData?"image":null,createdAt:serverTimestamp()});
-    $("#postText").value="";postImageData="";postSelectedFileName="";$("#postImageFile").value="";$("#postImagePreview").style.display="none";$("#postImagePreview").innerHTML="";
-    msgEl.textContent="✅ Đã đăng bài thành công!";msgEl.className="msg show ok";if(success){success.hidden=false;success.dataset.postId=postRef.id;}
-    setTimeout(()=>scrollToPost(postRef.id),150);
-  }catch(e){console.error("publishPost",e);msgEl.textContent=e?.code==="permission-denied"?"❌ Firebase từ chối đăng bài. Hãy Publish firestore.rules có phần /posts.":`❌ ${friendlyError(e)}`;msgEl.className="msg show err";}
-  finally{btn.disabled=false;btn.textContent="🚀 Đăng bài";}
-}
-function scrollToPost(id){const el=document.querySelector(`[data-post-card="${CSS.escape(id)}"]`);if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.animate([{outline:"2px solid transparent"},{outline:"2px solid #7ee9ff"},{outline:"2px solid transparent"}],{duration:1200});return}const feed=$("#socialFeed");if(feed)feed.scrollIntoView({behavior:"smooth",block:"start"});}
-function initSocialPosts(){
-  clearSocialPostListeners();if(!user)return;
-  let pub=[],own=[];const rer=()=>{socialPostsCache=socialPostsMerge(pub,own).slice(0,50);renderSocialFeed()};
-  const pubQ=query(collection(db,"posts"),where("visibility","==","public"));
-  const ownQ=query(collection(db,"posts"),where("ownerUid","==",user.uid));
-  socialPostUnsubs.push(onSnapshot(pubQ,s=>{pub=[];s.forEach(d=>pub.push({id:d.id,...d.data()}));rer();},e=>{const root=$("#socialFeed");if(root)root.innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;}));
-  socialPostUnsubs.push(onSnapshot(ownQ,s=>{own=[];s.forEach(d=>own.push({id:d.id,...d.data()}));rer();},e=>console.warn("own posts",e)));
-}
-const postImageInput=$("#postImageFile");
-if(postImageInput)postImageInput.addEventListener("change",e=>processPostImage(e.target.files?.[0]));
-const postComposer=postImageInput?.closest(".card");
-if(postComposer){
-  ["dragenter","dragover"].forEach(ev=>postComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();postComposer.classList.add("dragOver")}));
-  ["dragleave","drop"].forEach(ev=>postComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();postComposer.classList.remove("dragOver")}));
-  postComposer.addEventListener("drop",e=>{const f=[...(e.dataTransfer?.files||[])].find(x=>x.type?.startsWith("image/"));if(f)processPostImage(f);else{const m=$("#postComposerMsg");m.textContent="❌ Hãy thả một file ảnh.";m.className="msg show err";}});
-}
-$("#publishPostBtn")?.addEventListener("click",publishPost);
-$("#postJumpBtn")?.addEventListener("click",()=>scrollToPost($("#postSuccessJump")?.dataset.postId||""));
-// ================================================================
+function clearSocialFeed(){socialFeedUnsubs.forEach(fn=>{try{fn()}catch{}});socialFeedUnsubs=[]}
+function socialDate(ts){try{if(!ts)return"Vừa xong";const d=ts.toDate?ts.toDate():new Date(ts);return new Intl.DateTimeFormat('vi-VN',{dateStyle:'medium',timeStyle:'short'}).format(d)}catch{return""}}
+function compressSocialImage(file){return new Promise((resolve,reject)=>{if(!file?.type?.startsWith('image/'))return reject(new Error('Chỉ nhận ảnh PNG, JPG hoặc WebP.'));if(file.size>15*1024*1024)return reject(new Error('Ảnh gốc tối đa 15 MB.'));const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const max=1400,scale=Math.min(1,max/im.width,max/im.height),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));const ctx=c.getContext('2d');if(!ctx)return reject(new Error('Trình duyệt không hỗ trợ xử lý ảnh.'));ctx.drawImage(im,0,0,c.width,c.height);let q=.86,data=c.toDataURL('image/jpeg',q);while(data.length>700000&&q>.45){q-=.06;data=c.toDataURL('image/jpeg',q)}if(data.length>780000)return reject(new Error('Ảnh sau khi nén vẫn quá lớn. Hãy chọn ảnh nhẹ hơn.'));resolve(data)};im.onerror=()=>reject(new Error('Không đọc được ảnh.'));im.src=String(fr.result)};fr.onerror=()=>reject(new Error('Không đọc được file ảnh.'));fr.readAsDataURL(file)})}
+function setSocialStatus(text,kind=''){const e=$('#socialPostStatus');if(!e)return;e.textContent=text||'';e.className='postStatus'+(text?' show ':' ')+(kind||'')}
+async function prepareSocialImage(file){const input=$('#socialPostImage'),preview=$('#socialPostPreview');try{socialPostImageData=await compressSocialImage(file);socialPostImageName=file.name||'Ảnh';preview.innerHTML=`<img src="${esc(socialPostImageData)}" alt="Ảnh xem trước"><div class="postPreviewMeta">${esc(socialPostImageName)} · Sẵn sàng đăng</div>`;preview.style.display='block';setSocialStatus('')}catch(e){socialPostImageData='';socialPostImageName='';if(input)input.value='';preview.innerHTML='';preview.style.display='none';setSocialStatus(e.message||'Không chọn được ảnh.','err')}}
+function mergeSocialPosts(publicPosts,ownPosts){const m=new Map();[...publicPosts,...ownPosts].forEach(p=>m.set(p.id,p));return [...m.values()].sort((a,b)=>(b.createdAt?.toMillis?.()||b.createdAt?.seconds*1000||0)-(a.createdAt?.toMillis?.()||a.createdAt?.seconds*1000||0)).slice(0,50)}
+function renderSocialFeed(){const root=$('#socialFeed'),status=$('#socialFeedStatus');if(!root)return;const vals=socialPostsCache;status.textContent=vals.length?`${vals.length} bài đăng`:'Chưa có bài đăng';root.innerHTML=vals.length?vals.map(p=>{const name=p.authorName||'Protoveres User',av=p.authorAvatarURL||'',scope=p.visibility==='private'?'🔒 Riêng tư':'🌎 Công khai';return `<article class="postCard" data-social-post-id="${esc(p.id)}"><div class="postHead"><div class="postAvatar">${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}</div><div class="postMeta"><b>${esc(name)}</b><span>${esc(socialDate(p.createdAt))}</span></div><div class="postScope">${scope}</div></div>${p.text?`<div class="postText">${esc(p.text)}</div>`:''}${p.mediaUrl?`<img class="postImage" src="${esc(p.mediaUrl)}" alt="Ảnh bài đăng" loading="lazy">`:''}<div class="postActions"><button class="postAction" type="button" data-social-reaction="like" data-social-id="${esc(p.id)}">👍 Like</button><button class="postAction" type="button" data-social-reaction="heart" data-social-id="${esc(p.id)}">❤️ Thả tim</button><button class="postAction" type="button" data-social-share="${esc(p.id)}">↗️ Chia sẻ</button><span class="postCounts" data-social-count="${esc(p.id)}">…</span></div>${p.visibility==='private'&&p.ownerUid===user?.uid?'<div class="postPrivateNote">🔒 Chỉ bạn nhìn thấy bài đăng này.</div>':''}</article>`}).join(''):'<div class="postEmpty">Chưa có bài đăng. Hãy là người đầu tiên chia sẻ điều gì đó 🚀</div>';root.querySelectorAll('[data-social-reaction]').forEach(b=>b.onclick=()=>toggleSocialReaction(b.dataset.socialId,b.dataset.socialReaction,b));root.querySelectorAll('[data-social-share]').forEach(b=>b.onclick=()=>shareSocialPost(b.dataset.socialShare));vals.forEach(p=>refreshSocialCounts(p.id))}
+function initSocialFeed(){clearSocialFeed();if(!user)return;const pubQ=query(collection(db,'posts'),where('visibility','==','public'));const ownQ=query(collection(db,'posts'),where('ownerUid','==',user.uid));let pub=[],own=[];const rer=()=>{socialPostsCache=mergeSocialPosts(pub,own);renderSocialFeed()};socialFeedUnsubs.push(onSnapshot(pubQ,s=>{pub=[];s.forEach(d=>pub.push({id:d.id,...d.data()}));rer()},e=>{$('#socialFeed').innerHTML=`<div class="postStatus show err">${esc(friendlyError(e))}</div>`}));socialFeedUnsubs.push(onSnapshot(ownQ,s=>{own=[];s.forEach(d=>own.push({id:d.id,...d.data()}));rer()},e=>console.warn('own posts',e)))}
+async function toggleSocialReaction(postId,type,btn){if(!user)return;const ref=doc(db,'posts',postId,'reactions',`${user.uid}_${type}`);try{const snap=await getDoc(ref);if(snap.exists()){await deleteDoc(ref);btn.classList.remove('active')}else{await setDoc(ref,{uid:user.uid,type,createdAt:serverTimestamp()});btn.classList.add('active')}refreshSocialCounts(postId)}catch(e){alert(friendlyError(e))}}
+async function refreshSocialCounts(postId){try{const s=await getDocs(collection(db,'posts',postId,'reactions'));const like=s.docs.filter(d=>d.data()?.type==='like').length,heart=s.docs.filter(d=>d.data()?.type==='heart').length;const e=document.querySelector(`[data-social-count="${CSS.escape(postId)}"]`);if(e)e.textContent=`👍 ${like} · ❤️ ${heart}`}catch{}}
+async function shareSocialPost(postId){const p=socialPostsCache.find(x=>x.id===postId);if(!p)return;const url=`${location.origin}${location.pathname}#post-${postId}`,text=`${p.authorName||'Protoveres User'} trên Protoveres:\n${p.text||''}`;try{if(navigator.share)await navigator.share({title:'Protoveres',text,url});else{await navigator.clipboard.writeText(url);alert('✅ Đã sao chép liên kết bài đăng.')}}catch(e){if(e?.name!=='AbortError')try{await navigator.clipboard.writeText(url);alert('✅ Đã sao chép liên kết bài đăng.')}catch{}}}
+async function publishSocialPost(){const btn=$('#socialPostPublish');if(!user||!btn||btn.disabled)return;const text=$('#socialPostText').value.trim(),privacy=$('#socialPostPrivacy').value;if(!text&&!socialPostImageData){setSocialStatus('Hãy viết nội dung hoặc chọn ảnh trước khi đăng.','err');return}btn.disabled=true;btn.textContent='🚀 Đang đăng…';setSocialStatus('');$('#socialPostJump').classList.remove('show');try{const prof=await getMyProfile();const snap=await addDoc(collection(db,'posts'),{ownerUid:user.uid,authorName:prof?.username||prof?.displayName||user.displayName||'Protoveres User',authorAvatarURL:prof?.avatarURL||null,googlePhotoURL:prof?.googlePhotoURL||user.photoURL||null,text,visibility:privacy,mediaUrl:socialPostImageData||null,mediaType:socialPostImageData?'image':null,createdAt:serverTimestamp()});$('#socialPostText').value='';$('#socialPostImage').value='';socialPostImageData='';socialPostImageName='';$('#socialPostPreview').innerHTML='';$('#socialPostPreview').style.display='none';setSocialStatus('✅ Đã đăng bài thành công.','ok');const j=$('#socialPostJump');j.classList.add('show');j.dataset.postId=snap.id;setTimeout(()=>scrollToSocialPost(snap.id),200)}catch(e){console.error('publishSocialPost',e);setSocialStatus(e?.code==='permission-denied'?'Firebase từ chối đăng bài. Hãy Publish Firestore Rules cho /posts.':friendlyError(e),'err')}finally{btn.disabled=false;btn.textContent='🚀 Đăng bài'}}
+function scrollToSocialPost(id){const e=document.querySelector(`[data-social-post-id="${CSS.escape(id)}"]`);if(e)e.scrollIntoView({behavior:'smooth',block:'center'})}
+$('#socialPostPublish')?.addEventListener('click',publishSocialPost);$('#socialPostImage')?.addEventListener('change',e=>{const f=e.target.files?.[0];if(f)prepareSocialImage(f)});$('#socialPostJumpBtn')?.addEventListener('click',()=>scrollToSocialPost($('#socialPostJump')?.dataset.postId||''));const socialComposer=$('#socialComposerCard');if(socialComposer){['dragenter','dragover'].forEach(ev=>socialComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();e.dataTransfer.dropEffect='copy';socialComposer.classList.add('dragOver')}));['dragleave','drop'].forEach(ev=>socialComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();socialComposer.classList.remove('dragOver')}));socialComposer.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();const f=[...(e.dataTransfer?.files||[])].find(x=>x.type?.startsWith('image/'));if(f)prepareSocialImage(f);else setSocialStatus('Hãy thả một file ảnh.','err')})}
 
 async function profileByUid(uid){const s=await getDoc(doc(db,"users",uid));return s.exists()?{uid,...s.data()}:null}
 function friendlyError(e){const code=e?.code||"";if(code.includes("permission-denied"))return"Firebase từ chối thao tác. Kiểm tra Firestore Rules.";return e?.message||"Có lỗi."}
@@ -349,39 +282,13 @@ async function openMemberProfile(uid){const p=await profileByUid(uid);const r=$(
 async function searchUid(){const root=$("#uidSearchResult"),uid=$("#uidSearchInput").value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}const btn=$("#uidSearchBtn");btn.disabled=true;root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await profileByUid(uid);if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||"Protoveres User")}</b><p>${esc(uid)}</p><div class="actionRow"><button class="actionBtn" id="viewMemberBtn" type="button">👤 Xem hồ sơ</button>${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;$("#viewMemberBtn").onclick=()=>openMemberProfile(uid);$("#sendReqBtn")?.addEventListener("click",()=>sendFriendRequest(uid))}catch(e){console.error(e);root.innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}finally{btn.disabled=false}}
 function renderNotifications(){const root=$("#notificationsList");if(!root)return;const vals=Object.values(requestsCache);root.innerHTML=vals.length?vals.map(r=>`<div class="communityItem"><div class="ciAvatar">${esc(initials(r.fromName))}</div><div class="ciMain"><b>👥 ${esc(r.fromName||"Một thành viên")} muốn kết bạn với bạn</b><p>${esc(r.fromUid)} · Lời mời mới</p><div class="actionRow"><button class="actionBtn primary" data-naccept="${esc(r.fromUid)}">✅ Chấp nhận kết bạn</button><button class="actionBtn danger" data-nreject="${esc(r.fromUid)}">✕ Từ chối</button><button class="actionBtn" data-nprofile="${esc(r.fromUid)}">👤 Xem hồ sơ</button></div></div></div>`).join(""):'<div class="emptyState">Chưa có thông báo mới.</div>';root.querySelectorAll('[data-naccept]').forEach(b=>b.onclick=async()=>{b.disabled=true;await acceptFriend(b.dataset.naccept);renderNotifications()});root.querySelectorAll('[data-nreject]').forEach(b=>b.onclick=async()=>{await rejectFriend(b.dataset.nreject);renderNotifications()});root.querySelectorAll('[data-nprofile]').forEach(b=>b.onclick=()=>{showView('community');openMemberProfile(b.dataset.nprofile)})}
 function updateNotificationBadge(){const n=Object.keys(requestsCache).length;const badge=$("#notificationsBadge");if(badge){badge.hidden=!n;badge.textContent=n?`NEW${n>1?" "+n:""}`:"NEW"}}
-async function loadNewUserRanking(){
-  const root=$("#newUsersRank"),countEl=$("#totalUsersCount");
-  if(!root)return;
-  root.innerHTML='<div class="emptyState">Đang tải bảng xếp hạng…</div>';
-  try{
-    const usersCol=collection(db,"users");
-    // Đọc toàn bộ hồ sơ để không làm mất các tài khoản cũ chưa có createdAt.
-    const rankSnap=await getDocs(usersCol);
-    const docs=rankSnap.docs.slice().sort((a,b)=>{
-      const ta=a.data()?.createdAt?.toMillis?.() ?? (a.data()?.createdAt?.seconds ? a.data().createdAt.seconds*1000 : 0);
-      const tb=b.data()?.createdAt?.toMillis?.() ?? (b.data()?.createdAt?.seconds ? b.data().createdAt.seconds*1000 : 0);
-      return tb-ta;
-    }).slice(0,10);
-    if(!docs.length){root.innerHTML='<div class="emptyState">Chưa có dữ liệu thành viên.</div>';}
-    else{
-      root.innerHTML='';let pos=1;
-      docs.forEach(d=>{const p=d.data()||{},name=p.username||p.displayName||"Protoveres User",av=p.avatarURL||"";
-        const el=document.createElement("div");el.className="rankItem";
-        el.innerHTML=`<div class="rankNum">#${pos++}</div><div class="rankAvatar">${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}</div><div class="rankMain"><b>${esc(name)}</b><p>UID: ${esc(d.id)}</p></div>`;
-        root.appendChild(el);
-      });
-    }
-    try{const totalSnap=await getCountFromServer(usersCol);if(countEl)countEl.textContent=String(totalSnap.data().count)}catch(e){if(countEl)countEl.textContent="—"}
-  }catch(e){console.error("ranking",e);root.innerHTML=`<div class="msg show err">Không tải được bảng xếp hạng. ${esc(friendlyError(e))}</div>`;if(countEl)countEl.textContent="—"}
-}
-
-function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;loadNewUserRanking();communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
+function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
 $("#copyUidBtn").onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||"");$("#copyUidBtn").textContent="✅ Đã chép";setTimeout(()=>$("#copyUidBtn").textContent="📋 Sao chép UID",1200)}catch{alert("Không sao chép được UID.")}};
 $("#uidSearchBtn").onclick=searchUid;$("#uidSearchInput").addEventListener("keydown",e=>{if(e.key==="Enter")searchUid()});$("#chatForm").onsubmit=e=>{e.preventDefault();sendChat()};
 
 $('#shareClose').onclick=()=>$('#shareOverlay').classList.remove('open');$('#shareOverlay').addEventListener('click',e=>{if(e.target.id==='shareOverlay')$('#shareOverlay').classList.remove('open')});
 $('#gifBtn').onclick=()=>$('#chatGifFile').click();$('#imageBtn').onclick=()=>$('#chatImageFile').click();$('#cameraBtn').onclick=()=>$('#chatCameraFile').click();$('#videoBtn').onclick=()=>$('#chatVideoFile').click();$('#chatGifFile').onchange=e=>{const f=e.target.files?.[0];if(f)sendChatFile(f);e.target.value=''};$('#chatImageFile').onchange=e=>{const f=e.target.files?.[0];if(f)sendChatFile(f);e.target.value=''};$('#chatCameraFile').onchange=e=>{const f=e.target.files?.[0];if(f)sendChatFile(f);e.target.value=''};$('#chatVideoFile').onchange=e=>{const f=e.target.files?.[0];if(f)uploadChatVideo(f);e.target.value=''};
 
-onAuthStateChanged(auth,async u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){try{const p=await getMyProfile();if(!p.username){await setDoc(doc(db,"users",u.uid),{username:u.displayName||"Protoveres User",email:u.email||null,googlePhotoURL:u.photoURL||null,createdAt:serverTimestamp()},{merge:true})}renderProfile(await getMyProfile())}catch(e){console.warn("profile bootstrap",e);renderProfile({})}showView("home");initCommunity()}else{clearCommunityListeners();requestsCache={};friendsCache={};updateNotificationBadge();clearSocialPostListeners();closeEdit()}});
+onAuthStateChanged(auth,async u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){try{const p=await getMyProfile();if(!p.username){await setDoc(doc(db,"users",u.uid),{username:u.displayName||"Protoveres User",email:u.email||null,googlePhotoURL:u.photoURL||null,createdAt:serverTimestamp()},{merge:true})}renderProfile(await getMyProfile())}catch(e){console.warn("profile bootstrap",e);renderProfile({})}showView("home");initCommunity()}else{clearCommunityListeners();clearSocialFeed();requestsCache={};friendsCache={};updateNotificationBadge();closeEdit()}});
 </script>
 </body></html>
