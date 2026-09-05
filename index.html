@@ -256,11 +256,17 @@ async function loadNewUserRanking(){
   root.innerHTML='<div class="emptyState">Đang tải bảng xếp hạng…</div>';
   try{
     const usersCol=collection(db,"users");
-    const rankSnap=await getDocs(query(usersCol,orderBy("createdAt","desc"),limit(10)));
-    if(!rankSnap.size){root.innerHTML='<div class="emptyState">Chưa có dữ liệu thành viên.</div>';}
+    // Đọc toàn bộ hồ sơ để không làm mất các tài khoản cũ chưa có createdAt.
+    const rankSnap=await getDocs(usersCol);
+    const docs=rankSnap.docs.slice().sort((a,b)=>{
+      const ta=a.data()?.createdAt?.toMillis?.() ?? (a.data()?.createdAt?.seconds ? a.data().createdAt.seconds*1000 : 0);
+      const tb=b.data()?.createdAt?.toMillis?.() ?? (b.data()?.createdAt?.seconds ? b.data().createdAt.seconds*1000 : 0);
+      return tb-ta;
+    }).slice(0,10);
+    if(!docs.length){root.innerHTML='<div class="emptyState">Chưa có dữ liệu thành viên.</div>';}
     else{
       root.innerHTML='';let pos=1;
-      rankSnap.forEach(d=>{const p=d.data()||{},name=p.username||p.displayName||"Protoveres User",av=p.avatarURL||"";
+      docs.forEach(d=>{const p=d.data()||{},name=p.username||p.displayName||"Protoveres User",av=p.avatarURL||"";
         const el=document.createElement("div");el.className="rankItem";
         el.innerHTML=`<div class="rankNum">#${pos++}</div><div class="rankAvatar">${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}</div><div class="rankMain"><b>${esc(name)}</b><p>UID: ${esc(d.id)}</p></div>`;
         root.appendChild(el);
