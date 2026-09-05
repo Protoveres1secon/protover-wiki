@@ -1,16 +1,15 @@
-Protoveres Social Posts - fixed build
+Protoveres Auth Session FINAL FULL — Chat Video Fix
 
-Base: working Protoveres social/community/chat build.
+Base: Protoveres_Auth_Session_FINAL_FULL_CHAT_AUDITED_REPAIRED
 
-Post creation:
-- text only
-- image only
-- text + image
-- public/private visibility
-- like / heart / share
-- jump to newly created post
+This build keeps the existing web and only adds/fixes chat video support and profile-cover persistence.
 
-IMPORTANT:
-Publish Protoveres_Final/firestore.rules in Firebase Firestore -> Rules.
-The post create operation requires the /posts rule included in this file.
-Do not use an older rules file that only covers users/chat.
+Changes:
+- Profile cover is preserved when saving other profile fields instead of being overwritten by null.
+- Chat adds a Video button with mobile camera capture support.
+- Video upload limit: 100 MB per file (not a 30-second limit).
+- Video is uploaded to Firebase Storage and shown with an HTML5 player.
+
+Firebase:
+- Publish firestore.rules only if you changed yours; it remains compatible with the current chat recall rules.
+- Publish storage.rules in Firebase Storage -> Rules before sending videos.
