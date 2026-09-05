@@ -27,6 +27,12 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 .modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;place-items:center;padding:18px;z-index:60}.modal.open{display:grid}.modalCard{width:min(820px,100%);max-height:92vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(180deg,#0a1228f5,#040915f8);box-shadow:0 40px 120px #000e}.modalHead{display:flex;align-items:center;justify-content:space-between;gap:12px}.close{border:1px solid var(--line);background:#ffffff08;color:#fff;border-radius:11px;padding:8px 11px;cursor:pointer}.cover{height:185px;border:1px solid var(--line);border-radius:18px;margin:14px 0;overflow:hidden;position:relative;background:linear-gradient(135deg,#131c48,#041022)}.cover img{width:100%;height:100%;object-fit:cover}.coverHint{position:absolute;inset:0;display:grid;place-items:center;color:#8f9db7;font-size:12px}.editGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#cbd5eb;font-weight:850}.field input,.field select{margin-top:6px}.hint{font-size:10px;color:#7b88a2;line-height:1.5}.editActions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.editActions .cta{min-width:125px;justify-content:center}.msg{display:none;margin-top:12px;padding:11px;border-radius:12px;border:1px solid var(--line);font-size:12px;line-height:1.5}.msg.show{display:block}.msg.ok{color:#a8ffd9;background:#4affaa10}.msg.err{color:#ffc7d5;background:#ff668510}
 @media(max-width:600px){.editGrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 
+/* RANKING ADD-ON */
+.rankBox{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;margin-top:16px}
+.rankList{display:grid;gap:9px;margin-top:12px}.rankItem{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#ffffff06,#ffffff02)}
+.rankNum{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#ffffff08;font-weight:1000;color:#d8e2f6}.rankAvatar{width:42px;height:42px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-weight:1000}.rankAvatar img{width:100%;height:100%;object-fit:cover}.rankMain{min-width:0}.rankMain b{font-size:12px}.rankMain p{margin:3px 0 0;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.totalUsers{min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.totalUsers .count{font-size:42px;font-weight:1000;line-height:1;background:linear-gradient(90deg,#fff,#73eaff,#c0abff);color:transparent;background-clip:text;-webkit-background-clip:text}.totalUsers .label{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.5}
+@media(max-width:700px){.rankBox{grid-template-columns:1fr}.totalUsers{min-height:120px}}
+
 /* COMMUNITY ADD-ON */
 .communityGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
 .communitySearch{display:flex;gap:8px;flex-wrap:wrap}.communitySearch input{flex:1;min-width:220px}.uidBox{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.uidValue{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;color:#9feaff;word-break:break-all}
@@ -132,6 +138,18 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
         </div>
       </section>
     </div>
+
+    <div class="rankBox">
+      <section class="card">
+        <h3>🏆 Bảng xếp hạng người mới</h3>
+        <p>10 tài khoản đăng ký gần đây nhất trên Protoveres.</p>
+        <div id="newUsersRank" class="rankList"><div class="emptyState">Đang tải bảng xếp hạng…</div></div>
+      </section>
+      <aside class="card totalUsers">
+        <div class="count" id="totalUsersCount">—</div>
+        <div class="label">👥 Thành viên đã đăng ký<br>trên Protoveres</div>
+      </aside>
+    </div>
   </section>
   <section id="wikiView" class="view">
     <div class="eyebrow">PROTOVERES • WIKI</div><h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Khám phá <span class="grad">Wiki.</span></h1>
@@ -147,7 +165,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,limit,getCountFromServer,onSnapshot,deleteDoc,updateDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
@@ -232,7 +250,27 @@ async function openMemberProfile(uid){const p=await profileByUid(uid);const r=$(
 async function searchUid(){const root=$("#uidSearchResult"),uid=$("#uidSearchInput").value.trim();if(!uid){root.innerHTML='<div class="msg show err">Hãy nhập UID.</div>';return}if(uid===user.uid){root.innerHTML='<div class="msg show">Đó là UID của chính ông 😭</div>';return}const btn=$("#uidSearchBtn");btn.disabled=true;root.innerHTML='<div class="emptyState">Đang tìm…</div>';try{const p=await profileByUid(uid);if(!p){root.innerHTML='<div class="msg show err">Không tìm thấy UID này.</div>';return}const already=!!friendsCache[uid];root.innerHTML=`<div class="communityItem" style="margin-top:10px">${avatarHtml(p)}<div class="ciMain"><b>${esc(p.username||p.displayName||"Protoveres User")}</b><p>${esc(uid)}</p><div class="actionRow"><button class="actionBtn" id="viewMemberBtn" type="button">👤 Xem hồ sơ</button>${already?'<span class="chip">✅ Đã là bạn</span>':`<button class="actionBtn primary" id="sendReqBtn" type="button">➕ Gửi lời mời</button>`}</div></div></div>`;$("#viewMemberBtn").onclick=()=>openMemberProfile(uid);$("#sendReqBtn")?.addEventListener("click",()=>sendFriendRequest(uid))}catch(e){console.error(e);root.innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}finally{btn.disabled=false}}
 function renderNotifications(){const root=$("#notificationsList");if(!root)return;const vals=Object.values(requestsCache);root.innerHTML=vals.length?vals.map(r=>`<div class="communityItem"><div class="ciAvatar">${esc(initials(r.fromName))}</div><div class="ciMain"><b>👥 ${esc(r.fromName||"Một thành viên")} muốn kết bạn với bạn</b><p>${esc(r.fromUid)} · Lời mời mới</p><div class="actionRow"><button class="actionBtn primary" data-naccept="${esc(r.fromUid)}">✅ Chấp nhận kết bạn</button><button class="actionBtn danger" data-nreject="${esc(r.fromUid)}">✕ Từ chối</button><button class="actionBtn" data-nprofile="${esc(r.fromUid)}">👤 Xem hồ sơ</button></div></div></div>`).join(""):'<div class="emptyState">Chưa có thông báo mới.</div>';root.querySelectorAll('[data-naccept]').forEach(b=>b.onclick=async()=>{b.disabled=true;await acceptFriend(b.dataset.naccept);renderNotifications()});root.querySelectorAll('[data-nreject]').forEach(b=>b.onclick=async()=>{await rejectFriend(b.dataset.nreject);renderNotifications()});root.querySelectorAll('[data-nprofile]').forEach(b=>b.onclick=()=>{showView('community');openMemberProfile(b.dataset.nprofile)})}
 function updateNotificationBadge(){const n=Object.keys(requestsCache).length;const badge=$("#notificationsBadge");if(badge){badge.hidden=!n;badge.textContent=n?`NEW${n>1?" "+n:""}`:"NEW"}}
-function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
+async function loadNewUserRanking(){
+  const root=$("#newUsersRank"),countEl=$("#totalUsersCount");
+  if(!root)return;
+  root.innerHTML='<div class="emptyState">Đang tải bảng xếp hạng…</div>';
+  try{
+    const usersCol=collection(db,"users");
+    const rankSnap=await getDocs(query(usersCol,orderBy("createdAt","desc"),limit(10)));
+    if(!rankSnap.size){root.innerHTML='<div class="emptyState">Chưa có dữ liệu thành viên.</div>';}
+    else{
+      root.innerHTML='';let pos=1;
+      rankSnap.forEach(d=>{const p=d.data()||{},name=p.username||p.displayName||"Protoveres User",av=p.avatarURL||"";
+        const el=document.createElement("div");el.className="rankItem";
+        el.innerHTML=`<div class="rankNum">#${pos++}</div><div class="rankAvatar">${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}</div><div class="rankMain"><b>${esc(name)}</b><p>UID: ${esc(d.id)}</p></div>`;
+        root.appendChild(el);
+      });
+    }
+    try{const totalSnap=await getCountFromServer(usersCol);if(countEl)countEl.textContent=String(totalSnap.data().count)}catch(e){if(countEl)countEl.textContent="—"}
+  }catch(e){console.error("ranking",e);root.innerHTML=`<div class="msg show err">Không tải được bảng xếp hạng. ${esc(friendlyError(e))}</div>`;if(countEl)countEl.textContent="—"}
+}
+
+function initCommunity(){clearCommunityListeners();if(!user)return;$("#myUid").textContent=user.uid;loadNewUserRanking();communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friendRequests"),snap=>{requestsCache={};snap.forEach(d=>requestsCache[d.id]=d.data());renderRequests();updateNotificationBadge();renderNotifications()},e=>{$("#friendRequests").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`;updateNotificationBadge()}));communityUnsubs.push(onSnapshot(collection(db,"users",user.uid,"friends"),snap=>{friendsCache={};snap.forEach(d=>friendsCache[d.id]=d.data());renderFriends()},e=>{$("#friendsList").innerHTML=`<div class="msg show err">${esc(friendlyError(e))}</div>`}))}
 $("#copyUidBtn").onclick=async()=>{try{await navigator.clipboard.writeText(user?.uid||"");$("#copyUidBtn").textContent="✅ Đã chép";setTimeout(()=>$("#copyUidBtn").textContent="📋 Sao chép UID",1200)}catch{alert("Không sao chép được UID.")}};
 $("#uidSearchBtn").onclick=searchUid;$("#uidSearchInput").addEventListener("keydown",e=>{if(e.key==="Enter")searchUid()});$("#chatForm").onsubmit=e=>{e.preventDefault();sendChat()};
 
