@@ -69,7 +69,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
     <div class="loginPanel hero">
       <div class="eyebrow">CỔNG PROTOVERES</div>
       <h1>Cánh cửa vào <span class="grad">vũ trụ.</span></h1>
-      <p>Đăng nhập để bước vào không gian chính của Protoveres. Hệ thống dùng Firebase Authentication cho Email/Mật khẩu, Google và Facebook.</p>
+      <p>Đăng nhập để bước vào không gian chính của Protoveres. Hệ thống dùng Firebase Authentication cho Email/Mật khẩu và Google.</p>
     </div>
     <div class="loginPanel loginCard">
       <div class="tabs"><button class="tab active" id="loginTab">Đăng nhập</button><button class="tab" id="registerTab">Tạo tài khoản</button></div>
@@ -81,8 +81,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
       </form>
       <div style="display:flex;align-items:center;gap:10px;color:#72809a;font-size:10px;margin:15px 0"><span style="height:1px;flex:1;background:var(--line)"></span>HOẶC<span style="height:1px;flex:1;background:var(--line)"></span></div>
       <button class="cta" id="googleBtn" style="width:100%;justify-content:center;background:#fff;color:#111">G&nbsp; Tiếp tục với Google</button>
-      <button class="cta" id="facebookBtn" style="width:100%;justify-content:center;background:#1877f2;color:#fff;margin-top:8px">f&nbsp; Tiếp tục với Facebook</button>
-      <div style="margin-top:8px;color:#687796;font-size:9px;line-height:1.5">Facebook Login cần được bật trong Firebase Authentication và cấu hình OAuth của Facebook Developer.</div>
       <div id="loginMsg" class="msg"></div>
     </div>
   </div>
@@ -207,10 +205,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;bac
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,FacebookAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,onAuthStateChanged,signOut,setPersistence,browserSessionPersistence}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import{getFirestore,doc,setDoc,getDoc,serverTimestamp,collection,addDoc,query,orderBy,onSnapshot,deleteDoc,updateDoc,where,getDocs,getCountFromServer,increment,limitToLast}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomain:"protoveres-wiki.firebaseapp.com",projectId:"protoveres-wiki",storageBucket:"protoveres-wiki.firebasestorage.app",messagingSenderId:"164663077620",appId:"1:164663077620:web:3497f37ffed540b8520ca1"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),facebookProvider=new FacebookAuthProvider(),$=s=>document.querySelector(s);facebookProvider.addScope('email');
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
 let mode="login",user=null,pendingAvatar="",pendingCover="";
 let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="";
@@ -230,7 +228,6 @@ function closeEdit(){$("#editModal").classList.remove("open");pendingAvatar="";p
 $("#loginTab").onclick=()=>setMode("login");$("#registerTab").onclick=()=>setMode("register");document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{if(user)showView(b.dataset.view)});
 $("#authForm").onsubmit=async e=>{e.preventDefault();try{const email=$("#email").value.trim(),pw=$("#password").value;if(mode==="register"){const n=$("#username").value.trim();if(!n)return msg("Hãy nhập tên người dùng.");const c=await createUserWithEmailAndPassword(auth,email,pw);await updateProfile(c.user,{displayName:n});await setDoc(doc(db,"users",c.user.uid),{username:n,email,createdAt:serverTimestamp()},{merge:true})}else{await signInWithEmailAndPassword(auth,email,pw)}$("#authForm").reset();msg(mode==="register"?"Tạo tài khoản thành công!":"Đăng nhập thành công!",true)}catch(err){const m={"auth/email-already-in-use":"Email này đã được sử dụng.","auth/invalid-credential":"Email hoặc mật khẩu không đúng.","auth/invalid-email":"Email không hợp lệ.","auth/weak-password":"Mật khẩu cần ít nhất 8 ký tự."};msg(m[err.code]||"Có lỗi khi đăng nhập.")}};
 $("#googleBtn").onclick=async()=>{try{const c=await signInWithPopup(auth,provider);const ref=doc(db,"users",c.user.uid),snap=await getDoc(ref);if(!snap.exists())await setDoc(ref,{username:c.user.displayName||"Google User",email:c.user.email||null,googlePhotoURL:c.user.photoURL||null,createdAt:serverTimestamp()});else await setDoc(ref,{email:c.user.email||null,googlePhotoURL:c.user.photoURL||null,updatedAt:serverTimestamp()},{merge:true})}catch(err){const m={"auth/popup-closed-by-user":"Ông đã đóng cửa sổ Google.","auth/popup-blocked":"Trình duyệt đã chặn cửa sổ Google.","auth/unauthorized-domain":"Tên miền này chưa được cho phép trong Firebase."};msg(m[err.code]||"Google Login gặp lỗi.")}};
-$("#facebookBtn").onclick=async()=>{try{$("#facebookBtn").disabled=true;msg('Đang mở Facebook…',true);facebookProvider.setCustomParameters({display:'popup'});await signInWithPopup(auth,facebookProvider)}catch(e){console.error('facebook login',e);const code=e?.code||'';if(code==='auth/account-exists-with-different-credential')msg('Email này đã có tài khoản bằng phương thức đăng nhập khác. Hãy đăng nhập bằng phương thức cũ rồi dùng liên kết tài khoản sau.',false);else if(code==='auth/operation-not-allowed')msg('Facebook Login chưa được bật trong Firebase Authentication.',false);else msg(friendlyError(e),false)}finally{$("#facebookBtn").disabled=false}};
 $("#logoutBtn").onclick=async()=>{const b=$("#logoutBtn");if(b.disabled)return;b.disabled=true;b.textContent="↪ Đang đăng xuất…";try{await signOut(auth)}finally{b.disabled=false;b.textContent="↪ Đăng xuất"}};
 $("#editBtn").onclick=openEdit;$("#closeModal").onclick=closeEdit;$("#cancelEdit").onclick=closeEdit;
 $("#avatarFile").onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(f.size>5*1024*1024)return saveMsg("Avatar tối đa 5 MB.");try{pendingAvatar=await readFile(f,512,512,.86);renderProfile(await getMyProfile());saveMsg("Avatar đã chọn. Bấm Lưu hồ sơ để xác nhận.",true)}catch{saveMsg("Không đọc được avatar.")}};
