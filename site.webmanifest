@@ -1,0 +1,22 @@
+{
+  "name": "Protoveres",
+  "short_name": "Protoveres",
+  "description": "Protoveres creative community and fictional-universe project.",
+  "start_url": "/protover-wiki/",
+  "scope": "/protover-wiki/",
+  "display": "standalone",
+  "background_color": "#030711",
+  "theme_color": "#030711",
+  "icons": [
+    {
+      "src": "/protover-wiki/favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    },
+    {
+      "src": "/protover-wiki/logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
