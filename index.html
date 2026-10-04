@@ -289,7 +289,7 @@ const firebaseConfig={apiKey:"AIzaSyDMO3B9o5Wsd5c42hSIpj_iiKL1wTLbJNg",authDomai
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider(),$=s=>document.querySelector(s);
  let messaging=null;
 
-const PROTOVERES_VAPID_KEY="BLBHRagPuKHBqC-zk9NGJwyZtqbvJ7t3sDIywKL2D2bLONK1HGjWIrvbZ55viGKjvU5YpGf5gZeRM4c8Zj2w";
+const PROTOVERES_VAPID_KEY="BLBHRagPuKHBqC-zk9NGJwyZtqbvJ7t3sDIywKL2D2Z2bLONK1HGjWIrvbZ55viGKjvU5YpGf5gZeRM4c8Zj2w0";
 setPersistence(auth,browserSessionPersistence).catch(e=>console.warn("Persistence:",e));
 let mode="login",user=null,pendingAvatar="",pendingCover="";
 let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="";
