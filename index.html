@@ -440,12 +440,65 @@ function showNotificationToast(n){
 }
 async function createUserNotification(targetUid,data){
   if(!user||!targetUid||targetUid===user.uid)return null;
-  const payload={...data,fromUid:user.uid,fromName:data.fromName||user.displayName||"Protoveres User",fromAvatarURL:data.fromAvatarURL||(await getMyProfile()).avatarURL||null,read:false,createdAt:serverTimestamp()};
+
+  const payload={
+    ...data,
+    fromUid:user.uid,
+    fromName:data.fromName||user.displayName||"Protoveres User",
+    fromAvatarURL:data.fromAvatarURL||(await getMyProfile()).avatarURL||null,
+    read:false,
+    createdAt:serverTimestamp()
+  };
+
   try{
-    const ref=await addDoc(collection(db,"users",targetUid,"notifications"),payload);
+    const ref=await addDoc(
+      collection(db,"users",targetUid,"notifications"),
+      payload
+    );
+
+    try{
+      const idToken=await user.getIdToken();
+
+      const response=await fetch(
+        "https://cold-breeze-a6de.nguyentuankietproto.workers.dev",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${idToken}`
+          },
+          body:JSON.stringify({
+            targetUid,
+            notificationId:ref.id
+          })
+        }
+      );
+
+      const result=await response.json();
+
+      if(!response.ok||!result.ok){
+        console.warn("Push Worker failed:",result);
+      }else{
+        console.log("✅ Push sent:",result);
+      }
+
+    }catch(pushError){
+      console.warn("Push Worker error:",pushError);
+    }
+
     return ref;
+
   }catch(e){
-    console.warn("notification create failed",{targetUid,type:data.type,code:e?.code,message:e?.message});
+    console.warn(
+      "notification create failed",
+      {
+        targetUid,
+        type:data.type,
+        code:e?.code,
+        message:e?.message
+      }
+    );
+
     return null;
   }
 }
