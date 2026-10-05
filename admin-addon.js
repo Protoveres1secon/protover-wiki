@@ -7,7 +7,7 @@ import {
 
 // IMPORTANT: replace this with the UID of the real "Proto" / Tổng lệnh phòng account.
 // The same UID must be protected in Firestore Rules. The UID is not a secret.
-const ADMIN_UID = "PASTE_PROTO_UID_HERE";
+const ADMIN_UID = "R1viMcXH00TXEzSYmMt61Ga02Ny1";
 const WORKER_URL = "https://cold-breeze-a6de.nguyentuankietproto.workers.dev";
 
 const app = getApps().length ? getApp() : null;
