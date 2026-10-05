@@ -1,0 +1,419 @@
+PROTO­VERES SOCIAL COMMENTS — PATCH
+
+1) STATE
+Tìm:
+let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="";
+
+Đổi thành:
+let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostImageName="",socialCommentUnsubs={};
+
+
+2) CSS
+Tìm đoạn kết thúc:
+.postPrivateNote{...}@media(max-width:900px){.socialTop{grid-template-columns:1fr}}
+
+Ngay TRƯỚC @media đó, thêm:
+.postComments{display:none;padding:12px;border-top:1px solid var(--line);background:#ffffff03}
+.postComments.open{display:block}
+.postCommentList{display:grid;gap:9px;max-height:300px;overflow:auto}
+.postComment{display:flex;gap:9px;align-items:flex-start}
+.postCommentAvatar{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);font-size:9px;font-weight:1000;flex:none}
+.postCommentAvatar img{width:100%;height:100%;object-fit:cover}
+.postCommentBody{min-width:0;flex:1;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:#ffffff04}
+.postCommentBody b{font-size:10px}
+.postCommentText{margin-top:3px;font-size:10px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;color:#dce5f7}
+.postCommentMeta{margin-top:4px;color:#71809a;font-size:8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.postCommentDelete{border:0;background:transparent;color:#ff9caf;font-size:8px;padding:0;cursor:pointer}
+.postCommentEmpty{padding:12px;border:1px dashed var(--line);border-radius:12px;color:#74839d;font-size:10px;text-align:center}
+.postCommentForm{display:flex;gap:7px;align-items:flex-end;margin-top:10px}
+.postCommentInput{flex:1;min-height:46px;max-height:120px;resize:vertical;padding:9px 10px;border-radius:11px;border:1px solid var(--line);background:#050a16;color:#fff;outline:none;font:inherit;font-size:10px;line-height:1.5}
+.postCommentSend{border:1px solid var(--line);background:linear-gradient(135deg,#735cff33,#00cfff18);color:#eef3ff;border-radius:10px;padding:9px 11px;font-size:10px;font-weight:850;cursor:pointer}
+.postCommentSend:disabled{opacity:.55;cursor:wait}
+
+
+3) clearSocialFeed
+Tìm:
+function clearSocialFeed(){socialFeedUnsubs.forEach(fn=>{try{fn()}catch{}});socialFeedUnsubs=[]}
+
+Đổi thành:
+function clearSocialFeed(){
+  socialFeedUnsubs.forEach(fn=>{try{fn()}catch{}});
+  socialFeedUnsubs=[];
+  Object.values(socialCommentUnsubs).forEach(fn=>{try{fn()}catch{}});
+  socialCommentUnsubs={};
+}
+
+
+4) COMMENT FUNCTIONS
+Đặt khối này NGAY TRƯỚC function renderSocialFeed():
+
+function renderPostComments(postId,comments){
+  const list=document.querySelector(`[data-comments-list="${CSS.escape(postId)}"]`);
+  const btn=document.querySelector(`[data-social-comments-label="${CSS.escape(postId)}"]`);
+  if(btn)btn.textContent=`💬 Bình luận${comments.length?` (${comments.length})`:''}`;
+  if(!list)return;
+
+  if(!comments.length){
+    list.innerHTML='<div class="postCommentEmpty">Chưa có bình luận. Hãy là người đầu tiên 💬</div>';
+    return;
+  }
+
+  list.innerHTML=comments.map(c=>{
+    const name=c.authorName||'Protoveres User';
+    const av=c.authorAvatarURL||'';
+    const del=user?.uid===c.uid
+      ? `<button class="postCommentDelete" type="button" data-comment-delete="${esc(c.id)}">Xoá</button>`
+      : '';
+
+    return `<div class="postComment">
+      <div class="postCommentAvatar">${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}</div>
+      <div class="postCommentBody">
+        <b>${esc(name)}</b>
+        <div class="postCommentText">${esc(c.text||'')}</div>
+        <div class="postCommentMeta">
+          <span>${esc(socialDate(c.createdAt))}</span>${del}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  list.querySelectorAll('[data-comment-delete]').forEach(b=>{
+    b.onclick=()=>deletePostComment(postId,b.dataset.commentDelete);
+  });
+}
+
+function initPostComments(postId){
+  if(socialCommentUnsubs[postId])return;
+
+  const list=document.querySelector(`[data-comments-list="${CSS.escape(postId)}"]`);
+  if(list)list.innerHTML='<div class="postCommentEmpty">Đang tải bình luận…</div>';
+
+  const q=query(
+    collection(db,'posts',postId,'comments'),
+    orderBy('createdAt','asc')
+  );
+
+  socialCommentUnsubs[postId]=onSnapshot(q,snap=>{
+    const comments=[];
+    snap.forEach(d=>comments.push({id:d.id,...d.data()}));
+    renderPostComments(postId,comments);
+  },e=>{
+    if(list){
+      list.innerHTML=
+        `<div class="postCommentEmpty">Không tải được bình luận: ${esc(friendlyError(e))}</div>`;
+    }
+  });
+}
+
+function closePostComments(postId){
+  if(socialCommentUnsubs[postId]){
+    try{socialCommentUnsubs[postId]()}catch{}
+    delete socialCommentUnsubs[postId];
+  }
+}
+
+function togglePostComments(postId){
+  const panel=document.querySelector(`[data-comment-panel="${CSS.escape(postId)}"]`);
+  const btn=document.querySelector(`[data-social-comments="${CSS.escape(postId)}"]`);
+  if(!panel)return;
+
+  const open=panel.classList.toggle('open');
+  if(btn)btn.classList.toggle('active',open);
+
+  if(open)initPostComments(postId);
+  else closePostComments(postId);
+}
+
+async function submitPostComment(postId){
+  if(!user)return;
+
+  const input=document.querySelector(`[data-comment-input="${CSS.escape(postId)}"]`);
+  const send=document.querySelector(`[data-comment-send="${CSS.escape(postId)}"]`);
+  if(!input)return;
+
+  const text=input.value.trim();
+  if(!text)return;
+
+  if(text.length>1000){
+    alert('Bình luận tối đa 1000 ký tự.');
+    return;
+  }
+
+  if(send){
+    send.disabled=true;
+    send.textContent='…';
+  }
+
+  try{
+    const prof=await getMyProfile();
+
+    const commentRef=await addDoc(
+      collection(db,'posts',postId,'comments'),
+      {
+        uid:user.uid,
+        authorName:
+          prof?.username||
+          prof?.displayName||
+          user.displayName||
+          'Protoveres User',
+        authorAvatarURL:
+          prof?.avatarURL||
+          prof?.photoURL||
+          user.photoURL||
+          null,
+        text,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    input.value='';
+
+    const post=socialPostsCache.find(x=>x.id===postId);
+
+    if(post?.ownerUid&&post.ownerUid!==user.uid){
+      createUserNotification(post.ownerUid,{
+        type:'post_comment',
+        postId,
+        targetType:'post',
+        message:text.slice(0,120),
+        commentId:commentRef.id
+      }).catch(()=>{});
+    }
+
+  }catch(e){
+    alert(
+      e?.code==='permission-denied'
+        ? 'Firebase từ chối bình luận. Hãy kiểm tra Rules cho /posts/{postId}/comments.'
+        : friendlyError(e)
+    );
+  }finally{
+    if(send){
+      send.disabled=false;
+      send.textContent='Gửi';
+    }
+  }
+}
+
+async function deletePostComment(postId,commentId){
+  if(!user||!commentId)return;
+
+  try{
+    await deleteDoc(
+      doc(db,'posts',postId,'comments',commentId)
+    );
+  }catch(e){
+    alert(friendlyError(e));
+  }
+}
+
+
+5) THAY TOÀN BỘ renderSocialFeed CŨ
+Từ:
+function renderSocialFeed(){
+
+đến ngay trước:
+function initSocialFeed(){
+
+thay bằng:
+
+function renderSocialFeed(){
+  const root=$('#socialFeed');
+  const status=$('#socialFeedStatus');
+  if(!root)return;
+
+  Object.values(socialCommentUnsubs).forEach(fn=>{try{fn()}catch{}});
+  socialCommentUnsubs={};
+
+  const vals=socialPostsCache;
+  status.textContent=vals.length?`${vals.length} bài đăng`:'Chưa có bài đăng';
+
+  root.innerHTML=vals.length?vals.map(p=>{
+    const name=p.authorName||'Protoveres User';
+    const av=p.authorAvatarURL||'';
+    const scope=p.visibility==='private'?'🔒 Riêng tư':'🌎 Công khai';
+
+    return `<article class="postCard" data-social-post-id="${esc(p.id)}">
+      <div class="postHead">
+        <div class="postAvatar">
+          ${av?`<img src="${esc(av)}" alt="">`:esc(initials(name))}
+        </div>
+
+        <div class="postMeta">
+          <b>${esc(name)}</b>
+          <span>${esc(socialDate(p.createdAt))}</span>
+        </div>
+
+        <div class="postScope">${scope}</div>
+      </div>
+
+      ${p.text?`<div class="postText">${esc(p.text)}</div>`:''}
+
+      ${p.mediaUrl
+        ?`<img class="postImage" src="${esc(p.mediaUrl)}" alt="Ảnh bài đăng" loading="lazy">`
+        :''
+      }
+
+      <div class="postActions">
+        <button class="postAction" type="button"
+          data-social-reaction="like"
+          data-social-id="${esc(p.id)}">
+          👍 Like
+        </button>
+
+        <button class="postAction" type="button"
+          data-social-reaction="heart"
+          data-social-id="${esc(p.id)}">
+          ❤️ Thả tim
+        </button>
+
+        <button class="postAction" type="button"
+          data-social-comments="${esc(p.id)}"
+          data-social-comments-label="${esc(p.id)}">
+          💬 Bình luận
+        </button>
+
+        <button class="postAction" type="button"
+          data-social-share="${esc(p.id)}">
+          ↗️ Chia sẻ
+        </button>
+
+        <span class="postCounts"
+          data-social-count="${esc(p.id)}">…</span>
+      </div>
+
+      <div class="postComments"
+        data-comment-panel="${esc(p.id)}">
+
+        <div class="postCommentList"
+          data-comments-list="${esc(p.id)}"></div>
+
+        <div class="postCommentForm">
+          <textarea
+            class="postCommentInput"
+            data-comment-input="${esc(p.id)}"
+            maxlength="1000"
+            placeholder="Viết bình luận…"></textarea>
+
+          <button
+            class="postCommentSend"
+            type="button"
+            data-comment-send="${esc(p.id)}">
+            Gửi
+          </button>
+        </div>
+      </div>
+
+      ${
+        p.visibility==='private'&&p.ownerUid===user?.uid
+          ?'<div class="postPrivateNote">🔒 Chỉ bạn nhìn thấy bài đăng này.</div>'
+          :''
+      }
+    </article>`;
+  }).join('')
+  :
+  '<div class="postEmpty">Chưa có bài đăng. Hãy là người đầu tiên chia sẻ điều gì đó 🚀</div>';
+
+  root.querySelectorAll('[data-social-reaction]')
+    .forEach(b=>{
+      b.onclick=()=>toggleSocialReaction(
+        b.dataset.socialId,
+        b.dataset.socialReaction,
+        b
+      );
+    });
+
+  root.querySelectorAll('[data-social-comments]')
+    .forEach(b=>{
+      b.onclick=()=>togglePostComments(
+        b.dataset.socialComments
+      );
+    });
+
+  root.querySelectorAll('[data-social-share]')
+    .forEach(b=>{
+      b.onclick=()=>shareSocialPost(
+        b.dataset.socialShare
+      );
+    });
+
+  root.querySelectorAll('[data-comment-send]')
+    .forEach(b=>{
+      b.onclick=()=>submitPostComment(
+        b.dataset.commentSend
+      );
+    });
+
+  root.querySelectorAll('[data-comment-input]')
+    .forEach(input=>{
+      input.addEventListener('keydown',e=>{
+        if(e.key==='Enter'&&!e.shiftKey){
+          e.preventDefault();
+          submitPostComment(input.dataset.commentInput);
+        }
+      });
+    });
+
+  vals.forEach(p=>refreshSocialCounts(p.id));
+}
+
+
+6) NOTIFICATION UI TEXT
+Tìm:
+case"post_heart":return `❤️ ${name} đã thả tim bài đăng của bạn.`;
+
+Đổi thành:
+case"post_heart":return `❤️ ${name} đã thả tim bài đăng của bạn.`;
+case"post_comment":return `💬 ${name} đã bình luận bài đăng của bạn.`;
+
+
+7) CLOUDFLARE WORKER
+Trong title chain của Worker, tìm:
+: type === "post_heart"
+  ? `${fromName} đã thả tim bài đăng của bạn`
+
+Ngay sau đó thêm:
+: type === "post_comment"
+  ? `${fromName} đã bình luận bài đăng của bạn`
+
+Ví dụ phần đó phải thành:
+const title =
+  type === "friend_request"
+    ? `${fromName} muốn kết bạn với bạn`
+
+  : type === "post_created"
+    ? `${fromName} đăng bài mới`
+
+  : type === "post_like"
+    ? `${fromName} đã Like bài đăng của bạn`
+
+  : type === "post_heart"
+    ? `${fromName} đã thả tim bài đăng của bạn`
+
+  : type === "post_comment"
+    ? `${fromName} đã bình luận bài đăng của bạn`
+
+  : type === "chat_text"
+    ? `${fromName} đã nhắn tin cho bạn`
+
+  : type === "chat_image"
+    ? `${fromName} đã gửi ảnh cho bạn`
+
+  : type === "chat_gif"
+    ? `${fromName} đã gửi GIF cho bạn`
+
+  : type === "chat_video"
+    ? `${fromName} đã gửi video cho bạn`
+
+  : "Protoveres";
+
+
+KẾT QUẢ:
+Bài đăng sẽ có:
+👍 Like   ❤️ Thả tim   💬 Bình luận   ↗️ Chia sẻ
+
+Bấm "💬 Bình luận":
+- Mở khung bình luận realtime.
+- Gửi comment vào posts/{postId}/comments/{commentId}.
+- Enter để gửi, Shift+Enter để xuống dòng.
+- Chủ comment xoá được comment của mình.
+- Chủ bài đăng nhận notification + push "X đã bình luận bài đăng của bạn".
