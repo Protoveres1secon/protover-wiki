@@ -697,5 +697,6 @@ $('#gifBtn').onclick=()=>$('#chatGifFile').click();$('#imageBtn').onclick=()=>$(
 
 onAuthStateChanged(auth,async u=>{user=u;const logged=!!u;$("#loginView").classList.toggle("active",!logged);$("#appView").style.display=logged?"block":"none";$("#mainNav").style.display=logged?"flex":"none";if(logged){try{const p=await getMyProfile();if(!p.username){await setDoc(doc(db,"users",u.uid),{username:u.displayName||"Protoveres User",email:u.email||null,googlePhotoURL:u.photoURL||null,createdAt:serverTimestamp()},{merge:true})}renderProfile(await getMyProfile())}catch(e){console.warn("profile bootstrap",e);renderProfile({})}recordLoginOnce();showView("home");initCommunity()}else{if(user){try{sessionStorage.removeItem("protoveres_login_counted_"+user.uid)}catch{}}clearCommunityListeners();clearSocialFeed();requestsCache={};friendsCache={};notificationsCache={};updateNotificationBadge();renderGenericNotifications();closeEdit()}});
 </script>
-<div id="notifyToastHost" class="notifyToastHost"></div>
+<script type="module" src="/protover-wiki/comments-addon.js"></script>
+ <div id="notifyToastHost" class="notifyToastHost"></div>
 </body></html>
