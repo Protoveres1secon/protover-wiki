@@ -391,29 +391,12 @@ function installSearchOverride() {
 
 let renderingRankings = false;
 
-function installRankingObserver() {
-  const targets = [
-    document.getElementById("newUsersRank"),
-    document.getElementById("loginRank"),
-    document.getElementById("totalUsersCount")
-  ].filter(Boolean);
-
-  if (!targets.length) return;
-
-  let timer = null;
-  const rerender = () => {
-    if (renderingRankings) return;
-    clearTimeout(timer);
-    timer = setTimeout(() => loadPublicRankings().catch(() => {}), 120);
-  };
-
-  const observer = new MutationObserver(rerender);
-  targets.forEach((target) => observer.observe(target, { childList: true, subtree: true }));
-}
+let rankingRefreshTimer = null;
 
 function schedulePublicRankingRefresh() {
+  if (rankingRefreshTimer) return;
   setTimeout(() => loadPublicRankings().catch(() => {}), 1800);
-  setInterval(() => loadPublicRankings().catch(() => {}), SYNC_INTERVAL_MS);
+  rankingRefreshTimer = setInterval(() => loadPublicRankings().catch(() => {}), SYNC_INTERVAL_MS);
 }
 
 async function initialize(u) {
@@ -438,7 +421,6 @@ async function initialize(u) {
     }
   }
 
-  installRankingObserver();
   schedulePublicRankingRefresh();
 }
 
