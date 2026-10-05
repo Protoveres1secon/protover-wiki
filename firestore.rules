@@ -1,80 +1,812 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    match /users/{uid} {
-      allow read: if request.auth != null;
-      allow create, update, delete: if request.auth != null && request.auth.uid == uid;
-match /pushTokens/{tokenId} {
-  allow read, write:
-    if request.auth != null
-    && request.auth.uid == uid;
-}
-      match /friendRequests/{requestUid} {
-        allow read: if request.auth != null && request.auth.uid == uid;
-        allow create: if request.auth != null && request.auth.uid == requestUid;
-        allow delete: if request.auth != null && (request.auth.uid == uid || request.auth.uid == requestUid);
-      }
+    // =========================================================
+    // 👑 PROTOVERES SECURITY CORE
+    // =========================================================
 
-      match /friends/{friendUid} {
-        allow read: if request.auth != null && request.auth.uid == uid;
-        allow create, update, delete:
-          if request.auth != null && (request.auth.uid == uid || request.auth.uid == friendUid);
-      }
+    // UID CỐ ĐỊNH CỦA TỔNG LỆNH PHÒNG.
+    //
+    // Đây là quyền Owner thật.
+    // KHÔNG dựa vào field "role" trong Firestore.
+    function isTongLenhPhong() {
+      return request.auth != null
+        && request.auth.uid == "R1viMcXH00TXEzSYmMt61Ga02Ny1";
     }
 
-    match /chats/{chatId}/messages/{messageId} {
-      allow read:
-        if request.auth != null
-        && chatId.split('__').hasAny([request.auth.uid]);
-
-      allow create:
-        if request.auth != null
-        && chatId.split('__').hasAny([request.auth.uid])
-        && request.resource.data.senderUid == request.auth.uid;
-
-      allow update:
-        if request.auth != null
-        && chatId.split('__').hasAny([request.auth.uid])
-        && resource.data.senderUid == request.auth.uid
-        && request.resource.data.senderUid == resource.data.senderUid;
-    }
-
-    // Protoveres Social Posts
-    match /posts/{postId} {
-      // Public posts: every signed-in member can read, even without being friends.
-      // Private posts: only the owner can read.
-      allow read:
-        if request.auth != null
+    // Tài khoản đã bị hạn chế hay chưa.
+    function isRestrictedUser() {
+      return request.auth != null
+        && exists(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        )
         && (
-          resource.data.visibility == 'public'
-          || resource.data.ownerUid == request.auth.uid
+          get(
+            /databases/$(database)/documents/users/$(request.auth.uid)
+          ).data.banned == true
+          ||
+          get(
+            /databases/$(database)/documents/users/$(request.auth.uid)
+          ).data.deleted == true
+        );
+    }
+
+    // Tài khoản hoạt động.
+    //
+    // Phải có Auth + user document.
+    // Owner luôn được coi là Active.
+    function isActiveUser() {
+      return isTongLenhPhong()
+        || (
+          request.auth != null
+          && exists(
+            /databases/$(database)/documents/users/$(request.auth.uid)
+          )
+          && !isRestrictedUser()
+        );
+    }
+
+    // Admin thật nằm ở Firebase Custom Claims.
+    //
+    // Field "admin" trong Firestore không cấp quyền Admin.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.admin == true
+        && !isRestrictedUser();
+    }
+
+
+    // =========================================================
+    // 👤 USER PROFILE FIELD SECURITY
+    // =========================================================
+
+    function protectedUserFields() {
+      return [
+        "role",
+        "admin",
+        "banned",
+        "deleted",
+        "banReason",
+        "bannedAt",
+        "bannedBy",
+        "deletedAt",
+        "deletedBy"
+      ];
+    }
+
+    function profileEditableFields() {
+      return [
+        "username",
+        "email",
+        "country",
+        "age",
+        "avatarURL",
+        "coverURL",
+        "googlePhotoURL",
+        "updatedAt"
+      ];
+    }
+
+    function adminEditableFields() {
+      return [
+        "role",
+        "banned",
+        "deleted",
+        "banReason",
+        "bannedAt",
+        "bannedBy",
+        "deletedAt",
+        "deletedBy"
+      ];
+    }
+
+    function profileCreateFields() {
+      return [
+        "username",
+        "email",
+        "country",
+        "age",
+        "avatarURL",
+        "coverURL",
+        "googlePhotoURL",
+        "createdAt"
+      ];
+    }
+
+
+    // =========================================================
+    // 🌐 PUBLIC PROFILES
+    // =========================================================
+    //
+    // Dữ liệu công khai:
+    // - username
+    // - avatarURL
+    // - coverURL
+    // - country
+    // - age
+    // - googlePhotoURL
+    // - createdAt
+    // - loginCount
+    // - updatedAt
+    //
+    // KHÔNG chứa dữ liệu quyền hệ thống.
+    // =========================================================
+
+    match /publicProfiles/{uid} {
+
+      // Chỉ tài khoản đang hoạt động được xem public profile.
+      allow get, list:
+        if isActiveUser();
+
+
+      // -------------------------------------------------------
+      // CREATE
+      // -------------------------------------------------------
+
+      // Owner có thể migration / đồng bộ mọi UID.
+      //
+      // User thường chỉ tạo profile công khai của chính mình.
+      allow create:
+        if isTongLenhPhong()
+
+        || (
+          isActiveUser()
+          && request.auth.uid == uid
+
+          && request.resource.data.keys().hasOnly([
+            "username",
+            "avatarURL",
+            "coverURL",
+            "country",
+            "age",
+            "googlePhotoURL",
+            "createdAt",
+            "loginCount",
+            "updatedAt"
+          ])
+
+          // Không được tự giả loginCount.
+          && request.resource.data.get("loginCount", 0)
+            == get(
+              /databases/$(database)/documents/users/$(uid)
+            ).data.get("loginCount", 0)
+
+          // Không được tự giả createdAt.
+          && request.resource.data.get("createdAt", null)
+            == get(
+              /databases/$(database)/documents/users/$(uid)
+            ).data.get("createdAt", null)
         );
 
-      // A signed-in member may create a post only for their own UID.
-      // We deliberately keep validation light here so image/text variants
-      // are not rejected by an overly strict rule.
+
+      // -------------------------------------------------------
+      // UPDATE
+      // -------------------------------------------------------
+
+      allow update:
+        if isTongLenhPhong()
+
+        || (
+          isActiveUser()
+          && request.auth.uid == uid
+
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly([
+              "username",
+              "avatarURL",
+              "coverURL",
+              "country",
+              "age",
+              "googlePhotoURL",
+              "createdAt",
+              "loginCount",
+              "updatedAt"
+            ])
+
+          // loginCount trong publicProfiles phải khớp users.
+          && request.resource.data.get(
+            "loginCount",
+            resource.data.get("loginCount", 0)
+          )
+            == get(
+              /databases/$(database)/documents/users/$(uid)
+            ).data.get("loginCount", 0)
+
+          // createdAt trong publicProfiles phải khớp users.
+          && request.resource.data.get(
+            "createdAt",
+            resource.data.get("createdAt", null)
+          )
+            == get(
+              /databases/$(database)/documents/users/$(uid)
+            ).data.get("createdAt", null)
+        );
+
+
+      // Client không tự xóa public profile.
+      allow delete:
+        if false;
+    }
+
+
+    // =========================================================
+    // 👤 USERS
+    // =========================================================
+
+    match /users/{uid} {
+
+      // -------------------------------------------------------
+      // GET 1 USER PROFILE
+      // -------------------------------------------------------
+      //
+      // User thường:
+      //   chỉ xem chính mình.
+      //
+      // Owner/Admin:
+      //   được xem user khác.
+      //
+      // Public profile phải dùng /publicProfiles.
+      allow get:
+        if request.auth != null
+        && (
+          request.auth.uid == uid
+          || isTongLenhPhong()
+          || isAdmin()
+        );
+
+
+      // -------------------------------------------------------
+      // LIST / QUERY USERS
+      // -------------------------------------------------------
+      //
+      // Ranking KHÔNG còn dùng collection users.
+      //
+      // Chỉ Owner/Admin được query toàn bộ users.
+      allow list:
+        if isTongLenhPhong() || isAdmin();
+
+
+      // -------------------------------------------------------
+      // CREATE PROFILE
+      // -------------------------------------------------------
+
       allow create:
         if request.auth != null
-        && request.resource.data.ownerUid == request.auth.uid
-        && request.resource.data.visibility in ['public', 'private'];
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(
+          profileCreateFields()
+        )
+        && !request.resource.data.keys().hasAny(
+          protectedUserFields()
+        );
 
-      // Only the author may modify or remove their own post.
-      allow update, delete:
-        if request.auth != null
-        && resource.data.ownerUid == request.auth.uid;
 
-      match /reactions/{reactionId} {
-        allow read: if request.auth != null;
+      // -------------------------------------------------------
+      // UPDATE PROFILE
+      // -------------------------------------------------------
+
+      allow update:
+
+        // 👑 Owner tự sửa profile của chính mình.
+        if (
+          isTongLenhPhong()
+          && uid == request.auth.uid
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(profileEditableFields())
+        )
+
+        // 👑 Owner quản lý tài khoản khác.
+        || (
+          isTongLenhPhong()
+          && uid != "R1viMcXH00TXEzSYmMt61Ga02Ny1"
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(adminEditableFields())
+        )
+
+        // 🛡️ Admin quản lý người khác.
+        //
+        // Không được sửa Owner.
+        // Không được sửa chính mình.
+        || (
+          isAdmin()
+          && uid != "R1viMcXH00TXEzSYmMt61Ga02Ny1"
+          && uid != request.auth.uid
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(adminEditableFields())
+        )
+
+        // 👤 User tự sửa profile.
+        || (
+          isActiveUser()
+          && request.auth.uid == uid
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(profileEditableFields())
+        )
+
+        // 🔢 User chỉ được tăng loginCount đúng +1.
+        || (
+          isActiveUser()
+          && request.auth.uid == uid
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(["loginCount"])
+          && request.resource.data.get("loginCount", 0)
+            == resource.data.get("loginCount", 0) + 1
+        );
+
+
+      // Client không được xóa users document.
+      allow delete:
+        if false;
+
+
+      // =======================================================
+      // 🔔 PUSH TOKENS
+      // =======================================================
+
+      match /pushTokens/{tokenId} {
+
+        allow get, list:
+          if isActiveUser()
+          && request.auth.uid == uid;
+
+        allow create, update, delete:
+          if isActiveUser()
+          && request.auth.uid == uid;
+      }
+
+
+      // =======================================================
+      // 📨 FRIEND REQUESTS
+      // =======================================================
+
+      match /friendRequests/{requestUid} {
+
+        // Người nhận xem lời mời của mình.
+        allow get, list:
+          if isActiveUser()
+          && request.auth.uid == uid;
+
+        // Người gửi tạo lời mời.
+        allow create:
+          if isActiveUser()
+          && request.auth.uid == requestUid
+          && requestUid != uid
+          && request.resource.data.fromUid == request.auth.uid;
+
+        // Người gửi hoặc người nhận được xóa.
+        allow delete:
+          if isActiveUser()
+          && (
+            request.auth.uid == uid
+            || request.auth.uid == requestUid
+          );
+      }
+
+
+      // =======================================================
+      // 👥 FRIENDS
+      // =======================================================
+
+      match /friends/{friendUid} {
+
+        allow get, list:
+          if isActiveUser()
+          && request.auth.uid == uid;
+
+        allow create, update, delete:
+          if isActiveUser()
+          && (
+            request.auth.uid == uid
+            || request.auth.uid == friendUid
+          );
+      }
+
+
+      // =======================================================
+      // 🔔 NOTIFICATIONS
+      // =======================================================
+
+      match /notifications/{notificationId} {
+
+        // Chính chủ đọc notification của mình.
+        //
+        // Kể cả tài khoản banned/deleted vẫn đọc được
+        // notification của chính nó.
+        allow get, list:
+          if request.auth != null
+          && request.auth.uid == uid;
+
+
+        // -----------------------------------------------------
+        // NORMAL NOTIFICATION
+        // -----------------------------------------------------
+        //
+        // Chỉ cho phép các loại notification mà web thật sự dùng.
+        //
+        // post_created:
+        //   sender đã đăng bài + target là friend.
+        //
+        // post_like / post_heart / post_comment:
+        //   target phải là chủ bài.
+        //
+        // chat_*:
+        //   sender và target phải nằm trong chatId.
+        // -----------------------------------------------------
 
         allow create:
           if request.auth != null
-          && request.resource.data.uid == request.auth.uid;
+          && request.resource.data.fromUid == request.auth.uid
+          && request.resource.data.read == false
+          && request.resource.data.createdAt == request.time
+          && uid != request.auth.uid
 
-        allow update, delete:
+          && (
+
+            // -----------------------------------------------
+            // 📢 ADMIN NOTICE
+            // -----------------------------------------------
+            (
+              request.resource.data.type == "admin_notice"
+              && isTongLenhPhong()
+              && exists(
+                /databases/$(database)/documents/users/$(uid)
+              )
+            )
+
+            ||
+
+            // -----------------------------------------------
+            // 📰 POST CREATED
+            // -----------------------------------------------
+            (
+              isActiveUser()
+              && request.resource.data.type == "post_created"
+              && request.resource.data.targetType == "post"
+              && request.resource.data.postId is string
+
+              // Người gửi phải là chủ bài.
+              && get(
+                /databases/$(database)/documents/posts/$(request.resource.data.postId)
+              ).data.ownerUid == request.auth.uid
+
+              // Người nhận phải là bạn của người đăng.
+              && exists(
+                /databases/$(database)/documents/users/$(uid)/friends/$(request.auth.uid)
+              )
+            )
+
+            ||
+
+            // -----------------------------------------------
+            // 👍 POST LIKE
+            // ❤️ POST HEART
+            // 💬 POST COMMENT
+            // -----------------------------------------------
+            (
+              isActiveUser()
+
+              && (
+                request.resource.data.type == "post_like"
+                || request.resource.data.type == "post_heart"
+                || request.resource.data.type == "post_comment"
+              )
+
+              && request.resource.data.targetType == "post"
+              && request.resource.data.postId is string
+
+              // Target phải là chủ bài.
+              && get(
+                /databases/$(database)/documents/posts/$(request.resource.data.postId)
+              ).data.ownerUid == uid
+            )
+
+            ||
+
+            // -----------------------------------------------
+            // 💬 CHAT NOTIFICATIONS
+            // 🖼️ IMAGE
+            // GIF
+            // 🎥 VIDEO
+            // -----------------------------------------------
+            (
+              isActiveUser()
+
+              && (
+                request.resource.data.type == "chat_text"
+                || request.resource.data.type == "chat_image"
+                || request.resource.data.type == "chat_gif"
+                || request.resource.data.type == "chat_video"
+              )
+
+              && request.resource.data.targetType == "chat"
+              && request.resource.data.chatId is string
+
+              // chatId phải đúng dạng UID_A__UID_B.
+              && request.resource.data.chatId.split("__").size() == 2
+
+              // Target phải nằm trong chat.
+              && request.resource.data.chatId.split("__")
+                .hasAny([uid])
+
+              // Sender cũng phải nằm trong chat.
+              && request.resource.data.chatId.split("__")
+                .hasAny([request.auth.uid])
+            )
+          );
+
+
+        // -----------------------------------------------------
+        // MARK AS READ
+        // -----------------------------------------------------
+
+        allow update:
           if request.auth != null
-          && resource.data.uid == request.auth.uid;
+          && request.auth.uid == uid
+          && request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(["read"]);
+
+
+        // -----------------------------------------------------
+        // DELETE
+        // -----------------------------------------------------
+
+        allow delete:
+          if request.auth != null
+          && request.auth.uid == uid;
       }
+    }
+
+
+    // =========================================================
+    // 📝 POSTS
+    // =========================================================
+
+    match /posts/{postId} {
+
+      // Public:
+      // mọi active user.
+      //
+      // Private:
+      // chỉ chủ.
+      allow get, list:
+        if isActiveUser()
+        && (
+          resource.data.visibility == "public"
+          || resource.data.ownerUid == request.auth.uid
+        );
+
+
+      // -------------------------------------------------------
+      // CREATE
+      // -------------------------------------------------------
+
+      allow create:
+        if isActiveUser()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.visibility in [
+          "public",
+          "private"
+        ]
+        && request.resource.data.keys().hasOnly([
+          "ownerUid",
+          "authorName",
+          "authorAvatarURL",
+          "googlePhotoURL",
+          "text",
+          "visibility",
+          "mediaUrl",
+          "mediaType",
+          "createdAt",
+          "updatedAt"
+        ]);
+
+
+      // -------------------------------------------------------
+      // UPDATE
+      // -------------------------------------------------------
+
+      allow update:
+        if isActiveUser()
+        && resource.data.ownerUid == request.auth.uid
+        && request.resource.data.ownerUid == resource.data.ownerUid
+        && request.resource.data
+          .diff(resource.data)
+          .affectedKeys()
+          .hasOnly([
+            "authorName",
+            "authorAvatarURL",
+            "googlePhotoURL",
+            "text",
+            "visibility",
+            "mediaUrl",
+            "mediaType"
+          ]);
+
+
+      // -------------------------------------------------------
+      // DELETE
+      // -------------------------------------------------------
+
+      allow delete:
+        if isActiveUser()
+        && (
+          resource.data.ownerUid == request.auth.uid
+          || isTongLenhPhong()
+          || isAdmin()
+        );
+
+
+      // =======================================================
+      // 👍 REACTIONS
+      // =======================================================
+
+      match /reactions/{reactionId} {
+
+        // Reaction của public post:
+        // active users được đọc.
+        //
+        // Reaction của private post:
+        // chỉ chủ post đọc.
+        allow get, list:
+          if isActiveUser()
+          && (
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.visibility == "public"
+            ||
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.ownerUid == request.auth.uid
+          );
+
+
+        // Chỉ active user reaction vào post mà họ có quyền xem.
+        allow create:
+          if isActiveUser()
+          && request.resource.data.uid == request.auth.uid
+          && (
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.visibility == "public"
+            ||
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.ownerUid == request.auth.uid
+          );
+
+
+        // Chỉ người tạo reaction được sửa/xóa.
+        allow update, delete:
+          if isActiveUser()
+          && resource.data.uid == request.auth.uid
+          && (
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.visibility == "public"
+            ||
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.ownerUid == request.auth.uid
+          );
+      }
+
+
+      // =======================================================
+      // 💬 COMMENTS
+      // =======================================================
+
+      match /comments/{commentId} {
+
+        // Public post:
+        // active user xem.
+        //
+        // Private post:
+        // chỉ chủ.
+        allow get, list:
+          if isActiveUser()
+          && (
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.visibility == "public"
+            ||
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.ownerUid == request.auth.uid
+          );
+
+
+        // -----------------------------------------------------
+        // CREATE COMMENT
+        // -----------------------------------------------------
+
+        allow create:
+          if isActiveUser()
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 1000
+
+          && (
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.visibility == "public"
+            ||
+            get(
+              /databases/$(database)/documents/posts/$(postId)
+            ).data.ownerUid == request.auth.uid
+          );
+
+
+        // -----------------------------------------------------
+        // DELETE COMMENT
+        // -----------------------------------------------------
+
+        allow delete:
+          if isActiveUser()
+          && (
+            resource.data.uid == request.auth.uid
+            || isTongLenhPhong()
+            || isAdmin()
+          );
+
+
+        // Comment không cho sửa.
+        allow update:
+          if false;
+      }
+    }
+
+
+    // =========================================================
+    // 💬 PRIVATE 1-TO-1 CHAT
+    // =========================================================
+    //
+    // chatId = UID_A__UID_B
+    // =========================================================
+
+    function isChatMember(chatId) {
+      return isActiveUser()
+        && chatId.split("__").size() == 2
+        && chatId.split("__").hasAny([
+          request.auth.uid
+        ]);
+    }
+
+    match /chats/{chatId}/messages/{messageId} {
+
+      // Chỉ hai thành viên của chat.
+      allow get, list:
+        if isChatMember(chatId);
+
+
+      // Chỉ member active gửi message.
+      allow create:
+        if isChatMember(chatId)
+        && request.resource.data.senderUid == request.auth.uid;
+
+
+      // Chỉ người gửi được update message.
+      allow update:
+        if isChatMember(chatId)
+        && resource.data.senderUid == request.auth.uid
+        && request.resource.data.senderUid
+          == resource.data.senderUid;
     }
   }
 }
