@@ -1,82 +1,216 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // =========================================================
+    // USERS
+    // =========================================================
     match /users/{uid} {
-      allow read: if request.auth != null;
-      allow create, update, delete: if request.auth != null && request.auth.uid == uid;
 
+      // Người đã đăng nhập có thể xem profile thành viên
+      allow read:
+        if request.auth != null;
+
+      // Chỉ chính chủ được tạo / sửa / xoá profile của mình
+      allow create, update, delete:
+        if request.auth != null
+        && request.auth.uid == uid;
+
+      // =======================================================
+      // PUSH TOKENS
+      // =======================================================
       match /pushTokens/{tokenId} {
         allow read, write:
           if request.auth != null
           && request.auth.uid == uid;
       }
 
+      // =======================================================
+      // FRIEND REQUESTS
+      // =======================================================
       match /friendRequests/{requestUid} {
-        allow read: if request.auth != null && request.auth.uid == uid;
-        allow create: if request.auth != null && request.auth.uid == requestUid;
-        allow delete: if request.auth != null && (request.auth.uid == uid || request.auth.uid == requestUid);
+
+        // Người nhận được xem lời mời kết bạn của mình
+        allow read:
+          if request.auth != null
+          && request.auth.uid == uid;
+
+        // Người gửi được tạo lời mời cho người khác
+        allow create:
+          if request.auth != null
+          && request.auth.uid == requestUid;
+
+        // Người nhận hoặc người gửi đều có thể xoá
+        // (từ chối / huỷ lời mời)
+        allow delete:
+          if request.auth != null
+          && (
+            request.auth.uid == uid ||
+            request.auth.uid == requestUid
+          );
       }
 
+      // =======================================================
+      // FRIENDS
+      // =======================================================
       match /friends/{friendUid} {
-        allow read: if request.auth != null && request.auth.uid == uid;
+
+        // Chính chủ xem danh sách bạn bè
+        allow read:
+          if request.auth != null
+          && request.auth.uid == uid;
+
+        // Một trong hai phía được tạo / cập nhật / xoá quan hệ bạn bè
         allow create, update, delete:
-          if request.auth != null && (request.auth.uid == uid || request.auth.uid == friendUid);
+          if request.auth != null
+          && (
+            request.auth.uid == uid ||
+            request.auth.uid == friendUid
+          );
+      }
+
+      // =======================================================
+      // NOTIFICATIONS
+      // =======================================================
+      match /notifications/{notificationId} {
+
+        // Chỉ chính chủ xem thông báo của mình
+        allow read:
+          if request.auth != null
+          && request.auth.uid == uid;
+
+        // Người khác có thể tạo thông báo cho chủ tài khoản
+        // với điều kiện fromUid chính là người đang đăng nhập
+        // và notification có type hợp lệ.
+        allow create:
+          if request.auth != null
+          && request.resource.data.fromUid == request.auth.uid
+          && request.resource.data.type is string;
+
+        // Chính chủ có thể đánh dấu đã đọc / cập nhật
+        allow update:
+          if request.auth != null
+          && request.auth.uid == uid;
+
+        // Chính chủ có thể xoá thông báo
+        allow delete:
+          if request.auth != null
+          && request.auth.uid == uid;
       }
     }
 
+
+    // =========================================================
+    // POSTS
+    // =========================================================
+    match /posts/{postId} {
+
+      // Public: mọi thành viên đăng nhập đều xem
+      // Private: chỉ chủ bài viết xem
+      allow read:
+        if request.auth != null
+        && (
+          resource.data.visibility == "public"
+          || resource.data.ownerUid == request.auth.uid
+        );
+
+      // Chỉ người đang đăng nhập mới được tạo bài của chính mình
+      allow create:
+        if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.visibility in ["public", "private"];
+
+      // Chỉ chủ bài viết được sửa / xoá
+      allow update, delete:
+        if request.auth != null
+        && resource.data.ownerUid == request.auth.uid;
+
+
+      // =======================================================
+      // POST REACTIONS
+      // =======================================================
+      match /reactions/{reactionId} {
+
+        // Thành viên đăng nhập được xem reaction
+        allow read:
+          if request.auth != null;
+
+        // Người dùng chỉ được tạo reaction mang UID của chính mình
+        allow create:
+          if request.auth != null
+          && request.resource.data.uid == request.auth.uid;
+
+        // Chỉ người tạo reaction mới được sửa / xoá reaction đó
+        allow update, delete:
+          if request.auth != null
+          && resource.data.uid == request.auth.uid;
+      }
+
+
+      // =======================================================
+      // POST COMMENTS
+      // =======================================================
+      match /comments/{commentId} {
+
+        // Được đọc bình luận nếu bài viết là public
+        // hoặc chính người dùng là chủ bài viết
+        allow read:
+          if request.auth != null
+          && (
+            get(/databases/$(database)/documents/posts/$(postId)).data.visibility == "public"
+            || get(/databases/$(database)/documents/posts/$(postId)).data.ownerUid == request.auth.uid
+          );
+
+        // Thành viên đăng nhập được tạo bình luận
+        // và uid của comment phải đúng là uid người gửi
+        allow create:
+          if request.auth != null
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 1000
+          && (
+            get(/databases/$(database)/documents/posts/$(postId)).data.visibility == "public"
+            || get(/databases/$(database)/documents/posts/$(postId)).data.ownerUid == request.auth.uid
+          );
+
+        // Chỉ chính người viết comment mới được xoá
+        allow delete:
+          if request.auth != null
+          && resource.data.uid == request.auth.uid;
+
+        // Tạm thời không cho sửa comment
+        allow update:
+          if false;
+      }
+    }
+
+    // =========================================================
+    // PRIVATE 1-TO-1 CHAT
+    // chatId = UID_A__UID_B
+    // =========================================================
     match /chats/{chatId}/messages/{messageId} {
+
+      // Chỉ 2 người trong cuộc trò chuyện được đọc
       allow read:
         if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid]);
 
+      // Chỉ thành viên của chat được gửi tin nhắn
+      // và senderUid phải là chính người đang đăng nhập
       allow create:
         if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && request.resource.data.senderUid == request.auth.uid;
 
+      // Chỉ người gửi chính tin nhắn đó mới được update
+      // (dùng cho thu hồi tin nhắn)
       allow update:
         if request.auth != null
         && chatId.split('__').hasAny([request.auth.uid])
         && resource.data.senderUid == request.auth.uid
         && request.resource.data.senderUid == resource.data.senderUid;
-    }
-
-    // Protoveres Social Posts
-    match /posts/{postId} {
-      // Public posts: every signed-in member can read, even without being friends.
-      // Private posts: only the owner can read.
-      allow read:
-        if request.auth != null
-        && (
-          resource.data.visibility == 'public'
-          || resource.data.ownerUid == request.auth.uid
-        );
-
-      // A signed-in member may create a post only for their own UID.
-      // We deliberately keep validation light here so image/text variants
-      // are not rejected by an overly strict rule.
-      allow create:
-        if request.auth != null
-        && request.resource.data.ownerUid == request.auth.uid
-        && request.resource.data.visibility in ['public', 'private'];
-
-      // Only the author may modify or remove their own post.
-      allow update, delete:
-        if request.auth != null
-        && resource.data.ownerUid == request.auth.uid;
-
-      match /reactions/{reactionId} {
-        allow read: if request.auth != null;
-
-        allow create:
-          if request.auth != null
-          && request.resource.data.uid == request.auth.uid;
-
-        allow update, delete:
-          if request.auth != null
-          && resource.data.uid == request.auth.uid;
-      }
     }
   }
 }
