@@ -339,7 +339,10 @@ async function publishSocialPost(){const btn=$('#socialPostPublish');if(!user||!
 function scrollToSocialPost(id){const e=document.querySelector(`[data-social-post-id="${CSS.escape(id)}"]`);if(e)e.scrollIntoView({behavior:'smooth',block:'center'})}
 $('#socialPostPublish')?.addEventListener('click',publishSocialPost);$('#socialPostImage')?.addEventListener('change',e=>{const f=e.target.files?.[0];if(f)prepareSocialImage(f)});$('#socialPostJumpBtn')?.addEventListener('click',()=>scrollToSocialPost($('#socialPostJump')?.dataset.postId||''));const socialComposer=$('#socialComposerCard');if(socialComposer){['dragenter','dragover'].forEach(ev=>socialComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();e.dataTransfer.dropEffect='copy';socialComposer.classList.add('dragOver')}));['dragleave','drop'].forEach(ev=>socialComposer.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();socialComposer.classList.remove('dragOver')}));socialComposer.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();const f=[...(e.dataTransfer?.files||[])].find(x=>x.type?.startsWith('image/'));if(f)prepareSocialImage(f);else setSocialStatus('Hãy thả một file ảnh.','err')})}
 
-async function profileByUid(uid){const s=await getDoc(doc(db,"publicProfiles",uid));return s.exists()?{uid,...s.data()}:null}
+async function profileByUid(uid){
+  const s=await getDoc(doc(db,"users",uid));
+  return s.exists()?{uid,...s.data()}:null;
+}
 async function enablePushNotifications(){
   const btn=$("#enablePushBtn");
   const status=$("#pushStatus");
