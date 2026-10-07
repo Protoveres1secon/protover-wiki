@@ -340,6 +340,66 @@ let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostIma
 let notificationUnsubs=[],notificationsCache={};
 const views={home:$("#homeView"),account:$("#accountView"),posts:$("#postsView"),notifications:$("#notificationsView"),community:$("#communityView"),explore:$("#exploreView"),wiki:$("#wikiView")};
 function showView(v){Object.entries(views).forEach(([k,e])=>e?.classList.toggle("active",k===v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v));window.scrollTo({top:0,behavior:"smooth"});if(v==="notifications")renderNotifications();if(v==="posts")initSocialFeed()}
+ const exploreData={
+  about:[],
+  characters:[
+    ["🧬","Proto","Nhân vật Proto"],
+    ["🌑","Azath","The First Speck of Doubt"],
+    ["⚔️","O-Faine","The Last Heir of the Ancient Bloodline"],
+    ["💀","Sans Omni God Errol","Hành trình của Errol"]
+  ],
+  worlds:[
+    ["🏙️","Protoveres City","Thành phố Protoveres"],
+    ["🌊","Planet Aqua","Thế giới Aqua"]
+  ],
+  lore:[
+    ["🔥","Genesis Tragedy","Biến cố Genesis Tragedy"],
+    ["📖","Errol Saga","Tuyến truyện của Errol"]
+  ]
+};
+
+function openExploreBranch(type){
+  const box=$("#exploreBranch");
+  const data=exploreData[type]||[];
+
+  if(!data.length){
+    box.style.display="block";
+    box.innerHTML=`
+      <div class="card">
+        <h3>🌌 Protoveres là gì?</h3>
+        <p>Nhánh nội dung này sẽ được xây dựng tiếp.</p>
+      </div>
+    `;
+    return;
+  }
+
+  box.style.display="block";
+  box.innerHTML=`
+    <div class="card">
+      <div class="sectionhead">
+        <h2>Khám phá nhánh</h2>
+        <span>${data.length} mục</span>
+      </div>
+      <div class="grid4">
+        ${data.map(([icon,title,desc])=>`
+          <article class="tile">
+            <div class="ico">${icon}</div>
+            <b>${title}</b>
+            <p>${desc}</p>
+          </article>
+        `).join("")}
+      </div>
+    </div>
+  `;
+  box.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.querySelectorAll(".exploreTile").forEach(tile=>{
+  tile.style.cursor="pointer";
+  tile.addEventListener("click",()=>{
+    openExploreBranch(tile.dataset.explore);
+  });
+});
 function setMode(m){mode=m;$("#loginTab").classList.toggle("active",m==="login");$("#registerTab").classList.toggle("active",m==="register");$("#usernameWrap").style.display=m==="register"?"block":"none";$("#username").required=m==="register";$("#authSubmit").textContent=m==="register"?"Tạo tài khoản":"Đăng nhập";$("#loginMsg").className="msg"}
 function msg(t,ok=false){const e=$("#loginMsg");e.textContent=t;e.className="msg show "+(ok?"ok":"err")}
 function saveMsg(t,ok=false){const e=$("#saveMsg");e.textContent=t;e.className=t?"msg show "+(ok?"ok":"err"):"msg"}
