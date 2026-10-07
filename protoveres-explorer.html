@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protoveres — Explorer</title>
+<meta name="description" content="Protoveres Explorer — khám phá Protoveres theo cây nội dung, Characters, Worlds, Lore và Projects.">
+<style>
+:root{
+  --bg:#030711;
+  --panel:rgba(11,18,40,.78);
+  --panel2:rgba(5,10,24,.94);
+  --line:rgba(170,205,255,.17);
+  --text:#f6f8ff;
+  --muted:#a9b5cf;
+  --v:#765cff;
+  --a:#00ddff;
+  --p:#ff5dcc;
+  --gold:#ffd86e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
+body{
+  background:
+    radial-gradient(900px 500px at 8% 0%,#3e22ff3a,transparent 60%),
+    radial-gradient(800px 520px at 93% 5%,#00dfff22,transparent 58%),
+    radial-gradient(900px 520px at 50% 100%,#ff3fc51d,transparent 62%),
+    linear-gradient(180deg,#020610,#040917 52%,#02050d);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.7;
+  background-image:
+    radial-gradient(1px 1px at 8% 14%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 23% 70%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 38% 25%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 55% 12%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 70% 76%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 82% 35%,#fff 60%,transparent 61%);
+  background-size:330px 330px,390px 390px,470px 470px,360px 360px,520px 520px,430px 430px;
+}
+.wrap{width:min(1220px,calc(100% - 36px));margin:auto}
+.top{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:18px 0 16px;position:sticky;top:0;z-index:10;
+  background:linear-gradient(180deg,#020610f2,#020610bb,transparent);
+  backdrop-filter:blur(12px)
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brandMark{
+  width:52px;height:52px;border-radius:17px;display:grid;place-items:center;
+  border:1px solid #8178ff44;background:linear-gradient(135deg,#735cff44,#00dfff19);
+  box-shadow:0 0 26px #5a7cff2c;font-size:25px
+}
+.brand strong{font-size:17px;letter-spacing:.8px}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px;margin-top:2px}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav button{
+  font:inherit;color:#f5f7ff;border:1px solid var(--line);background:#ffffff08;
+  border-radius:12px;padding:10px 13px;font-size:12px;font-weight:900;cursor:pointer
+}
+.nav button:hover,.nav button.active{background:linear-gradient(135deg,#735cff55,#00cfff22);border-color:#8acfff55}
+.shell{
+  border:1px solid var(--line);border-radius:30px;background:linear-gradient(180deg,#ffffff05,#ffffff01),var(--panel2);
+  box-shadow:0 40px 120px #000b,inset 0 1px 0 #ffffff08;padding:24px;margin-bottom:28px
+}
+.hero{
+  position:relative;overflow:hidden;padding:36px;border:1px solid #8178ff44;border-radius:24px;
+  background:
+    radial-gradient(520px 300px at 88% 20%,#00e1ff18,transparent 72%),
+    radial-gradient(460px 300px at 20% 100%,#ff50ca18,transparent 70%),
+    linear-gradient(145deg,#131a3bc8,#07101fdc)
+}
+.hero:before{
+  content:"";position:absolute;width:390px;height:390px;border-radius:50%;
+  right:-190px;top:-190px;border:1px solid #9b92ff4d;
+  box-shadow:0 0 100px #6479ff23,inset 0 0 70px #6479ff14
+}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:#b9aaff;text-transform:uppercase}
+h1{font-size:clamp(42px,5.4vw,74px);line-height:.96;letter-spacing:-3px;margin:12px 0 13px}
+.grad{
+  color:transparent;background:linear-gradient(90deg,#fff,#73eaff,#c0abff,#ff7ed9);
+  background-clip:text;-webkit-background-clip:text
+}
+.hero p{max-width:830px;margin:0;color:var(--muted);font-size:15px;line-height:1.75}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.cta{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#ffffff08;color:#fff;
+  text-decoration:none;border-radius:13px;padding:12px 15px;font-size:12px;font-weight:900;cursor:pointer
+}
+.cta.primary{background:linear-gradient(135deg,#735cff,#00bfff);border-color:#a4ecff44;box-shadow:0 14px 35px #006dff27}
+.section{margin-top:20px}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:0 2px 10px}
+.sectionhead h2{font-size:18px;margin:0}
+.sectionhead span{font-size:10px;letter-spacing:1.2px;color:#8290ad}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:14px;margin-top:16px}
+.card{
+  border:1px solid var(--line);border-radius:20px;padding:18px;
+  background:linear-gradient(180deg,#ffffff06,#ffffff02)
+}
+.card h2,.card h3{margin:0 0 7px}
+.muted{color:var(--muted)}
+.small{font-size:11px;line-height:1.6}
+.tree{display:grid;gap:8px}
+.treeNode{
+  border:1px solid var(--line);border-radius:13px;background:#ffffff05;overflow:hidden
+}
+.treeButton{
+  width:100%;display:flex;align-items:center;gap:9px;text-align:left;
+  border:0;background:transparent;color:#eef3ff;padding:11px 12px;cursor:pointer;
+  font:inherit;font-size:11px;font-weight:850
+}
+.treeButton:hover{background:#ffffff08}
+.treeButton .arrow{width:15px;text-align:center;color:#9ca9c1;flex:none}
+.treeButton .icon{width:18px;text-align:center;flex:none}
+.treeChildren{display:none;padding:0 8px 8px 31px}
+.treeNode.open>.treeChildren{display:grid;gap:7px}
+.treeNode.selected>.treeButton{background:linear-gradient(135deg,#735cff22,#00cfff0e)}
+.detailTop{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
+.detailIcon{
+  width:58px;height:58px;border-radius:17px;display:grid;place-items:center;font-size:28px;
+  background:linear-gradient(135deg,#617eff,#ad60ff,#ff64cb);box-shadow:0 13px 30px #6a63ff25;flex:none
+}
+.tagRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tag{
+  font-size:9px;border:1px solid var(--line);background:#ffffff07;border-radius:999px;
+  padding:6px 8px;color:#dbe4f7
+}
+.detailText{color:#dbe4f7;font-size:12px;line-height:1.8;margin-top:14px}
+.subGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:16px}
+.subCard{
+  padding:14px;border:1px solid var(--line);border-radius:15px;background:#ffffff04
+}
+.subCard b{font-size:11px}.subCard p{margin:6px 0 0;color:var(--muted);font-size:10px;line-height:1.6}
+.quote{
+  margin-top:14px;padding:13px 14px;border-left:3px solid var(--a);border-radius:0 14px 14px 0;
+  background:#00dfff08;color:#dfe7f7;font-size:11px;font-style:italic
+}
+.notice{
+  margin-top:12px;padding:11px 13px;border:1px dashed #9a8cff55;border-radius:13px;
+  color:#bfc9df;font-size:10px;line-height:1.6;background:#735cff08
+}
+.search{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px
+}
+.search input{
+  flex:1;min-width:180px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:#ffffff08;color:#fff;outline:none
+}
+.hidden{display:none!important}
+.footer{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#71809d;font-size:10px;padding:14px 2px 0
+}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.subGrid{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{width:min(100% - 18px,1220px)}.top{position:static;align-items:flex-start;flex-direction:column}.shell{padding:15px}.hero{padding:25px 22px}h1{font-size:43px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <div class="brandMark">🌌</div>
+    <div><strong>PROTOVERES</strong><small>EXPLORER MODULE</small></div>
+  </div>
+  <nav class="nav" id="mainNav">
+    <button class="active" data-home>🏠 Trang chính</button>
+    <button class="active">🌌 Protoveres</button>
+  </nav>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div class="eyebrow">PROTOVERES • CÙNG KHÁM PHÁ</div>
+    <h1>Đi sâu vào <span class="grad">Protoveres.</span></h1>
+    <p>
+      Đây là lớp khám phá nội dung dành cho Main Web: Protoveres là gì, thế giới và lore ra sao,
+      Characters nằm ở đâu, rồi từ Characters lại đi xuống từng nhân vật. Cấu trúc được thiết kế như
+      một cây nội dung để mở rộng dần mà không phải làm lại giao diện.
+    </p>
+    <div class="actions">
+      <button class="cta primary" data-focus="about">✨ Protoveres là gì?</button>
+      <button class="cta" data-focus="characters">🧬 Characters</button>
+      <button class="cta" data-focus="lore">📖 Lore</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sectionhead">
+      <h2>🌌 Cây khám phá Protoveres</h2>
+      <span>EXPLORE TREE</span>
+    </div>
+
+    <div class="layout">
+      <aside class="card">
+        <div class="search">
+          <input id="treeSearch" placeholder="Tìm nhân vật, lore, world..." autocomplete="off">
+        </div>
+        <div id="tree" class="tree"></div>
+        <div class="notice">
+          Cây này cố ý tách <b>cấu trúc</b> khỏi <b>nội dung chi tiết</b>.
+          Thêm một nhân vật mới chỉ cần thêm một node vào dữ liệu bên dưới.
+        </div>
+      </aside>
+
+      <section class="card">
+        <div id="detail"></div>
+      </section>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>PROTOVERES • MAIN WEB</span>
+    <span>Khám phá • Sáng tạo • Xây dựng</span>
+  </footer>
+</main>
+
+<script>
+/*
+  PROTOVERES EXPLORER
+  -------------------
+  Đây là bản module độc lập để cấy vào Main Web hiện tại.
+
+  Ý tưởng cấu trúc:
+  Protoveres
+    ├─ Protoveres là gì?
+    ├─ Characters
+    │   ├─ Proto
+    │   ├─ Azath
+    │   ├─ O-Faine
+    │   └─ Sans Omni God Errol
+    ├─ Worlds
+    │   ├─ Protoveres City
+    │   └─ Aqua
+    ├─ Lore
+    │   ├─ Genesis Tragedy
+    │   └─ Errol Saga
+    └─ Projects
+        ├─ Main Web
+        ├─ Protoveres Wiki
+        ├─ Games
+        └─ Animation & Art
+
+  Sau này có thể mở rộng:
+  Characters > Proto > Forms > Form 1 ... Form 10
+  Characters > Errol > Eyes > Eye 1 ... Eye 5
+  ... mà không cần đổi layout.
+*/
+
+const treeData = {
+  id:"root", label:"Protoveres", icon:"🌌", type:"root",
+  title:"Protoveres",
+  summary:"Một creative community và fictional-universe project tập trung vào original worlds, characters, stories, artwork, animation, games và collaborative worldbuilding.",
+  tags:["Universe","Community","Worldbuilding"],
+  children:[
+    {
+      id:"about", label:"Protoveres là gì?", icon:"✨", type:"page",
+      title:"Protoveres là gì?",
+      summary:"Protoveres là hệ sinh thái sáng tạo và vũ trụ hư cấu của project. Main Web là cổng cộng đồng; Wiki là nơi chứa phần lore công khai.",
+      tags:["Overview","Identity","Main Web"],
+      sections:[
+        ["🌌 Ý tưởng","Khám phá một vũ trụ được xây dựng qua nhân vật, thế giới, câu chuyện, artwork, animation, game và các dự án liên quan."],
+        ["🧭 Cách khám phá","Bắt đầu từ tổng quan, đi xuống Characters / Worlds / Lore, rồi mở từng hồ sơ cụ thể."],
+        ["🔗 Hệ sinh thái","Main Web, Wiki và các project sáng tạo có thể được nối thành cùng một hệ thống nội dung."]
+      ]
+    },
+    {
+      id:"characters", label:"Characters", icon:"🧬", type:"category",
+      title:"Characters",
+      summary:"Nơi tập trung hồ sơ nhân vật, thực thể và các nhánh nhân vật quan trọng.",
+      tags:["Characters","Entities"],
+      children:[
+        {
+          id:"proto", label:"Proto", icon:"🌀", type:"character",
+          title:"Proto",
+          summary:"Thực thể trung tâm của Protoveres; được xây dựng theo hướng vượt khỏi cách hiểu một nhân vật thông thường.",
+          tags:["Core Entity","Protoveres","Forms"],
+          sections:[
+            ["🔎 Hồ sơ","Proto là một trong những trục chính của lore và là nguồn gốc của nhiều tầng cấu trúc trong Protoveres."],
+            ["🧩 Nhánh mở rộng","Có thể tạo tiếp: Forms → Form 1 → Form 2 → ... → Form 10."],
+            ["💬 Câu nói","“Ta không bắt đầu... nên cũng chẳng thể kết thúc.”"]
+          ]
+        },
+        {
+          id:"azath", label:"Azath", icon:"☄️", type:"character",
+          title:"Azath",
+          summary:"Cựu bằng hữu của Proto; nhân vật gắn với The First Speck of Doubt và biến cố phản bội của lore.",
+          tags:["Core Entity","Azath","Genesis Tragedy"],
+          sections:[
+            ["🕯️ Nguồn gốc","Azath được xây dựng như một nhân vật độc lập, không phải một khái niệm trừu tượng đơn thuần."],
+            ["⚡ Biến cố","Mối quan hệ giữa Proto và Azath là một trong những trục bi kịch lớn của lore."],
+            ["🧩 Nhánh mở rộng","Có thể thêm Timeline → Era → Genesis Tragedy → các sự kiện liên quan."]
+          ]
+        },
+        {
+          id:"ofaine", label:"O-Faine", icon:"🔥", type:"character",
+          title:"O-Faine",
+          summary:"The Last Heir of the Ancient Bloodline; một nhân vật có vai trò quan trọng trong tuyến lore của Errol.",
+          tags:["Ancient Bloodline","O-Faine","Errol Saga"],
+          sections:[
+            ["👁️ Đặc điểm","O-Faine có third eye và mang dấu ấn của một huyết thống cổ xưa."],
+            ["⚔️ Vai trò","Cô gắn với tuyến đối đầu với quỷ và thử thách 25 moves trước khi trao sức mạnh cho Errol."],
+            ["🎵 Kỹ thuật","Heartbound Requiem là mốc cuối trong thử thách của O-Faine."]
+          ]
+        },
+        {
+          id:"errol", label:"Sans Omni God Errol", icon:"💀", type:"character",
+          title:"Sans Omni God Errol",
+          summary:"Nhân vật trung tâm của Errol Saga, với hệ thống Eyes, nhiều giai đoạn biến đổi và chuỗi sự kiện đa vũ trụ.",
+          tags:["Errol Saga","Sans","Eyes","Multiverse"],
+          sections:[
+            ["👁️ Hệ thống Eyes","Có thể mở nhánh tiếp theo: Eye 1 → Eye 2 → Eye 3 → Eye 4 → Eye 5 / EXO."],
+            ["🌌 Hành trình","Tuyến lore đi qua Chara, Warlock Sans, Omni / Everything / Godverse Sans, O-Faine và các mốc đa vũ trụ."],
+            ["🧭 Hồ sơ mở rộng","Nên tách riêng Timeline, Forms, Eyes, Allies, Enemies và Soul Compass để dễ đọc."]
+          ]
+        }
+      ]
+    },
+    {
+      id:"worlds", label:"Worlds", icon:"🪐", type:"category",
+      title:"Worlds",
+      summary:"Các thế giới, địa điểm và không gian quan trọng trong Protoveres.",
+      tags:["Worlds","Locations"],
+      children:[
+        {
+          id:"city", label:"Protoveres City", icon:"🏙️", type:"world",
+          title:"Protoveres City",
+          summary:"Một không gian đời thường bên trong Protoveres, nơi các cảnh sinh hoạt bình thường có thể tồn tại song song với các thực thể cực mạnh.",
+          tags:["World","City","Daily Life"],
+          sections:[
+            ["🏠 Không khí","Thành phố được xây như một nơi có nhà cửa, cư dân, trẻ em, hàng xóm và những khoảnh khắc đời thường."],
+            ["🌌 Bối cảnh","Protoveres City là một phần của cấu trúc thế giới rộng hơn, không chỉ là một thành phố độc lập."]
+          ]
+        },
+        {
+          id:"aqua", label:"Aqua", icon:"💧", type:"world",
+          title:"Planet Aqua",
+          summary:"Một địa điểm quan trọng trong tuyến truyện phục hồi của Errol và các sự kiện liên quan.",
+          tags:["Planet","Errol Saga","Aqua"],
+          sections:[
+            ["📍 Vai trò","Aqua là nơi nhóm hỗ trợ Errol hồi phục trong tuyến truyện hiện tại."],
+            ["🦊 Mối nguy","Vĩ Hồ Tru Phong là một trong những mối đe dọa nổi bật tại Aqua."]
+          ]
+        }
+      ]
+    },
+    {
+      id:"lore", label:"Lore", icon:"📖", type:"category",
+      title:"Lore",
+      summary:"Lớp nội dung dùng để nối các nhân vật, thế giới, timeline và biến cố thành các tuyến truyện.",
+      tags:["Lore","Timeline","Events"],
+      children:[
+        {
+          id:"genesis", label:"Genesis Tragedy", icon:"⚡", type:"lore",
+          title:"Genesis Tragedy",
+          summary:"Biến cố gắn với Proto, Azath và sự phản bội — một mốc nền tảng của lore.",
+          tags:["Event","Proto","Azath"],
+          sections:[
+            ["🕯️ Trọng tâm","Quan hệ giữa Proto và Azath thay đổi, tạo ra một trong những nút bi kịch quan trọng nhất của project."]
+          ]
+        },
+        {
+          id:"errolSaga", label:"Errol Saga", icon:"💀", type:"lore",
+          title:"Errol Saga",
+          summary:"Tuyến truyện tập trung vào Sans Omni God Errol, các Eyes, biến đổi và những cuộc đối đầu đa vũ trụ.",
+          tags:["Saga","Errol","Multiverse"],
+          sections:[
+            ["🧩 Các nhánh nên tách","Timeline, Eyes, Forms, Allies, Enemies, O-Faine, Soul Compass."],
+            ["📚 Cách trình bày","Mỗi arc nên là một node riêng để người đọc không phải kéo qua một trang lore quá dài."]
+          ]
+        }
+      ]
+    },
+    {
+      id:"projects", label:"Projects", icon:"🚀", type:"category",
+      title:"Projects",
+      summary:"Các phần thuộc hệ sinh thái Protoveres ngoài lore thuần túy.",
+      tags:["Projects","Web","Wiki"],
+      children:[
+        {
+          id:"mainweb", label:"Main Web", icon:"🌐", type:"project",
+          title:"Protoveres Main Web",
+          summary:"Cổng cộng đồng chính thức: tài khoản, bài đăng, thông báo, cộng đồng, chat và điểm truy cập tới Wiki.",
+          tags:["Web","Community","Chat"]
+        },
+        {
+          id:"wiki", label:"Protoveres Wiki", icon:"📖", type:"project",
+          title:"Protoveres Wiki",
+          summary:"Khu vực dành cho nội dung lore và hồ sơ chi tiết. Main Web có thể dùng Explorer làm lớp điều hướng trước khi mở Wiki.",
+          tags:["Wiki","Lore","Reference"]
+        },
+        {
+          id:"games", label:"Games", icon:"🎮", type:"project",
+          title:"Protoveres Games",
+          summary:"Nhánh dự án game của Protoveres.",
+          tags:["Game","Interactive"]
+        },
+        {
+          id:"art", label:"Animation & Art", icon:"🎨", type:"project",
+          title:"Animation & Art",
+          summary:"Nhánh dành cho artwork, animation, edits và các sản phẩm hình ảnh liên quan.",
+          tags:["Art","Animation","Media"]
+        }
+      ]
+    }
+  ]
+};
+
+const treeEl = document.getElementById("tree");
+const detailEl = document.getElementById("detail");
+const searchEl = document.getElementById("treeSearch");
+const nodeMap = new Map();
+
+function flatten(node, parent=null){
+  node.parent = parent;
+  nodeMap.set(node.id,node);
+  (node.children||[]).forEach(child=>flatten(child,node));
+}
+flatten(treeData);
+
+function detailMarkup(node){
+  const sections = (node.sections||[]).map(([title,text]) =>
+    `<div class="subCard"><b>${escapeHtml(title)}</b><p>${escapeHtml(text)}</p></div>`
+  ).join("");
+
+  return `
+    <div class="detailTop">
+      <div>
+        <div class="eyebrow">${escapeHtml(node.type || "content").toUpperCase()}</div>
+        <h2 style="margin:8px 0 0;font-size:28px">${escapeHtml(node.title || node.label)}</h2>
+      </div>
+      <div class="detailIcon">${escapeHtml(node.icon || "🌌")}</div>
+    </div>
+    <div class="tagRow">${(node.tags||[]).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+    <div class="detailText">${escapeHtml(node.summary || "")}</div>
+    ${sections ? `<div class="subGrid">${sections}</div>` : ""}
+    ${(node.children||[]).length
+      ? `<div class="quote">↘️ Nhánh con: ${(node.children||[]).map(c=>escapeHtml(c.label)).join(" • ")}</div>`
+      : `<div class="notice">📌 Đây là một lá cuối của cây. Khi muốn mở rộng, thêm <b>children</b> hoặc <b>sections</b> vào node này.</div>`
+    }
+  `;
+}
+
+function renderDetail(nodeId){
+  const node=nodeMap.get(nodeId) || treeData;
+  detailEl.innerHTML=detailMarkup(node);
+  document.querySelectorAll(".treeNode").forEach(el=>el.classList.toggle("selected",el.dataset.id===node.id));
+}
+
+function branchHtml(node){
+  const hasChildren = Array.isArray(node.children) && node.children.length;
+  return `
+    <div class="treeNode" data-id="${escapeAttr(node.id)}">
+      <button class="treeButton" type="button">
+        <span class="arrow">${hasChildren ? "▶" : "•"}</span>
+        <span class="icon">${escapeHtml(node.icon||"•")}</span>
+        <span>${escapeHtml(node.label)}</span>
+      </button>
+      ${hasChildren ? `<div class="treeChildren">${node.children.map(branchHtml).join("")}</div>` : ""}
+    </div>
+  `;
+}
+
+function renderTree(){
+  treeEl.innerHTML=branchHtml(treeData);
+  treeEl.querySelectorAll(".treeNode > .treeButton").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const wrap=btn.parentElement;
+      const id=wrap.dataset.id;
+      const node=nodeMap.get(id);
+      if(node.children?.length){
+        const open=wrap.classList.toggle("open");
+        btn.querySelector(".arrow").textContent=open?"▼":"▶";
+      }
+      renderDetail(id);
+    });
+  });
+  renderDetail(treeData.id);
+}
+
+function openPath(id){
+  let node=nodeMap.get(id);
+  const parents=[];
+  while(node){parents.push(node);node=node.parent}
+  parents.reverse().forEach(n=>{
+    if(n.id==="root") return;
+    const el=treeEl.querySelector(`.treeNode[data-id="${cssEscape(n.id)}"]`);
+    if(!el) return;
+    if(el.querySelector(":scope > .treeChildren")){
+      el.classList.add("open");
+      const arrow=el.querySelector(":scope > .treeButton .arrow");
+      if(arrow) arrow.textContent="▼";
+    }
+  });
+  renderDetail(id);
+}
+
+function findNode(id){
+  openPath(id);
+}
+
+function nodeMatches(node,q){
+  const hay=[node.label,node.title,node.summary,...(node.tags||[])].join(" ").toLowerCase();
+  return hay.includes(q);
+}
+
+function applyFilter(){
+  const q=searchEl.value.trim().toLowerCase();
+  treeEl.querySelectorAll(".treeNode").forEach(el=>{
+    el.classList.remove("hidden");
+  });
+  if(!q) return;
+
+  treeEl.querySelectorAll(".treeNode").forEach(el=>{
+    const node=nodeMap.get(el.dataset.id);
+    let keep=nodeMatches(node,q);
+    let p=node.parent;
+    while(p && !keep){
+      keep=nodeMatches(p,q);
+      p=p.parent;
+    }
+    if(!keep) el.classList.add("hidden");
+  });
+  treeEl.querySelectorAll(".treeNode").forEach(el=>{
+    if(!el.classList.contains("hidden") && el.querySelector(":scope > .treeChildren")){
+      el.classList.add("open");
+      const arrow=el.querySelector(":scope > .treeButton .arrow");
+      if(arrow) arrow.textContent="▼";
+    }
+  });
+}
+
+function escapeHtml(v){
+  return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function escapeAttr(v){return escapeHtml(v).replace(/"/g,"&quot;")}
+function cssEscape(v){
+  return window.CSS && CSS.escape ? CSS.escape(v) : String(v).replace(/"/g,'\\"');
+}
+
+renderTree();
+searchEl.addEventListener("input",applyFilter);
+
+document.querySelectorAll("[data-focus]").forEach(btn=>{
+  btn.addEventListener("click",()=>findNode(btn.dataset.focus));
+});
+
+document.querySelector("[data-home]").addEventListener("click",()=>{
+  window.location.href="/protover-wiki/";
+});
+</script>
+</body>
+</html>
