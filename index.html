@@ -651,10 +651,20 @@ function openExploreDetail(type,itemId){
   });
 }
 document.querySelectorAll(".exploreTile").forEach(tile=>{
-  tile.style.cursor="pointer";
   tile.addEventListener("click",()=>{
     openExploreBranch(tile.dataset.explore);
   });
+});
+
+document.addEventListener("click",e=>{
+  const node=e.target.closest(".exploreNode");
+
+  if(!node)return;
+
+  const [type,...rest]=node.dataset.exploreItem.split(":");
+  const itemId=rest.join(":");
+
+  openExploreDetail(type,itemId);
 });
 function setMode(m){mode=m;$("#loginTab").classList.toggle("active",m==="login");$("#registerTab").classList.toggle("active",m==="register");$("#usernameWrap").style.display=m==="register"?"block":"none";$("#username").required=m==="register";$("#authSubmit").textContent=m==="register"?"Tạo tài khoản":"Đăng nhập";$("#loginMsg").className="msg"}
 function msg(t,ok=false){const e=$("#loginMsg");e.textContent=t;e.className="msg show "+(ok?"ok":"err")}
