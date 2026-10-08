@@ -29,12 +29,13 @@ body{margin:0;min-height:100vh;background:
  linear-gradient(145deg,rgba(17,7,27,.99),rgba(5,2,9,.99));box-shadow:0 30px 84px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.04);animation:fadeIn .36s ease-out both}
 .profile:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.42;background:linear-gradient(rgba(170,100,220,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(170,100,220,.025) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,#000,transparent 90%)}
 .hero{display:grid;grid-template-columns:minmax(220px,.78fr) minmax(0,1.42fr);gap:22px;padding:22px}
-.emblem{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(100%,275px);min-height:350px;aspect-ratio:4/5;margin:auto;overflow:hidden;border:1px solid rgba(190,105,255,.3);border-radius:20px;background:radial-gradient(circle at 50% 46%,rgba(160,42,220,.18),transparent 35%),linear-gradient(165deg,#1a0828,#08020d 74%);box-shadow:inset 0 0 50px rgba(102,0,204,.13),0 18px 44px rgba(0,0,0,.24)}
-.emblem:before{content:"";position:absolute;width:182px;height:182px;border-radius:50%;border:1px solid rgba(196,123,255,.22);box-shadow:0 0 0 14px rgba(120,25,190,.035),0 0 34px rgba(140,30,220,.08);pointer-events:none}
-.emblemStatus,.emblemCaption{position:absolute;left:13px;right:13px;display:flex;flex-direction:column;gap:4px;text-align:center;text-transform:uppercase;letter-spacing:1.3px;font-size:8px;color:#a990bf}
-.emblemStatus{top:14px}.emblemStatus b,.emblemCaption b{color:#e8d1ff}
-.bell{position:relative;z-index:1;font-size:clamp(82px,11vw,126px);line-height:1;filter:drop-shadow(0 0 13px rgba(189,99,255,.43));transform-origin:center;animation:bellBreath 4.2s ease-in-out infinite}
-.emblemCaption{bottom:14px;letter-spacing:1.15px}.emblemCaption span{font-size:7px;letter-spacing:1px;color:#806995}
+.emblem{position:relative;display:block;width:min(230px,72vw);min-height:0;aspect-ratio:9/16;margin:auto;overflow:hidden;border:1px solid rgba(190,105,255,.3);border-radius:20px;background:radial-gradient(circle at 50% 46%,rgba(160,42,220,.18),transparent 35%),linear-gradient(165deg,#1a0828,#08020d 74%);box-shadow:inset 0 0 50px rgba(102,0,204,.13),0 18px 44px rgba(0,0,0,.24)}
+.emblem:before{content:"";position:absolute;z-index:1;left:50%;top:50%;width:182px;height:182px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(196,123,255,.22);box-shadow:0 0 0 14px rgba(120,25,190,.035),0 0 34px rgba(140,30,220,.08);pointer-events:none}
+.emblem:after{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(7,2,13,.68),transparent 20%,transparent 72%,rgba(7,2,13,.78))}
+.azathAnimated{position:absolute;inset:0;z-index:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;border-radius:19px;background:#08020d}
+.emblemStatus,.emblemCaption{position:absolute;z-index:2;left:13px;right:13px;display:flex;flex-direction:column;gap:4px;text-align:center;text-transform:uppercase;letter-spacing:1.3px;font-size:8px;color:#d0b5e5;text-shadow:0 2px 8px #08020d}
+.emblemStatus{top:14px}.emblemStatus b,.emblemCaption b{color:#f0ddff}
+.emblemCaption{bottom:14px;letter-spacing:1.15px}.emblemCaption span{font-size:7px;letter-spacing:1px;color:#c5a5dc}
 .kicker{font-size:9px;letter-spacing:2.4px;color:#ca91ff;font-weight:900;text-transform:uppercase}
 .title{margin:10px 0 9px;font-size:clamp(42px,5.4vw,68px);line-height:.94;letter-spacing:-2.6px;color:#fff9ff}
 .title span{color:transparent;background:linear-gradient(90deg,#fff,#e6c8ff 43%,#b65cff 84%);background-clip:text;-webkit-background-clip:text}
@@ -56,10 +57,9 @@ body{margin:0;min-height:100vh;background:
 .footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;color:#8f789f;font-size:8px;letter-spacing:1px;text-transform:uppercase}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 @keyframes paneIn{from{opacity:.65}to{opacity:1}}
-@keyframes bellBreath{0%,100%{transform:scale(1);filter:drop-shadow(0 0 10px rgba(189,99,255,.3));opacity:.94}50%{transform:scale(1.035);filter:drop-shadow(0 0 16px rgba(189,99,255,.58));opacity:1}}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.emblem{width:min(250px,72vw);min-height:300px}.title{font-size:clamp(38px,8vw,56px)}}
-@media(max-width:600px){.page{width:calc(100% - 18px);padding-top:12px}.hero{padding:13px}.tabs,.content{padding-left:13px;padding-right:13px}.meta,.sectionGrid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:5px}.emblem{min-height:270px}.topline{font-size:8px;letter-spacing:1.1px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.profile,.pane,.bell{animation:none!important;transition:none!important}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.emblem{width:min(230px,72vw)}.title{font-size:clamp(38px,8vw,56px)}}
+@media(max-width:600px){.page{width:calc(100% - 18px);padding-top:12px}.hero{padding:13px}.tabs,.content{padding-left:13px;padding-right:13px}.meta,.sectionGrid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:5px}.emblem{width:min(210px,68vw)}.topline{font-size:8px;letter-spacing:1.1px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.profile,.pane{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -67,10 +67,12 @@ body{margin:0;min-height:100vh;background:
   <div class="topline"><strong>🌌 PROTOVERES ARCHIVE</strong><span>CHARACTER DOSSIER / AZ-001</span></div>
   <article class="profile">
     <header class="hero">
-      <div class="emblem" aria-label="Biểu tượng tạm thời cho hồ sơ Azath">
+      <div class="emblem" aria-label="Video portrait của Azath">
         <div class="emblemStatus"><b>CHARACTER ARCHIVE</b><span>AZATH // PRIMARY RECORD</span></div>
-        <div class="bell" aria-hidden="true">🔔</div>
-        <div class="emblemCaption"><b>THE SILENT BELL</b><span>SYMBOLIC EMBLEM • ARTWORK PENDING</span></div>
+        <video class="azathAnimated" autoplay muted loop playsinline preload="metadata" aria-label="Azath animated portrait">
+          <source src="./azath-animation.mp4" type="video/mp4">
+        </video>
+        <div class="emblemCaption"><b>THE SILENT BELL</b><span>AZATH // THE FIRST SPECK OF DOUBT</span></div>
       </div>
       <div class="identity">
         <div class="kicker">PROTOVERES • THE GENESIS TRAGEDY</div>
