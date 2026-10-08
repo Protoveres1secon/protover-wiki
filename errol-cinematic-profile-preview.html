@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sans Omni God Errol — Protoveres Profile Preview</title>
+<style>
+body{margin:0;background:
+radial-gradient(900px 520px at 8% 0%,#3e22ff3a,transparent 60%),
+radial-gradient(800px 520px at 93% 5%,#00dfff22,transparent 58%),
+linear-gradient(180deg,#020610,#040917 52%,#02050d);
+font-family:Inter,Segoe UI,Arial,sans-serif;color:#f6f8ff;padding:24px}
+.wrap{width:min(1100px,100%);margin:auto}
+/* ============================================================
+   SANS OMNI GOD ERROL — CINEMATIC PROFILE
+   Designed to stay inside the existing Explorer visual language.
+   ============================================================ */
+.errolProfile{
+  position:relative; overflow:hidden;
+  border:1px solid rgba(126,232,255,.20); border-radius:24px;
+  background:
+    radial-gradient(580px 300px at 82% 0%,rgba(0,229,255,.12),transparent 68%),
+    radial-gradient(520px 330px at 12% 40%,rgba(111,78,255,.13),transparent 72%),
+    linear-gradient(145deg,rgba(9,17,38,.98),rgba(2,7,18,.98));
+  box-shadow:0 32px 90px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  isolation:isolate; animation:errolIn .55s cubic-bezier(.2,.8,.2,1) both;
+}
+.errolProfile:before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:
+    linear-gradient(rgba(120,220,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,220,255,.035) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 92%);
+}
+.errolProfile:after{
+  content:"";position:absolute;left:-10%;right:-10%;top:-30%;height:2px;
+  pointer-events:none;background:linear-gradient(90deg,transparent,rgba(95,235,255,.72),transparent);
+  filter:blur(.4px);box-shadow:0 0 24px rgba(0,220,255,.55);
+  animation:errolScan 5.8s linear infinite;
+}
+.errolHero{
+  position:relative;display:grid;grid-template-columns:minmax(230px,.85fr) minmax(0,1.6fr);
+  gap:22px;padding:20px;
+}
+.errolPortrait{
+  position:relative;min-height:315px;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(139,223,255,.17);
+  background:
+    radial-gradient(circle at 50% 38%,rgba(188,242,255,.12),transparent 18%),
+    radial-gradient(circle at 50% 70%,rgba(93,111,255,.18),transparent 42%),
+    linear-gradient(165deg,#0a1022,#030711 72%);
+  box-shadow:inset 0 0 55px rgba(49,97,255,.13),0 18px 50px rgba(0,0,0,.3);
+  display:grid;place-items:center;
+}
+.errolPortrait:before,.errolPortrait:after{
+  content:"";position:absolute;border-radius:50%;pointer-events:none;
+}
+.errolPortrait:before{
+  width:210px;height:210px;border:1px solid rgba(90,225,255,.17);
+  box-shadow:0 0 0 18px rgba(101,76,255,.045),0 0 70px rgba(0,208,255,.13);
+  animation:errolOrbit 10s linear infinite;
+}
+.errolPortrait:after{
+  width:78px;height:78px;border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 0 35px rgba(126,236,255,.17);
+}
+.errolSkull{
+  position:relative;z-index:2;font-size:94px;line-height:1;
+  filter:drop-shadow(0 0 18px rgba(127,232,255,.25));
+  transform:translateY(-5px);animation:errolFloat 4.6s ease-in-out infinite;
+}
+.errolEyeCore{
+  position:absolute;z-index:3;left:50%;top:43%;width:18px;height:18px;
+  margin:-9px 0 0 -9px;border-radius:50%;background:#dffcff;
+  box-shadow:0 0 10px #fff,0 0 26px #6ff5ff,0 0 52px #765cff;
+  animation:errolPulse 1.7s ease-in-out infinite;
+}
+.errolPortraitLabel{
+  position:absolute;left:14px;right:14px;bottom:13px;display:flex;
+  justify-content:space-between;gap:8px;align-items:center;
+  font-size:8px;letter-spacing:1.5px;color:#9ba9c3;text-transform:uppercase;
+}
+.errolPortraitLabel b{color:#e7fbff}
+.errolIdentity{display:flex;flex-direction:column;justify-content:center;padding:3px 5px}
+.errolKicker{font-size:9px;letter-spacing:2.6px;color:#71eaff;font-weight:950;text-transform:uppercase}
+.errolTitle{
+  margin:9px 0 5px;font-size:clamp(34px,4vw,58px);line-height:.94;
+  letter-spacing:-2.5px;color:#f7fbff;text-shadow:0 0 28px rgba(91,220,255,.12);
+}
+.errolTitle span{
+  color:transparent;background:linear-gradient(90deg,#fff,#80eeff 44%,#a98cff 74%,#ff86dc);
+  background-clip:text;-webkit-background-clip:text;
+}
+.errolSubtitle{margin:0;color:#aab7ce;font-size:12px;line-height:1.7;max-width:650px}
+.errolQuote{
+  margin-top:16px;padding:12px 13px;border:1px solid rgba(114,236,255,.14);
+  border-left:3px solid #64e6ff;border-radius:0 14px 14px 0;
+  background:linear-gradient(90deg,rgba(0,223,255,.08),rgba(118,88,255,.04));
+  color:#e2edf9;font-size:11px;line-height:1.7;
+}
+.errolMetaGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+.errolMeta{
+  padding:10px 11px;border:1px solid rgba(170,205,255,.13);border-radius:13px;
+  background:rgba(255,255,255,.025)
+}
+.errolMeta span{display:block;font-size:8px;color:#71809d;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.errolMeta b{font-size:10px;color:#eaf3ff}
+.errolTabs{display:flex;gap:7px;flex-wrap:wrap;padding:0 20px 16px}
+.errolTab{
+  border:1px solid rgba(170,205,255,.14);background:rgba(255,255,255,.035);color:#b8c6dc;
+  border-radius:999px;padding:8px 11px;font:inherit;font-size:9px;font-weight:900;letter-spacing:.8px;
+  cursor:pointer;transition:.2s ease;
+}
+.errolTab:hover,.errolTab.active{
+  color:#fff;border-color:rgba(111,230,255,.40);
+  background:linear-gradient(135deg,rgba(88,91,255,.28),rgba(0,221,255,.12));
+  box-shadow:0 8px 24px rgba(0,137,255,.11)
+}
+.errolBody{padding:0 20px 20px}
+.errolPane{display:none;animation:errolPane .3s ease both}
+.errolPane.active{display:block}
+.errolSectionGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.errolPanel{
+  border:1px solid rgba(170,205,255,.13);border-radius:17px;padding:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.038),rgba(255,255,255,.015))
+}
+.errolPanel h3{margin:0 0 7px;font-size:11px}
+.errolPanel p{margin:0;color:#aebbd0;font-size:10px;line-height:1.72}
+.errolEyeGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.errolEyeCard{
+  position:relative;min-height:126px;padding:12px;border-radius:15px;
+  border:1px solid rgba(170,205,255,.14);background:rgba(255,255,255,.025);
+  overflow:hidden;transition:.2s ease
+}
+.errolEyeCard:before{
+  content:"";position:absolute;inset:auto -20px -30px;height:75px;
+  background:radial-gradient(circle,rgba(0,220,255,.14),transparent 68%)
+}
+.errolEyeCard:hover{transform:translateY(-2px);border-color:rgba(109,231,255,.38);box-shadow:0 12px 28px rgba(0,110,255,.11)}
+.errolEyeNum{font-size:9px;letter-spacing:1.2px;color:#67e9ff;font-weight:950}
+.errolEyeName{margin-top:5px;font-size:12px;font-weight:950}
+.errolEyeDesc{margin-top:6px;color:#8998b2;font-size:9px;line-height:1.5}
+.errolTimeline{display:grid;gap:8px}
+.errolEvent{
+  display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;align-items:start;
+  padding:11px;border:1px solid rgba(170,205,255,.12);border-radius:14px;background:rgba(255,255,255,.022)
+}
+.errolEvent b{font-size:9px;color:#70eaff;letter-spacing:1px}
+.errolEvent p{margin:0;color:#afbbcf;font-size:10px;line-height:1.65}
+.errolFooter{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px;
+  color:#60708d;font-size:8px;letter-spacing:1.2px;text-transform:uppercase
+}
+@keyframes errolIn{from{opacity:0;transform:translateY(10px) scale(.992)}to{opacity:1;transform:none}}
+@keyframes errolPane{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes errolScan{0%{transform:translateY(0)}100%{transform:translateY(620px)}}
+@keyframes errolOrbit{to{transform:rotate(360deg)}}
+@keyframes errolFloat{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
+@keyframes errolPulse{0%,100%{transform:scale(.82);opacity:.78}50%{transform:scale(1.16);opacity:1}}
+@media(max-width:900px){
+  .errolHero{grid-template-columns:1fr}
+  .errolPortrait{min-height:250px}
+  .errolTitle{font-size:clamp(32px,8vw,52px)}
+  .errolEyeGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .errolHero{padding:13px}
+  .errolTabs,.errolBody{padding-left:13px;padding-right:13px}
+  .errolMetaGrid{grid-template-columns:1fr}
+  .errolSectionGrid{grid-template-columns:1fr}
+  .errolEyeGrid{grid-template-columns:1fr}
+  .errolEvent{grid-template-columns:1fr;gap:4px}
+  .errolPortrait{min-height:220px}
+}
+</style></head><body><div class="wrap"><div id="preview"></div></div>
+<script>
+function errolProfileMarkup(){
+  return `
+  <article class="errolProfile">
+    <section class="errolHero">
+      <div class="errolPortrait" aria-label="Sans Omni God Errol portrait placeholder">
+        <div class="errolSkull">💀</div>
+        <div class="errolEyeCore"></div>
+        <div class="errolPortraitLabel">
+          <b>SANS • OMNI • GOD</b>
+          <span>ERROL PROFILE</span>
+        </div>
+      </div>
+
+      <div class="errolIdentity">
+        <div class="errolKicker">CHARACTER FILE • ERROL SAGA</div>
+        <h2 class="errolTitle">SANS OMNI<br><span>GOD ERROL</span></h2>
+        <p class="errolSubtitle">
+          Một linh hồn không biến mất sau những vòng lặp. Một hành trình từ Sans ban đầu
+          đến những Eye ngày càng gắn với sức mạnh, ký ức, nhận thức và tự do.
+        </p>
+        <div class="errolQuote">
+          Hồ sơ này được thiết kế như một <b>character dossier</b>, không phải một card wiki
+          thông thường — để mỗi lần mở Errol, người đọc có cảm giác đang bước vào chính tuyến truyện của anh.
+        </div>
+        <div class="errolMetaGrid">
+          <div class="errolMeta"><span>Series</span><b>Errol Saga</b></div>
+          <div class="errolMeta"><span>Core System</span><b>The Eyes</b></div>
+          <div class="errolMeta"><span>Archive</span><b>Multiverse Record</b></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="errolTabs" aria-label="Errol dossier sections">
+      <button class="errolTab active" data-errol-tab="overview" type="button">01 • OVERVIEW</button>
+      <button class="errolTab" data-errol-tab="lore" type="button">02 • LORE</button>
+      <button class="errolTab" data-errol-tab="eyes" type="button">03 • THE EYES</button>
+      <button class="errolTab" data-errol-tab="timeline" type="button">04 • TIMELINE</button>
+    </nav>
+
+    <section class="errolBody">
+      <div class="errolPane active" data-errol-pane="overview">
+        <div class="errolSectionGrid">
+          <div class="errolPanel"><h3>💀 The Beginning</h3><p>Errol khởi đầu từ Sans, nhưng biến cố quanh Papyrus và Chara đẩy anh vào một chuỗi sự kiện vượt xa một vòng lặp thông thường.</p></div>
+          <div class="errolPanel"><h3>👁️ The Eyes</h3><p>Mỗi Eye không chỉ là một bậc sức mạnh; chúng đại diện cho những bước ngoặt trong chiến đấu, nhận thức, quyền tự do và số phận của Errol.</p></div>
+          <div class="errolPanel"><h3>🌌 Multiverse</h3><p>Errol chạm tới nhiều phiên bản và đối thủ Sans khác nhau, cùng một nhóm đồng minh đa vũ trụ trong những giai đoạn quan trọng.</p></div>
+          <div class="errolPanel"><h3>🧭 Soul Compass</h3><p>Ở chặng Eye 5 / EXO, câu chuyện đi tới phán xét và sự phân tách linh hồn — mở ra một lớp hồ sơ hoàn toàn khác cho Errol.</p></div>
+        </div>
+      </div>
+
+      <div class="errolPane" data-errol-pane="lore">
+        <div class="errolSectionGrid">
+          <div class="errolPanel"><h3>01 — Papyrus & Chara</h3><p>Papyrus bị Chara giết; những vòng lặp reset và linh hồn Papyrus bảo vệ Errol trở thành nền móng cho Eye 1.</p></div>
+          <div class="errolPanel"><h3>02 — Space & Time</h3><p>Eye 2 mở ra nhánh sức mạnh liên quan tới không gian và thời gian, đưa Errol vượt xa giới hạn của Sans ban đầu.</p></div>
+          <div class="errolPanel"><h3>03 — Warlock Sans</h3><p>Cuộc chạm trán với Warlock Sans kéo Errol vào xóa code và biến đổi liên quan tới Eye 3.</p></div>
+          <div class="errolPanel"><h3>04 — Omni / Everything / Godverse</h3><p>Ba thực thể Sans cấp cao để lại những vết thương và một bước ngoặt lớn trong hành trình Errol.</p></div>
+          <div class="errolPanel"><h3>05 — O-Faine</h3><p>O-Faine chỉ trao sức mạnh sau một thử thách 25 move; mốc kết thúc của thử thách là Heartbound Requiem.</p></div>
+          <div class="errolPanel"><h3>06 — Eye 4</h3><p>Eye 4 gắn với nhận thức bản thân và tự do — một bước chuyển quan trọng từ sức mạnh sang quyền tự quyết.</p></div>
+        </div>
+      </div>
+
+      <div class="errolPane" data-errol-pane="eyes">
+        <div class="errolEyeGrid">
+          <div class="errolEyeCard"><div class="errolEyeNum">EYE 01</div><div class="errolEyeName">The First Eye</div><div class="errolEyeDesc">Bắt nguồn từ linh hồn Papyrus bảo vệ Errol; nền móng cho chuỗi Eye.</div></div>
+          <div class="errolEyeCard"><div class="errolEyeNum">EYE 02</div><div class="errolEyeName">Space / Time</div><div class="errolEyeDesc">Nhánh sức mạnh gắn với không gian và thời gian, mở rộng phạm vi tồn tại của Errol.</div></div>
+          <div class="errolEyeCard"><div class="errolEyeNum">EYE 03</div><div class="errolEyeName">Corruption</div><div class="errolEyeDesc">Bước ngoặt sau Warlock Sans, gắn với xóa code và sự ăn mòn của hệ thống.</div></div>
+          <div class="errolEyeCard"><div class="errolEyeNum">EYE 04</div><div class="errolEyeName">Self-Awareness</div><div class="errolEyeDesc">Nhận thức bản thân và tự do trở thành một phần cốt lõi của Errol.</div></div>
+          <div class="errolEyeCard"><div class="errolEyeNum">EYE 05 / EXO</div><div class="errolEyeName">Judgment</div><div class="errolEyeDesc">Phán xét cuối cùng dẫn tới sự phá vỡ thành các mảnh linh hồn và Soul Compass.</div></div>
+        </div>
+        <div class="errolFooter"><span>Eyes are progression markers, not only power levels</span><span>ERROL // CORE ARCHIVE</span></div>
+      </div>
+
+      <div class="errolPane" data-errol-pane="timeline">
+        <div class="errolTimeline">
+          <div class="errolEvent"><b>ORIGIN</b><p>Sans → Papyrus → biến cố Chara → reset loop.</p></div>
+          <div class="errolEvent"><b>EYE 01</b><p>Linh hồn Papyrus bảo vệ Errol và mở ra Eye đầu tiên.</p></div>
+          <div class="errolEvent"><b>EYE 02</b><p>Không gian và thời gian trở thành một phần của bộ khung sức mạnh.</p></div>
+          <div class="errolEvent"><b>WARLOCK</b><p>Warlock Sans, xóa code và biến đổi gắn với Eye 3.</p></div>
+          <div class="errolEvent"><b>OMNI</b><p>Omni / Everything / Godverse Sans và những vết thương mới trên hành trình Errol.</p></div>
+          <div class="errolEvent"><b>O-FAINE</b><p>25 moves → Heartbound Requiem → sức mạnh mới.</p></div>
+          <div class="errolEvent"><b>EYE 04</b><p>Tự nhận thức và tự do trở thành trọng tâm của giai đoạn mới.</p></div>
+          <div class="errolEvent"><b>EYE 05 / EXO</b><p>Judgment → soul fragments → Soul Compass.</p></div>
+        </div>
+      </div>
+    </section>
+  </article>`;
+}
+
+function bindErrolProfile(){
+  document.querySelectorAll("[data-errol-tab]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const target=btn.dataset.errolTab;
+      document.querySelectorAll("[data-errol-tab]").forEach(b=>b.classList.toggle("active",b===btn));
+      document.querySelectorAll("[data-errol-pane]").forEach(p=>p.classList.toggle("active",p.dataset.errolPane===target));
+    });
+  });
+}
+document.getElementById("preview").innerHTML=errolProfileMarkup();
+bindErrolProfile();
+</script></body></html>
