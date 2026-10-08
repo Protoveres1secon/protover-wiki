@@ -461,24 +461,96 @@ let socialFeedUnsubs=[],socialPostsCache=[],socialPostImageData="",socialPostIma
 let notificationUnsubs=[],notificationsCache={};
 const views={home:$("#homeView"),account:$("#accountView"),posts:$("#postsView"),notifications:$("#notificationsView"),community:$("#communityView"),explore:$("#exploreView"),wiki:$("#wikiView")};
 function showView(v){Object.entries(views).forEach(([k,e])=>e?.classList.toggle("active",k===v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v));window.scrollTo({top:0,behavior:"smooth"});if(v==="notifications")renderNotifications();if(v==="posts")initSocialFeed()}
- const exploreData={
-  about:[],
-  characters:[
-    ["🧬","Proto","Nhân vật Proto"],
-    ["🌑","Azath","The First Speck of Doubt"],
-    ["⚔️","O-Faine","The Last Heir of the Ancient Bloodline"],
-    ["💀","Sans Omni God Errol","Hành trình của Errol"]
-  ],
-  worlds:[
-    ["🏙️","Protoveres City","Thành phố Protoveres"],
-    ["🌊","Planet Aqua","Thế giới Aqua"]
-  ],
-  lore:[
-    ["🔥","Genesis Tragedy","Biến cố Genesis Tragedy"],
-    ["📖","Errol Saga","Tuyến truyện của Errol"]
-  ]
-};
+const exploreData={
+  about:{
+    title:"🌌 Protoveres là gì?",
+    items:[
+      {
+        icon:"🌌",
+        title:"Protoveres",
+        desc:"Tổng quan về vũ trụ Protoveres.",
+        bio:"Protoveres là thế giới trung tâm của hệ thống lore, nơi các nhân vật, thế giới và những tuyến truyện khác nhau cùng tồn tại."
+      }
+    ]
+  },
 
+  characters:{
+    title:"🧬 Characters",
+    items:[
+      {
+        key:"proto",
+        icon:"🌌",
+        title:"Proto",
+        desc:"Thực thể bí ẩn ở trung tâm Protoveres.",
+        bio:"Proto là một thực thể không thể quy về một giới hạn thông thường — gắn với chính giới hạn của thực tại và sự tồn tại."
+      },
+
+      {
+        key:"azath",
+        icon:"🌑",
+        title:"Azath",
+        desc:"The First Speck of Doubt.",
+        bio:"Azath từng là người bạn thân của Proto. Hắn gắn với nguồn gốc của sự bất an đầu tiên trong Ý Định Tuyệt Đối và là trung tâm của Genesis Tragedy."
+      },
+
+      {
+        key:"ofaine",
+        icon:"⚔️",
+        title:"O-Faine",
+        desc:"The Last Heir of the Ancient Bloodline.",
+        bio:"O-Faine là người thừa kế cuối cùng của Ancient Bloodline. Gia đình cô bị quỷ hủy diệt, từ đó cô bước vào con đường trả thù và tìm kiếm đồng minh."
+      },
+
+      {
+        key:"errol",
+        icon:"💀",
+        title:"Sans Omni God Errol",
+        desc:"Hành trình của Errol.",
+        bio:"Errol bắt đầu từ một Sans bình thường rồi trải qua hàng loạt biến cố, các dạng tiến hóa và những cuộc đối đầu xuyên không-thời gian."
+      }
+    ]
+  },
+
+  worlds:{
+    title:"🪐 Worlds",
+    items:[
+      {
+        key:"city",
+        icon:"🏙️",
+        title:"Protoveres City",
+        desc:"Thành phố trung tâm của Protoveres.",
+        bio:"Protoveres City là một trong những địa điểm cốt lõi của Protoveres."
+      },
+      {
+        key:"aqua",
+        icon:"🌊",
+        title:"Planet Aqua",
+        desc:"Một thế giới quan trọng trong lore.",
+        bio:"Planet Aqua là bối cảnh gắn với tuyến truyện của Errol và những sự kiện quan trọng."
+      }
+    ]
+  },
+
+  lore:{
+    title:"📖 Lore",
+    items:[
+      {
+        key:"genesis",
+        icon:"🔥",
+        title:"Genesis Tragedy",
+        desc:"Bi kịch giữa Proto và Azath.",
+        bio:"Genesis Tragedy là một trong những biến cố nền tảng của lịch sử Protoveres, xoay quanh Proto và Azath."
+      },
+      {
+        key:"errolsaga",
+        icon:"📖",
+        title:"Errol Saga",
+        desc:"Tuyến truyện lớn của Errol.",
+        bio:"Errol Saga theo chân Errol qua những biến cố, hình thái và cuộc chiến ngày càng lớn."
+      }
+    ]
+  }
+};
 function openExploreBranch(type){
   const box=$("#exploreBranch");
   const data=exploreData[type]||[];
