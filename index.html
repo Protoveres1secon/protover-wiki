@@ -588,27 +588,6 @@ function openExploreBranch(type){
     behavior:"smooth",
     block:"start"
   });
-}
-  box.style.display="block";
-  box.innerHTML=`
-    <div class="card">
-      <div class="sectionhead">
-        <h2>Khám phá nhánh</h2>
-        <span>${data.length} mục</span>
-      </div>
-      <div class="grid4">
-        ${data.map(([icon,title,desc])=>`
-          <article class="tile">
-            <div class="ico">${icon}</div>
-            <b>${title}</b>
-            <p>${desc}</p>
-          </article>
-        `).join("")}
-      </div>
-    </div>
-  `;
-  box.scrollIntoView({behavior:"smooth",block:"start"});
-}
 function openExploreDetail(type,itemId){
   const branch=exploreData[type];
   if(!branch)return;
