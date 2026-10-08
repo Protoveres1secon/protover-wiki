@@ -6,6 +6,128 @@
 <title>Protoveres — Explorer</title>
 <meta name="description" content="Protoveres Explorer — khám phá Protoveres theo cây nội dung, Characters, Worlds, Lore và Projects.">
 <style>
+  /* ============================================================
+   AZATH — CONNECTED CHARACTER DOSSIER
+   Uses the uploaded azath-profile.html as the full dossier.
+   ============================================================ */
+
+.azathConnectedProfile{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(189,99,255,.24);
+  background:
+    radial-gradient(520px 280px at 90% 0%,rgba(150,48,220,.10),transparent 70%),
+    linear-gradient(145deg,#0e0617,#030208);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.04);
+  animation:azathConnectedIn .35s ease-out both;
+}
+
+.azathConnectedHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:20px 22px;
+  border-bottom:1px solid rgba(189,99,255,.14);
+  background:linear-gradient(
+    135deg,
+    rgba(91,24,132,.18),
+    rgba(5,2,10,.32)
+  );
+}
+
+.azathConnectedKicker{
+  font-size:9px;
+  letter-spacing:2.4px;
+  font-weight:900;
+  color:#c985ff;
+  text-transform:uppercase;
+}
+
+.azathConnectedHeader h2{
+  margin:7px 0 3px;
+  font-size:clamp(28px,4vw,42px);
+  line-height:.95;
+  color:#fff;
+  letter-spacing:-1.7px;
+}
+
+.azathConnectedHeader h2 span{
+  color:transparent;
+  background:linear-gradient(90deg,#fff,#e7c7ff,#b85dff);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.azathConnectedHeader p{
+  margin:0;
+  color:#aa96ba;
+  font-size:11px;
+}
+
+.azathConnectedIcon{
+  flex:0 0 auto;
+  font-size:42px;
+  filter:drop-shadow(0 0 14px rgba(189,99,255,.5));
+  animation:azathBellQuiet 3.8s ease-in-out infinite;
+}
+
+.azathConnectedFrame{
+  width:100%;
+  padding:0;
+  overflow:hidden;
+  background:#050208;
+}
+
+.azathConnectedFrame iframe{
+  width:100%;
+  min-height:1200px;
+  display:block;
+  border:0;
+  background:#050208;
+}
+
+@keyframes azathConnectedIn{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes azathBellQuiet{
+  0%,100%{
+    transform:scale(1);
+    opacity:.9;
+  }
+  50%{
+    transform:scale(1.035);
+    opacity:1;
+  }
+}
+
+@media(max-width:700px){
+  .azathConnectedHeader{
+    padding:16px;
+  }
+
+  .azathConnectedFrame iframe{
+    min-height:1250px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .azathConnectedProfile,
+  .azathConnectedIcon{
+    animation:none!important;
+  }
+}
 :root{
   --bg:#030711;
   --panel:rgba(11,18,40,.78);
@@ -557,18 +679,17 @@ const treeData = {
           ]
         },
         {
-          {
-  id:"azath", label:"Azath", icon:"🔔", type:"character",
-  title:"The Azath",
-  summary:"The First Speck of Doubt — hơi thở đầu tiên của bất an trong Ý Định Tuyệt Đối; cựu bằng hữu của Proto và trung tâm của Genesis Tragedy.",
-  tags:["The First Speck of Doubt","Absolute Intention","Silent Bell","Genesis Tragedy"],
-  sections:[
-    ["🕯️ Before Thought","Trước cả tư tưởng là một hơi thở chưa được gọi tên."],
-    ["🔔 The Silent Bell","Biểu tượng xuyên suốt lore của Azath — tiếng chuông im lặng giữa hai lời."],
-    ["🕳️ True Nature","Azath không thể được định nghĩa trọn vẹn bằng khái niệm hay phi khái niệm."],
-    ["⚡ Genesis Tragedy","Azath từng là bằng hữu của Proto; sự phản bội là một biến cố cốt lõi của lore."]
-  ]
-}
+          id:"azath", label:"Azath", icon:"🔔", type:"character",
+          title:"The Azath",
+          summary:"The First Speck of Doubt — hơi thở đầu tiên của bất an trong Ý Định Tuyệt Đối; cựu bằng hữu của Proto và trung tâm của Genesis Tragedy.",
+          tags:["The First Speck of Doubt","Absolute Intention","Silent Bell","Genesis Tragedy"],
+          sections:[
+            ["🕯️ Before Thought","Trước cả tư tưởng là một hơi thở chưa được gọi tên."],
+            ["🔔 The Silent Bell","Biểu tượng xuyên suốt lore của Azath — tiếng chuông im lặng giữa hai lời."],
+            ["🕳️ True Nature","Azath không thể được định nghĩa trọn vẹn bằng khái niệm hay phi khái niệm."],
+            ["⚡ Genesis Tragedy","Azath từng là bằng hữu của Proto; sự phản bội là một biến cố cốt lõi của lore."]
+          ]
+        },
         {
           id:"ofaine", label:"O-Faine", icon:"🔥", type:"character",
           title:"O-Faine",
