@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09030f">
+<meta name="description" content="The Azath — The First Speck of Doubt. Hồ sơ lore Protoveres.">
+<title>THE AZATH — Protoveres Archive</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#07030c;--panel:#100719;--panel2:#160921;--text:#f7f0ff;
+  --muted:#c2b1d4;--soft:#8e7a9f;--purple:#bf71ff;--violet:#7429b7;
+  --line:rgba(198,130,255,.2);--glow:rgba(158,55,221,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:
+ radial-gradient(700px 440px at 90% 0%,rgba(130,36,190,.14),transparent 68%),
+ radial-gradient(560px 420px at 0% 42%,rgba(92,20,145,.12),transparent 72%),
+ linear-gradient(180deg,#08030e,#050208 82%);color:var(--text);
+ font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
+.page{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:24px 0 36px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;color:var(--soft);font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}
+.topline strong{color:#e8d4ff}
+.profile{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(190,105,255,.34);border-radius:24px;background:
+ radial-gradient(520px 280px at 90% 0%,rgba(150,48,220,.12),transparent 70%),
+ radial-gradient(440px 330px at 10% 45%,rgba(90,22,140,.13),transparent 72%),
+ linear-gradient(145deg,rgba(17,7,27,.99),rgba(5,2,9,.99));box-shadow:0 30px 84px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.04);animation:fadeIn .36s ease-out both}
+.profile:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.42;background:linear-gradient(rgba(170,100,220,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(170,100,220,.025) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,#000,transparent 90%)}
+.hero{display:grid;grid-template-columns:minmax(220px,.78fr) minmax(0,1.42fr);gap:22px;padding:22px}
+.emblem{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(100%,275px);min-height:350px;aspect-ratio:4/5;margin:auto;overflow:hidden;border:1px solid rgba(190,105,255,.3);border-radius:20px;background:radial-gradient(circle at 50% 46%,rgba(160,42,220,.18),transparent 35%),linear-gradient(165deg,#1a0828,#08020d 74%);box-shadow:inset 0 0 50px rgba(102,0,204,.13),0 18px 44px rgba(0,0,0,.24)}
+.emblem:before{content:"";position:absolute;width:182px;height:182px;border-radius:50%;border:1px solid rgba(196,123,255,.22);box-shadow:0 0 0 14px rgba(120,25,190,.035),0 0 34px rgba(140,30,220,.08);pointer-events:none}
+.emblemStatus,.emblemCaption{position:absolute;left:13px;right:13px;display:flex;flex-direction:column;gap:4px;text-align:center;text-transform:uppercase;letter-spacing:1.3px;font-size:8px;color:#a990bf}
+.emblemStatus{top:14px}.emblemStatus b,.emblemCaption b{color:#e8d1ff}
+.bell{position:relative;z-index:1;font-size:clamp(82px,11vw,126px);line-height:1;filter:drop-shadow(0 0 13px rgba(189,99,255,.43));transform-origin:center;animation:bellBreath 4.2s ease-in-out infinite}
+.emblemCaption{bottom:14px;letter-spacing:1.15px}.emblemCaption span{font-size:7px;letter-spacing:1px;color:#806995}
+.kicker{font-size:9px;letter-spacing:2.4px;color:#ca91ff;font-weight:900;text-transform:uppercase}
+.title{margin:10px 0 9px;font-size:clamp(42px,5.4vw,68px);line-height:.94;letter-spacing:-2.6px;color:#fff9ff}
+.title span{color:transparent;background:linear-gradient(90deg,#fff,#e6c8ff 43%,#b65cff 84%);background-clip:text;-webkit-background-clip:text}
+.subtitle{margin:0;max-width:670px;color:#c7b7d7;font-size:12px;line-height:1.9}
+.quote{margin-top:16px;padding:14px 15px;border:1px solid rgba(189,99,255,.2);border-left:3px solid #a63bea;border-radius:0 13px 13px 0;background:linear-gradient(90deg,rgba(113,24,164,.14),rgba(30,5,42,.22));color:#f0e1ff;font:italic 12px/1.9 Georgia,serif}
+.quote cite{display:block;margin-top:8px;font:800 9px/1.6 Inter,Segoe UI,Arial,sans-serif;letter-spacing:1.8px;color:#bd71f6;text-align:right;text-transform:uppercase}
+.meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.metaItem{padding:10px 11px;border:1px solid rgba(189,99,255,.16);border-radius:12px;background:rgba(255,255,255,.025);min-width:0}
+.metaItem span{display:block;margin-bottom:4px;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#9c82b2}.metaItem b{font-size:10px;color:#f0e3ff;overflow-wrap:anywhere}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;padding:0 22px 17px;border-bottom:1px solid rgba(189,99,255,.1)}
+.tab{border:1px solid rgba(189,99,255,.2);border-radius:999px;padding:9px 12px;background:rgba(255,255,255,.025);color:#bda9ce;font:inherit;font-size:9px;font-weight:900;letter-spacing:.55px;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease}
+.tab:hover{border-color:rgba(189,99,255,.55);color:#fff}.tab:focus-visible{outline:2px solid #d2a2ff;outline-offset:3px}.tab.active{color:#fff;background:rgba(140,43,199,.2);border-color:rgba(189,99,255,.58);box-shadow:inset 0 0 18px rgba(140,43,199,.08)}
+.content{padding:20px 22px 22px}.pane{display:none}.pane.active{display:block;animation:paneIn .2s ease-out both}
+.sectionGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.panel{min-width:0;padding:15px;border:1px solid rgba(189,99,255,.17);border-radius:14px;background:linear-gradient(145deg,rgba(35,11,51,.6),rgba(8,3,14,.65))}
+.panel h3{margin:0 0 9px;font-size:12px;letter-spacing:.15px;color:#ead5ff}.panel h3 span{color:#bf7aff}.panel p{margin:0;color:#c5b4d5;font-size:11px;line-height:1.9}
+.eventList{display:grid;gap:10px}.event{display:grid;grid-template-columns:155px minmax(0,1fr);gap:13px;padding:14px;border:1px solid rgba(189,99,255,.16);border-radius:13px;background:rgba(23,7,34,.54)}.event b{font-size:9px;letter-spacing:1.25px;color:#c47dff;text-transform:uppercase}.event p{margin:0;color:#cdbddd;font-size:11px;line-height:1.9}
+.callout{margin-top:12px;padding:17px;border:1px solid rgba(189,99,255,.24);border-radius:14px;background:linear-gradient(90deg,rgba(95,19,145,.18),rgba(12,3,18,.48));text-align:center}.callout b{display:block;margin-bottom:8px;font-size:9px;letter-spacing:2px;color:#c47dff}.callout p{margin:0;color:#f0e2ff;font:italic 13px/1.9 Georgia,serif}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;color:#8f789f;font-size:8px;letter-spacing:1px;text-transform:uppercase}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes paneIn{from{opacity:.65}to{opacity:1}}
+@keyframes bellBreath{0%,100%{transform:scale(1);filter:drop-shadow(0 0 10px rgba(189,99,255,.3));opacity:.94}50%{transform:scale(1.035);filter:drop-shadow(0 0 16px rgba(189,99,255,.58));opacity:1}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.emblem{width:min(250px,72vw);min-height:300px}.title{font-size:clamp(38px,8vw,56px)}}
+@media(max-width:600px){.page{width:calc(100% - 18px);padding-top:12px}.hero{padding:13px}.tabs,.content{padding-left:13px;padding-right:13px}.meta,.sectionGrid{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:5px}.emblem{min-height:270px}.topline{font-size:8px;letter-spacing:1.1px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.profile,.pane,.bell{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="topline"><strong>🌌 PROTOVERES ARCHIVE</strong><span>CHARACTER DOSSIER / AZ-001</span></div>
+  <article class="profile">
+    <header class="hero">
+      <div class="emblem" aria-label="Biểu tượng tạm thời cho hồ sơ Azath">
+        <div class="emblemStatus"><b>CHARACTER ARCHIVE</b><span>AZATH // PRIMARY RECORD</span></div>
+        <div class="bell" aria-hidden="true">🔔</div>
+        <div class="emblemCaption"><b>THE SILENT BELL</b><span>SYMBOLIC EMBLEM • ARTWORK PENDING</span></div>
+      </div>
+      <div class="identity">
+        <div class="kicker">PROTOVERES • THE GENESIS TRAGEDY</div>
+        <h1 class="title">THE <span>AZATH</span></h1>
+        <p class="subtitle">The First Speck of Doubt — hơi thở đầu tiên của bất an trong Ý Định Tuyệt Đối. Azath từng là bằng hữu của Proto; hồ sơ này tách riêng bản thể, hình tượng The Silent Bell và biến cố Genesis Tragedy mà không biến Azath thành một khái niệm đơn giản.</p>
+        <blockquote class="quote">“The one existing before the moment of reality forgot itself, the one whom reality had not yet named—a silent bell amidst the Absolute Intent of the Eternal Breath: Azath.”<cite>— Azath</cite></blockquote>
+        <div class="meta">
+          <div class="metaItem"><span>Title</span><b>The First Speck of Doubt</b></div>
+          <div class="metaItem"><span>Nature</span><b>Unease in Absolute Intention</b></div>
+          <div class="metaItem"><span>Key Event</span><b>Genesis Tragedy</b></div>
+        </div>
+      </div>
+    </header>
+    <nav class="tabs" aria-label="Azath dossier sections" role="tablist">
+      <button class="tab active" id="tab-overview" data-tab="overview" role="tab" aria-selected="true" aria-controls="pane-overview">01 • OVERVIEW</button>
+      <button class="tab" id="tab-origin" data-tab="origin" role="tab" aria-selected="false" aria-controls="pane-origin">02 • THE BEGINNING</button>
+      <button class="tab" id="tab-nature" data-tab="nature" role="tab" aria-selected="false" aria-controls="pane-nature">03 • TRUE NATURE</button>
+      <button class="tab" id="tab-throne" data-tab="throne" role="tab" aria-selected="false" aria-controls="pane-throne">04 • SILENT THRONE</button>
+      <button class="tab" id="tab-genesis" data-tab="genesis" role="tab" aria-selected="false" aria-controls="pane-genesis">05 • GENESIS TRAGEDY</button>
+    </nav>
+    <div class="content">
+      <section class="pane active" id="pane-overview" data-pane="overview" role="tabpanel" aria-labelledby="tab-overview">
+        <div class="sectionGrid">
+          <article class="panel"><h3>🕯️ <span>Before Thought</span></h3><p>“Before thought, even before the darkness of thought, there was an unnamed breath.” That breath—the non-conceptual one calls Azath.</p></article>
+          <article class="panel"><h3>🔔 <span>The Silent Bell</span></h3><p>At the center of every dream, where layers of reality melt away, the lore describes a silent bell. It is neither a call nor a warning.</p></article>
+          <article class="panel"><h3>🕳️ <span>Beyond Definition</span></h3><p>Azath is neither a concept nor a non-concept. No definition can accurately contain Him; calling Him either one does not resolve the mystery.</p></article>
+          <article class="panel"><h3>⚡ <span>Genesis Tragedy</span></h3><p>Azath was once Proto’s close friend. The betrayal between them is a major fracture in the lore and is recorded here as its own story thread.</p></article>
+        </div>
+        <div class="callout"><b>AZATH • CORE LINE</b><p>“The Nothingness that knows it is Nothingness.”</p></div>
+      </section>
+      <section class="pane" id="pane-origin" data-pane="origin" role="tabpanel" aria-labelledby="tab-origin" hidden>
+        <div class="eventList">
+          <div class="event"><b>BEFORE THOUGHT</b><p>When Proto had not yet looked into himself, between Nothingness and Thoughtlessness, there was a subtle vibration.</p></div>
+          <div class="event"><b>THE FIRST VIBRATION</b><p>That vibration was neither light nor darkness. It was the first breath of unease in Absolute Intention.</p></div>
+          <div class="event"><b>SELF-AWARENESS</b><p>When Intention knew that it was Intention, Azath was given a name: “the first speck of doubt in the absolute.”</p></div>
+          <div class="event"><b>UNNAMED BREATH</b><p>Not born from matter, not arising from mind: Azath is described as the reflection of Self-Awareness, an echo of a dream that had not yet materialized.</p></div>
+        </div>
+        <div class="callout"><b>THE FIRST SPECK OF DOUBT</b><p>“The first speck of doubt in the absolute.”</p></div>
+      </section>
+      <section class="pane" id="pane-nature" data-pane="nature" role="tabpanel" aria-labelledby="tab-nature" hidden>
+        <div class="sectionGrid">
+          <article class="panel"><h3>🌑 <span>Neither Good nor Evil</span></h3><p>Azath is neither good nor evil; neither creator nor destroyer. The lore does not frame Him through ordinary moral categories.</p></article>
+          <article class="panel"><h3>∞ <span>Neither Arises nor Ceases</span></h3><p>Azath neither arises nor ceases. He is described as the silence between the two breaths of eternity.</p></article>
+          <article class="panel"><h3>🪞 <span>Reflection of Self-Awareness</span></h3><p>Not born from matter or mind, Azath is the reflection of Self-Awareness—the shadow of a dream reality has yet to comprehend.</p></article>
+          <article class="panel"><h3>✧ <span>Uncontainable</span></h3><p>“Neither concept nor non-concept” is not a final category, but a statement that no single definition can accurately describe Him.</p></article>
+        </div>
+        <div class="callout"><b>THE TRUE MIND OF AZATH</b><p>“He is the silence between the two breaths of eternity.”</p></div>
+      </section>
+      <section class="pane" id="pane-throne" data-pane="throne" role="tabpanel" aria-labelledby="tab-throne" hidden>
+        <div class="sectionGrid">
+          <article class="panel"><h3>🔕 <span>No One Sees Azath</span></h3><p>One perceives Him only in the moment of complete mental emptiness—when the universe ceases to call itself by name.</p></article>
+          <article class="panel"><h3>🔔 <span>A Bell in the Dream</span></h3><p>At the center of every dream, where the layers of reality melt away like dust, there is a silent bell. It rings only in the heart of one who has transcended the boundary of existence.</p></article>
+          <article class="panel"><h3>🚫 <span>The Forbidden Word</span></h3><p>Calling Azath by name acknowledges “You” and “He”; in Azath’s perception, distinctions themselves are the root of chaos.</p></article>
+          <article class="panel"><h3>🫧 <span>The Reminder</span></h3><p>Not a call. Not a warning. Just a reminder that everything is an illusion.</p></article>
+        </div>
+        <div class="callout"><b>THE FORBIDDEN WORD</b><p>“Whoever calls Azath by name will no longer hear their own voice.”</p></div>
+      </section>
+      <section class="pane" id="pane-genesis" data-pane="genesis" role="tabpanel" aria-labelledby="tab-genesis" hidden>
+        <div class="eventList">
+          <div class="event"><b>THE FORMER BOND</b><p>Azath was once Proto’s close friend. Their relationship belongs to the central history of Protoveres, not merely to an abstract description of Azath.</p></div>
+          <div class="event"><b>GENESIS TRAGEDY</b><p>The betrayal between Proto and Azath is recorded under the name Genesis Tragedy. This profile marks the event without adding unprovided scenes or chronology.</p></div>
+          <div class="event"><b>THE SCRIBBLER’S AFTERWORD</b><p>The lore foretells that when Proto forgets his name, Azath will return like white smoke, creeping through every crack of concept and dissolving definitions of meaning.</p></div>
+        </div>
+        <div class="callout"><b>THE TWO WORDS</b><p>If Proto is the Beginning Word, then Azath is the Silence between the two Words.</p></div>
+      </section>
+      <footer class="footer"><span>AZATH // PRIMARY LORE ARCHIVE</span><span>THE FIRST SPECK OF DOUBT</span></footer>
+    </div>
+  </article>
+</main>
+<script>
+(() => {
+  const tabs = [...document.querySelectorAll('[data-tab]')];
+  const panes = [...document.querySelectorAll('[data-pane]')];
+  function activate(name, moveFocus = false) {
+    tabs.forEach(tab => {
+      const selected = tab.dataset.tab === name;
+      tab.classList.toggle('active', selected);
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      if (selected && moveFocus) tab.focus();
+    });
+    panes.forEach(pane => {
+      const selected = pane.dataset.pane === name;
+      pane.classList.toggle('active', selected);
+      pane.hidden = !selected;
+    });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(tab.dataset.tab));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      activate(tabs[next].dataset.tab, true);
+    });
+  });
+  activate('overview');
+})();
+</script>
+</body>
+</html>
