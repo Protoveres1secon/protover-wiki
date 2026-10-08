@@ -553,19 +553,42 @@ const exploreData={
 };
 function openExploreBranch(type){
   const box=$("#exploreBranch");
-  const data=exploreData[type]||[];
+  const branch=exploreData[type];
 
-  if(!data.length){
-    box.style.display="block";
-    box.innerHTML=`
-      <div class="card">
-        <h3>🌌 Protoveres là gì?</h3>
-        <p>Nhánh nội dung này sẽ được xây dựng tiếp.</p>
+  if(!branch)return;
+
+  box.style.display="block";
+
+  box.innerHTML=`
+    <div class="card">
+      <div class="sectionhead">
+        <h2>${branch.title}</h2>
+        <span>${branch.items.length} mục</span>
       </div>
-    `;
-    return;
-  }
 
+      <div class="grid4">
+        ${branch.items.map(item=>`
+          <button
+            class="exploreNode"
+            type="button"
+            data-explore-item="${type}:${item.key||item.title}">
+            
+            <div class="ico">${item.icon}</div>
+            <b>${item.title}</b>
+            <p>${item.desc}</p>
+          </button>
+        `).join("")}
+      </div>
+
+      <div id="exploreDetail"></div>
+    </div>
+  `;
+
+  box.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
   box.style.display="block";
   box.innerHTML=`
     <div class="card">
