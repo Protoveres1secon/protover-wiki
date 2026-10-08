@@ -151,8 +151,54 @@ h1{font-size:clamp(42px,5.4vw,74px);line-height:.96;letter-spacing:-3px;margin:1
 .footer{
   display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#71809d;font-size:10px;padding:14px 2px 0
 }
-@media(max-width:900px){.layout{grid-template-columns:1fr}.subGrid{grid-template-columns:1fr}}
-@media(max-width:600px){.wrap{width:min(100% - 18px,1220px)}.top{position:static;align-items:flex-start;flex-direction:column}.shell{padding:15px}.hero{padding:25px 22px}h1{font-size:43px}}
+@media(max-width:900px){
+  .errolHero{
+    grid-template-columns:1fr;
+  }
+
+  .errolPortrait{
+    width:min(230px,72vw);
+  }
+
+  .errolTitle{
+    font-size:clamp(32px,8vw,52px);
+  }
+
+  .errolEyeGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:600px){
+  .errolHero{
+    padding:13px;
+  }
+
+  .errolTabs,
+  .errolBody{
+    padding-left:13px;
+    padding-right:13px;
+  }
+
+  .errolMetaGrid,
+  .errolSectionGrid,
+  .errolEyeGrid{
+    grid-template-columns:1fr;
+  }
+
+  .errolEvent{
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+
+  .errolPortrait{
+    width:min(210px,68vw);
+  }
+
+  .errolTitle{
+    letter-spacing:-1.7px;
+  }
+}
 
 /* ============================================================
    SANS OMNI GOD ERROL — CINEMATIC CHARACTER DOSSIER
