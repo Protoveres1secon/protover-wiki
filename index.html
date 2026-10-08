@@ -585,9 +585,11 @@ function openExploreBranch(type){
   `;
 
   box.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+  behavior:"smooth",
+  block:"start"
+});
+}
+
 function openExploreDetail(type,itemId){
   const branch=exploreData[type];
   if(!branch)return;
