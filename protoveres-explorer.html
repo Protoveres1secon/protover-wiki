@@ -695,7 +695,28 @@ function flatten(node, parent=null){
   (node.children||[]).forEach(child=>flatten(child,node));
 }
 flatten(treeData);
+function azathProfileMarkup(){
+  return `
+    <article class="azathConnectedProfile">
+      <div class="azathConnectedHeader">
+        <div>
+          <div class="azathConnectedKicker">PROTOVERES • AZATH ARCHIVE</div>
+          <h2>THE <span>AZATH</span></h2>
+          <p>The First Speck of Doubt</p>
+        </div>
+        <div class="azathConnectedIcon">🔔</div>
+      </div>
 
+      <div class="azathConnectedFrame">
+        <iframe
+          src="./azath-profile.html"
+          title="The Azath — Protoveres Archive"
+          loading="eager">
+        </iframe>
+      </div>
+    </article>
+  `;
+}
 function errolProfileMarkup(){
   return `
   <article class="errolProfile">
