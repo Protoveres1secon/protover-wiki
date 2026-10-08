@@ -609,7 +609,47 @@ function openExploreBranch(type){
   `;
   box.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function openExploreDetail(type,itemId){
+  const branch=exploreData[type];
+  if(!branch)return;
 
+  const item=branch.items.find(
+    x=>(x.key||x.title)===itemId
+  );
+
+  if(!item)return;
+
+  const detail=$("#exploreDetail");
+  if(!detail)return;
+
+  detail.innerHTML=`
+    <div class="exploreDetail">
+      <div class="detailIcon">${item.icon}</div>
+      <h3>${item.title}</h3>
+      <div class="detailBio">
+        ${item.bio}
+      </div>
+
+      <div class="exploreBack">
+        <button
+          class="cta"
+          type="button"
+          id="exploreBackBtn">
+          ← Quay lại danh sách
+        </button>
+      </div>
+    </div>
+  `;
+
+  detail.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+  $("#exploreBackBtn")?.addEventListener("click",()=>{
+    detail.innerHTML="";
+  });
+}
 document.querySelectorAll(".exploreTile").forEach(tile=>{
   tile.style.cursor="pointer";
   tile.addEventListener("click",()=>{
