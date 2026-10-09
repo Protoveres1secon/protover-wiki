@@ -890,7 +890,32 @@ function flatten(node, parent=null){
   (node.children||[]).forEach(child=>flatten(child,node));
 }
 flatten(treeData);
-function azathProfileMarkup(){
+
+function protoProfileMarkup(){
+  return `
+    <article class="protoConnectedProfile">
+      <div class="protoConnectedHeader">
+        <div>
+          <div class="protoConnectedKicker">
+            PROTOVERES • PRIMORDIAL ARCHIVE
+          </div>
+          <h2>THE PROTO SOURCE</h2>
+          <p>The First Idea / Đấng Khởi Nguyên</p>
+        </div>
+        <div class="protoConnectedIcon">🌀</div>
+      </div>
+      <div class="protoConnectedFrame">
+        <iframe
+          src="./proto-profile.html"
+          title="The Proto Source — Protoveres Archive"
+          loading="eager">
+        </iframe>
+      </div>
+    </article>
+  `;
+}
+
+  function azathProfileMarkup(){
   return `
     <article class="azathConnectedProfile">
       <div class="azathConnectedHeader">
