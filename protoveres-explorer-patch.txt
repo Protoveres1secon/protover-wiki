@@ -1,0 +1,40 @@
+A) CSS — insert this block before the existing :root{ in protoveres-explorer.html
+
+/* PROTO — CONNECTED SOURCE DOSSIER */
+.protoConnectedProfile{position:relative;overflow:hidden;border-radius:24px;border:1px solid #00eaff45;background:radial-gradient(550px 270px at 92% 0%,#006eff20,transparent 70%),linear-gradient(145deg,#061126,#020611 68%,#041a2a);box-shadow:0 28px 72px #0008,inset 0 1px 0 #ffffff09}
+.protoConnectedHeader{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;border-bottom:1px solid #00dfff25;background:linear-gradient(130deg,#00558a24,#030814)}
+.protoConnectedKicker{color:#70f1ff;font-size:10px;font-weight:900;letter-spacing:.2em}
+.protoConnectedHeader h2{margin:8px 0 4px;font-size:clamp(21px,3vw,30px);letter-spacing:.12em;color:#f4fdff}
+.protoConnectedHeader p{margin:0;color:#9dbdd2;font-size:12px;letter-spacing:.06em}
+.protoConnectedIcon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:15px;border:1px solid #00eaff5c;background:#00dfff12;color:#87f6ff;font-size:25px;box-shadow:0 0 25px #00deff19}
+.protoConnectedFrame{width:100%;overflow:hidden;background:#020711}
+.protoConnectedFrame iframe{display:block;width:100%;height:1200px;border:0;background:#020711}
+@media(max-width:700px){.protoConnectedHeader{padding:16px}.protoConnectedIcon{width:40px;height:40px;flex-basis:40px}.protoConnectedFrame iframe{height:1500px}}
+
+
+B) Add this function before function azathProfileMarkup(){
+
+function protoProfileMarkup(){
+  return `
+    <article class="protoConnectedProfile">
+      <div class="protoConnectedHeader">
+        <div>
+          <div class="protoConnectedKicker">PROTOVERES • PRIMORDIAL ARCHIVE</div>
+          <h2>THE PROTO SOURCE</h2>
+          <p>The First Idea / Đấng Khởi Nguyên</p>
+        </div>
+        <div class="protoConnectedIcon">🌀</div>
+      </div>
+      <div class="protoConnectedFrame">
+        <iframe src="./proto-profile.html" title="The Proto Source — Protoveres Archive" loading="eager"></iframe>
+      </div>
+    </article>
+  `;
+}
+
+
+C) Inside function detailMarkup(node), add this line BEFORE the existing Azath dispatch:
+
+  if(node.id==="proto") return protoProfileMarkup();
+
+Keep the existing Azath and Errol dispatch lines unchanged.
