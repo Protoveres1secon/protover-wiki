@@ -1145,6 +1145,7 @@ function bindErrolProfile(){
 function detailMarkup(node){
   if(node.id==="proto") return protoProfileMarkup();
   if(node.id==="azath") return azathProfileMarkup();
+  if(node.id==="ofaine") return ofaineProfileMarkup();
   if(node.id==="errol") return errolProfileMarkup();
 
   const sections = (node.sections||[]).map(([title,text]) =>
