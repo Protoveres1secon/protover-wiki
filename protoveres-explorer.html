@@ -625,6 +625,81 @@ h1{font-size:clamp(42px,5.4vw,74px);line-height:.96;letter-spacing:-3px;margin:1
   }
 }
 
+/* O-FAINE — AQUA / DUSK CHARACTER DOSSIER */
+.ofaineConnectedProfile{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(131,255,240,.24);
+  background:
+    radial-gradient(520px 280px at 90% 0%,rgba(87,255,226,.10),transparent 70%),
+    linear-gradient(145deg,#071e28,#030a10);
+  box-shadow:0 30px 80px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+  animation:ofaineConnectedIn .4s ease-out both;
+}
+.ofaineConnectedHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:20px 22px;
+  border-bottom:1px solid rgba(131,255,240,.15);
+  background:linear-gradient(135deg,rgba(17,93,95,.19),rgba(5,11,16,.36));
+}
+.ofaineConnectedKicker{
+  font-size:9px;
+  letter-spacing:2.4px;
+  font-weight:900;
+  color:#83fff0;
+  text-transform:uppercase;
+}
+.ofaineConnectedHeader h2{
+  margin:7px 0 3px;
+  color:#edfffb;
+  font-size:clamp(22px,3vw,32px);
+  letter-spacing:.04em;
+}
+.ofaineConnectedHeader p{
+  margin:0;
+  color:#a7c7c9;
+  font-size:11px;
+}
+.ofaineConnectedIcon{
+  flex:0 0 auto;
+  font-size:40px;
+  filter:drop-shadow(0 0 14px rgba(131,255,240,.42));
+  animation:ofaineGlow 3.8s ease-in-out infinite;
+}
+.ofaineConnectedFrame{
+  width:100%;
+  padding:0;
+  overflow:hidden;
+  background:#06141c;
+}
+.ofaineConnectedFrame iframe{
+  width:100%;
+  min-height:1550px;
+  display:block;
+  border:0;
+  background:#06141c;
+}
+@keyframes ofaineConnectedIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes ofaineGlow{
+  0%,100%{transform:translateY(0) scale(1);opacity:.9}
+  50%{transform:translateY(-3px) scale(1.04);opacity:1}
+}
+@media(max-width:700px){
+  .ofaineConnectedHeader{padding:16px}
+  .ofaineConnectedFrame iframe{min-height:1850px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ofaineConnectedProfile,
+  .ofaineConnectedIcon{animation:none!important}
+}
+
 </style>
 </head>
 <body>
