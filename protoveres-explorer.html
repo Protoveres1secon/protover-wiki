@@ -1147,7 +1147,7 @@ function detailMarkup(node){
   if(node.id==="azath") return azathProfileMarkup();
   if(node.id==="ofaine") return ofaineProfileMarkup();
   if(node.id==="errol") return errolProfileMarkup();
-
+ if(node.id==="games") return '<iframe src="./games-project.html" title="Protoveres Games" style="display:block;width:100%;height:1600px;border:0;border-radius:18px;background:#070a16" loading="eager"></iframe>';
   const sections = (node.sections||[]).map(([title,text]) =>
     `<div class="subCard"><b>${escapeHtml(title)}</b><p>${escapeHtml(text)}</p></div>`
   ).join("");
