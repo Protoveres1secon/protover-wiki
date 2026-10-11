@@ -1,0 +1,77 @@
+PROTO VERES — THÊM MỤC GAME VÀO MAIN WEB
+
+CÁCH THÊM
+1. Upload file errol-game.html vào thư mục gốc của repo Protoveres1secon/protover-wiki, rồi commit.
+2. Mở index.html trên GitHub và bấm Edit.
+3. Tìm thẻ </body> cuối file. Dán TOÀN BỘ đoạn mã bên dưới ngay trước </body>.
+4. Commit changes. Đợi GitHub Pages deploy xong rồi mở lại Main Web.
+
+ĐOẠN MÃ CẦN DÁN:
+
+<!-- PROTOVERES GAME ADD-ON: BEGIN -->
+<style id="protoveresGameAddon">
+.protoGameFrameWrap{width:100%;margin-top:18px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#03050d;box-shadow:0 25px 70px #0009,0 0 30px #725dff12}
+#errolGameFrame{display:block;width:100%;height:820px;border:0;background:#03050d}
+.protoGameIntro{margin-top:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+@media(max-width:650px){#errolGameFrame{height:850px}.protoGameFrameWrap{border-radius:14px}}
+</style>
+<script>
+(function(){
+  if(document.getElementById('protoveresGameAddon')) return;
+  var nav=document.getElementById('mainNav');
+  var app=document.getElementById('appView');
+  if(!nav||!app) return;
+
+  var view=document.createElement('section');
+  view.id='gameView';
+  view.className='view';
+  view.innerHTML=''
+    + '<div class="eyebrow">PROTOVERES • GAME STUDIO</div>'
+    + '<h1 style="font-size:clamp(35px,5vw,58px);margin:10px 0 18px">Hành trình <span class="grad">Sans Omni God Errol.</span></h1>'
+    + '<div class="hero"><p>Chương 01: Vòng lặp linh hồn. Vượt qua thử thách đầu tiên, học cách né đòn, sử dụng năng lượng và khám phá ký ức đang bảo vệ Errol. Game tự vẽ nhân vật bằng Canvas, hỗ trợ máy tính và màn hình cảm ứng.</p>'
+    + '<div class="protoGameIntro"><div class="chips"><span class="chip">🎮 Action</span><span class="chip">🌌 Protoveres Original</span><span class="chip">📱 PC + Mobile</span></div>'
+    + '<div class="actions"><a class="cta primary" href="errol-game.html" target="_blank" rel="noopener">⛶ Mở game riêng</a><button class="cta" id="reloadErrolGame" type="button">↻ Tải lại game</button></div></div></div>'
+    + '<div class="protoGameFrameWrap"><iframe id="errolGameFrame" src="errol-game.html" title="Sans Omni God Errol — Soul Loop" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>';
+  var share=app.querySelector('#shareOverlay');
+  if(share) app.insertBefore(view,share); else app.appendChild(view);
+
+  var btn=document.createElement('button');
+  btn.type='button';
+  btn.dataset.protoveresGameAddon='1';
+  btn.textContent='🎮 Game';
+  btn.title='Chơi Sans Omni God Errol';
+  var logout=nav.querySelector('#logoutBtn');
+  if(logout) nav.insertBefore(btn,logout); else nav.appendChild(btn);
+  function openGame(){
+    if(app.style.display==='none' || getComputedStyle(app).display==='none'){window.location.href='./errol-game.html';return;}
+    app.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+    view.classList.add('active');
+    nav.querySelectorAll('button').forEach(function(n){n.classList.toggle('active',n===btn);});
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  btn.addEventListener('click',openGame);
+  nav.querySelectorAll('button').forEach(function(other){
+    if(other!==btn) other.addEventListener('click',function(){view.classList.remove('active');btn.classList.remove('active');},true);
+  });
+
+  var homeActions=document.querySelector('#homeView .hero .actions');
+  if(homeActions && !document.getElementById('homePlayErrol')){
+    var play=document.createElement('button');
+    play.id='homePlayErrol';
+    play.type='button';
+    play.className='cta primary';
+    play.textContent='🎮 Chơi game Errol';
+    play.addEventListener('click',function(){
+      openGame();
+    });
+    homeActions.appendChild(play);
+  }
+  document.addEventListener('click',function(e){
+    if(e.target && e.target.id==='reloadErrolGame'){
+      var frame=document.getElementById('errolGameFrame');
+      if(frame) frame.src='errol-game.html?reload='+Date.now();
+    }
+  });
+})();
+</script>
+<!-- PROTOVERES GAME ADD-ON: END -->
