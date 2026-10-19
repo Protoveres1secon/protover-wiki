@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#050713">
 <meta name="description" content="Sans Omni God Errol: Soul Loop — game hành động web trong vũ trụ Protoveres.">
 <title>SANS OMNI GOD ERROL — SOUL LOOP | Protoveres</title>
@@ -134,6 +134,99 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent}
   .story-mode-desc{font-size:9px}
 }
 
+
+
+/* Immersive touch-first HUD: full viewport and circular MOBA-style controls. */
+.mobile-hud[hidden],.mobile-control-panel[hidden]{display:none!important}
+.mobile-hud{position:absolute;inset:0;z-index:24;pointer-events:none;touch-action:none;-webkit-user-select:none;user-select:none}
+.mobile-joystick{position:absolute;left:max(14px,env(safe-area-inset-left));bottom:max(22px,calc(env(safe-area-inset-bottom) + 14px));width:var(--m-joy-size,130px);height:var(--m-joy-size,130px);border-radius:50%;pointer-events:auto;touch-action:none;display:grid;place-items:center;isolation:isolate;filter:drop-shadow(0 8px 16px #0008)}
+.joystick-ring{position:absolute;inset:0;border-radius:50%;border:2px solid #a9d9ff8c;background:radial-gradient(circle at 32% 25%,#52779c76,#111c32b8 65%,#070e1bbf);box-shadow:inset 0 0 0 7px #b5dfff12,inset 0 0 26px #7dd8ff24,0 0 20px #3a9de92b}
+.joystick-knob{position:absolute;left:50%;top:50%;width:42%;height:42%;transform:translate(-50%,-50%);border-radius:50%;border:2px solid #c4e9ffba;background:radial-gradient(circle at 33% 27%,#d1f3ff,#4a719b 68%,#213655);box-shadow:0 4px 10px #0008,inset 0 0 10px #fff5;pointer-events:none}
+.mobile-action-cluster{position:absolute;right:max(7px,env(safe-area-inset-right));bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));width:min(57vw,252px);height:min(56vh,470px);pointer-events:none}
+.mobile-action{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:var(--m-size,56px);height:var(--m-size,56px);padding:2px;border-radius:50%;border:2px solid #97e9ffb5;color:#f3fbff;background:radial-gradient(circle at 32% 23%,#367ca0eb,#132844f5 64%,#070e1eeF);box-shadow:0 5px 0 #020814ba,0 8px 18px #0008,inset 0 0 0 3px #c9f5ff12;pointer-events:auto;touch-action:none;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.mobile-action:active,.mobile-action.pressed{filter:brightness(1.35);transform:scale(.94);border-color:#fff;box-shadow:0 2px 0 #020814,0 0 22px #70eaff8c}
+.mobile-action .mobile-glyph{font-weight:1000;font-size:clamp(18px,5vw,28px);line-height:1;text-shadow:0 2px 4px #0009}
+.mobile-action small{font:900 8px/1.1 ui-monospace,monospace;letter-spacing:.2px;color:#cdeeff;margin-top:4px;text-shadow:0 1px 3px #000}
+.mobile-action.attack{right:1%;bottom:0;background:radial-gradient(circle at 30% 24%,#ff8c9c,#b6224e 62%,#4d1027);border-color:#ffc2ca;box-shadow:0 5px 0 #370c1c,0 0 22px #ff416a43,inset 0 0 0 4px #fff2}
+.mobile-action.attack .mobile-glyph{font-size:clamp(27px,7vw,38px)}
+.mobile-action.special{right:39%;bottom:18%;border-color:#d0b6ff;background:radial-gradient(circle at 28% 20%,#a996ff,#40317c 65%,#161535)}
+.mobile-action.eye3{right:0;bottom:31%;border-color:#78ecff;background:radial-gradient(circle at 25% 22%,#75e5ff,#135979 66%,#0a203c)}
+.mobile-action.ward{right:48%;bottom:41%;border-color:#a7f1da;background:radial-gradient(circle at 25% 22%,#7de7ca,#17685f 66%,#092e38)}
+.mobile-action.compass{right:48%;bottom:4%;border-color:#d9d4ff;background:radial-gradient(circle at 25% 22%,#b4a7ff,#443a8d 66%,#171630)}
+.mobile-action.exo{right:10%;bottom:54%;border-color:#ffdd9a;background:radial-gradient(circle at 25% 22%,#ffc86b,#824925 66%,#321d21)}
+.mobile-action.dash{right:25%;bottom:27%;border-color:#b6f4ff;background:radial-gradient(circle at 25% 22%,#9beaff,#21678b 66%,#112945)}
+.mobile-action.parry{right:61%;bottom:9%;border-color:#c0d4ff;background:radial-gradient(circle at 25% 22%,#b7d5ff,#3a5583 66%,#151e36)}
+.mobile-action.interact{right:0;bottom:68%;border-color:#d6e9ff;background:radial-gradient(circle at 25% 22%,#eef8ff,#59708d 66%,#1a2941)}
+.mobile-control-panel{position:fixed;inset:0;z-index:1200;display:flex;align-items:flex-end;justify-content:center;padding:12px max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:#02050dcc;backdrop-filter:blur(10px);overflow:auto;touch-action:pan-y}
+.mobile-control-sheet{width:min(580px,100%);max-height:94dvh;overflow:auto;border:1px solid #50628e;border-radius:22px;padding:16px;background:linear-gradient(155deg,#141f3a,#080e20 78%);box-shadow:0 24px 80px #000c;touch-action:pan-y}
+.mobile-control-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mobile-control-kicker{font:900 9px ui-monospace,monospace;letter-spacing:2px;color:#7deaff}
+.mobile-control-head h2{font-size:22px;line-height:1.15;margin:6px 0}
+.mobile-control-head p{margin:0 0 14px;color:#9fb3d5;font-size:11px;line-height:1.45}
+.mobile-control-list{display:grid;gap:9px}
+.mobile-size-row{display:grid;gap:5px;border:1px solid #26395e;border-radius:11px;padding:8px 10px;background:#071126}
+.mobile-size-row>span{display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:800;color:#e3edff}
+.mobile-size-row b{color:#83eaff;font:900 10px ui-monospace,monospace}
+.mobile-size-row input{width:100%;accent-color:#56dfff;min-height:22px;touch-action:pan-y}
+.mobile-control-footer{display:flex;gap:9px;justify-content:space-between;margin-top:13px}
+.mobile-settings-save{flex:1;border:1px solid #7cdef9;border-radius:10px;padding:10px 12px;background:linear-gradient(135deg,#17617c,#164a65);color:white;font-weight:950;touch-action:manipulation}
+body.mobile-fullscreen-on{padding:0!important;overflow:hidden!important;overscroll-behavior:none;min-height:100dvh}
+body.mobile-fullscreen-on .game-shell{width:100%;max-width:none;height:100dvh;margin:0}
+body.mobile-fullscreen-on .topbar,body.mobile-fullscreen-on .bottom-ui,body.mobile-fullscreen-on .footnote,body.mobile-fullscreen-on .touch-controls{display:none!important}
+body.mobile-fullscreen-on .game-frame{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+body.mobile-fullscreen-on .canvas-wrap{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;aspect-ratio:auto}
+body.mobile-fullscreen-on .canvas-wrap canvas{position:absolute!important;left:50%;top:50%;width:var(--stage-width,100%)!important;height:var(--stage-height,100%)!important;max-width:none;aspect-ratio:auto;transform:translate(calc(-50% + var(--mobile-pan,0px)),-50%)!important;image-rendering:auto}
+body.mobile-fullscreen-on .canvas-wrap:after{box-shadow:inset 0 0 20px #0003}
+body.mobile-fullscreen-on .story-menu-overlay{position:absolute;inset:0;width:100%;height:100%;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));overflow-y:auto;align-items:center;justify-content:center;z-index:40;touch-action:pan-y}
+body.mobile-fullscreen-on .story-menu-inner{width:min(520px,100%);max-width:520px}
+body.mobile-fullscreen-on .story-menu-title{font-size:clamp(26px,8vw,42px)}
+body.mobile-fullscreen-on .story-menu-subtitle{font-size:12px;margin:10px 0 14px}
+body.mobile-fullscreen-on .story-menu-options{grid-template-columns:1fr;gap:9px}
+body.mobile-fullscreen-on .story-mode-card{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:10px;row-gap:3px;padding:12px;min-height:62px;touch-action:manipulation}
+body.mobile-fullscreen-on .story-mode-icon{grid-row:1/3;align-self:center}
+body.mobile-fullscreen-on .story-mode-name{font-size:14px}
+body.mobile-fullscreen-on .story-mode-desc{font-size:10px}
+body.mobile-fullscreen-on .story-menu-footer{font-size:8px;line-height:1.6}
+body.mobile-fullscreen-on .game-more-btn{position:absolute;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));width:44px;height:44px;z-index:60;touch-action:manipulation}
+body.mobile-fullscreen-on .checkpoint-menu{position:fixed;inset:auto 10px max(10px,env(safe-area-inset-bottom));z-index:1100;width:auto;max-height:78dvh;overflow-y:auto;touch-action:pan-y}
+body.mobile-fullscreen-on .fishing-button-dock{z-index:50;bottom:max(16px,env(safe-area-inset-bottom));}
+body.mobile-fullscreen-on .machine-mode-tag{z-index:35;top:max(12px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left))}
+@media (orientation:landscape) and (max-height:600px){
+ body.mobile-fullscreen-on .story-menu-inner{max-width:760px}
+ body.mobile-fullscreen-on .story-menu-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ body.mobile-fullscreen-on .story-mode-card{display:flex;padding:9px;min-height:0}
+ body.mobile-fullscreen-on .story-mode-desc{font-size:9px}
+ .mobile-joystick{width:min(var(--m-joy-size,130px),25vh);height:min(var(--m-joy-size,130px),25vh);bottom:max(12px,env(safe-area-inset-bottom))}
+ .mobile-action-cluster{width:min(38vw,270px);height:min(76vh,420px);bottom:max(10px,env(safe-area-inset-bottom))}
+ .mobile-action{width:min(var(--m-size,56px),14vh);height:min(var(--m-size,56px),14vh)}
+}
+@media (prefers-reduced-motion:reduce){.mobile-action,.story-mode-card{transition:none}}
+
+
+
+/* Landscape-first mobile experience: ask the player to rotate the physical phone, like a fullscreen video. */
+.rotate-phone-overlay[hidden]{display:none!important}
+.rotate-phone-overlay{display:none;position:fixed;inset:0;z-index:2147483647;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 25%,#15264a 0%,#070b18 65%,#02040a 100%);color:#eff7ff;text-align:center;font-family:Inter,Segoe UI,Arial,sans-serif;touch-action:manipulation}
+.rotate-phone-card{width:min(440px,100%);padding:28px 24px;border:1px solid #45618e;border-radius:22px;background:linear-gradient(155deg,#101a32f2,#050a17f7);box-shadow:0 24px 80px #000b,0 0 45px #00d9ff16}
+.rotate-phone-icon{font-size:58px;line-height:1.2;display:inline-block;filter:drop-shadow(0 0 14px #3bdfff75);animation:phoneRotateHint 2s ease-in-out infinite}
+@keyframes phoneRotateHint{0%,18%{transform:rotate(0)}48%,72%{transform:rotate(90deg)}100%{transform:rotate(90deg)}}
+.rotate-phone-title{font-size:clamp(22px,5vw,30px);font-weight:1000;letter-spacing:.3px;margin:14px 0 8px}
+.rotate-phone-text{font-size:14px;line-height:1.65;color:#b8c9e8;margin:0 auto 18px;max-width:340px}
+.rotate-phone-button{width:100%;border:1px solid #65e9ff;border-radius:13px;padding:13px 16px;background:linear-gradient(135deg,#126179,#17466d);box-shadow:0 7px 24px #00cfff25;color:#fff;font-weight:950;font-size:14px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.rotate-phone-help{font-size:11px;line-height:1.6;color:#849bc1;margin:13px 0 0}
+.rotate-phone-landscape-note{display:none}
+@media (orientation:portrait) and (max-width:950px), (orientation:portrait) and (pointer:coarse){
+ .rotate-phone-overlay:not([hidden]){display:flex}
+}
+@media (orientation:landscape) and (pointer:coarse){
+ body.mobile-fullscreen-on{padding:0!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .game-shell{width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important}
+ body.mobile-fullscreen-on .game-frame{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;border:0!important;border-radius:0!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .canvas-wrap{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .canvas-wrap canvas{object-fit:cover!important}
+ .rotate-phone-overlay{display:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -144,6 +237,40 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent}
   </header>
   <main class="game-frame" id="gameFrame">
     <div class="canvas-wrap"><canvas id="game" width="960" height="560" tabindex="0" aria-label="Game Sans Omni God Errol: Soul Loop. Errol chỉ có 1 HP. Dùng WASD để di chuyển; J đánh, K Eye II, Q Eye III, E khiên, R Soul Compass, F EXO Verdict, Space lướt, L đỡ đòn."></canvas>
+      <div id="mobileHud" class="mobile-hud" hidden aria-label="Điều khiển điện thoại">
+        <div id="mobileJoystick" class="mobile-joystick" role="application" aria-label="Cần điều khiển di chuyển">
+          <div class="joystick-ring"></div><div id="mobileJoystickKnob" class="joystick-knob"></div>
+        </div>
+        <div class="mobile-action-cluster" aria-label="Nút chiến đấu">
+          <button id="mobileInteract" class="mobile-action interact" style="--m-size:54px" data-action="interact" type="button" aria-label="Tương tác"><span class="mobile-glyph">↵</span><small>E</small></button>
+          <button id="mobileExo" class="mobile-action exo" style="--m-size:52px" data-action="exo" type="button" aria-label="EXO Verdict"><span class="mobile-glyph">EX</span><small>F</small></button>
+          <button id="mobileDash" class="mobile-action dash" style="--m-size:62px" data-action="dash" type="button" aria-label="Lướt"><span class="mobile-glyph">➤</span><small>LƯỚT</small></button>
+          <button id="mobileEye3" class="mobile-action eye3" style="--m-size:56px" data-action="eye3" type="button" aria-label="Eye III"><span class="mobile-glyph">◉</span><small>Q</small></button>
+          <button id="mobileSpecial" class="mobile-action special" style="--m-size:60px" data-action="special" type="button" aria-label="Fracture"><span class="mobile-glyph">✦</span><small>K</small></button>
+          <button id="mobileWard" class="mobile-action ward" style="--m-size:54px" data-action="ward" type="button" aria-label="Soul Ward"><span class="mobile-glyph">⬡</span><small>E</small></button>
+          <button id="mobileCompass" class="mobile-action compass" style="--m-size:48px" data-action="compass" type="button" aria-label="Soul Compass"><span class="mobile-glyph">✥</span><small>R</small></button>
+          <button id="mobileParry" class="mobile-action parry" style="--m-size:48px" data-action="parry" type="button" aria-label="Đỡ đòn"><span class="mobile-glyph">◈</span><small>L</small></button>
+          <button id="mobileAttack" class="mobile-action attack" style="--m-size:80px" data-action="attack" data-repeat="combat" type="button" aria-label="Tấn công"><span class="mobile-glyph">⚔</span><small>ĐÁNH · J</small></button>
+        </div>
+      </div>
+      <div id="mobileControlPanel" class="mobile-control-panel" hidden>
+        <div class="mobile-control-sheet">
+          <div class="mobile-control-head"><div><div class="mobile-control-kicker">MOBILE HUD</div><h2>Tùy chỉnh nút bấm</h2><p>Thay đổi kích thước từng nút theo ngón tay của ông.</p></div><button id="mobileSettingsClose" class="menu-small-btn" type="button">✕</button></div>
+          <div class="mobile-control-list">
+            <label class="mobile-size-row"><span>Vòng di chuyển <b id="valueJoy">130 px</b></span><input id="sizeJoy" type="range" min="100" max="180" value="130" step="2"></label>
+            <label class="mobile-size-row"><span>Tấn công <b id="valueAttack">80 px</b></span><input id="sizeAttack" type="range" min="56" max="112" value="80" step="2"></label>
+            <label class="mobile-size-row"><span>Kỹ năng K <b id="valueSpecial">60 px</b></span><input id="sizeSpecial" type="range" min="44" max="88" value="60" step="2"></label>
+            <label class="mobile-size-row"><span>Kỹ năng Q <b id="valueEye3">56 px</b></span><input id="sizeEye3" type="range" min="44" max="88" value="56" step="2"></label>
+            <label class="mobile-size-row"><span>Khiên E <b id="valueWard">54 px</b></span><input id="sizeWard" type="range" min="42" max="84" value="54" step="2"></label>
+            <label class="mobile-size-row"><span>Compass R <b id="valueCompass">48 px</b></span><input id="sizeCompass" type="range" min="40" max="80" value="48" step="2"></label>
+            <label class="mobile-size-row"><span>EXO F <b id="valueExo">52 px</b></span><input id="sizeExo" type="range" min="40" max="80" value="52" step="2"></label>
+            <label class="mobile-size-row"><span>Lướt <b id="valueDash">62 px</b></span><input id="sizeDash" type="range" min="44" max="90" value="62" step="2"></label>
+            <label class="mobile-size-row"><span>Đỡ đòn L <b id="valueParry">48 px</b></span><input id="sizeParry" type="range" min="40" max="78" value="48" step="2"></label>
+            <label class="mobile-size-row"><span>Tương tác <b id="valueInteract">54 px</b></span><input id="sizeInteract" type="range" min="42" max="84" value="54" step="2"></label>
+          </div>
+          <div class="mobile-control-footer"><button id="mobileSettingsReset" class="menu-small-btn" type="button">↺ Mặc định</button><button id="mobileSettingsSave" class="mobile-settings-save" type="button">Lưu & quay lại</button></div>
+        </div>
+      </div>
       <div id="mainMenuOverlay" class="story-menu-overlay" aria-label="Chọn chế độ chơi">
         <div class="story-menu-inner">
           <div id="homeMenuView">
@@ -172,6 +299,7 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent}
         <p id="checkpointMenuCurrent" class="checkpoint-menu-current">Khoảnh khắc hiện tại</p>
         <div class="checkpoint-menu-actions">
           <button id="pinCurrentBtn" class="pin-action" type="button">⌑ Ghim thời điểm này</button>
+          <button id="openMobileSettingsBtn" type="button">⚙ Tùy chỉnh nút điện thoại</button>
           <button id="continueGameBtn" type="button">▶ Tiếp tục chơi</button>
           <button id="openMenuFromGameBtn" class="menu-exit-action" type="button">☰ Về màn hình chế độ</button>
         </div>
@@ -191,6 +319,17 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent}
   </main>
   <div class="footnote"><span>PROTO VERES · FAN-MADE INTERACTIVE CHAPTER</span><span>Canvas + sprite minh hoạ · <a href="https://protoveres1secon.github.io/protover-wiki/">Về Protoveres Main Web ↗</a></span></div>
 </div>
+
+<div id="rotatePhoneOverlay" class="rotate-phone-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="rotatePhoneTitle">
+  <div class="rotate-phone-card">
+    <div class="rotate-phone-icon" aria-hidden="true">📱</div>
+    <h2 class="rotate-phone-title" id="rotatePhoneTitle">Hãy xoay điện thoại ngang</h2>
+    <p class="rotate-phone-text">Errol được thiết kế để chơi toàn màn hình ngang, giống lúc xem YouTube. Xoay máy để game lấp đầy màn hình và dùng các nút chiến đấu dễ hơn.</p>
+    <button type="button" class="rotate-phone-button" id="rotatePhoneNow">⤾ Thử mở màn hình ngang</button>
+    <p class="rotate-phone-help" id="rotatePhoneHelp">Nếu máy không tự xoay, hãy xoay điện thoại bằng tay và tắt Khóa hướng dọc nếu đang bật.</p>
+  </div>
+</div>
+
 <div id="announce" class="sr-only" aria-live="polite"></div>
 <script>
 (()=>{'use strict';
@@ -239,6 +378,7 @@ let fishingHoldTimer=null;
 let machineMode=false,gamePaused=false,machineActionTimer=0,machineStateElapsed=0,machineFightElapsed=0,machinePrevToken='',machineStopAtTimeEyeEnd=false;
 let highestStoryProgress=0;
 const mainMenuOverlay=document.getElementById('mainMenuOverlay'),homeMenuView=document.getElementById('homeMenuView'),pinsMenuView=document.getElementById('pinsMenuView'),pinsList=document.getElementById('pinsList');
+const mobileHud=document.getElementById('mobileHud'),mobileControlPanel=document.getElementById('mobileControlPanel');
 const checkpointMenu=document.getElementById('checkpointMenu'),gameMoreBtn=document.getElementById('gameMoreBtn'),machineModeTag=document.getElementById('machineModeTag');
 const CHECKPOINT_STORAGE_KEY='errolStoryPins.v1',PROGRESS_STORAGE_KEY='errolStoryProgress.v1';
 try{highestStoryProgress=Number(localStorage.getItem(PROGRESS_STORAGE_KEY)||0)||0}catch{}
@@ -315,8 +455,8 @@ function showPinsMenu(){homeMenuView.hidden=true;pinsMenuView.hidden=false;rende
 function showHomeMenu(){homeMenuView.hidden=false;pinsMenuView.hidden=true;renderPinsList()}
 function openGameMoreMenu(){if(!mainMenuOverlay.hidden||state==='title')return;gamePaused=true;checkpointMenu.hidden=false;document.getElementById('checkpointMenuCurrent').textContent=currentPointTitle();setCheckpointMenuMessage('');clearMachineMovement()}
 function closeGameMoreMenu(){checkpointMenu.hidden=true;gamePaused=false;machineActionTimer=.2;}
-function showMainMenuFromGame(){checkpointMenu.hidden=true;gamePaused=true;mainMenuOverlay.hidden=false;showHomeMenu();clearMachineMovement()}
-function syncGameChrome(){gameMoreBtn.hidden=(!mainMenuOverlay.hidden||state==='title');machineModeTag.hidden=!machineMode;}
+function showMainMenuFromGame(){checkpointMenu.hidden=true;mobileControlPanel.hidden=true;gamePaused=true;mainMenuOverlay.hidden=false;showHomeMenu();clearMachineMovement()}
+function syncGameChrome(){gameMoreBtn.hidden=(!mainMenuOverlay.hidden||state==='title');machineModeTag.hidden=!machineMode;if(mobileHud)mobileHud.hidden=(!mainMenuOverlay.hidden||state==='title'||state==='won'||state==='dead'||state==='error'||(!checkpointMenu.hidden)||(mobileControlPanel&&!mobileControlPanel.hidden));}
 function clearMachineMovement(){for(const k of ['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'])keys[k]=false;for(const k of Object.keys(held))held[k]=false}
 function machineWalkTo(x,y,threshold=27){
  const dx=x-player.x,dy=y-player.y;if(Math.hypot(dx,dy)<=threshold){clearMachineMovement();return true}
@@ -3527,7 +3667,7 @@ function loop(now){
       else{time+=dt;if(dialogueTimer>0)dialogueTimer-=dt;sparks.forEach(s=>{s.x+=s.vx*dt;s.y+=s.vy*dt;s.life-=dt});sparks=sparks.filter(s=>s.life>0)}
       updateProgressTracking();
     }
-    draw();syncGameChrome();
+    draw();syncGameChrome();updateMobileCanvasPan();
   }catch(err){
     console.error('Soul Loop frame error:',err);
     runtimeError=String(err&&err.message||err||'Lỗi không xác định');
@@ -3541,7 +3681,7 @@ function loop(now){
 function pressAction(a){if(state==='villageInterior'&&villageHouseRoom==='charaEncounter'){handleCharaEncounterAction(a);return}if(state==='villageWake'){advanceVillageWake();return}if(state==='papyrusCutscene'){advancePapyrusCutscene();return}if(state==='villageDialogue'){advanceVillageDialogue();return}if(state==='village'){if(a==='start'||a==='ward')enterVillageHouse();return}if(state==='villageArrival')return;if(state==='villageInterior'){if(a==='interact')tryInteractVillageHouse();else if(a==='fish')triggerFishingAction();return}if(state==='title'){startGame();return}if(state==='intro'){advanceIntro();return}if(state==='errolAwakening'){advanceAwakening();return}if(state==='reviveDialogue'){advanceReviveDialogue();return}if(state==='reviving')return;if(state==='won'||state==='dead'){startGame();return}if(a==='attack')playerAttack();if(a==='special')playerSpecial();if(a==='eye3')eyeIII();if(a==='ward')soulWard();if(a==='compass')soulCompass();if(a==='exo')exoVerdict();if(a==='dash')dash();if(a==='parry')parry()}
 window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();keys[e.code]=true;if(e.repeat){if(state==='villageInterior'&&villageHouseRoom==='fishingLake'&&villageFishingPhase==='fight'&&['KeyC','KeyE','Enter'].includes(e.code)){e.preventDefault();triggerFishingAction();}return;}if(e.code==='Enter'){if(state==='title'||state==='dead'||state==='won'||state==='error')startGame();else if(state==='intro')advanceIntro();else if(state==='papyrusCutscene')advancePapyrusCutscene();else if(state==='villageDialogue')advanceVillageDialogue();else if(state==='villageWake')advanceVillageWake();else if(state==='village')enterVillageHouse();else if(state==='villageInterior'){if(villageHouseRoom==='charaEncounter')handleCharaEncounterAction('enter');else if(villageHousePhase==='arrivalDialogue'||villageHousePhase==='roomMessage')advanceVillageHouse();else tryInteractVillageHouse()}else if(state==='errolAwakening')advanceAwakening();else if(state==='reviveDialogue')advanceReviveDialogue();else if(state==='fight')playerAttack()}else if(e.code==='KeyC'){if(state==='villageInterior'&&villageHouseRoom==='fishingLake')triggerFishingAction()}else if(e.code==='KeyJ'||e.code==='KeyZ')pressAction('attack');else if(e.code==='KeyK'||e.code==='KeyX')pressAction('special');else if(e.code==='KeyQ')pressAction('eye3');else if(e.code==='KeyE'){if(state==='village')enterVillageHouse();else if(state==='villageInterior'&&villageHouseRoom==='charaEncounter')handleCharaEncounterAction('ward');else if(state==='villageInterior')tryInteractVillageHouse();else pressAction('ward')}else if(e.code==='KeyR')pressAction('compass');else if(e.code==='KeyF')pressAction('exo');else if(e.code==='Space'||e.code==='ShiftLeft'||e.code==='ShiftRight')pressAction('dash');else if(e.code==='KeyL')pressAction('parry');else if(state==='error'&&e.code==='Enter')startGame()});window.addEventListener('keyup',e=>{keys[e.code]=false});window.addEventListener('blur',()=>{for(const k in keys)keys[k]=false;for(const k in held)held[k]=false});
 for(const b of document.querySelectorAll('[data-hold]')){const k=b.dataset.hold;const on=e=>{e.preventDefault();held[k]=true;b.classList.add('held');try{b.setPointerCapture(e.pointerId)}catch{}};const off=e=>{e.preventDefault();held[k]=false;b.classList.remove('held')};b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('lostpointercapture',off)}
-for(const b of document.querySelectorAll('[data-action]'))b.addEventListener('click',e=>{e.preventDefault();pressAction(b.dataset.action)});
+for(const b of document.querySelectorAll('[data-action]:not(.mobile-action)'))b.addEventListener('click',e=>{e.preventDefault();pressAction(b.dataset.action)});
 canvas.addEventListener('pointerdown',e=>{canvas.focus();const rect=canvas.getBoundingClientRect(),x=(e.clientX-rect.left)*W/rect.width,y=(e.clientY-rect.top)*H/rect.height;if(state==='villageWake'){advanceVillageWake();return}if(state==='villageDialogue'){advanceVillageDialogue();return}if(state==='village'){if(villageDoorDistance()<105)enterVillageHouse();return}if(state==='villageInterior'){
   if(villageHouseRoom==='charaEncounter'){handleCharaEncounterAction('click');return}
   if(villageHousePhase==='arrivalDialogue'||villageHousePhase==='roomMessage'){advanceVillageHouse();return}
@@ -3599,9 +3739,127 @@ function bindAccessibleTap(el,handler){
  });
  el.style.touchAction='manipulation';el.style.webkitTapHighlightColor='transparent';
 }
+// Immersive mobile layout and configurable MOBA-like touch controls.
+const MOBILE_CONTROL_KEY='errolMobileMobaControls.v1';
+const mobileControlDefaults={joy:130,attack:80,special:60,eye3:56,ward:54,compass:48,exo:52,dash:62,parry:48,interact:54};
+const mobileControlIds={joy:'mobileJoystick',attack:'mobileAttack',special:'mobileSpecial',eye3:'mobileEye3',ward:'mobileWard',compass:'mobileCompass',exo:'mobileExo',dash:'mobileDash',parry:'mobileParry',interact:'mobileInteract'};
+const mobileSettingsInputs={joy:'sizeJoy',attack:'sizeAttack',special:'sizeSpecial',eye3:'sizeEye3',ward:'sizeWard',compass:'sizeCompass',exo:'sizeExo',dash:'sizeDash',parry:'sizeParry',interact:'sizeInteract'};
+let mobileControlSizes={...mobileControlDefaults};
+try{const stored=JSON.parse(localStorage.getItem(MOBILE_CONTROL_KEY)||'{}');for(const k of Object.keys(mobileControlDefaults)){const n=Number(stored[k]);if(Number.isFinite(n)&&n>0)mobileControlSizes[k]=n}}catch{}
+function applyMobileControlSizes(){
+ const root=document.documentElement;
+ for(const [key,val] of Object.entries(mobileControlSizes)){
+  const n=Math.round(Number(val));const target=document.getElementById(mobileControlIds[key]);
+  if(key==='joy'){root.style.setProperty('--m-joy-size',n+'px')}else if(target)target.style.setProperty('--m-size',n+'px');
+  const input=document.getElementById(mobileSettingsInputs[key]);if(input)input.value=String(n);
+  const readout=document.getElementById('value'+key.charAt(0).toUpperCase()+key.slice(1));if(readout)readout.textContent=n+' px';
+ }
+ try{localStorage.setItem(MOBILE_CONTROL_KEY,JSON.stringify(mobileControlSizes))}catch{}
+}
+function openMobileControlSettings(){
+ if(mobileControlPanel){mobileControlPanel.hidden=false;gamePaused=true;clearMachineMovement();applyMobileControlSizes();}
+}
+function closeMobileControlSettings(){
+ if(mobileControlPanel)mobileControlPanel.hidden=true;
+ if(!mainMenuOverlay.hidden){gamePaused=false;return}
+ checkpointMenu.hidden=false;gamePaused=true;
+}
+function resetMobileControlSettings(){mobileControlSizes={...mobileControlDefaults};applyMobileControlSizes()}
+function mobileLayoutWanted(){return window.matchMedia('(max-width: 850px), (pointer: coarse)').matches}
+const rotatePhoneOverlay=document.getElementById('rotatePhoneOverlay');
+const rotatePhoneHelp=document.getElementById('rotatePhoneHelp');
+const rotatePhoneNow=document.getElementById('rotatePhoneNow');
+function phoneIsPortrait(){return window.matchMedia('(orientation: portrait)').matches || window.innerHeight>window.innerWidth}
+function syncPhoneOrientationPrompt(){
+ const needsRotate=mobileLayoutWanted()&&phoneIsPortrait();
+ if(rotatePhoneOverlay)rotatePhoneOverlay.hidden=!needsRotate;
+ if(rotatePhoneNow)rotatePhoneNow.disabled=false;
+}
+function resizeMobileGameView(){
+ const mobile=mobileLayoutWanted();document.body.classList.toggle('mobile-fullscreen-on',mobile);
+ syncPhoneOrientationPrompt();
+ if(!mobile){canvas.style.removeProperty('--stage-width');canvas.style.removeProperty('--stage-height');canvas.style.removeProperty('--mobile-pan');canvas.style.width='';canvas.style.height='';canvas.style.left='';canvas.style.top='';canvas.style.transform='';return}
+ const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth),vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight);
+ // Cover the landscape viewport edge-to-edge. A little vertical crop is preferable to letterboxing.
+ const scale=Math.max(vw/W,vh/H);canvas.style.setProperty('--stage-width',Math.ceil(W*scale)+'px');canvas.style.setProperty('--stage-height',Math.ceil(H*scale)+'px');
+ canvas.style.width=Math.ceil(W*scale)+'px';canvas.style.height=Math.ceil(H*scale)+'px';canvas.style.left='50%';canvas.style.top='50%';canvas.style.transform='translate(calc(-50% + var(--mobile-pan,0px)),-50%)';
+ updateMobileCanvasPan();
+}
+function updateMobileCanvasPan(){
+ if(!document.body.classList.contains('mobile-fullscreen-on'))return;
+ const rectHeight=Number.parseFloat(canvas.style.height)||window.innerHeight||560;const scale=rectHeight/H;
+ let focus=W/2;
+ // Keep the active character near the screen centre during playable movement, while cinematic shots stay centred.
+ if(state==='fight')focus=clamp((player.x+(Number.isFinite(boss.x)?boss.x:player.x))/2,160,800);
+ else if(state==='village')focus=clamp(player.x-villageCameraX,140,820);
+ else if(state==='villageInterior'&&['festivalYard','fishingLake','longFoyer','hallway'].includes(villageHouseRoom))focus=clamp(villageHouseRoom==='longFoyer'?player.x-villageCameraX:player.x,145,815);
+ const pan=(W/2-focus)*scale;canvas.style.setProperty('--mobile-pan',pan.toFixed(1)+'px');
+}
+window.addEventListener('resize',resizeMobileGameView,{passive:true});window.addEventListener('orientationchange',()=>setTimeout(resizeMobileGameView,120),{passive:true});
+if(window.visualViewport)window.visualViewport.addEventListener('resize',resizeMobileGameView,{passive:true});
+
+// Thumb joystick: maintain the same directional flags used by keyboard movement.
+const mobileJoystick=document.getElementById('mobileJoystick'),mobileJoystickKnob=document.getElementById('mobileJoystickKnob');
+let mobileJoyPointer=null;
+function releaseMobileJoystick(){mobileJoyPointer=null;held.up=held.down=held.left=held.right=false;if(mobileJoystickKnob)mobileJoystickKnob.style.transform='translate(-50%,-50%)';mobileJoystick?.classList.remove('active')}
+function updateMobileJoystickFromEvent(e){
+ const r=mobileJoystick.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,rad=Math.max(12,r.width*.34);
+ let dx=e.clientX-cx,dy=e.clientY-cy;const len=Math.hypot(dx,dy)||1;if(len>rad){dx=dx/len*rad;dy=dy/len*rad}
+ mobileJoystickKnob.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;
+ const nx=dx/rad,ny=dy/rad,dead=.22;held.left=nx< -dead;held.right=nx>dead;held.up=ny< -dead;held.down=ny>dead;
+}
+if(mobileJoystick){
+ mobileJoystick.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();mobileJoyPointer=e.pointerId;try{mobileJoystick.setPointerCapture(e.pointerId)}catch{}mobileJoystick.classList.add('active');updateMobileJoystickFromEvent(e)});
+ mobileJoystick.addEventListener('pointermove',e=>{if(e.pointerId===mobileJoyPointer){e.preventDefault();updateMobileJoystickFromEvent(e)}});
+ for(const ev of ['pointerup','pointercancel','lostpointercapture'])mobileJoystick.addEventListener(ev,e=>{if(mobileJoyPointer===null||e.pointerId===mobileJoyPointer)releaseMobileJoystick()});
+}
+window.addEventListener('blur',releaseMobileJoystick);document.addEventListener('visibilitychange',()=>{if(document.hidden)releaseMobileJoystick()});
+
+// Action buttons fire on pointer-down for low-latency taps; attack can auto-repeat while held.
+const mobileActionIntervals=new Map();
+for(const b of document.querySelectorAll('.mobile-action')){
+ const stop=()=>{b.classList.remove('pressed');const t=mobileActionIntervals.get(b);if(t){clearInterval(t);mobileActionIntervals.delete(b)}};
+ b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();stop();b.classList.add('pressed');try{b.setPointerCapture(e.pointerId)}catch{}pressAction(b.dataset.action);if(b.dataset.repeat==='combat'){
+   const timer=setInterval(()=>{if(state==='fight'&&!gamePaused&&!mobileHud.hidden)pressAction(b.dataset.action);else{clearInterval(timer);mobileActionIntervals.delete(b);}},210);mobileActionIntervals.set(b,timer);
+  }});
+ for(const ev of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,e=>{e.preventDefault();stop()});
+ b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation()});
+}
+
+// Individual size controls are remembered on this device and reopened from the three-dot menu.
+for(const [key,id] of Object.entries(mobileSettingsInputs)){
+ const input=document.getElementById(id);if(!input)continue;
+ input.addEventListener('input',()=>{mobileControlSizes[key]=Number(input.value)||mobileControlDefaults[key];applyMobileControlSizes()});
+}
+bindAccessibleTap(document.getElementById('openMobileSettingsBtn'),()=>{checkpointMenu.hidden=true;openMobileControlSettings()});
+bindAccessibleTap(document.getElementById('mobileSettingsClose'),closeMobileControlSettings);
+bindAccessibleTap(document.getElementById('mobileSettingsSave'),closeMobileControlSettings);
+bindAccessibleTap(document.getElementById('mobileSettingsReset'),resetMobileControlSettings);
+applyMobileControlSizes();resizeMobileGameView();
+function tryMobileFullscreen(){
+ if(!mobileLayoutWanted())return Promise.resolve(false);
+ const root=document.documentElement;let enter=Promise.resolve();
+ try{
+  if(!document.fullscreenElement&&root.requestFullscreen)enter=root.requestFullscreen({navigationUI:'hide'});
+  else if(!document.fullscreenElement&&root.webkitRequestFullscreen)root.webkitRequestFullscreen();
+ }catch{}
+ return Promise.resolve(enter).catch(()=>null).then(async()=>{
+  let locked=false;
+  try{if(screen.orientation&&typeof screen.orientation.lock==='function'){await screen.orientation.lock('landscape');locked=true}}catch{}
+  if(!locked&&phoneIsPortrait()&&rotatePhoneHelp){rotatePhoneHelp.textContent='Trình duyệt này không cho tự xoay ngang. Hãy xoay máy bằng tay như khi xem YouTube; nếu màn hình không xoay, hãy tắt Khóa hướng dọc trong Trung tâm điều khiển/Cài đặt nhanh.'}
+  setTimeout(()=>{resizeMobileGameView();try{draw()}catch{}},180);
+  return locked;
+ });
+}
+if(rotatePhoneNow){
+ rotatePhoneNow.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();tryMobileFullscreen().catch(()=>{});});
+ rotatePhoneNow.addEventListener('pointerup',e=>{e.stopPropagation()});
+}
+window.addEventListener('orientationchange',()=>setTimeout(()=>{resizeMobileGameView();syncPhoneOrientationPrompt()},180),{passive:true});
+
 // Main menu and the in-game three-dot checkpoint menu.
-bindAccessibleTap(document.getElementById('playNowBtn'),()=>{machineMode=false;gamePaused=false;machineModeTag.hidden=true;startGame()});
-bindAccessibleTap(document.getElementById('machineModeBtn'),()=>{machineMode=true;gamePaused=false;machineModeTag.hidden=false;startGame();setStatus('<b>CHẾ ĐỘ MÁY · ĐANG TỰ CHƠI</b><br>Máy sẽ tự điều khiển Errol và đi theo trình tự câu chuyện. Nhấn ⋯ bất cứ lúc nào để tạm dừng hoặc ghim trạng thái hiện tại.')});
+bindAccessibleTap(document.getElementById('playNowBtn'),()=>{machineMode=false;gamePaused=false;machineModeTag.hidden=true;startGame();tryMobileFullscreen()});
+bindAccessibleTap(document.getElementById('machineModeBtn'),()=>{machineMode=true;gamePaused=false;machineModeTag.hidden=false;startGame();tryMobileFullscreen();setStatus('<b>CHẾ ĐỘ MÁY · ĐANG TỰ CHƠI</b><br>Máy sẽ tự điều khiển Errol và đi theo trình tự câu chuyện. Nhấn ⋯ bất cứ lúc nào để tạm dừng hoặc ghim trạng thái hiện tại.')});
 bindAccessibleTap(document.getElementById('openPinsBtn'),showPinsMenu);
 bindAccessibleTap(document.getElementById('pinsBackBtn'),showHomeMenu);
 bindAccessibleTap(gameMoreBtn,()=>{if(checkpointMenu.hidden)openGameMoreMenu();else closeGameMoreMenu()});
@@ -3615,7 +3873,7 @@ window.addEventListener('keydown',e=>{
  }
  if(!mainMenuOverlay.hidden||!checkpointMenu.hidden){e.stopImmediatePropagation();return}
 },true);
-renderPinsList();showHomeMenu();mainMenuOverlay.hidden=false;gamePaused=false;gameMoreBtn.hidden=true;machineModeTag.hidden=true;
+renderPinsList();showHomeMenu();mainMenuOverlay.hidden=false;gamePaused=false;gameMoreBtn.hidden=true;machineModeTag.hidden=true;if(mobileControlPanel)mobileControlPanel.hidden=true;if(mobileHud)mobileHud.hidden=true;
 
 canvas.addEventListener('contextmenu',e=>e.preventDefault());
 reset();
