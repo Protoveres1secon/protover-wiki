@@ -204,28 +204,41 @@ body.mobile-fullscreen-on .machine-mode-tag{z-index:35;top:max(12px,env(safe-are
 
 
 
-/* Landscape-first mobile experience: ask the player to rotate the physical phone, like a fullscreen video. */
-.rotate-phone-overlay[hidden]{display:none!important}
-.rotate-phone-overlay{display:none;position:fixed;inset:0;z-index:2147483647;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 25%,#15264a 0%,#070b18 65%,#02040a 100%);color:#eff7ff;text-align:center;font-family:Inter,Segoe UI,Arial,sans-serif;touch-action:manipulation}
-.rotate-phone-card{width:min(440px,100%);padding:28px 24px;border:1px solid #45618e;border-radius:22px;background:linear-gradient(155deg,#101a32f2,#050a17f7);box-shadow:0 24px 80px #000b,0 0 45px #00d9ff16}
-.rotate-phone-icon{font-size:58px;line-height:1.2;display:inline-block;filter:drop-shadow(0 0 14px #3bdfff75);animation:phoneRotateHint 2s ease-in-out infinite}
-@keyframes phoneRotateHint{0%,18%{transform:rotate(0)}48%,72%{transform:rotate(90deg)}100%{transform:rotate(90deg)}}
-.rotate-phone-title{font-size:clamp(22px,5vw,30px);font-weight:1000;letter-spacing:.3px;margin:14px 0 8px}
-.rotate-phone-text{font-size:14px;line-height:1.65;color:#b8c9e8;margin:0 auto 18px;max-width:340px}
-.rotate-phone-button{width:100%;border:1px solid #65e9ff;border-radius:13px;padding:13px 16px;background:linear-gradient(135deg,#126179,#17466d);box-shadow:0 7px 24px #00cfff25;color:#fff;font-weight:950;font-size:14px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.rotate-phone-help{font-size:11px;line-height:1.6;color:#849bc1;margin:13px 0 0}
-.rotate-phone-landscape-note{display:none}
-@media (orientation:portrait) and (max-width:950px), (orientation:portrait) and (pointer:coarse){
- .rotate-phone-overlay:not([hidden]){display:flex}
-}
+/* Landscape-first mobile experience: no orientation prompt. Use real landscape when available;
+   when a browser stays portrait-locked (notably some iOS Safari contexts), rotate the complete game surface. */
+#rotatePhoneOverlay{display:none!important;visibility:hidden!important;pointer-events:none!important}
 @media (orientation:landscape) and (pointer:coarse){
- body.mobile-fullscreen-on{padding:0!important;overflow:hidden!important}
- body.mobile-fullscreen-on .game-shell{width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important}
- body.mobile-fullscreen-on .game-frame{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;border:0!important;border-radius:0!important;overflow:hidden!important}
+ body.mobile-fullscreen-on{padding:0!important;overflow:hidden!important;overscroll-behavior:none}
+ body.mobile-fullscreen-on .game-shell{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important}
+ body.mobile-fullscreen-on .game-frame{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;overflow:hidden!important}
  body.mobile-fullscreen-on .canvas-wrap{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;overflow:hidden!important}
  body.mobile-fullscreen-on .canvas-wrap canvas{object-fit:cover!important}
- .rotate-phone-overlay{display:none!important}
 }
+@media (orientation:portrait) and (pointer:coarse){
+ body.mobile-fullscreen-on{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;padding:0!important;margin:0!important;overflow:hidden!important;overscroll-behavior:none;background:#020611}
+ body.mobile-fullscreen-on .game-shell{position:fixed!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;width:100dvh!important;height:100dvw!important;max-width:none!important;margin:0!important;transform:translate(-50%,-50%) rotate(90deg)!important;transform-origin:center center!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .topbar,body.mobile-fullscreen-on .bottom-ui,body.mobile-fullscreen-on .footnote,body.mobile-fullscreen-on .touch-controls{display:none!important}
+ body.mobile-fullscreen-on .game-frame{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .canvas-wrap{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;overflow:hidden!important}
+ body.mobile-fullscreen-on .story-menu-overlay{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;padding:12px!important;overflow-y:auto!important;align-items:center!important;justify-content:center!important;z-index:40!important;touch-action:pan-y}
+ body.mobile-fullscreen-on .story-menu-inner{width:min(760px,100%)!important;max-width:760px!important}
+ body.mobile-fullscreen-on .story-menu-options{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+ body.mobile-fullscreen-on .story-mode-card{display:flex!important;padding:9px!important;min-height:0!important}
+ body.mobile-fullscreen-on .story-mode-desc{font-size:9px!important}
+ body.mobile-fullscreen-on .story-menu-title{font-size:clamp(22px,5vh,38px)!important}
+ body.mobile-fullscreen-on .story-menu-subtitle{font-size:10px!important;margin:7px 0 10px!important}
+ body.mobile-fullscreen-on .game-more-btn{top:8px!important;right:8px!important}
+ body.mobile-fullscreen-on .checkpoint-menu{position:fixed!important;inset:auto 8px 8px!important;max-height:78dvw!important;width:auto!important;overflow-y:auto!important}
+ body.mobile-fullscreen-on .machine-mode-tag{top:8px!important;left:8px!important}
+ .mobile-joystick{width:min(var(--m-joy-size,130px),30vw)!important;height:min(var(--m-joy-size,130px),30vw)!important;left:max(10px,env(safe-area-inset-left))!important;bottom:max(10px,env(safe-area-inset-bottom))!important}
+ .mobile-action-cluster{width:min(38dvh,270px)!important;height:min(76vw,340px)!important;right:max(8px,env(safe-area-inset-right))!important;bottom:max(8px,env(safe-area-inset-bottom))!important}
+ .mobile-action{max-width:min(var(--m-size,56px),14vw)!important;max-height:min(var(--m-size,56px),14vw)!important;width:min(var(--m-size,56px),14vw)!important;height:min(var(--m-size,56px),14vw)!important}
+ #rotatePhoneOverlay{display:none!important}
+}
+
+
+/* Final guard: no blocking rotate-phone card remains in this build. */
+#rotatePhoneOverlay{display:none!important;visibility:hidden!important;pointer-events:none!important}
 
 </style>
 </head>
@@ -282,7 +295,7 @@ body.mobile-fullscreen-on .machine-mode-tag{z-index:35;top:max(12px,env(safe-are
               <button id="machineModeBtn" class="story-mode-card" type="button"><span class="story-mode-icon">⚡</span><span class="story-mode-name">Chế độ máy</span><span class="story-mode-desc">Máy tự điều khiển và đi theo trình tự câu chuyện, từ mở đầu đến điểm kết hiện có.</span></button>
               <button id="openPinsBtn" class="story-mode-card" type="button"><span class="story-mode-icon">⌑</span><span class="story-mode-name">Đã ghim</span><span class="story-mode-desc">Mở lại những khoảnh khắc ông đã tự ghim trong quá trình chơi trước đó.</span></button>
             </div>
-            <div class="story-menu-footer"><span>CANVAS ADVENTURE · SAVE LOCAL</span><span>WASD / MŨI TÊN · E / ENTER</span><span class="mobile-open-note">Điện thoại: mở bằng Chrome/Safari, nên xoay ngang khi chơi.</span></div>
+            <div class="story-menu-footer"><span>CANVAS ADVENTURE · SAVE LOCAL</span><span>WASD / MŨI TÊN · E / ENTER</span><span class="mobile-open-note">Điện thoại: màn hình tự bố trí ngang, HUD cảm ứng sẵn sàng.</span></div>
           </div>
           <div id="pinsMenuView" class="pins-view" hidden>
             <div class="pins-view-head"><h2>Khoảnh khắc đã ghim</h2><button id="pinsBackBtn" class="menu-small-btn" type="button">← Trở lại</button></div>
@@ -3682,7 +3695,7 @@ function pressAction(a){if(state==='villageInterior'&&villageHouseRoom==='charaE
 window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();keys[e.code]=true;if(e.repeat){if(state==='villageInterior'&&villageHouseRoom==='fishingLake'&&villageFishingPhase==='fight'&&['KeyC','KeyE','Enter'].includes(e.code)){e.preventDefault();triggerFishingAction();}return;}if(e.code==='Enter'){if(state==='title'||state==='dead'||state==='won'||state==='error')startGame();else if(state==='intro')advanceIntro();else if(state==='papyrusCutscene')advancePapyrusCutscene();else if(state==='villageDialogue')advanceVillageDialogue();else if(state==='villageWake')advanceVillageWake();else if(state==='village')enterVillageHouse();else if(state==='villageInterior'){if(villageHouseRoom==='charaEncounter')handleCharaEncounterAction('enter');else if(villageHousePhase==='arrivalDialogue'||villageHousePhase==='roomMessage')advanceVillageHouse();else tryInteractVillageHouse()}else if(state==='errolAwakening')advanceAwakening();else if(state==='reviveDialogue')advanceReviveDialogue();else if(state==='fight')playerAttack()}else if(e.code==='KeyC'){if(state==='villageInterior'&&villageHouseRoom==='fishingLake')triggerFishingAction()}else if(e.code==='KeyJ'||e.code==='KeyZ')pressAction('attack');else if(e.code==='KeyK'||e.code==='KeyX')pressAction('special');else if(e.code==='KeyQ')pressAction('eye3');else if(e.code==='KeyE'){if(state==='village')enterVillageHouse();else if(state==='villageInterior'&&villageHouseRoom==='charaEncounter')handleCharaEncounterAction('ward');else if(state==='villageInterior')tryInteractVillageHouse();else pressAction('ward')}else if(e.code==='KeyR')pressAction('compass');else if(e.code==='KeyF')pressAction('exo');else if(e.code==='Space'||e.code==='ShiftLeft'||e.code==='ShiftRight')pressAction('dash');else if(e.code==='KeyL')pressAction('parry');else if(state==='error'&&e.code==='Enter')startGame()});window.addEventListener('keyup',e=>{keys[e.code]=false});window.addEventListener('blur',()=>{for(const k in keys)keys[k]=false;for(const k in held)held[k]=false});
 for(const b of document.querySelectorAll('[data-hold]')){const k=b.dataset.hold;const on=e=>{e.preventDefault();held[k]=true;b.classList.add('held');try{b.setPointerCapture(e.pointerId)}catch{}};const off=e=>{e.preventDefault();held[k]=false;b.classList.remove('held')};b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('lostpointercapture',off)}
 for(const b of document.querySelectorAll('[data-action]:not(.mobile-action)'))b.addEventListener('click',e=>{e.preventDefault();pressAction(b.dataset.action)});
-canvas.addEventListener('pointerdown',e=>{canvas.focus();const rect=canvas.getBoundingClientRect(),x=(e.clientX-rect.left)*W/rect.width,y=(e.clientY-rect.top)*H/rect.height;if(state==='villageWake'){advanceVillageWake();return}if(state==='villageDialogue'){advanceVillageDialogue();return}if(state==='village'){if(villageDoorDistance()<105)enterVillageHouse();return}if(state==='villageInterior'){
+canvas.addEventListener('pointerdown',e=>{canvas.focus();const rect=canvas.getBoundingClientRect();let x,y;if(document.body.classList.contains('mobile-portrait-rotated-on')){x=(e.clientY-rect.top)*W/Math.max(1,rect.height);y=(rect.right-e.clientX)*H/Math.max(1,rect.width)}else{x=(e.clientX-rect.left)*W/Math.max(1,rect.width);y=(e.clientY-rect.top)*H/Math.max(1,rect.height)}if(state==='villageWake'){advanceVillageWake();return}if(state==='villageDialogue'){advanceVillageDialogue();return}if(state==='village'){if(villageDoorDistance()<105)enterVillageHouse();return}if(state==='villageInterior'){
   if(villageHouseRoom==='charaEncounter'){handleCharaEncounterAction('click');return}
   if(villageHousePhase==='arrivalDialogue'||villageHousePhase==='roomMessage'){advanceVillageHouse();return}
   if(villageHousePhase!=='explore')return;
@@ -3771,16 +3784,20 @@ const rotatePhoneHelp=document.getElementById('rotatePhoneHelp');
 const rotatePhoneNow=document.getElementById('rotatePhoneNow');
 function phoneIsPortrait(){return window.matchMedia('(orientation: portrait)').matches || window.innerHeight>window.innerWidth}
 function syncPhoneOrientationPrompt(){
+ // Never block the start menu with a rotate prompt. Simulate landscape with a 90-degree CSS rotation when the browser stays portrait.
  const needsRotate=mobileLayoutWanted()&&phoneIsPortrait();
- if(rotatePhoneOverlay)rotatePhoneOverlay.hidden=!needsRotate;
- if(rotatePhoneNow)rotatePhoneNow.disabled=false;
+ if(rotatePhoneOverlay)rotatePhoneOverlay.hidden=true;
+ if(rotatePhoneNow)rotatePhoneNow.disabled=true;
+ document.body.classList.toggle('mobile-portrait-rotated-on',needsRotate);
 }
 function resizeMobileGameView(){
  const mobile=mobileLayoutWanted();document.body.classList.toggle('mobile-fullscreen-on',mobile);
- syncPhoneOrientationPrompt();
+ const rotate=mobile&&phoneIsPortrait();document.body.classList.toggle('mobile-portrait-rotated-on',rotate);
+ if(rotatePhoneOverlay)rotatePhoneOverlay.hidden=true;
  if(!mobile){canvas.style.removeProperty('--stage-width');canvas.style.removeProperty('--stage-height');canvas.style.removeProperty('--mobile-pan');canvas.style.width='';canvas.style.height='';canvas.style.left='';canvas.style.top='';canvas.style.transform='';return}
- const vw=Math.max(1,window.innerWidth||document.documentElement.clientWidth),vh=Math.max(1,window.innerHeight||document.documentElement.clientHeight);
- // Cover the landscape viewport edge-to-edge. A little vertical crop is preferable to letterboxing.
+ const realW=Math.max(1,window.innerWidth||document.documentElement.clientWidth),realH=Math.max(1,window.innerHeight||document.documentElement.clientHeight);
+ // In portrait fallback, virtual landscape dimensions are the physical viewport dimensions swapped.
+ const vw=rotate?realH:realW,vh=rotate?realW:realH;
  const scale=Math.max(vw/W,vh/H);canvas.style.setProperty('--stage-width',Math.ceil(W*scale)+'px');canvas.style.setProperty('--stage-height',Math.ceil(H*scale)+'px');
  canvas.style.width=Math.ceil(W*scale)+'px';canvas.style.height=Math.ceil(H*scale)+'px';canvas.style.left='50%';canvas.style.top='50%';canvas.style.transform='translate(calc(-50% + var(--mobile-pan,0px)),-50%)';
  updateMobileCanvasPan();
@@ -3804,7 +3821,9 @@ let mobileJoyPointer=null;
 function releaseMobileJoystick(){mobileJoyPointer=null;held.up=held.down=held.left=held.right=false;if(mobileJoystickKnob)mobileJoystickKnob.style.transform='translate(-50%,-50%)';mobileJoystick?.classList.remove('active')}
 function updateMobileJoystickFromEvent(e){
  const r=mobileJoystick.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,rad=Math.max(12,r.width*.34);
- let dx=e.clientX-cx,dy=e.clientY-cy;const len=Math.hypot(dx,dy)||1;if(len>rad){dx=dx/len*rad;dy=dy/len*rad}
+ let dx=e.clientX-cx,dy=e.clientY-cy;
+ if(document.body.classList.contains('mobile-portrait-rotated-on')){const screenDx=dx;dx=dy;dy=-screenDx}
+ const len=Math.hypot(dx,dy)||1;if(len>rad){dx=dx/len*rad;dy=dy/len*rad}
  mobileJoystickKnob.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px))`;
  const nx=dx/rad,ny=dy/rad,dead=.22;held.left=nx< -dead;held.right=nx>dead;held.up=ny< -dead;held.down=ny>dead;
 }
@@ -3846,7 +3865,7 @@ function tryMobileFullscreen(){
  return Promise.resolve(enter).catch(()=>null).then(async()=>{
   let locked=false;
   try{if(screen.orientation&&typeof screen.orientation.lock==='function'){await screen.orientation.lock('landscape');locked=true}}catch{}
-  if(!locked&&phoneIsPortrait()&&rotatePhoneHelp){rotatePhoneHelp.textContent='Trình duyệt này không cho tự xoay ngang. Hãy xoay máy bằng tay như khi xem YouTube; nếu màn hình không xoay, hãy tắt Khóa hướng dọc trong Trung tâm điều khiển/Cài đặt nhanh.'}
+  // Regardless of native orientation-lock support, the page now provides a CSS landscape fallback.
   setTimeout(()=>{resizeMobileGameView();try{draw()}catch{}},180);
   return locked;
  });
