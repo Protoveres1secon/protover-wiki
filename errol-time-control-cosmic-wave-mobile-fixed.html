@@ -384,6 +384,9 @@ let villageAncestralTravelTime=0,villageAncestralTime=0,villageAncestralPhase='i
 let villageFinalFeastTime=0,villageFinalDishesTime=0,villageTVTime=0,villageFarewellTime=0;
 // Chara confrontation and cosmic Time Eye awakening chapter.
 let villageCharaPhase='idle',villageCharaTime=0,villageCharaKills=0,villageCharaAction='attack',villageCharaAttackStartX=255,villageCharaAttackCooldown=0,villageCharaMontageIndex=0,villageCharaCosmicProgress=0,villageCharaHeartY=0,villageCharaHeartX=0,villageCharaFinalPrompt=false;
+let warkHP=180,warkMaxHP=180,warkPhase=1,warkX=700,warkY=430,warkTimeStop=0,warkShieldTimer=0,warkPlayerInvuln=0,warkPlayerHP=3,warkPlayerMaxHP=3,warkReviveReady=true,warkAttackCooldown=1.55,warkTelegraph=0,warkAttackLane=440,warkAttackType=0,warkAttackCount=0,warkActionCooldown=0,warkTimeStopCooldown=0,warkRewindCooldown=0,warkManaCooldown=0,warkDashCooldown=0,warkLastX=260,warkLastY=450,warkBossHit=0,warkActionEffectTimer=0,warkActionEffect='time',warkFinalForm=false,warkHudActive=false;
+let charaBattleX=718,charaTeleportTimer=1.45,charaTeleportFlash=0,charaAttackTimer=1.25,charaAttackWarn=0,charaAttackType=0,charaAttackLane=430,charaAttackAnim=0,charaFinalLoops=0,charaFinalHP=280,charaFinalMaxHP=280,charaFinalPlayerHP=5,charaFinalPlayerMaxHP=5,charaFinalInvuln=0,charaFinalCooldown=0,charaFinalHitFlash=0,charaFinalTimeStop=0,charaFinalShield=0,charaFinalAction='attack',charaFinalLoopFlash=0;
+let warkThirdEyeAwake=false,warkCodeEraseTimer=0,warkCompression=0,warkNullSlash=0,warkFinalEyePulse=0,warkStoryClock=0,warkFinalAttackFlash=0;
 let fishingHoldTimer=null;
 
 // Three entry modes + bookmarks are local to this browser. Checkpoints store real runtime state,
@@ -408,7 +411,7 @@ const checkpointRefs={
  get villageMorning(){return villageMorning},set villageMorning(v){villageMorning=v}, get villageMorningDoorStage(){return villageMorningDoorStage},set villageMorningDoorStage(v){villageMorningDoorStage=v}, get villageMorningDoorTimer(){return villageMorningDoorTimer},set villageMorningDoorTimer(v){villageMorningDoorTimer=v}, get villageAuraPenaltyTimer(){return villageAuraPenaltyTimer},set villageAuraPenaltyTimer(v){villageAuraPenaltyTimer=v}, get villageFestivalActive(){return villageFestivalActive},set villageFestivalActive(v){villageFestivalActive=v}, get villageFestivalStep(){return villageFestivalStep},set villageFestivalStep(v){villageFestivalStep=v}, get villageFestivalComplete(){return villageFestivalComplete},set villageFestivalComplete(v){villageFestivalComplete=v}, get villageFestivalUnlocked(){return villageFestivalUnlocked},set villageFestivalUnlocked(v){villageFestivalUnlocked=v}, get villageFestivalTime(){return villageFestivalTime},set villageFestivalTime(v){villageFestivalTime=v}, get villageFestivalToast(){return villageFestivalToast},set villageFestivalToast(v){villageFestivalToast=v}, get villageFestivalToastTimer(){return villageFestivalToastTimer},set villageFestivalToastTimer(v){villageFestivalToastTimer=v}, get villageFeastStartTime(){return villageFeastStartTime},set villageFeastStartTime(v){villageFeastStartTime=v}, get villageFeastErrolStartX(){return villageFeastErrolStartX},set villageFeastErrolStartX(v){villageFeastErrolStartX=v}, get villageFeastErrolStartY(){return villageFeastErrolStartY},set villageFeastErrolStartY(v){villageFeastErrolStartY=v}, get villageFestivalTableSetTime(){return villageFestivalTableSetTime},set villageFestivalTableSetTime(v){villageFestivalTableSetTime=v}, get villageNightTask(){return villageNightTask},set villageNightTask(v){villageNightTask=v},
  get villageFishingPhase(){return villageFishingPhase},set villageFishingPhase(v){villageFishingPhase=v}, get villageFishingTime(){return villageFishingTime},set villageFishingTime(v){villageFishingTime=v}, get villageFishingCatchCount(){return villageFishingCatchCount},set villageFishingCatchCount(v){villageFishingCatchCount=v}, get villageFishingViewerBase(){return villageFishingViewerBase},set villageFishingViewerBase(v){villageFishingViewerBase=v}, get villageFishingTrailTime(){return villageFishingTrailTime},set villageFishingTrailTime(v){villageFishingTrailTime=v}, get villageFishingPullProgress(){return villageFishingPullProgress},set villageFishingPullProgress(v){villageFishingPullProgress=v}, get villageFishingAssist(){return villageFishingAssist},set villageFishingAssist(v){villageFishingAssist=v}, get villageFishingHelpTime(){return villageFishingHelpTime},set villageFishingHelpTime(v){villageFishingHelpTime=v}, get villageFishingLastCatch(){return villageFishingLastCatch},set villageFishingLastCatch(v){villageFishingLastCatch=v}, get villageFishingToast(){return villageFishingToast},set villageFishingToast(v){villageFishingToast=v}, get villageFishingToastTimer(){return villageFishingToastTimer},set villageFishingToastTimer(v){villageFishingToastTimer=v}, get villageFishingReturnTime(){return villageFishingReturnTime},set villageFishingReturnTime(v){villageFishingReturnTime=v}, get villageFishBasketDelivered(){return villageFishBasketDelivered},set villageFishBasketDelivered(v){villageFishBasketDelivered=v},
  get villageAncestralTravelTime(){return villageAncestralTravelTime},set villageAncestralTravelTime(v){villageAncestralTravelTime=v}, get villageAncestralTime(){return villageAncestralTime},set villageAncestralTime(v){villageAncestralTime=v}, get villageAncestralPhase(){return villageAncestralPhase},set villageAncestralPhase(v){villageAncestralPhase=v}, get villageAncestralRestored(){return villageAncestralRestored},set villageAncestralRestored(v){villageAncestralRestored=v}, get villageFinalFeastTime(){return villageFinalFeastTime},set villageFinalFeastTime(v){villageFinalFeastTime=v}, get villageFinalDishesTime(){return villageFinalDishesTime},set villageFinalDishesTime(v){villageFinalDishesTime=v}, get villageTVTime(){return villageTVTime},set villageTVTime(v){villageTVTime=v}, get villageFarewellTime(){return villageFarewellTime},set villageFarewellTime(v){villageFarewellTime=v},
- get villageCharaPhase(){return villageCharaPhase},set villageCharaPhase(v){villageCharaPhase=v}, get villageCharaTime(){return villageCharaTime},set villageCharaTime(v){villageCharaTime=v}, get villageCharaKills(){return villageCharaKills},set villageCharaKills(v){villageCharaKills=v}, get villageCharaAction(){return villageCharaAction},set villageCharaAction(v){villageCharaAction=v}, get villageCharaAttackStartX(){return villageCharaAttackStartX},set villageCharaAttackStartX(v){villageCharaAttackStartX=v}, get villageCharaAttackCooldown(){return villageCharaAttackCooldown},set villageCharaAttackCooldown(v){villageCharaAttackCooldown=v}, get villageCharaMontageIndex(){return villageCharaMontageIndex},set villageCharaMontageIndex(v){villageCharaMontageIndex=v}, get villageCharaCosmicProgress(){return villageCharaCosmicProgress},set villageCharaCosmicProgress(v){villageCharaCosmicProgress=v}, get villageCharaHeartY(){return villageCharaHeartY},set villageCharaHeartY(v){villageCharaHeartY=v}, get villageCharaHeartX(){return villageCharaHeartX},set villageCharaHeartX(v){villageCharaHeartX=v}, get villageCharaFinalPrompt(){return villageCharaFinalPrompt},set villageCharaFinalPrompt(v){villageCharaFinalPrompt=v}, get villageGrandpa(){return villageGrandpa},set villageGrandpa(v){villageGrandpa=v}, get villageKid(){return villageKid},set villageKid(v){villageKid=v}, get villageSnow(){return villageSnow},set villageSnow(v){villageSnow=v}, get villagePines(){return villagePines},set villagePines(v){villagePines=v}
+ get villageCharaPhase(){return villageCharaPhase},set villageCharaPhase(v){villageCharaPhase=v}, get villageCharaTime(){return villageCharaTime},set villageCharaTime(v){villageCharaTime=v}, get villageCharaKills(){return villageCharaKills},set villageCharaKills(v){villageCharaKills=v}, get villageCharaAction(){return villageCharaAction},set villageCharaAction(v){villageCharaAction=v}, get villageCharaAttackStartX(){return villageCharaAttackStartX},set villageCharaAttackStartX(v){villageCharaAttackStartX=v}, get villageCharaAttackCooldown(){return villageCharaAttackCooldown},set villageCharaAttackCooldown(v){villageCharaAttackCooldown=v}, get villageCharaMontageIndex(){return villageCharaMontageIndex},set villageCharaMontageIndex(v){villageCharaMontageIndex=v}, get villageCharaCosmicProgress(){return villageCharaCosmicProgress},set villageCharaCosmicProgress(v){villageCharaCosmicProgress=v}, get villageCharaHeartY(){return villageCharaHeartY},set villageCharaHeartY(v){villageCharaHeartY=v}, get villageCharaHeartX(){return villageCharaHeartX},set villageCharaHeartX(v){villageCharaHeartX=v}, get villageCharaFinalPrompt(){return villageCharaFinalPrompt},set villageCharaFinalPrompt(v){villageCharaFinalPrompt=v}, get warkHP(){return warkHP},set warkHP(v){warkHP=v}, get warkMaxHP(){return warkMaxHP},set warkMaxHP(v){warkMaxHP=v}, get warkPhase(){return warkPhase},set warkPhase(v){warkPhase=v}, get warkX(){return warkX},set warkX(v){warkX=v}, get warkY(){return warkY},set warkY(v){warkY=v}, get warkTimeStop(){return warkTimeStop},set warkTimeStop(v){warkTimeStop=v}, get warkShieldTimer(){return warkShieldTimer},set warkShieldTimer(v){warkShieldTimer=v}, get warkPlayerInvuln(){return warkPlayerInvuln},set warkPlayerInvuln(v){warkPlayerInvuln=v}, get warkPlayerHP(){return warkPlayerHP},set warkPlayerHP(v){warkPlayerHP=v}, get warkPlayerMaxHP(){return warkPlayerMaxHP},set warkPlayerMaxHP(v){warkPlayerMaxHP=v}, get warkReviveReady(){return warkReviveReady},set warkReviveReady(v){warkReviveReady=v}, get warkAttackCooldown(){return warkAttackCooldown},set warkAttackCooldown(v){warkAttackCooldown=v}, get warkTelegraph(){return warkTelegraph},set warkTelegraph(v){warkTelegraph=v}, get warkAttackLane(){return warkAttackLane},set warkAttackLane(v){warkAttackLane=v}, get warkAttackType(){return warkAttackType},set warkAttackType(v){warkAttackType=v}, get warkAttackCount(){return warkAttackCount},set warkAttackCount(v){warkAttackCount=v}, get warkActionCooldown(){return warkActionCooldown},set warkActionCooldown(v){warkActionCooldown=v}, get warkTimeStopCooldown(){return warkTimeStopCooldown},set warkTimeStopCooldown(v){warkTimeStopCooldown=v}, get warkRewindCooldown(){return warkRewindCooldown},set warkRewindCooldown(v){warkRewindCooldown=v}, get warkManaCooldown(){return warkManaCooldown},set warkManaCooldown(v){warkManaCooldown=v}, get warkDashCooldown(){return warkDashCooldown},set warkDashCooldown(v){warkDashCooldown=v}, get warkLastX(){return warkLastX},set warkLastX(v){warkLastX=v}, get warkLastY(){return warkLastY},set warkLastY(v){warkLastY=v}, get warkBossHit(){return warkBossHit},set warkBossHit(v){warkBossHit=v}, get warkActionEffectTimer(){return warkActionEffectTimer},set warkActionEffectTimer(v){warkActionEffectTimer=v}, get warkActionEffect(){return warkActionEffect},set warkActionEffect(v){warkActionEffect=v}, get warkFinalForm(){return warkFinalForm},set warkFinalForm(v){warkFinalForm=v}, get villageGrandpa(){return villageGrandpa},set villageGrandpa(v){villageGrandpa=v}, get villageKid(){return villageKid},set villageKid(v){villageKid=v}, get villageSnow(){return villageSnow},set villageSnow(v){villageSnow=v}, get villagePines(){return villagePines},set villagePines(v){villagePines=v}
 };
 function currentProgressPoint(){
  if(state==='intro')return 5;
@@ -420,7 +423,7 @@ function currentProgressPoint(){
   const phaseBonus={arrivalDialogue:0,explore:1,roomMessage:2,brushing:3,sleeping:4,morningWake:5,fishFeastMorningWake:6,festivalMoveKitchen:7,fishingTravel:7,ancestralDeparture:8,oneShotCharge:9,oneShotFocus:10,oneShotCuts:11,barrierRestored:12,finalSleeping:13,timeEyeAwakening:14,timeEyeEnd:15};
   if(villageHouseRoom==='fishingLake')return 71+Math.min(7,villageFishingCatchCount)*.1;
   if(villageHouseRoom==='festivalYard')return 60+villageFestivalStep*.1;
-  if(villageHouseRoom==='charaEncounter')return 110+Math.min(7,villageCharaKills)*.1;
+  if(villageHouseRoom==='charaEncounter'){if(['timeResume','charaAfterTime','warkRiftOpening','warkEnter','warkBattleIntro','warkBattle','warkBossShift','warkDown','warkVictory'].includes(villageCharaPhase))return 121+(warkPhase*.1)+(warkMaxHP?((warkMaxHP-warkHP)/warkMaxHP)*.01:0);return 110+Math.min(7,villageCharaKills)*.1;}
   return (roomOrder[villageHouseRoom]||40)+(phaseBonus[villageHousePhase]||0)*.01;
  }
  return highestStoryProgress||0;
@@ -434,6 +437,8 @@ function currentPointTitle(){
  if(state==='villageArrival')return 'Đến thôn làng';if(state==='villageWake')return 'Tỉnh dậy ở thôn làng';if(state==='villageDialogue')return 'Gặp ông cháu Sans';if(state==='village')return 'Ngoài căn nhà của ông cháu Sans';
  if(state==='villageInterior'){
   const rooms={living:'Phòng khách',longFoyer:'Hành lang dài',kitchen:'Nhà bếp',bathroom:'Phòng tắm',bedroom:'Phòng ngủ Errol',kidRoom:'Phòng nhóc Sans · TV',festivalYard:'Lễ hội làng',fishingTrail:'Đường đến hồ câu',fishingLake:'Hồ câu cá · '+villageFishingCatchCount+'/8',fishingReturn:'Mang cá về nhà',ancestralTrail:'Đường tới di tích tổ tiên',ancestralBarrier:'Hàng rào tổ tiên · One Shot',fishFeastYard:'Bữa tiệc cá cuối cùng',outsideDishes:'Rửa bát cùng dân làng',farewellMorning:'Chia tay thôn làng',charaEncounter:'Đối đầu Chara · '+villageCharaKills+'/7'};
+  if(villageHouseRoom==='charaEncounter'&&String(villageCharaPhase).startsWith('wark'))return 'Wark Lock Sans · '+(villageCharaPhase==='warkBattle'?'Trận đấu · '+Math.ceil(warkHP)+' HP':villageCharaPhase.replace(/([A-Z])/g,' $1'));
+  if(villageHouseRoom==='charaEncounter'&&['timeResume','charaAfterTime'].includes(villageCharaPhase))return 'Time Control · Thời gian trở lại';
   return (rooms[villageHouseRoom]||villageHouseRoom)+' · '+String(villageHousePhase).replace(/([A-Z])/g,' $1');
  }
  if(state==='won')return 'Kết thúc trận chiến';if(state==='dead')return 'Vòng lặp kết thúc';return 'Thời điểm trong hành trình';
@@ -483,8 +488,10 @@ function machineUseRouteRoom(){
  if(phase==='roomMessage'){if(machineActionTimer<=0){advanceVillageHouse();machineActionTimer=.5}return}
  if(phase==='fishingInviteGrandpa'||phase==='fishingTravel'||phase==='fishingWakeKid'||phase==='ancestralDeparture'||phase==='barrierReturnJourney'||phase==='festivalMoveKitchen'||phase==='washingDishes'||phase==='sleeping'||phase==='finalSleeping'||phase==='finalWalkToBed'||phase==='morningWake'||phase==='morningDoorSlam'||phase==='morningDoorReveal'||phase==='morningDoorClose'||phase==='morningAura'||phase==='fishFeastMorningWake'||phase==='farewellDeparture'||phase==='journeyContinues')return;
  if(room==='charaEncounter'){
-  if(villageCharaPhase==='battleIntro'){if(machineActionTimer<=0){handleCharaEncounterAction('enter');machineActionTimer=.55}return}
+  if(villageCharaPhase==='battleIntro'||villageCharaPhase==='warkBattleIntro'){if(machineActionTimer<=0){handleCharaEncounterAction('enter');machineActionTimer=.55}return}
   if(villageCharaPhase==='battle'){clearMachineMovement();if(machineActionTimer<=0&&villageCharaAttackCooldown<=0){handleCharaEncounterAction('attack');machineActionTimer=.5}return}
+  if(villageCharaPhase==='warkBattle'){clearMachineMovement();if(machineActionTimer<=0){const seq=['attack','special','eye3','dash','compass','exo','attack','ward'];handleCharaEncounterAction(seq[Math.floor(time*2)%seq.length]);machineActionTimer=.28}return}
+  if(villageCharaPhase==='warkDown'){if(machineActionTimer<=0){handleCharaEncounterAction(warkReviveReady?'parry':'compass');machineActionTimer=.65}return}
   if(villageCharaPhase==='timeEyeEnd'){if(machineActionTimer<=0&&!machineStopAtTimeEyeEnd){handleCharaEncounterAction('enter');machineStopAtTimeEyeEnd=true;machineMode=false;machineModeTag.hidden=true;setStatus('<b>CHẾ ĐỘ MÁY · ĐÃ TỚI ĐIỂM KẾT HIỆN CÓ</b><br>Con Mắt Điều Khiển Thời Gian đã thức tỉnh. Chế độ máy dừng tại đây; có thể tiếp tục điều khiển hoặc ghim thời điểm này.');}return}
   return;
  }
@@ -566,7 +573,7 @@ function machinePlayStep(dt){
  if(state==='villageInterior'){
   if(room==='charaEncounter'){
    if(villageCharaPhase==='timeEyeEnd'&&machineStateElapsed>1.2){handleCharaEncounterAction('enter');return;}
-   if(villageCharaPhase==='timeWaveEnd'&&machineStateElapsed>3){machineMode=false;machineModeTag.hidden=true;clearMachineMovement();setStatus('<b>CHẾ ĐỘ MÁY · ĐÃ ĐẾN CUỐI CẢNH</b><br>Con Mắt Điều Khiển Thời Gian vừa dừng chuyển động của cả vũ trụ.');return;}
+   if(villageCharaPhase==='timeWaveEnd'&&machineStateElapsed>3){handleCharaEncounterAction('enter');machineActionTimer=.5;return;}
    machineUseRouteRoom();return;
   }
   machineUseRouteRoom();return;
@@ -632,7 +639,7 @@ function say(text,color='#dff8ff',seconds=2.5){dialogue=text;dialogueColor=color
 function setStatus(html){statusCopy.innerHTML=html}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
-function reset(){state='title';runtimeError='';time=0;elapsed=0;screenShake=0;flash=0;dialogue='';dialogueTimer=0;introIndex=0;introShown=0;introTypeTime=0;reviveTimer=0;reviveShown=0;reviveTypeTime=0;reviveText='';reviveParticleClock=0;awakeningText='';awakeningShown=0;awakeningTypeTime=0;papyrusCutsceneTime=0;papyrusLineIndex=0;papyrusTextShown=0;papyrusTypeTime=0;papyrusLineHold=0;papyrusLineStartTime=0;papyrusClosing=false;papyrusClosingTime=0;villageArrivalTime=0;villageWakeTime=0;villageWakeEyesOpen=false;villageWakeDialogueShown=0;villageWakeDialogueTime=0;villageWakeHold=0;villageCameraX=0;villageTime=0;villageDialogueIndex=0;villageDialogueShown=0;villageDialogueTypeTime=0;villageDialogueKind='meeting';villageActiveDialogueLines=null;villageStage='approach';villageInviteTimer=0;villageNudgeCount=0;villageInteriorTime=0;villageHousePhase='arrivalDialogue';villageHouseRoom='living';villageHouseLineIndex=0;villageHouseLineShown=0;villageHouseLineTypeTime=0;villageHouseWalkTime=0;villageHouseMessage='';villageHouseSpeaker='Sans Omni God Errol';villageHouseMessageShown=0;villageHouseMessageTypeTime=0;villageHouseBrushed=false;villageHouseBrushTime=0;villageHouseDoorSlam=0;villageHouseSleepTime=0;villageHouseMessageReturnPhase='explore';villageHouseDoorReturnX=650;villageCompanionsFollowing=false;villageMorning=false;villageMorningDoorStage='locked';villageMorningDoorTimer=0;villageAuraPenaltyTimer=0;villageFestivalActive=false;villageFestivalStep=0;villageFestivalComplete=false;villageFestivalUnlocked=false;villageFestivalTime=0;villageFestivalToast='';villageFestivalToastTimer=0;villageNightTask='none';villageFishingPhase='idle';villageFishingTime=0;villageFishingCatchCount=0;villageFishingViewerBase=218;villageFishingReturnTime=0;villageFishBasketDelivered=false;villageAncestralTravelTime=0;villageAncestralTime=0;villageAncestralPhase='idle';villageAncestralRestored=false;villageFinalFeastTime=0;villageFinalDishesTime=0;villageTVTime=0;villageFarewellTime=0;villageCharaPhase='idle';villageCharaTime=0;villageCharaKills=0;villageCharaAction='attack';villageCharaAttackStartX=255;villageCharaAttackCooldown=0;villageCharaMontageIndex=0;villageCharaCosmicProgress=0;villageCharaHeartY=0;villageCharaHeartX=0;villageCharaFinalPrompt=false;villageGrandpa={x:920,y:421,visible:true,entering:false};villageKid={x:1000,y:427,visible:true,entering:false};bolts=[];hazards=[];sparks=[];particles=[];floating=[];trail=[];loopIndex=1;Object.assign(player,{x:190,y:300,hp:1,maxHp:1,mana:0,inv:0,dash:0,attack:0,slash:0,hit:0,faceX:1,faceY:0,parry:0,shield:0,eye3Cooldown:0,wardCooldown:0,compassCooldown:0,exoCooldown:0,moveSpeed:245,awakened:false,overdriveDraining:false,overdriveFreeKills:0,papyrusRescueUsed:false,oneShotEye:false});Object.assign(boss,{x:715,y:280,hp:480,maxHp:480,phase:1,ai:'idle',aiTimer:1.0,attackCooldown:1.1,hit:0,slash:0,shotClock:0,pattern:0,warning:0,resCount:0,blackForm:false,reviveVisible:false,teleportFlash:0,teleportCooldown:0,dodgeCooldown:0});setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Errol tỉnh dậy giữa tàn tích của một dòng thời gian đã bị xóa. Một giọng nói quen thuộc vang lên từ bên kia vòng lặp…');}
+function reset(){state='title';runtimeError='';time=0;elapsed=0;screenShake=0;flash=0;dialogue='';dialogueTimer=0;introIndex=0;introShown=0;introTypeTime=0;reviveTimer=0;reviveShown=0;reviveTypeTime=0;reviveText='';reviveParticleClock=0;awakeningText='';awakeningShown=0;awakeningTypeTime=0;papyrusCutsceneTime=0;papyrusLineIndex=0;papyrusTextShown=0;papyrusTypeTime=0;papyrusLineHold=0;papyrusLineStartTime=0;papyrusClosing=false;papyrusClosingTime=0;villageArrivalTime=0;villageWakeTime=0;villageWakeEyesOpen=false;villageWakeDialogueShown=0;villageWakeDialogueTime=0;villageWakeHold=0;villageCameraX=0;villageTime=0;villageDialogueIndex=0;villageDialogueShown=0;villageDialogueTypeTime=0;villageDialogueKind='meeting';villageActiveDialogueLines=null;villageStage='approach';villageInviteTimer=0;villageNudgeCount=0;villageInteriorTime=0;villageHousePhase='arrivalDialogue';villageHouseRoom='living';villageHouseLineIndex=0;villageHouseLineShown=0;villageHouseLineTypeTime=0;villageHouseWalkTime=0;villageHouseMessage='';villageHouseSpeaker='Sans Omni God Errol';villageHouseMessageShown=0;villageHouseMessageTypeTime=0;villageHouseBrushed=false;villageHouseBrushTime=0;villageHouseDoorSlam=0;villageHouseSleepTime=0;villageHouseMessageReturnPhase='explore';villageHouseDoorReturnX=650;villageCompanionsFollowing=false;villageMorning=false;villageMorningDoorStage='locked';villageMorningDoorTimer=0;villageAuraPenaltyTimer=0;villageFestivalActive=false;villageFestivalStep=0;villageFestivalComplete=false;villageFestivalUnlocked=false;villageFestivalTime=0;villageFestivalToast='';villageFestivalToastTimer=0;villageNightTask='none';villageFishingPhase='idle';villageFishingTime=0;villageFishingCatchCount=0;villageFishingViewerBase=218;villageFishingReturnTime=0;villageFishBasketDelivered=false;villageAncestralTravelTime=0;villageAncestralTime=0;villageAncestralPhase='idle';villageAncestralRestored=false;villageFinalFeastTime=0;villageFinalDishesTime=0;villageTVTime=0;villageFarewellTime=0;villageCharaPhase='idle';villageCharaTime=0;villageCharaKills=0;villageCharaAction='attack';villageCharaAttackStartX=255;villageCharaAttackCooldown=0;villageCharaMontageIndex=0;villageCharaCosmicProgress=0;villageCharaHeartY=0;villageCharaHeartX=0;villageCharaFinalPrompt=false;warkHP=180;warkMaxHP=180;warkPhase=1;warkX=700;warkY=430;warkTimeStop=0;warkShieldTimer=0;warkPlayerInvuln=0;warkPlayerHP=3;warkPlayerMaxHP=3;warkReviveReady=true;warkAttackCooldown=1.55;warkTelegraph=0;warkAttackLane=440;warkAttackType=0;warkAttackCount=0;warkActionCooldown=0;warkTimeStopCooldown=0;warkRewindCooldown=0;warkManaCooldown=0;warkDashCooldown=0;warkLastX=260;warkLastY=450;warkBossHit=0;warkActionEffectTimer=0;warkActionEffect='time';warkFinalForm=false;warkHudActive=false;charaBattleX=718;charaTeleportTimer=1.45;charaTeleportFlash=0;charaAttackTimer=1.25;charaAttackWarn=0;charaAttackType=0;charaAttackLane=430;charaAttackAnim=0;charaFinalLoops=0;charaFinalHP=charaFinalMaxHP=280;charaFinalPlayerHP=charaFinalPlayerMaxHP=5;charaFinalInvuln=0;charaFinalCooldown=0;charaFinalHitFlash=0;charaFinalTimeStop=0;charaFinalShield=0;charaFinalAction='attack';charaFinalLoopFlash=0;warkThirdEyeAwake=false;warkCodeEraseTimer=0;warkCompression=0;warkNullSlash=0;warkFinalEyePulse=0;warkStoryClock=0;warkFinalAttackFlash=0;villageGrandpa={x:920,y:421,visible:true,entering:false};villageKid={x:1000,y:427,visible:true,entering:false};bolts=[];hazards=[];sparks=[];particles=[];floating=[];trail=[];loopIndex=1;Object.assign(player,{x:190,y:300,hp:1,maxHp:1,mana:0,inv:0,dash:0,attack:0,slash:0,hit:0,faceX:1,faceY:0,parry:0,shield:0,eye3Cooldown:0,wardCooldown:0,compassCooldown:0,exoCooldown:0,moveSpeed:245,awakened:false,overdriveDraining:false,overdriveFreeKills:0,papyrusRescueUsed:false,oneShotEye:false});Object.assign(boss,{x:715,y:280,hp:480,maxHp:480,phase:1,ai:'idle',aiTimer:1.0,attackCooldown:1.1,hit:0,slash:0,shotClock:0,pattern:0,warning:0,resCount:0,blackForm:false,reviveVisible:false,teleportFlash:0,teleportCooldown:0,dodgeCooldown:0});setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Errol tỉnh dậy giữa tàn tích của một dòng thời gian đã bị xóa. Một giọng nói quen thuộc vang lên từ bên kia vòng lặp…');}
 function startGame(){gamePaused=false;mainMenuOverlay.hidden=true;checkpointMenu.hidden=true;machinePrevToken='';machineActionTimer=.45;machineStateElapsed=0;machineFightElapsed=0;machineStopAtTimeEyeEnd=false;clearMachineMovement();reset();state='intro';introIndex=0;introShown=0;introTypeTime=0;announce.textContent='Đối thoại mở đầu: Chara và Sans Omni God Errol.';setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Chara và Sans Omni God Errol đối mặt trước khi trận chiến bắt đầu. Nhấn Enter hoặc chạm màn hình để hiện hết câu / chuyển lời thoại.');syncGameChrome();}
 function advanceIntro(){
   if(state==='reviveDialogue'){advanceReviveDialogue();return;}
@@ -974,23 +981,52 @@ function drawErrolAura(x,y){
   ctx.shadowBlur=0;ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.restore();
 }
 function drawChara(x,y,alpha=1){
-ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.globalAlpha*=alpha;if(boss.hit>0)ctx.globalAlpha*=.65+.35*Math.sin(time*80);
-const voidForm=boss.blackForm;
-ctx.fillStyle='#0009';ctx.beginPath();ctx.ellipse(0,26,23,7,0,0,TAU);ctx.fill();
-// Original Chara palette gives way to an almost light-eating silhouette after resurrection.
-ctx.fillStyle=voidForm?'#020207':'#5a382e';ctx.fillRect(-16,-30,31,14);ctx.fillRect(-20,-23,8,13);ctx.fillRect(-12,-35,23,7);ctx.fillRect(8,-28,10,9);
-ctx.fillStyle=voidForm?'#07070d':'#a77855';ctx.fillRect(-12,-31,17,7);ctx.fillRect(-18,-22,5,6);
-ctx.fillStyle=voidForm?'#020207':'#171524';ctx.fillRect(-13,-15,27,31);ctx.fillRect(-18,-6,36,21);
-ctx.fillStyle=voidForm?'#09070e':'#393044';ctx.fillRect(-10,-12,19,23);
-ctx.fillStyle=voidForm?'#16030a':'#9d253f';ctx.fillRect(-14,-5,28,5);ctx.fillStyle=voidForm?'#7d001f':'#e84a65';ctx.fillRect(3,-3,10,3);
-// Face: void-black in immortal form; eyes glow blood red.
-ctx.fillStyle=voidForm?'#030207':'#f0d8c7';ctx.fillRect(-12,-22,24,18);ctx.fillRect(-9,-25,18,4);
-if(voidForm){ctx.shadowBlur=18;ctx.shadowColor='#ff174b';ctx.fillStyle='#ff174b';ctx.fillRect(-9,-17,7,5);ctx.fillRect(3,-17,7,5);ctx.fillStyle='#fff0f4';ctx.fillRect(-7,-16,3,2);ctx.fillRect(5,-16,3,2);ctx.shadowBlur=0;ctx.strokeStyle='#ff174b';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-4,-7);ctx.lineTo(0,-5);ctx.lineTo(4,-7);ctx.stroke();}
-else{ctx.fillStyle='#241821';ctx.fillRect(-8,-16,5,3);ctx.fillRect(4,-16,5,3);ctx.fillStyle='#de3f5f';ctx.fillRect(-8,-15,3,3);ctx.fillRect(5,-15,3,3);ctx.fillStyle='#8b4753';ctx.fillRect(-4,-9,8,2)}
-// Floating red loop sigil becomes a faster, sharper aura after every resurrection.
-ctx.save();ctx.translate(21,-3);ctx.rotate(Math.sin(time*(voidForm?5.5:2.5))*(voidForm?.35:.18));ctx.strokeStyle=voidForm?'#ff174b':'#ff5d83';ctx.lineWidth=voidForm?3:2;ctx.shadowBlur=voidForm?20:12;ctx.shadowColor=voidForm?'#ff174b':'#ff315f';ctx.beginPath();ctx.arc(0,0,voidForm?14:10,0,Math.PI*(voidForm?1.85:1.65));ctx.stroke();ctx.fillStyle=voidForm?'#ff174b':'#ff6b93';ctx.fillRect(-2,-15,4,5);ctx.fillRect(8,5,4,4);ctx.fillRect(-11,4,4,4);ctx.restore();
-if(voidForm){ctx.save();ctx.globalAlpha=.5+.25*Math.sin(time*8);ctx.strokeStyle='#ff174b';ctx.shadowColor='#ff174b';ctx.shadowBlur=15;ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(0,5,32+Math.sin(time*9)*4,45+Math.cos(time*7)*5,0,0,TAU);ctx.stroke();ctx.restore()}
-ctx.restore()}
+  ctx.save();ctx.translate(x,y);ctx.globalAlpha*=alpha;
+  if(boss.hit>0)ctx.globalAlpha*=.58+.42*Math.sin(time*85);
+  const voidForm=boss.blackForm, pulse=.5+.5*Math.sin(time*(voidForm?13:6));
+  // Red rift aura: several rotating curved rings, afterimage specks and a dark halo.
+  ctx.save();ctx.globalCompositeOperation='screen';
+  const halo=ctx.createRadialGradient(0,-7,2,0,-7,voidForm?82:54);halo.addColorStop(0,voidForm?'rgba(255,14,58,.28)':'rgba(255,60,105,.16)');halo.addColorStop(1,'rgba(255,20,66,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-2,voidForm?68:44,voidForm?62:42,0,0,TAU);ctx.fill();
+  for(let i=0;i<(voidForm?5:3);i++){ctx.globalAlpha=(voidForm?.22:.12)+pulse*.10;ctx.strokeStyle=i%2?'#ff254e':'#ff9ab3';ctx.lineWidth=voidForm?2.2:1.25;ctx.beginPath();ctx.ellipse(0,-2,27+i*11+Math.sin(time*5+i)*3,10+i*6, time*(i%2?-.8:.7)+i*.35,0,TAU);ctx.stroke();}
+  for(let i=0;i<(voidForm?20:8);i++){const a=time*(voidForm?2.2:1)+i*TAU/(voidForm?20:8),r=26+(i%4)*8+Math.sin(time*7+i)*3;ctx.globalAlpha=.25+.55*pulse;ctx.fillStyle=i%3?'#ff365f':'#fff0f4';ctx.beginPath();ctx.arc(Math.cos(a)*r,-4+Math.sin(a)*r*.72,voidForm?1.8:1.2,0,TAU);ctx.fill();}
+  ctx.restore();ctx.globalAlpha=alpha;
+  // Shadow and legs, built from tapered curves rather than rectangular pieces.
+  ctx.fillStyle='rgba(0,0,0,.34)';ctx.beginPath();ctx.ellipse(0,26,24,6,0,0,TAU);ctx.fill();
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.strokeStyle='#090a10';ctx.lineWidth=13;ctx.beginPath();ctx.moveTo(-8,7);ctx.bezierCurveTo(-11,15,-15,21,-14,25);ctx.moveTo(7,7);ctx.bezierCurveTo(10,15,14,20,14,25);ctx.stroke();
+  ctx.strokeStyle=voidForm?'#25202f':'#3d3245';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(-8,7);ctx.bezierCurveTo(-11,15,-15,21,-14,25);ctx.moveTo(7,7);ctx.bezierCurveTo(10,15,14,20,14,25);ctx.stroke();
+  ctx.fillStyle='#171522';ctx.beginPath();ctx.moveTo(-23,24);ctx.quadraticCurveTo(-15,21,-8,25);ctx.lineTo(-4,29);ctx.quadraticCurveTo(-14,32,-25,29);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(5,25);ctx.quadraticCurveTo(13,20,22,24);ctx.lineTo(27,29);ctx.quadraticCurveTo(15,33,4,29);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#8f7888';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(-21,28);ctx.quadraticCurveTo(-14,30,-7,28);ctx.moveTo(7,28);ctx.quadraticCurveTo(16,30,25,27);ctx.stroke();
+  // Coat/body with flowing hem, lapels and a red determination stripe.
+  const coat=ctx.createLinearGradient(-18,-16,20,13);coat.addColorStop(0,voidForm?'#07070d':'#17151e');coat.addColorStop(.48,voidForm?'#16101d':'#352a38');coat.addColorStop(1,'#080910');
+  ctx.fillStyle=coat;ctx.strokeStyle='#090810';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-11,-18);ctx.quadraticCurveTo(-23,-17,-20,-4);ctx.lineTo(-25,9);ctx.quadraticCurveTo(-15,15,-6,10);ctx.lineTo(0,4);ctx.lineTo(8,12);ctx.quadraticCurveTo(18,14,24,6);ctx.lineTo(17,-7);ctx.quadraticCurveTo(17,-17,8,-19);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle=voidForm?'#06050a':'#211b29';ctx.beginPath();ctx.moveTo(-9,-15);ctx.quadraticCurveTo(-3,-4,0,7);ctx.quadraticCurveTo(4,-5,10,-15);ctx.lineTo(5,-18);ctx.lineTo(-5,-18);ctx.closePath();ctx.fill();
+  ctx.strokeStyle=voidForm?'#ff234e':'#9e283f';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-3,-11);ctx.quadraticCurveTo(2,-3,0,6);ctx.stroke();ctx.strokeStyle='#ff9eb2';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-3,-10);ctx.quadraticCurveTo(1,-3,0,4);ctx.stroke();
+  ctx.strokeStyle=voidForm?'#ff3157':'#6b4052';ctx.lineWidth=1.25;ctx.beginPath();ctx.moveTo(-18,-7);ctx.quadraticCurveTo(-8,-1,-10,9);ctx.moveTo(15,-8);ctx.quadraticCurveTo(7,0,11,9);ctx.stroke();
+  // Sleeves and hands; arms rise when the rift aura pulses.
+  const lift=Math.sin(time*(voidForm?8:3.5))*2.8;
+  ctx.strokeStyle='#090810';ctx.lineWidth=9;ctx.beginPath();ctx.moveTo(-15,-14);ctx.quadraticCurveTo(-26,-11,-27,-2);ctx.quadraticCurveTo(-26,3,-31,4);ctx.moveTo(15,-14);ctx.quadraticCurveTo(25,-17,26,-8-lift);ctx.quadraticCurveTo(28,-2,32,-5-lift);ctx.stroke();
+  ctx.strokeStyle=voidForm?'#ded8e6':'#c8b8c4';ctx.lineWidth=5.5;ctx.beginPath();ctx.moveTo(-15,-14);ctx.quadraticCurveTo(-24,-11,-25,-2);ctx.quadraticCurveTo(-25,2,-30,4);ctx.moveTo(15,-14);ctx.quadraticCurveTo(23,-16,24,-8-lift);ctx.quadraticCurveTo(27,-2,31,-5-lift);ctx.stroke();
+  ctx.strokeStyle='#f5dfea';ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(-30,4);ctx.lineTo(-34,10);ctx.moveTo(-30,4);ctx.lineTo(-27,11);ctx.moveTo(-30,4);ctx.lineTo(-22,7);ctx.moveTo(31,-5-lift);ctx.lineTo(36,-12-lift);ctx.moveTo(31,-5-lift);ctx.lineTo(39,-5-lift);ctx.moveTo(31,-5-lift);ctx.lineTo(32,3-lift);ctx.stroke();
+  // Neck and face. The hair silhouette is layered with curved locks, not blocks.
+  ctx.fillStyle='#1a131d';ctx.beginPath();ctx.moveTo(-7,-23);ctx.quadraticCurveTo(-2,-27,6,-23);ctx.lineTo(6,-16);ctx.lineTo(-6,-15);ctx.closePath();ctx.fill();
+  const skin=ctx.createLinearGradient(-12,-38,13,-15);skin.addColorStop(0,voidForm?'#2b101d':'#f7dfcc');skin.addColorStop(.62,voidForm?'#09060d':'#d5a88e');skin.addColorStop(1,voidForm?'#020207':'#8f5b54');ctx.fillStyle=skin;ctx.strokeStyle='#100a13';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(-13,-33);ctx.quadraticCurveTo(-11,-42,0,-42);ctx.quadraticCurveTo(13,-42,14,-31);ctx.lineTo(12,-21);ctx.quadraticCurveTo(9,-15,2,-14);ctx.quadraticCurveTo(-8,-15,-12,-22);ctx.closePath();ctx.fill();ctx.stroke();
+  const hair=ctx.createLinearGradient(-18,-45,14,-25);hair.addColorStop(0,voidForm?'#040309':'#1b141e');hair.addColorStop(.5,voidForm?'#14070f':'#47313c');hair.addColorStop(1,'#09070d');ctx.fillStyle=hair;ctx.beginPath();ctx.moveTo(-15,-29);ctx.quadraticCurveTo(-21,-36,-13,-43);ctx.quadraticCurveTo(-9,-50,0,-46);ctx.quadraticCurveTo(8,-52,14,-43);ctx.quadraticCurveTo(19,-37,13,-29);ctx.lineTo(8,-34);ctx.lineTo(4,-39);ctx.lineTo(-1,-33);ctx.lineTo(-6,-39);ctx.lineTo(-11,-31);ctx.closePath();ctx.fill();ctx.strokeStyle='#785264';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-12,-41);ctx.quadraticCurveTo(-4,-45,1,-41);ctx.moveTo(3,-43);ctx.quadraticCurveTo(10,-45,13,-38);ctx.stroke();
+  if(voidForm){ctx.shadowColor='#ff123e';ctx.shadowBlur=12;ctx.fillStyle='#ff1c4b';ctx.beginPath();ctx.ellipse(-5,-28,3.6,4.8,-.2,0,TAU);ctx.ellipse(6,-28,3.6,4.8,.2,0,TAU);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff3f5';ctx.beginPath();ctx.arc(-4,-29,1.2,0,TAU);ctx.arc(7,-29,1.2,0,TAU);ctx.fill();ctx.strokeStyle='#5b0b20';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(-5,-20);ctx.quadraticCurveTo(0,-17,6,-20);ctx.stroke();}
+  else{ctx.fillStyle='#1c121c';ctx.beginPath();ctx.ellipse(-5,-28,2.2,3.1,0,0,TAU);ctx.ellipse(6,-28,2.2,3.1,0,0,TAU);ctx.fill();ctx.fillStyle='#ff718f';ctx.beginPath();ctx.arc(-5,-28,1,0,TAU);ctx.arc(6,-28,1,0,TAU);ctx.fill();ctx.strokeStyle='#8d5660';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(-4,-20);ctx.quadraticCurveTo(0,-18,4,-20);ctx.stroke();}
+  // A tiny red loop sigil hovers near the shoulder, beating faster after each reset.
+  ctx.save();ctx.translate(23,-14);ctx.rotate(time*(voidForm?4.5:2.1));ctx.strokeStyle=voidForm?'#ff174b':'#ff658a';ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=14;ctx.lineWidth=1.7;ctx.beginPath();ctx.arc(0,0,8,0,Math.PI*1.62);ctx.stroke();ctx.beginPath();ctx.moveTo(-5,-4);ctx.lineTo(2,0);ctx.lineTo(-2,5);ctx.stroke();ctx.restore();
+  ctx.restore();
+}
+function drawCharaPowerAura(x,y,r=56,finalForm=true,flash=0){
+  ctx.save();ctx.globalCompositeOperation='screen';const p=.55+.45*Math.sin(time*(finalForm?11:6));
+  const g=ctx.createRadialGradient(x,y,4,x,y,r*1.7);g.addColorStop(0,finalForm?'rgba(255,20,63,.32)':'rgba(255,65,105,.18)');g.addColorStop(1,'rgba(255,0,45,0)');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y,r*1.35,r*1.65,0,0,TAU);ctx.fill();
+  for(let i=0;i<(finalForm?7:4);i++){const a=time*(i%2?-.55:.8)+i*TAU/(finalForm?7:4);ctx.globalAlpha=(.25+i*.035)*p;ctx.strokeStyle=i%2?'#ff284f':'#ffd4df';ctx.lineWidth=finalForm?2.4:1.4;ctx.beginPath();ctx.ellipse(x+Math.cos(a)*5,y+Math.sin(a)*6,r*.68+i*5,r*.2+i*5,a,0,TAU);ctx.stroke();}
+  for(let i=0;i<(finalForm?20:9);i++){const a=time*(finalForm?2.8:1.4)+i*TAU/(finalForm?20:9),rr=r*(.55+(i%4)*.12);ctx.globalAlpha=.22+.55*p;ctx.fillStyle=i%4===0?'#fff0f5':'#ff315b';ctx.beginPath();ctx.moveTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);ctx.lineTo(x+Math.cos(a+.08)*rr+4,y+Math.sin(a+.08)*rr-7);ctx.lineTo(x+Math.cos(a+.16)*rr,y+Math.sin(a+.16)*rr+4);ctx.closePath();ctx.fill();}
+  if(flash>0){ctx.globalAlpha=flash;ctx.strokeStyle='#fff1f4';ctx.lineWidth=4;ctx.beginPath();ctx.arc(x,y,r*(1.1-flash*.2),0,TAU);ctx.stroke();}
+  ctx.restore();
+}
+
 function drawEffects(){for(const t of trail){ctx.globalAlpha=clamp(t.life/t.max,0,1)*.48;ctx.fillStyle=t.color;ctx.fillRect(t.x-11,t.y-16,22,28)}ctx.globalAlpha=1;
 for(const h of hazards){ctx.save();const a=clamp(h.life/h.max,0,1);if(h.type==='line'){ctx.globalAlpha=.28+.48*Math.sin(time*45);ctx.strokeStyle='#ff526f';ctx.lineWidth=2;ctx.setLineDash([8,7]);ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(h.x2,h.y2);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#ff5475';ctx.beginPath();ctx.arc(h.x2,h.y2,8,0,TAU);ctx.fill()}else if(h.type==='ring'){ctx.globalAlpha=.75;ctx.strokeStyle='#ff5475';ctx.lineWidth=4;ctx.beginPath();ctx.arc(h.x,h.y,h.r+(1-a)*80,0,TAU);ctx.stroke();ctx.globalAlpha=.13;ctx.fillStyle='#ff4569';ctx.beginPath();ctx.arc(h.x,h.y,h.r+(1-a)*80,0,TAU);ctx.fill()}else if(h.type==='slash'){ctx.globalAlpha=a;ctx.strokeStyle='#ff5a7a';ctx.lineWidth=22*a;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(h.x+Math.cos(h.ang)*h.len,h.y+Math.sin(h.ang)*h.len);ctx.stroke();ctx.strokeStyle='#ffb5c3';ctx.lineWidth=3;ctx.stroke()}ctx.restore()}ctx.globalAlpha=1;
 for(const b of bolts){ctx.save();ctx.translate(b.x,b.y);ctx.rotate(b.spin);if(b.kind==='red'||b.kind==='pink'){ctx.shadowBlur=15;ctx.shadowColor=b.kind==='pink'?'#ff3d98':'#ff395f';ctx.fillStyle=b.kind==='pink'?'#ff70bd':'#ff5b77';ctx.beginPath();ctx.moveTo(0,-b.r*1.5);ctx.lineTo(b.r,0);ctx.lineTo(0,b.r*1.5);ctx.lineTo(-b.r,0);ctx.closePath();ctx.fill();ctx.fillStyle='#fff1f5';ctx.fillRect(-1,-2,2,4)}else{ctx.shadowBlur=13;ctx.shadowColor=b.kind==='purple'?'#a78bfa':'#5ff4ff';ctx.fillStyle=b.kind==='purple'?'#beaaff':'#76f8ff';ctx.beginPath();ctx.arc(0,0,b.r,0,TAU);ctx.fill();ctx.fillStyle='#fff';ctx.fillRect(-2,-2,4,4)}ctx.restore()}
@@ -3313,10 +3349,10 @@ function drawCharaEncounterBanner(title,subtitle,color='#ff4264'){
   roundedRect(190,22,580,64,13,'rgba(8,3,16,.94)',color);ctx.textAlign='center';ctx.fillStyle=color==='#ff3157'?'#ffb0bd':'#ff9caf';ctx.font='1000 13px ui-monospace,monospace';ctx.fillText(title,480,46);ctx.fillStyle='#fff1f5';ctx.font='bold 11px Inter,Segoe UI,Arial,sans-serif';ctx.fillText(subtitle,480,68);
 }
 function drawCharaEncounterDialogue(text,subtitle='ENTER / CHẠM ĐỂ TIẾP ▶',color='#ff6687'){
-  roundedRect(54,418,852,112,16,'rgba(4,6,16,.93)',color);roundedRect(64,428,832,92,12,null,'rgba(255,255,255,.08)');
-  ctx.textAlign='left';ctx.fillStyle=color;ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('SANS OMNI GOD ERROL',82,449);
-  ctx.fillStyle='#f5f6ff';ctx.font='bold 17px Inter,Segoe UI,Arial,sans-serif';drawIntroWrappedText(text,82,477,790,23);
-  ctx.textAlign='right';ctx.fillStyle='#b8c6e9';ctx.font='bold 9px ui-monospace,monospace';ctx.globalAlpha=.65+.35*Math.sin(time*8);ctx.fillText(subtitle,884,508);ctx.globalAlpha=1;
+  roundedRect(190,466,580,60,12,'rgba(4,6,16,.64)',color);
+  ctx.textAlign='left';ctx.fillStyle=color;ctx.font='1000 9px ui-monospace,monospace';ctx.fillText('ERROL · CHRONICLE',210,484);
+  ctx.fillStyle='#f5f6ff';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';drawIntroWrappedText(text,210,505,540,16);
+  ctx.textAlign='right';ctx.fillStyle='#b8c6e9';ctx.font='bold 8px ui-monospace,monospace';ctx.globalAlpha=.45+.3*Math.sin(time*8);ctx.fillText(subtitle,750,516);ctx.globalAlpha=1;
 }
 function updateCharaEncounter(dt){
   villageCharaTime+=dt;villageCharaAttackCooldown=Math.max(0,villageCharaAttackCooldown-dt);
@@ -3325,11 +3361,12 @@ function updateCharaEncounter(dt){
   else if(villageCharaPhase==='crouch'&&t>=1.55){villageCharaPhase='redDash';villageCharaTime=0;screenShake=5;setStatus('<b>REDLINE · TỐC ĐỘ PHI LÝ</b><br>Chỉ còn một vệt đỏ xé xuyên khu rừng!');sound(90,.22,'sawtooth',.065);}
   else if(villageCharaPhase==='redDash'&&t>=.92){villageCharaPhase='impact';villageCharaTime=0;villageCharaKills=0;screenShake=22;flash=.55;spawnBurst(718,421,'#ff214b',85,410);spawnBurst(718,421,'#fff0f5',32,250);setStatus('<b>VA CHẠM · CHARA GỤC XUỐNG</b><br>Một cú lao duy nhất khiến Chara ngã xuống… nhưng chuyện này chưa kết thúc.');announce.textContent='Errol biến thành một vệt đỏ và húc thẳng vào Chara. Cú va chạm hạ Chara ngay lập tức.';sound(54,.38,'square',.09);}
   else if(villageCharaPhase==='impact'&&t>=.8){villageCharaPhase='revive';villageCharaTime=0;boss.blackForm=true;screenShake=4;setStatus('<b>CHARA · TÁI SINH</b><br>Thân thể tan thành những điểm đỏ rồi bị kéo ngược về một chỗ.');sound(180,.24,'triangle',.05);}
-  else if(villageCharaPhase==='revive'&&t>=2.45){villageCharaPhase='battleIntro';villageCharaTime=0;boss.blackForm=true;setStatus('<b>CHARA HỒI SINH · BẮT ĐẦU ĐIỀU KHIỂN</b><br>Nhấn J / K / Q / F / SPACE hoặc chạm màn hình để tung một đòn. Mỗi đòn chỉ cần trúng một lần.');announce.textContent='Chara hồi sinh. Giờ người chơi điều khiển Errol chiến đấu; mỗi đòn đánh One Shot sẽ hạ Chara trong một lần.';}
-  else if(villageCharaPhase==='playerStrike'&&t>=.46){villageCharaPhase='charaDown';villageCharaTime=0;screenShake=16;flash=.24;spawnBurst(714,421,'#ff234f',38,300);spawnBurst(714,421,'#ffeaf0',18,190);sound(65,.22,'square',.07);}
-  else if(villageCharaPhase==='charaDown'&&t>=.82){if(villageCharaKills>=7){villageCharaPhase='absoluteMontage';villageCharaTime=0;villageCharaMontageIndex=0;setStatus('<b>ABSOLUTE · 7 LẦN HẠ GỤC</b><br>Những lần Chara bị hạ gục tua lại thành một chuỗi cảnh chớp nhoáng.');screenShake=9;}else{villageCharaPhase='charaRevive';villageCharaTime=0;boss.blackForm=villageCharaKills>=3;setStatus('<b>CHARA LẠI HỒI SINH · VÒNG '+villageCharaKills+'/7</b><br>Đối thủ lại đứng dậy. Hãy thử một kỹ năng khác nếu muốn — mọi đòn đều kết liễu trong một nhát.');sound(165,.2,'sawtooth',.035);}}
-  else if(villageCharaPhase==='charaRevive'&&t>=1.3){villageCharaPhase='battle';villageCharaTime=0;player.x=265;player.y=450;player.faceX=1;boss.blackForm=villageCharaKills>=4;}
-  else if(villageCharaPhase==='absoluteMontage'&&t>=7.3){villageCharaPhase='fatigue';villageCharaTime=0;player.x=445;player.y=460;screenShake=0;setStatus('<b>ERROL · KIỆT SỨC</b><br>Ánh sáng One Shot nhấp nháy. Trong khoảnh khắc mất cảnh giác, cậu không nhận ra Chara đang ở phía sau.');}
+  else if(villageCharaPhase==='revive'&&t>=2.45){villageCharaPhase='battleIntro';villageCharaTime=0;boss.blackForm=true;setStatus('<b>CHARA HỒI SINH · BẮT ĐẦU ĐIỀU KHIỂN</b><br>Nhấn J / K / Q / F / SPACE hoặc chạm màn hình. Sau mỗi lần hạ gục, hãy chứng kiến Chara vùng vẫy tìm lối thoát — vòng lặp vẫn kéo cô trở lại.');announce.textContent='Chara hồi sinh. Giờ người chơi điều khiển Errol chiến đấu; mỗi đòn đánh One Shot sẽ hạ Chara trong một lần.';}
+  else if(villageCharaPhase==='playerStrike'&&t>=.78){villageCharaPhase='charaDown';villageCharaTime=0;screenShake=16;flash=.24;spawnBurst(714,421,'#ff234f',38,300);spawnBurst(714,421,'#ffeaf0',18,190);sound(65,.22,'square',.07);}
+  else if(villageCharaPhase==='charaDown'&&t>=1.35){if(villageCharaKills>=7){villageCharaPhase='absoluteMontage';villageCharaTime=0;villageCharaMontageIndex=0;setStatus('<b>ABSOLUTE · 7 VÒNG LẶP BỊ KHÓA</b><br>Toàn bộ cuộc chiến tua lại chậm rồi vỡ thành bảy lát cắt; Chara không tìm được đường thoát.');screenShake=9;}else{villageCharaPhase='charaStruggle';villageCharaTime=0;boss.blackForm=villageCharaKills>=3;screenShake=4;setStatus('<b>CHARA · CỐ PHÁ VÒNG LẶP '+villageCharaKills+'/7</b><br>Chara vùng chạy khỏi điểm va chạm, tung đòn phản công và tìm một lối thoát — nhưng đường đi lại kéo cô trở về đúng vị trí cũ.');announce.textContent='Chara cố thoát khỏi vòng lặp và phản công, nhưng mỗi đường đi lại đưa cô trở về điểm xuất phát.';sound(165,.2,'sawtooth',.035);}}
+  else if(villageCharaPhase==='charaStruggle'&&t>=2.75){villageCharaPhase='charaRevive';villageCharaTime=0;boss.blackForm=villageCharaKills>=4;setStatus('<b>RESET · KHÔNG CÓ LỐI RA</b><br>Mọi thứ quay về đúng khoảnh khắc trước đó. Chara lại phải đứng dậy, biết trước điều gì sắp tới.');sound(110,.25,'triangle',.04);}
+  else if(villageCharaPhase==='charaRevive'&&t>=2.25){villageCharaPhase='battle';villageCharaTime=0;player.x=265;player.y=450;player.faceX=1;boss.blackForm=villageCharaKills>=4;}
+  else if(villageCharaPhase==='absoluteMontage'&&t>=12.6){villageCharaPhase='fatigue';villageCharaTime=0;player.x=445;player.y=460;screenShake=0;setStatus('<b>ERROL · KIỆT SỨC</b><br>Ánh sáng One Shot nhấp nháy. Trong khoảnh khắc mất cảnh giác, cậu không nhận ra Chara đang ở phía sau.');}
   else if(villageCharaPhase==='fatigue'&&t>=2.4){villageCharaPhase='ambush';villageCharaTime=0;screenShake=7;setStatus('<b>ĐÒN ĐÁNH LÉN</b><br>Soạc — một nhát chém đỏ xé ngang lưng Errol.');sound(130,.28,'sawtooth',.06);}
   else if(villageCharaPhase==='ambush'&&t>=1.05){villageCharaPhase='collapse';villageCharaTime=0;screenShake=11;flash=.25;villageCharaHeartX=560;villageCharaHeartY=413;setStatus('<b>LINH HỒN NỨT ĐÔI</b><br>Errol khuỵu xuống, dựa vào thân cây. Một nửa trái tim tan đi; nửa còn lại trôi lên bầu trời.');spawnBurst(558,420,'#ff345c',45,180);}
   else if(villageCharaPhase==='collapse'&&t>=3.1){villageCharaPhase='soulFlight';villageCharaTime=0;villageCharaCosmicProgress=0;setStatus('<b>MỘT NỬA LINH HỒN LANG THANG</b><br>Nửa trái tim còn lại rời khỏi khu rừng, bay qua tầng mây, vượt khỏi bầu trời…');}
@@ -3342,23 +3379,145 @@ function updateCharaEncounter(dt){
   else if(villageCharaPhase==='earthFreeze'&&t>=5.0){villageCharaPhase='planetFreeze';villageCharaTime=0;setStatus('<b>VƯỢT QUA CÁC HÀNH TINH</b><br>Trên những thế giới xa lạ, gió, nước và tán lá lần lượt ngừng chuyển động.');}
   else if(villageCharaPhase==='planetFreeze'&&t>=5.8){villageCharaPhase='universeFreeze';villageCharaTime=0;setStatus('<b>VƯỢT QUA BẦU TRỜI SAO</b><br>Vòng xanh rời khỏi từng hành tinh, tiến vào những dải ngân hà xa xôi.');}
   else if(villageCharaPhase==='universeFreeze'&&t>=6.25){villageCharaPhase='timeWaveEnd';villageCharaTime=4.4;setStatus('<b>TIME CONTROL · QUY MÔ VŨ TRỤ</b><br>Cả vũ trụ chìm vào một khoảnh khắc tĩnh lặng. Errol đã thật sự thức tỉnh sức mạnh thời gian.');announce.textContent='Vòng năng lượng xanh bùng nổ từ Errol, máy quay kéo xa để thấy nó bao phủ vùng đất. Trên Trái Đất, một bông hoa đang đung đưa bỗng đứng yên; năng lượng tiếp tục đi qua nhiều hành tinh rồi bao trùm vũ trụ.';}
+  else if(villageCharaPhase==='cosmicDive'&&t>=4.35){villageCharaPhase='charaFinalIntro';villageCharaTime=0;charaFinalLoops=0;charaFinalHP=charaFinalMaxHP=280;charaFinalPlayerHP=charaFinalPlayerMaxHP=5;charaBattleX=735;charaTeleportTimer=1.15;charaAttackTimer=1.05;charaAttackWarn=0;charaAttackType=0;charaFinalCooldown=0;charaFinalInvuln=0;charaFinalTimeStop=0;charaFinalShield=0;player.x=245;player.y=454;player.mana=100;player.faceX=1;setStatus('<b>TIME CONTROL · RETURN IMPACT</b><br>Errol lao từ ngoài khí quyển xuống khu rừng. Chara đứng giữa một luồng đỏ rực — trận cuối bắt đầu.');screenShake=12;flash=.22;}
+  else if(villageCharaPhase==='charaFinalIntro'&&t>=2.6){villageCharaPhase='charaFinalBattle';villageCharaTime=0;setStatus('<b>CHARA · RESETS CANNOT SAVE YOU</b><br>Chara dịch chuyển liên tục, tung bão chém đỏ và dựng vòng lặp. Né bằng WASD/joystick; J, K, Q, E, R, F, Space, L đều dùng được.');}
+  else if(villageCharaPhase==='charaFinalLoop'&&t>=1.65){if(charaFinalLoops>=7){villageCharaPhase='charaFinalDefeated';villageCharaTime=0;setStatus('<b>CHARA · LOOP 07 / 07</b><br>Vòng lặp khóa lại. Chara mất dần ý chí chống cự.');}else{villageCharaPhase='charaFinalBattle';villageCharaTime=0;charaFinalHP=charaFinalMaxHP=Math.max(185,300-charaFinalLoops*16);charaBattleX=[620,735,825,675,790,640,760][charaFinalLoops%7];charaTeleportTimer=.75;charaAttackTimer=.8;charaFinalInvuln=.45;player.mana=Math.min(100,player.mana+18);setStatus('<b>CHARA · RESET '+charaFinalLoops+'/7</b><br>Cô tái hiện lại từ vệt đỏ, nhưng sức mạnh cũng bùng lên dữ dội hơn.');}}
+  else if(villageCharaPhase==='charaFinalDefeated'&&t>=3.5){villageCharaPhase='charaAfterTime';villageCharaTime=0;setStatus('<b>CHARA · THE LOOP RELEASES</b><br>Chara quỳ xuống, không còn cố chống lại vòng lặp nữa. Một khe không gian bắt đầu mở phía sau Errol.');}
+  else if(villageCharaPhase==='charaAfterTime'&&t>=3.4){villageCharaPhase='warkRiftOpening';villageCharaTime=0;screenShake=8;flash=.16;setStatus('<b>XOẸT—!! · KHÔNG GIAN BỊ XÉ MỞ</b><br>Hai bàn tay bóng tối kéo hai mép bầu trời ra xa. Một vết nứt mở phía trên khu rừng.');sound(125,.3,'sawtooth',.06);}
+  else if(villageCharaPhase==='warkRiftOpening'&&t>=2.85){villageCharaPhase='warkEnter';villageCharaTime=0;setStatus('<b>THỰC THỂ BÊN KIA VẾT NỨT</b><br>Một bóng hình cao gầy bước qua vùng không gian đang mất màu.');}
+  else if(villageCharaPhase==='warkEnter'&&t>=2.5){villageCharaPhase='warkBattleIntro';villageCharaTime=0;player.x=235;player.y=470;player.faceX=1;player.faceY=0;warkHP=warkMaxHP=1800;warkPhase=1;warkX=700;warkY=475;warkTimeStop=0;warkShieldTimer=0;warkPlayerInvuln=0;warkPlayerHP=warkPlayerMaxHP=3;warkReviveReady=true;warkAttackCooldown=1.05;warkTelegraph=0;warkAttackCount=0;warkActionCooldown=0;warkTimeStopCooldown=0;warkRewindCooldown=0;warkManaCooldown=0;warkDashCooldown=0;warkLastX=player.x;warkLastY=player.y;warkBossHit=0;warkFinalForm=false;warkThirdEyeAwake=false;warkStoryClock=0;warkCodeEraseTimer=0;warkCompression=0;warkNullSlash=0;player.mana=100;setStatus('<b>WARLOCK SANS · OUTSIDE SPACE</b><br>Hắn tồn tại ngoài không gian; Errol không thể cảm nhận hắn cho đến khi khe nứt mở. Điều khiển Errol và chống đỡ các đòn thực tại.');announce.textContent='Sau vòng lặp Chara, Wark Lock Sans mở khe không gian. Trận đầu tiên chỉ là khởi đầu; Warlock sẽ thao túng thực tại, nén không gian rồi xóa mã tồn tại của Errol.';}
+  else if(villageCharaPhase==='warkBattle'&&((t>=18)||(warkHP<=1200&&t>4))){villageCharaPhase='warkOnslaught';villageCharaTime=0;warkTimeStop=0;warkTelegraph=0;warkCompression=0;warkCodeEraseTimer=0;screenShake=14;flash=.18;setStatus('<b>WARLOCK · REALITY OVERRIDE</b><br>Hắn đổi luật của chính trận đấu. Errol cảm nhận được cái chết cận kề.');}
+  else if(villageCharaPhase==='warkOnslaught'&&t>=4.25){villageCharaPhase='warkSpaceCompress';villageCharaTime=0;warkCompression=1;screenShake=16;flash=.22;setStatus('<b>SPACE COMPRESSION · NÉN KHÔNG GIAN</b><br>Khoảng cách bị ép thành một điểm. BÙMMMM—!!');}
+  else if(villageCharaPhase==='warkSpaceCompress'&&t>=4.1){villageCharaPhase='warkErrolGlitch';villageCharaTime=0;warkCompression=0;warkCodeEraseTimer=3.1;screenShake=19;flash=.28;setStatus('<b>ERROL // SOURCE CODE DAMAGED</b><br>Cơ thể Errol lệch pha, hình ảnh trượt khỏi chính nó. Đó là lý do cái tên Errol tồn tại trong lỗi mã.');}
+  else if(villageCharaPhase==='warkErrolGlitch'&&t>=3.1){villageCharaPhase='warkErrolCounter';villageCharaTime=0;warkCodeEraseTimer=0;screenShake=7;setStatus('<b>ERROL · COUNTERSTRIKE</b><br>Dù đang lỗi, Errol vẫn lao lên tung cú đánh phản công.');}
+  else if(villageCharaPhase==='warkErrolCounter'&&t>=2.35){villageCharaPhase='warkNullPointer';villageCharaTime=0;warkNullSlash=1;screenShake=13;setStatus('<b>NULL-POINTER STRIKE</b><br>Warlock bỏ qua vật lý, chém vào định nghĩa tồn tại của Errol.');}
+  else if(villageCharaPhase==='warkNullPointer'&&t>=3.25){villageCharaPhase='warkVoidDrift';villageCharaTime=0;warkNullSlash=0;warkPlayerHP=0;player.mana=0;setStatus('<b>ERROL · DEFINITION FADING</b><br>Ngay cả thời gian cũng không tìm được điểm để quay lại. Errol trôi ra ngoài đa vũ trụ.');}
+  else if(villageCharaPhase==='warkVoidDrift'&&t>=4.25){villageCharaPhase='warkDarkEnergy';villageCharaTime=0;setStatus('<b>UNKNOWN ESSENCE · DETECTED</b><br>Những giọt đen lấp lánh ánh kim xuất hiện trong chân không.');}
+  else if(villageCharaPhase==='warkDarkEnergy'&&t>=3.8){villageCharaPhase='warkThirdEyeAwakening';villageCharaTime=0;screenShake=9;flash=.2;setStatus('<b>THIRD EYE · OPENING</b><br>Năng lượng bí ẩn nhập vào cơ thể. Một con mắt đen kịt bắt đầu mở ở giữa trán.');}
+  else if(villageCharaPhase==='warkThirdEyeAwakening'&&t>=4.1){villageCharaPhase='warkFinalBattleIntro';villageCharaTime=0;warkThirdEyeAwake=true;warkFinalForm=true;warkPhase=1;warkMaxHP=warkHP=1600;warkPlayerMaxHP=5;warkPlayerHP=5;warkReviveReady=true;player.mana=100;player.x=235;player.y=470;player.inv=2;warkPlayerInvuln=2;warkActionCooldown=0;warkTimeStop=0;warkTelegraph=0;warkAttackCount=0;warkAttackCooldown=.8;warkSetStatus('BLACK THIRD EYE · AWAKENED','Tiềm năng gần như bất khả chiến bại đã thức tỉnh — nhưng cảm xúc của Errol bắt đầu đổi khác.');}
+  else if(villageCharaPhase==='warkBossShift'&&t>=1.8){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkAttackCooldown=warkThirdEyeAwake?.65:.85;warkTimeStop=0;setStatus(warkThirdEyeAwake?'<b>WARLOCK · NULL FORM</b><br>Không gian rạn vỡ quanh hắn — lần này, Errol có thể đánh trả.':'<b>WARLOCK · PHASE II</b><br>Vết nứt mở lại; các đợt tấn công nhanh và khó đoán hơn.');}
+  else if(villageCharaPhase==='warkDown'&&t>=5.2){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkPlayerHP=Math.max(1,warkReviveReady?2:1);warkReviveReady=false;player.mana=Math.max(55,player.mana);warkPlayerInvuln=1.8;warkTimeStop=1.1;setStatus('<b>TIME REWIND · ERROL TRỞ LẠI</b><br>Con mắt kéo Errol ra khỏi khoảnh khắc vừa gục ngã.');}
   if(villageCharaPhase==='battle'){
     const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0);
     const dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0);const m=Math.hypot(dx,dy);
     if(m){player.x=clamp(player.x+dx/m*220*dt,130,560);player.y=clamp(player.y+dy/m*160*dt,390,490);player.faceX=dx/m;player.faceY=dy/m;}
+    charaTeleportTimer-=dt;charaAttackTimer-=dt;charaAttackAnim=Math.max(0,charaAttackAnim-dt);charaTeleportFlash=Math.max(0,charaTeleportFlash-dt);
+    if(charaTeleportTimer<=0){const spots=[610,722,836,665,790];charaBattleX=spots[(Math.floor(time*1.7)+villageCharaKills)%spots.length];charaTeleportTimer=1.25+Math.random()*.7;charaTeleportFlash=.34;spawnBurst(charaBattleX,410,'#ff2758',18,105);}
+    if(charaAttackTimer<=0){charaAttackType=(charaAttackType+1)%4;charaAttackLane=player.y;charaAttackWarn=.48;charaAttackAnim=.72;charaAttackTimer=1.4;setStatus('<b>CHARA · TELEPORT RIFT</b><br>Cô biến mất khỏi điểm cũ và khóa một vùng đỏ — né sang làn khác hoặc phản công đúng nhịp.');}
+    if(charaAttackWarn>0){const was=charaAttackWarn;charaAttackWarn=Math.max(0,charaAttackWarn-dt);if(was>0&&charaAttackWarn===0){const hit=Math.abs(player.y-charaAttackLane)<44&&player.x>235;if(hit){screenShake=7;flash=.08;spawnBurst(player.x,player.y-24,'#ff3a61',12,100);setStatus('<b>CHARA · REDLINE HIT</b><br>Vệt chém đỏ quét qua làn này. Đổi hướng liên tục để thoát khỏi vòng lặp.');}}}
   }
+  if(villageCharaPhase==='charaFinalBattle')updateCharaFinalBattle(dt);
+  if(['warkBattle','warkDown','warkBossShift','warkVictory','warkFinalBattle'].includes(villageCharaPhase))updateWarkFight(dt);
 }
 function handleCharaEncounterAction(action){
   if(state!=='villageInterior'||villageHouseRoom!=='charaEncounter')return;
-  if(villageCharaPhase==='battleIntro'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaPhase='battle';villageCharaTime=0;player.x=265;player.y=450;player.faceX=1;player.faceY=0;setStatus('<b>ONE SHOT · ĐỐI ĐẦU CHARA</b><br>Di chuyển WASD. J đánh, K phân liệt, Q Eye III, F EXO, Space lướt. Mỗi đòn trúng sẽ hạ Chara ngay lập tức.');sound(440,.13,'triangle',.035);return;}
+  if(villageCharaPhase==='timeWaveEnd'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaFinalPrompt=false;villageCharaPhase='cosmicDive';villageCharaTime=0;screenShake=4;player.mana=100;setStatus('<b>RETURN VECTOR · EARTH LOCKED</b><br>Errol rời khỏi vũ trụ, khóa điểm đến trên Trái Đất rồi lao thẳng xuống.');announce.textContent='Thời gian tiếp tục trôi. Errol từ ngoài vũ trụ lao xuống Trái Đất, nơi Chara đã hồi phục và đang chờ đối đầu lần nữa.';sound(95,.36,'sawtooth',.06);return;}
+  if(villageCharaPhase==='charaFinalIntro'&&['enter','click','interact','start','attack'].includes(action)){villageCharaPhase='charaFinalBattle';villageCharaTime=0;setStatus('<b>CHARA · LOOP 01 / 07</b><br>Chara bắt đầu dịch chuyển và tung đòn liên hoàn. Né các đường chém rồi phản công bằng kỹ năng.');return;}
+  if(villageCharaPhase==='charaFinalBattle'){handleCharaFinalAction(action);return;}
+  if(villageCharaPhase==='warkBattleIntro'&&['enter','click','interact','start','attack'].includes(action)){handleWarkAction(action);return;}
+  if(villageCharaPhase==='warkFinalBattleIntro'&&['enter','click','interact','start','attack'].includes(action)){handleWarkAction(action);return;}
+  if(['warkBattle','warkDown','warkFinalBattle','warkVictory'].includes(villageCharaPhase)){handleWarkAction(action);return;}
+  if(villageCharaPhase==='battleIntro'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaPhase='battle';villageCharaTime=0;player.x=265;player.y=450;player.faceX=1;player.faceY=0;setStatus('<b>ONE SHOT · ĐỐI ĐẦU CHARA</b><br>Di chuyển WASD. J đánh, K phân liệt, Q Eye III, F EXO, Space lướt. Mỗi đòn hạ Chara, rồi cô cố thoát vòng lặp trước khi tái sinh.');sound(440,.13,'triangle',.035);return;}
   if(villageCharaPhase==='battle'&&villageCharaAttackCooldown<=0&&['attack','special','eye3','exo','dash','ward','parry','enter','click','interact','compass'].includes(action)){
     villageCharaAction=action;villageCharaAttackStartX=player.x;villageCharaAttackCooldown=.38;villageCharaKills++;villageCharaPhase='playerStrike';villageCharaTime=0;player.faceX=1;player.faceY=0;screenShake=5;
     const labels={attack:'SOUL STRIKE',special:'FRACTURE',eye3:'EYE III',exo:'EXO VERDICT',dash:'REDLINE DASH',ward:'SOUL WARD',parry:'PARRY COUNTER',compass:'SOUL COMPASS',enter:'ONE SHOT',click:'SPACE CUT',interact:'ONE SHOT'};
     setStatus('<b>'+((labels[action]||'ONE SHOT').toUpperCase())+' · CHARA GỤC '+villageCharaKills+'/7</b><br>Đòn đánh đỏ xuyên qua không gian và kết liễu Chara chỉ trong một lần.');announce.textContent='Errol tung '+(labels[action]||'One Shot')+'. Chara bị hạ gục ngay lập tức.';sound(300+villageCharaKills*50,.16,'sawtooth',.05);return;
   }
   if(villageCharaPhase==='timeEyeEnd'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaFinalPrompt=false;villageCharaPhase='timeWaveCharge';villageCharaTime=0;screenShake=2;setStatus('<b>TIME CONTROL · NĂNG LƯỢNG ĐANG TÍCH TỤ</b><br>Một vòng sáng xanh bắt đầu xoay quanh Errol. Hãy nhìn ra xa…');announce.textContent='Con Mắt Điều Khiển Thời Gian bắt đầu giải phóng một vòng năng lượng xanh.';sound(240,.35,'triangle',.05);return;}
-  if(villageCharaPhase==='timeWaveEnd'&&(action==='enter'||action==='click'||action==='interact')){setStatus('<b>TIME CONTROL · TOÀN VŨ TRỤ ĐÃ ĐÓNG BĂNG</b><br>Cảnh thức tỉnh đã hoàn tất. Dùng nút ⋯ để ghim thời điểm này.');announce.textContent='Cả vũ trụ đã đứng yên trong khoảnh khắc đầu tiên của Con Mắt Điều Khiển Thời Gian.';return;}
+
 }
+function warkSetStatus(title,body){setStatus('<b>'+title+'</b><br>'+body);}
+function warkDamageBoss(amount,effect='rift'){
+  if(!['warkBattle','warkFinalBattle'].includes(villageCharaPhase))return;
+  warkHP=Math.max(0,warkHP-amount);
+  // Warlock's first act is canonically overwhelming: the first health bar can be pushed back, not defeated before his code-erasure sequence.
+  if(!warkThirdEyeAwake&&villageCharaPhase==='warkBattle')warkHP=Math.max(1200,warkHP);
+  warkBossHit=.42;warkActionEffect=effect;warkActionEffectTimer=.68;warkFinalAttackFlash=.35;
+  screenShake=Math.max(screenShake,3+amount*.18);spawnBurst(warkX,warkY-150,warkFinalForm?'#ff547b':'#a99aff',Math.min(30,8+Math.floor(amount/2)),150+amount*2);
+  sound(effect==='time'?690:320+amount*9,.12,effect==='space'?'sawtooth':'triangle',.035);
+  if(warkHP<=0&&warkThirdEyeAwake&&villageCharaPhase==='warkFinalBattle'){villageCharaPhase='warkVictory';villageCharaTime=0;warkTelegraph=0;warkTimeStop=0;screenShake=18;flash=.42;spawnBurst(warkX,warkY-140,'#d9fbff',90,350);warkSetStatus('WARLOCK · NULL FORM COLLAPSED','Nhát Time Control cuối cùng phá vỡ lớp thao túng thực tại. Errol thắng — nhưng con mắt thứ ba vẫn mở.');announce.textContent='Errol dùng con mắt thứ ba để đánh bại Warlock Sans. Tiềm năng gần như bất khả chiến bại đã chiến thắng, nhưng cảm xúc của Errol đã bị tha hóa.';return;}
+  if(warkPhase===1&&warkHP<=warkMaxHP*.5){warkPhase=2;warkFinalForm=true;villageCharaPhase='warkBossShift';villageCharaTime=0;warkTelegraph=0;screenShake=15;flash=.23;warkSetStatus('WARLOCK · NULL FORM','Hắn gập hai lớp thực tại lại. Những đường viền của cả chiến trường chuyển sang đỏ tím.');}
+}
+
+function handleWarkAction(action){
+  const accepted=['attack','special','eye3','exo','dash','ward','parry','enter','click','interact','start','compass'];
+  if(!accepted.includes(action))return;
+  if(villageCharaPhase==='warkDown'){
+    if((action==='parry'||action==='compass'||action==='exo')&&warkReviveReady){warkPlayerHP=Math.min(warkPlayerMaxHP,warkThirdEyeAwake?4:2);warkReviveReady=false;player.mana=82;warkPlayerInvuln=2.1;warkTimeStop=1.8;villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;screenShake=10;spawnBurst(player.x,player.y-42,'#7ceeff',54,230);warkSetStatus('CON MẮT THỜI GIAN · HỒI SINH','Errol quay ngược khoảnh khắc gục ngã và trở lại trận chiến.');return;}
+    if(action==='compass'){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkPlayerHP=1;player.mana=100;warkPlayerInvuln=1.6;warkTimeStop=1.2;return;}
+    return;
+  }
+  if(villageCharaPhase==='warkBattleIntro'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){
+    villageCharaPhase='warkBattle';villageCharaTime=0;player.x=245;player.y=472;player.faceX=1;player.faceY=0;player.mana=100;warkLastX=player.x;warkLastY=player.y;warkAttackCooldown=1.0;warkSetStatus('WARLOCK · FIRST PHASE','Joystick / WASD di chuyển · J đánh · K Null Cut · Q Time Stop · R Rewind · F Mana Surge · L hồi sinh.');sound(380,.2,'triangle',.04);return;
+  }
+  if(villageCharaPhase==='warkFinalBattleIntro'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaPhase='warkFinalBattle';villageCharaTime=0;player.x=245;player.y=472;player.faceX=1;player.faceY=0;player.mana=100;warkPlayerHP=warkPlayerMaxHP=5;warkPlayerInvuln=1.65;warkAttackCooldown=.8;warkTelegraph=0;warkTimeStop=0;warkSetStatus('BLACK THIRD EYE · FINAL PHASE','Con mắt đen mở rộng — Errol mạnh hơn, nhưng cảm xúc đã bắt đầu tha hóa.');sound(190,.25,'sawtooth',.05);return;}
+  if(villageCharaPhase==='warkVictory')return;
+  if(villageCharaPhase!=='warkBattle'&&villageCharaPhase!=='warkFinalBattle')return;
+  if(warkActionCooldown>0&&['attack','special','dash','parry','enter','click'].includes(action))return;
+  const enough=n=>player.mana>=n;
+  const finalPower=warkThirdEyeAwake&&villageCharaPhase==='warkFinalBattle';
+  if(action==='attack'||action==='enter'||action==='click'){warkActionCooldown=finalPower?.12:.17;warkDamageBoss(finalPower?24:8,'basic');}
+  else if(action==='special'){
+    if(!enough(16)){warkSetStatus('MANA KHÔNG ĐỦ','Dùng F để nạp lại năng lượng.');return;}
+    player.mana-=16;warkActionCooldown=.22;warkDamageBoss(finalPower?92:25,'space');warkSetStatus('NULL CUT · K','Một đường cắt bẻ cong lớp mã của Warlock.');
+  }else if(action==='eye3'||action==='interact'){
+    if(warkTimeStopCooldown>0){warkSetStatus('TIME STOP · ĐANG HỒI CHIÊU','Dòng thời gian đang tự ổn định.');return;}
+    if(!enough(18)){warkSetStatus('MANA KHÔNG ĐỦ','Dùng F để nạp lại năng lượng.');return;}
+    player.mana-=18;warkTimeStop=finalPower?3.6:(action==='interact'?1.55:2.65);warkTimeStopCooldown=finalPower?2.8:3.8;warkTelegraph=0;warkActionEffect='time';warkActionEffectTimer=.8;spawnBurst(warkX,warkY-150,'#72eaff',42,180);warkSetStatus('TIME STOP · '+(action==='interact'?'E':'Q'),'Màu sắc lạnh dần, mọi vệt chuyển động đứng khựng lại. Errol vẫn có thể tấn công.');sound(820,.18,'triangle',.04);
+  }else if(action==='ward'){
+    if(!enough(10)){warkSetStatus('MANA KHÔNG ĐỦ','Dùng F để nạp lại năng lượng.');return;}
+    player.mana-=10;warkShieldTimer=finalPower?2.6:1.8;warkActionEffect='shield';warkActionEffectTimer=.5;warkSetStatus('TIME WARD · E','Vòng chắn hình học khép quanh Errol, làm lệch một đòn thực tại.');
+  }else if(action==='compass'){
+    if(warkRewindCooldown>0){warkSetStatus('REWIND · ĐANG HỒI CHIÊU','Dòng thời gian còn đang tự ổn định.');return;}
+    if(!enough(15)){warkSetStatus('MANA KHÔNG ĐỦ','Dùng F để nạp lại năng lượng.');return;}
+    player.mana-=15;warkRewindCooldown=finalPower?2.4:3.2;player.x=warkLastX;player.y=warkLastY;warkPlayerHP=Math.min(warkPlayerMaxHP,warkPlayerHP+(finalPower?2:1));warkTelegraph=0;warkAttackCooldown=Math.max(warkAttackCooldown,1.15);warkTimeStop=Math.max(warkTimeStop,finalPower?1.3:.6);warkActionEffect='rewind';warkActionEffectTimer=.85;spawnBurst(player.x,player.y-35,'#91edff',34,170);warkSetStatus('TIME REWIND · R','Vị trí và sinh lực quay về mốc trước đó; các đường chém bị đảo ngược.');
+  }else if(action==='exo'){
+    if(warkManaCooldown>0){warkSetStatus('MANA SURGE · ĐANG HỒI CHIÊU','Dòng năng lượng chưa nạp lại.');return;}
+    player.mana=100;warkManaCooldown=finalPower?3.2:4.2;warkPlayerHP=Math.min(warkPlayerMaxHP,warkPlayerHP+1);warkDamageBoss(finalPower?105:22,'mana');warkSetStatus('MANA SURGE · F','Mọi ô năng lượng sáng đầy; một luồng thời gian đánh bật bóng tối.');
+  }else if(action==='dash'){
+    warkActionCooldown=.2;warkDashCooldown=.4;warkLastX=player.x;warkLastY=player.y;player.x=clamp(player.x+(player.faceX>=0?1:-1)*(finalPower?142:108),115,590);warkPlayerInvuln=finalPower?1.0:.82;warkDamageBoss(finalPower?68:15,'dash');warkActionEffect='dash';warkActionEffectTimer=.5;
+  }else if(action==='parry'){
+    warkShieldTimer=finalPower?1.8:1.15;warkPlayerInvuln=Math.max(warkPlayerInvuln,.45);warkActionCooldown=.26;warkActionEffect='parry';warkActionEffectTimer=.5;
+    if(warkTelegraph>0){warkTelegraph=0;warkAttackCooldown=Math.max(warkAttackCooldown,1.25);warkDamageBoss(finalPower?125:25,'parry');warkSetStatus('TEMPORAL PARRY · L','Errol bắt đúng nhịp, bẻ ngược Null-Pointer Strike về phía Warlock.');}else warkSetStatus('TEMPORAL GUARD · L','Tư thế đỡ đòn giúp Errol tránh đợt tấn công tiếp theo.');
+  }
+}
+function updateWarkFight(dt){
+  warkBossHit=Math.max(0,warkBossHit-dt);warkActionEffectTimer=Math.max(0,warkActionEffectTimer-dt);warkActionCooldown=Math.max(0,warkActionCooldown-dt);warkTimeStopCooldown=Math.max(0,warkTimeStopCooldown-dt);warkRewindCooldown=Math.max(0,warkRewindCooldown-dt);warkManaCooldown=Math.max(0,warkManaCooldown-dt);warkDashCooldown=Math.max(0,warkDashCooldown-dt);warkShieldTimer=Math.max(0,warkShieldTimer-dt);warkPlayerInvuln=Math.max(0,warkPlayerInvuln-dt);warkCodeEraseTimer=Math.max(0,warkCodeEraseTimer-dt);warkFinalAttackFlash=Math.max(0,warkFinalAttackFlash-dt);
+  if(villageCharaPhase==='warkDown'||villageCharaPhase==='warkVictory'||villageCharaPhase==='warkBossShift')return;
+  if(!['warkBattle','warkFinalBattle'].includes(villageCharaPhase))return;
+  const frozenBefore=warkTimeStop>0;warkTimeStop=Math.max(0,warkTimeStop-dt);
+  const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0);const dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0);const m=Math.hypot(dx,dy);
+  if(m){warkLastX=player.x;warkLastY=player.y;player.x=clamp(player.x+dx/m*(warkThirdEyeAwake?270:235)*dt,112,598);player.y=clamp(player.y+dy/m*180*dt,365,486);player.faceX=dx/m;player.faceY=dy/m;}
+  if(!frozenBefore){
+    // Warlock phases in and out of ordinary space instead of floating in place.
+    const targetX=warkAttackCount%3===1?610:(warkAttackCount%3===2?745:685);warkX+=(targetX-warkX)*Math.min(1,dt*(warkThirdEyeAwake?3.8:2.1));warkY=470+Math.sin(time*(warkPhase===2?4.1:2.2))*9;
+    warkAttackCooldown-=dt;
+    if(warkTelegraph>0){
+      const before=warkTelegraph;warkTelegraph=Math.max(0,warkTelegraph-dt);
+      if(before>0&&warkTelegraph===0){
+        const laneHit=Math.abs(player.y-warkAttackLane)<(warkThirdEyeAwake?64:52);
+        let hit=false,dmg=1;
+        switch(warkAttackType){
+          case 0: hit=laneHit&&player.x>205;dmg=1;break; // Null-Pointer slash
+          case 1: hit=player.x>245&&warkShieldTimer<=0&&warkDashCooldown>0===false;dmg=1;break; // reality compression closes arena walls
+          case 2: hit=laneHit&&player.x>235;dmg=2;if(hit){player.mana=Math.max(0,player.mana-28);warkCodeEraseTimer=.9;}break; // source code erasure
+          case 3: hit=player.x>190&&player.y>380&&player.y<486;dmg=2;break; // multiverse rupture
+          case 4: hit=Math.abs(player.x-420)<150&&Math.abs(player.y-warkAttackLane)<92;dmg=2;break; // warped fist rush
+        }
+        const canHit=hit&&warkPlayerInvuln<=0&&warkShieldTimer<=0;
+        if(canHit){warkPlayerHP=Math.max(0,warkPlayerHP-dmg);warkPlayerInvuln=warkThirdEyeAwake?1.1:.95;screenShake=warkAttackType===3?15:9;flash=warkAttackType===3?.13:.07;spawnBurst(player.x,player.y-28,warkFinalForm?'#ff3d70':'#a88bff',warkAttackType===3?32:18,165);warkSetStatus(['NULL-POINTER STRIKE','REALITY COMPRESSION','SOURCE-CODE ERASURE','MULTIVERSE RUPTURE','WARPED FIST'][warkAttackType]+' · TRÚNG ĐÒN','Warlock đánh vào không gian quanh Errol, không chỉ cơ thể. Né khỏi vùng cảnh báo hoặc dùng Time Stop / Ward.');if(warkPlayerHP<=0){villageCharaPhase='warkDown';villageCharaTime=0;setStatus('<b>ERROL · TEMPORAL DOWN</b><br>Nhấn L hoặc R để kéo bản thân khỏi khoảnh khắc bị xóa.');}}
+        else if(warkShieldTimer>0){warkSetStatus('TIME WARD · BLOCKED','Lớp chắn thời gian làm lệch đòn thực tại.');}
+      }
+    }else if(warkAttackCooldown<=0){
+      warkAttackCount++;warkAttackType=(warkAttackCount-1)%(warkThirdEyeAwake?5:4);warkAttackLane=player.y;warkTelegraph=warkThirdEyeAwake?.55:(warkPhase===2?.48:.7);warkAttackCooldown=warkThirdEyeAwake?.92:(warkPhase===2?1.05:1.48);
+      if(warkAttackType===1)warkCompression=.75;if(warkAttackType===2)warkCodeEraseTimer=.5;if(warkAttackType===3)warkNullSlash=.85;
+      const names=['NULL-POINTER STRIKE','REALITY COMPRESSION','SOURCE-CODE ERASURE','MULTIVERSE RUPTURE','WARPED FIST'];warkSetStatus(names[warkAttackType]+' · TELEGRAPH','Không gian đang chọn vùng bị xóa — né, lướt, dừng thời gian hoặc đỡ đòn đúng nhịp.');
+    }
+  }
+  warkCompression=Math.max(0,warkCompression-dt);warkNullSlash=Math.max(0,warkNullSlash-dt);
+  if(player.mana<100)player.mana=Math.min(100,player.mana+(warkThirdEyeAwake?3.2:1.4)*dt);
+}
+
 function drawAzureLightning(x,y,radius,alpha=1){
   ctx.save();ctx.globalAlpha=alpha;ctx.globalCompositeOperation='screen';ctx.strokeStyle='#59dcff';ctx.shadowColor='#45cfff';ctx.shadowBlur=24;ctx.lineWidth=2.4;
   for(let i=0;i<11;i++){const a=time*1.35+i*TAU/11,ex=x+Math.cos(a)*radius*(.72+.24*Math.sin(time*9+i)),ey=y+Math.sin(a)*radius*(.68+.24*Math.cos(time*8+i));ctx.beginPath();ctx.moveTo(x,y);for(let j=1;j<=5;j++){const p=j/5,nx=x+(ex-x)*p+(j<5?Math.sin(time*17+i*3+j)*13:0),ny=y+(ey-y)*p+(j<5?Math.cos(time*15+i*4+j)*10:0);ctx.lineTo(nx,ny);}ctx.stroke();}
@@ -3435,16 +3594,21 @@ function drawTimeWavePlanetScene(t){
   drawTimeWaveBanner(c.name,local<.52?'Gió và thực vật dừng lại khi vòng xanh đi qua.':'Thế giới này đã đứng yên trong một nhịp thời gian.');ctx.restore();
 }
 function drawTimeWaveUniverse(t){
-  ctx.save();const frozenT=Math.min(t,3.8),space=ctx.createRadialGradient(480,280,8,480,280,680);space.addColorStop(0,'#123b69');space.addColorStop(.36,'#0b1c42');space.addColorStop(.72,'#050b21');space.addColorStop(1,'#01030b');ctx.fillStyle=space;ctx.fillRect(0,0,W,H);
-  // Vast stars drift for a moment, then lock into fixed points as the wave covers the universe.
-  for(let i=0;i<240;i++){const x=(i*157.31+Math.sin(frozenT*.55+i*1.7)*12+W*4)%W,y=(i*73.73+Math.cos(frozenT*.47+i)*10+H*3)%H,s=i%17===0?3:i%5===0?2:1;ctx.globalAlpha=.32+.55*(.5+.5*Math.sin(frozenT*2+i));ctx.fillStyle=i%23===0?'#79eaff':i%11===0?'#d2b7ff':'#f5fbff';ctx.fillRect(x,y,s,s);}ctx.globalAlpha=1;
-  const galaxies=[[180,190,1.0,'#8fdcff'],[730,155,-.7,'#d7b2ff'],[660,400,.55,'#7ef3d5'],[295,405,-.4,'#8da8ff']];for(let g=0;g<galaxies.length;g++){const [x,y,dir,col]=galaxies[g];ctx.save();ctx.translate(x,y);ctx.rotate(frozenT*.28*dir);ctx.globalCompositeOperation='screen';ctx.globalAlpha=.2;const glow=ctx.createRadialGradient(0,0,5,0,0,120);glow.addColorStop(0,col);glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(-125,-80,250,160);for(let k=0;k<4;k++){ctx.globalAlpha=.22-k*.035;ctx.strokeStyle=col;ctx.lineWidth=4-k*.7;ctx.beginPath();ctx.ellipse(0,0,32+k*20,10+k*7,k*.4,0,TAU);ctx.stroke();}ctx.globalAlpha=.8;ctx.fillStyle='#f7fdff';ctx.beginPath();ctx.arc(0,0,4,0,TAU);ctx.fill();ctx.restore();}ctx.globalAlpha=1;
-  const r=50+Math.min(t,4.4)*230;drawTimeWaveRing(480,280,r,.95,.58);for(let i=0;i<4;i++){const rad=r*(.48+i*.15);ctx.save();ctx.globalAlpha=.18+i*.055;ctx.strokeStyle=i%2?'#8ca6ff':'#b4fbff';ctx.lineWidth=1.4;ctx.beginPath();ctx.ellipse(480,280,rad,rad*.58,frozenT*.06+i*.2,0,TAU);ctx.stroke();ctx.restore();}
-  if(t>=3.8){const veil=ctx.createRadialGradient(480,280,40,480,280,650);veil.addColorStop(0,'rgba(127,229,255,.05)');veil.addColorStop(.8,'rgba(75,197,255,.08)');veil.addColorStop(1,'rgba(1,3,12,.15)');ctx.fillStyle=veil;ctx.fillRect(0,0,W,H);}
-  if(t<4.4)drawTimeWaveBanner('TIME CONTROL · VƯỢT QUA CÁC NGÂN HÀ','Vòng sáng tiếp tục lan rộng qua những vì sao xa xôi.');
-  else{roundedRect(115,145,730,270,22,'rgba(2,7,22,.83)','#8beeff');ctx.textAlign='center';ctx.fillStyle='#bdf7ff';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('TIME CONTROL · LEFT EYE AWAKENED',480,190);ctx.fillStyle='#f5fcff';ctx.font='1000 26px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('CẢ VŨ TRỤ ĐÃ ĐỨNG YÊN',480,239);ctx.fillStyle='#d8eaff';ctx.font='bold 14px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Trái Đất. Những hành tinh xa lạ. Các dải ngân hà.',480,280);ctx.fillText('Một vòng năng lượng xanh đã chạm đến tất cả.',480,306);ctx.fillStyle='#8eeaff';ctx.font='bold 11px ui-monospace,monospace';ctx.fillText('MỘT SỨC MẠNH MỚI ĐÃ THỨC TỈNH',480,358);ctx.fillStyle='#c4d8f1';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('NHẤN ⋯ ĐỂ GHIM KHOẢNH KHẮC NÀY',480,389);}
+  ctx.save();
+  const phasePulse=.5+.5*Math.sin(time*1.4),space=ctx.createRadialGradient(480,280,8,480,280,680);space.addColorStop(0,'#163c68');space.addColorStop(.36,'#0b1c42');space.addColorStop(.72,'#050b21');space.addColorStop(1,'#01030b');ctx.fillStyle=space;ctx.fillRect(0,0,W,H);
+  // The stars stay locked in place. The time-wave rings and nebula light continue breathing, so the scene feels vast rather than like a static title card.
+  for(let i=0;i<240;i++){const x=(i*157.31+Math.sin(i*1.7)*12+W*4)%W,y=(i*73.73+Math.cos(i)*10+H*3)%H,ss=i%17===0?3:i%5===0?2:1;ctx.globalAlpha=.32+.55*(.5+.5*Math.sin(i*2.1));ctx.fillStyle=i%23===0?'#79eaff':i%11===0?'#d2b7ff':'#f5fbff';ctx.beginPath();ctx.arc(x,y,ss*.55,0,TAU);ctx.fill();}ctx.globalAlpha=1;
+  const galaxies=[[180,190,1.0,'#8fdcff'],[730,155,-.7,'#d7b2ff'],[660,400,.55,'#7ef3d5'],[295,405,-.4,'#8da8ff']];
+  for(let g=0;g<galaxies.length;g++){const [x,y,dir,col]=galaxies[g];ctx.save();ctx.translate(x,y);ctx.rotate(dir*.18+Math.sin(time*.4+g)*.035);ctx.globalCompositeOperation='screen';ctx.globalAlpha=.2+.06*phasePulse;const glow=ctx.createRadialGradient(0,0,5,0,0,145);glow.addColorStop(0,col);glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(-145,-90,290,180);for(let k=0;k<5;k++){ctx.globalAlpha=.18-k*.025;ctx.strokeStyle=col;ctx.lineWidth=3.5-k*.55;ctx.beginPath();ctx.ellipse(0,0,33+k*22,11+k*7,dir*.2+k*.18,0,TAU);ctx.stroke();}ctx.globalAlpha=.9;ctx.fillStyle='#f7fdff';ctx.beginPath();ctx.arc(0,0,4,0,TAU);ctx.fill();ctx.restore();}ctx.globalAlpha=1;
+  const r=105+Math.min(t,4.4)*195+Math.sin(time*1.55)*7;drawTimeWaveRing(480,280,r,.86,.58);drawTimeWaveRing(480,280,Math.max(10,r-78),.4+.12*phasePulse,.58);drawTimeWaveRing(480,280,Math.max(10,r-155),.22,.58);
+  // Tiny particles are suspended in mid-flight around the wave front.
+  for(let i=0;i<56;i++){const a=i*TAU/56+Math.sin(time*.25)*.04,rr=r*(.38+(i%5)*.12);ctx.globalAlpha=.2+.3*phasePulse;ctx.fillStyle=i%3?'#a6f2ff':'#e6ddff';ctx.beginPath();ctx.arc(480+Math.cos(a)*rr,280+Math.sin(a)*rr*.58,1+(i%4)*.22,0,TAU);ctx.fill();}ctx.globalAlpha=1;
+  const veil=ctx.createRadialGradient(480,280,40,480,280,650);veil.addColorStop(0,'rgba(127,229,255,.04)');veil.addColorStop(.8,'rgba(75,197,255,.1)');veil.addColorStop(1,'rgba(1,3,12,.19)');ctx.fillStyle=veil;ctx.fillRect(0,0,W,H);
+  // No oversized still banner. Only a small fading interaction hint remains at the edge.
+  if(t>=4.4){ctx.globalAlpha=.38+.22*Math.sin(time*2.3);ctx.textAlign='center';ctx.fillStyle='#b8f5ff';ctx.font='bold 9px ui-monospace,monospace';ctx.fillText('ENTER / CHẠM · TRỞ VỀ TRÁI ĐẤT',480,542);ctx.globalAlpha=1;}
   ctx.restore();
 }
+
 function drawTimeWaveCinematic(phase,t){
   if(phase==='timeWaveCharge'||phase==='timeWaveBurst'){
     drawCharaForestBackdrop(false);
@@ -3473,8 +3637,301 @@ function drawTimeWaveCinematic(phase,t){
   if(phase==='planetFreeze'){drawTimeWavePlanetScene(t);return;}
   if(phase==='universeFreeze'||phase==='timeWaveEnd'){drawTimeWaveUniverse(t);return;}
 }
+function drawWarkRift(x,y,p=1){
+  ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=p;
+  const glow=ctx.createRadialGradient(x,y,6,x,y,190);glow.addColorStop(0,'rgba(161,104,255,.24)');glow.addColorStop(.55,'rgba(92,65,196,.12)');glow.addColorStop(1,'rgba(24,10,47,0)');ctx.fillStyle=glow;ctx.fillRect(x-220,y-240,440,480);
+  ctx.shadowColor='#b9a5ff';ctx.shadowBlur=20;ctx.strokeStyle='#cebfff';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(x-8,y-180);ctx.lineTo(x-27,y-142);ctx.lineTo(x-10,y-111);ctx.lineTo(x-32,y-76);ctx.lineTo(x-9,y-41);ctx.lineTo(x-24,y-5);ctx.stroke();
+  ctx.strokeStyle='#7c5cbe';ctx.lineWidth=7;ctx.globalAlpha=p*.7;ctx.beginPath();ctx.moveTo(x+6,y-183);ctx.lineTo(x+24,y-147);ctx.lineTo(x+5,y-116);ctx.lineTo(x+29,y-84);ctx.lineTo(x+9,y-49);ctx.lineTo(x+22,y-10);ctx.stroke();ctx.globalAlpha=p;
+  for(let i=0;i<13;i++){const yy=y-170+i*13,xx=x+Math.sin(time*3+i*1.8)*17;ctx.fillStyle=i%2?'#d4c8ff':'#7b5de1';ctx.fillRect(xx,yy,3+(i%3),2+(i%2));}
+  ctx.restore();
+}
+function drawWarkLockSans(x,y,scale=1,alpha=1){
+  // Wark Lock Sans: tall, unnaturally thin, elegant skull/void-wizard silhouette.
+  // Organic bezier contours, layered robe folds, articulated hands and animated source-code fractures.
+  ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
+  const accent=warkFinalForm?'#ff3d70':'#b69aff',hot=warkFinalForm?'#ffb2c7':'#eee4ff',pulse=.5+.5*Math.sin(time*5.2),sway=Math.sin(time*1.35)*2.6,armLift=Math.sin(time*3.2)*3.5;
+  const halo=ctx.createRadialGradient(0,-210,6,0,-210,220);halo.addColorStop(0,warkFinalForm?'rgba(255,28,78,.36)':'rgba(143,104,255,.30)');halo.addColorStop(.42,'rgba(54,35,91,.17)');halo.addColorStop(1,'rgba(3,2,12,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-204,206,242,0,0,TAU);ctx.fill();
+  // Floating glyphs and orbiting shards imply that he exists outside ordinary space.
+  ctx.save();ctx.globalCompositeOperation='screen';
+  for(let i=0;i<15;i++){const a=time*(-.42+i%3*.08)+i*TAU/15,r=75+(i%4)*18,px=Math.cos(a)*r,py=-207+Math.sin(a)*r*1.22;ctx.globalAlpha=alpha*(.18+.2*Math.sin(time*3+i));ctx.strokeStyle=i%3===0?hot:accent;ctx.lineWidth=i%4===0?2:1;ctx.beginPath();ctx.moveTo(px-4,py-7);ctx.quadraticCurveTo(px+7,py-2,px,py+7);ctx.lineTo(px-5,py+4);ctx.stroke();ctx.fillStyle=accent;ctx.beginPath();ctx.arc(px,py,1.5+(i%3)*.5,0,TAU);ctx.fill();}
+  ctx.restore();ctx.globalAlpha=alpha;
+  ctx.fillStyle='rgba(0,0,0,.42)';ctx.beginPath();ctx.ellipse(0,2,75,12,0,0,TAU);ctx.fill();
+  // Long, tattered coat tails: flowing shapes with curved edges, not rectangular panels.
+  const robe=ctx.createLinearGradient(-75,-200,70,-4);robe.addColorStop(0,'#353042');robe.addColorStop(.27,'#151320');robe.addColorStop(.7,'#090810');robe.addColorStop(1,'#211a2b');
+  ctx.fillStyle='#06060c';ctx.beginPath();ctx.moveTo(-35,-224);ctx.bezierCurveTo(-65,-207,-72,-168,-57,-126);ctx.bezierCurveTo(-48,-98,-47,-54,-42,-16);ctx.quadraticCurveTo(-45,-4,-65,-1);ctx.quadraticCurveTo(-43,6,-22,0);ctx.bezierCurveTo(-16,-42,-25,-78,-23,-110);ctx.bezierCurveTo(-27,-154,-13,-188,-12,-211);ctx.closePath();ctx.fill();
+  ctx.beginPath();ctx.moveTo(28,-221);ctx.bezierCurveTo(59,-202,65,-167,53,-129);ctx.bezierCurveTo(43,-93,39,-49,47,-13);ctx.quadraticCurveTo(58,-5,73,0);ctx.quadraticCurveTo(45,7,27,0);ctx.bezierCurveTo(17,-39,19,-77,20,-110);ctx.bezierCurveTo(13,-152,6,-184,8,-211);ctx.closePath();ctx.fill();
+  // Legs, shaped like stretched ink shadows under the coat.
+  const legG=ctx.createLinearGradient(-26,-128,28,0);legG.addColorStop(0,'#24212f');legG.addColorStop(.45,'#08080f');legG.addColorStop(1,'#161320');ctx.fillStyle=legG;
+  ctx.beginPath();ctx.moveTo(-23,-130);ctx.quadraticCurveTo(-7,-134,1,-124);ctx.bezierCurveTo(-4,-90,-8,-50,-17,-8);ctx.quadraticCurveTo(-26,0,-39,-4);ctx.bezierCurveTo(-35,-44,-32,-91,-23,-130);ctx.closePath();ctx.fill();
+  ctx.beginPath();ctx.moveTo(1,-128);ctx.quadraticCurveTo(18,-135,28,-124);ctx.bezierCurveTo(33,-83,35,-41,42,-7);ctx.quadraticCurveTo(31,1,16,-4);ctx.bezierCurveTo(8,-42,7,-86,1,-128);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#5b5367';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-24,-109);ctx.bezierCurveTo(-24,-76,-26,-41,-29,-15);ctx.moveTo(20,-115);ctx.bezierCurveTo(24,-78,25,-42,31,-14);ctx.stroke();
+  const boot=(side)=>{ctx.save();ctx.translate(side<0?-29:31,-3);ctx.fillStyle='#c3bdce';ctx.strokeStyle='#716a80';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-9,-7);ctx.quadraticCurveTo(0,-13,8,-6);ctx.quadraticCurveTo(15,-3,18,2);ctx.quadraticCurveTo(1,6,-18,3);ctx.quadraticCurveTo(-22,0,-9,-7);ctx.closePath();ctx.fill();ctx.stroke();ctx.strokeStyle='#f4effa';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-12,0);ctx.quadraticCurveTo(-1,2,12,0);ctx.stroke();ctx.restore();};boot(-1);boot(1);
+  // Narrow torso with a layered mantle and etched, glowing lines.
+  ctx.fillStyle=robe;ctx.strokeStyle='#05050b';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-30,-225);ctx.quadraticCurveTo(-50,-204,-44,-177);ctx.quadraticCurveTo(-34,-148,-24,-130);ctx.quadraticCurveTo(-19,-118,-22,-111);ctx.quadraticCurveTo(-3,-105,22,-112);ctx.quadraticCurveTo(19,-129,30,-149);ctx.quadraticCurveTo(43,-181,36,-207);ctx.quadraticCurveTo(22,-225,6,-229);ctx.closePath();ctx.fill();ctx.stroke();
+  const chest=ctx.createLinearGradient(-20,-206,20,-118);chest.addColorStop(0,'#40384e');chest.addColorStop(.5,'#1c1827');chest.addColorStop(1,'#0a0910');ctx.fillStyle=chest;ctx.beginPath();ctx.moveTo(-21,-211);ctx.quadraticCurveTo(-8,-198,0,-202);ctx.quadraticCurveTo(10,-199,26,-213);ctx.quadraticCurveTo(27,-177,14,-143);ctx.quadraticCurveTo(0,-132,-13,-143);ctx.quadraticCurveTo(-26,-177,-21,-211);ctx.closePath();ctx.fill();
+  // Draped folds and glyph-lines on the robe.
+  ctx.strokeStyle=warkFinalForm?'rgba(255,55,103,.78)':'rgba(177,149,255,.65)';ctx.shadowColor=accent;ctx.shadowBlur=9;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(-20,-205);ctx.quadraticCurveTo(-7,-185,-16,-166);ctx.quadraticCurveTo(-8,-153,-13,-143);ctx.moveTo(20,-207);ctx.quadraticCurveTo(8,-186,17,-169);ctx.quadraticCurveTo(7,-155,13,-142);ctx.moveTo(-9,-192);ctx.quadraticCurveTo(0,-181,8,-192);ctx.moveTo(-12,-168);ctx.quadraticCurveTo(0,-158,12,-168);ctx.stroke();ctx.shadowBlur=0;
+  // Belt/waist cloth: soft wrap with two layers and stitching.
+  ctx.fillStyle='#5d5669';ctx.beginPath();ctx.moveTo(-23,-145);ctx.quadraticCurveTo(-2,-152,22,-144);ctx.lineTo(25,-128);ctx.quadraticCurveTo(1,-119,-24,-128);ctx.closePath();ctx.fill();ctx.strokeStyle='#a49bb2';ctx.lineWidth=1.3;ctx.stroke();ctx.beginPath();ctx.moveTo(-20,-138);ctx.quadraticCurveTo(0,-143,21,-137);ctx.moveTo(-18,-131);ctx.quadraticCurveTo(0,-136,20,-130);ctx.stroke();
+  // Left arm hangs long. A dark contour sits beneath a pale bone-like inner arm.
+  ctx.strokeStyle='#07070d';ctx.lineWidth=23;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-31,-211);ctx.quadraticCurveTo(-48,-198,-51,-176);ctx.quadraticCurveTo(-61,-151,-79,-124);ctx.stroke();
+  const boneG=ctx.createLinearGradient(-82,-186,-37,-130);boneG.addColorStop(0,'#fbf8ff');boneG.addColorStop(.55,'#d2cedc');boneG.addColorStop(1,'#8f899f');ctx.strokeStyle=boneG;ctx.lineWidth=14;ctx.beginPath();ctx.moveTo(-31,-210);ctx.quadraticCurveTo(-45,-196,-48,-176);ctx.quadraticCurveTo(-59,-150,-77,-124);ctx.stroke();
+  ctx.fillStyle='#9d97ad';ctx.beginPath();ctx.ellipse(-78,-123,8,6,-.5,0,TAU);ctx.fill();
+  // Five separate fingers, curved like thin bone wires.
+  ctx.strokeStyle='#f0ecf5';ctx.lineWidth=3.5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-78,-123);ctx.quadraticCurveTo(-89,-117,-92,-104);ctx.moveTo(-78,-123);ctx.quadraticCurveTo(-81,-110,-78,-98);ctx.moveTo(-77,-122);ctx.quadraticCurveTo(-68,-113,-67,-101);ctx.moveTo(-76,-122);ctx.quadraticCurveTo(-61,-120,-57,-110);ctx.moveTo(-82,-123);ctx.quadraticCurveTo(-94,-129,-99,-138);ctx.stroke();ctx.lineCap='butt';
+  // Right arm reaches into the rift; it bends at two joints and ends in five expressive long fingers.
+  const raise=armLift+(warkFinalForm?Math.sin(time*7)*5:0);
+  ctx.strokeStyle='#08080f';ctx.lineWidth=25;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(29,-211);ctx.quadraticCurveTo(44,-198,49,-177);ctx.quadraticCurveTo(59,-202,69,-226-raise);ctx.stroke();
+  ctx.strokeStyle=boneG;ctx.lineWidth=15;ctx.beginPath();ctx.moveTo(29,-211);ctx.quadraticCurveTo(40,-198,45,-178);ctx.quadraticCurveTo(57,-204,68,-226-raise);ctx.stroke();
+  ctx.fillStyle='#e8e3ee';ctx.beginPath();ctx.ellipse(69,-227-raise,8,6,-.5,0,TAU);ctx.fill();
+  // Raised palm and five long fingers are drawn with curved strokes, each joint highlighted.
+  ctx.fillStyle='#dcd7e5';ctx.strokeStyle='#736c83';ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(62,-232-raise);ctx.quadraticCurveTo(67,-242-raise,76,-239-raise);ctx.quadraticCurveTo(86,-237-raise,86,-227-raise);ctx.quadraticCurveTo(81,-219-raise,69,-220-raise);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.strokeStyle='#f0edf5';ctx.lineWidth=5.3;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(65,-235-raise);ctx.quadraticCurveTo(56,-246-raise,56,-263-raise);ctx.moveTo(70,-238-raise);ctx.quadraticCurveTo(67,-253-raise,70,-270-raise);ctx.moveTo(76,-237-raise);ctx.quadraticCurveTo(82,-250-raise,91,-262-raise);ctx.moveTo(81,-231-raise);ctx.quadraticCurveTo(94,-239-raise,104,-238-raise);ctx.moveTo(66,-225-raise);ctx.quadraticCurveTo(55,-222-raise,48,-232-raise);ctx.stroke();ctx.lineCap='butt';
+  ctx.strokeStyle='#92899f';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(56,-255-raise);ctx.lineTo(56,-263-raise);ctx.moveTo(70,-259-raise);ctx.lineTo(70,-270-raise);ctx.moveTo(86,-253-raise);ctx.lineTo(91,-262-raise);ctx.moveTo(95,-239-raise);ctx.lineTo(104,-238-raise);ctx.stroke();
+  // High wrapped collar around a very thin neck. Several rounded bands reveal the reference sketch.
+  ctx.fillStyle='#201a2c';ctx.beginPath();ctx.moveTo(-23,-244);ctx.quadraticCurveTo(-18,-265,0,-268);ctx.quadraticCurveTo(19,-266,25,-244);ctx.lineTo(17,-219);ctx.quadraticCurveTo(0,-212,-17,-220);ctx.closePath();ctx.fill();
+  for(let i=0;i<5;i++){const yy=-259+i*7.1;ctx.strokeStyle=i%2?'#aaa2ba':'#f0ebf7';ctx.lineWidth=i===0?3:2;ctx.beginPath();ctx.moveTo(-19+Math.sin(i)*2,yy);ctx.quadraticCurveTo(0,yy+5,21-Math.cos(i)*2,yy-1);ctx.stroke();}
+  // Oversized skull with a soft flared silhouette and long, pinched jaw.
+  const skull=ctx.createLinearGradient(-53,-328,47,-225);skull.addColorStop(0,'#fffdfd');skull.addColorStop(.3,'#f0edf5');skull.addColorStop(.63,'#c9c3d3');skull.addColorStop(1,'#827c91');ctx.fillStyle=skull;ctx.strokeStyle='#555063';ctx.lineWidth=3.2;ctx.beginPath();ctx.moveTo(-35,-245);ctx.quadraticCurveTo(-51,-256,-52,-280);ctx.quadraticCurveTo(-53,-303,-34,-319);ctx.quadraticCurveTo(-18,-335,7,-333);ctx.quadraticCurveTo(33,-332,48,-312);ctx.quadraticCurveTo(60,-294,54,-274);ctx.quadraticCurveTo(51,-257,36,-246);ctx.quadraticCurveTo(25,-232,8,-230);ctx.quadraticCurveTo(-14,-229,-25,-238);ctx.closePath();ctx.fill();ctx.stroke();
+  // Face planes and thin fractures catch the light from the rift.
+  ctx.fillStyle='rgba(255,255,255,.68)';ctx.beginPath();ctx.moveTo(-42,-285);ctx.quadraticCurveTo(-41,-305,-22,-322);ctx.quadraticCurveTo(-29,-301,-31,-283);ctx.quadraticCurveTo(-32,-265,-39,-261);ctx.closePath();ctx.fill();
+  ctx.fillStyle='rgba(68,56,85,.25)';ctx.beginPath();ctx.moveTo(37,-314);ctx.quadraticCurveTo(53,-295,46,-275);ctx.quadraticCurveTo(42,-259,30,-252);ctx.lineTo(26,-279);ctx.closePath();ctx.fill();
+  // Tall void sockets with asymmetrical rings. The active eye distorts the linework.
+  ctx.fillStyle='#020208';ctx.beginPath();ctx.ellipse(-20,-286,10.5,19.5,-.08,0,TAU);ctx.ellipse(14,-287,14.5,23,.08,0,TAU);ctx.fill();
+  ctx.strokeStyle=accent;ctx.shadowColor=accent;ctx.shadowBlur=20;ctx.lineWidth=3.6;ctx.beginPath();ctx.ellipse(14,-287,17,26,.08,0,TAU);ctx.stroke();ctx.shadowBlur=0;
+  ctx.strokeStyle=hot;ctx.lineWidth=1.1;ctx.beginPath();ctx.ellipse(14,-287,19.5,28.5,.08,0,TAU);ctx.stroke();
+  ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(-20,-286,6.3,14.6,0,0,TAU);ctx.ellipse(14,-287,9,18.5,0,0,TAU);ctx.fill();
+  ctx.save();ctx.translate(14,-287);ctx.rotate(time*(warkFinalForm?2.2:.7));ctx.strokeStyle=accent;ctx.shadowColor=accent;ctx.shadowBlur=12;ctx.lineWidth=1.7;ctx.beginPath();ctx.arc(0,0,12,.15,Math.PI*1.65);ctx.stroke();ctx.beginPath();ctx.arc(0,0,7.5,Math.PI,Math.PI*2.55);ctx.stroke();ctx.fillStyle=hot;ctx.beginPath();ctx.arc(Math.cos(time*2)*4,Math.sin(time*2)*7,2,0,TAU);ctx.fill();ctx.restore();
+  // Nose slit and a huge dark, jagged mouth. Irregular fangs curve inward instead of forming a boxy grin.
+  ctx.fillStyle='#62596f';ctx.beginPath();ctx.moveTo(-4,-266);ctx.quadraticCurveTo(3,-259,-3,-254);ctx.quadraticCurveTo(-11,-258,-4,-266);ctx.fill();
+  ctx.fillStyle='#020207';ctx.beginPath();ctx.moveTo(-32,-251);ctx.quadraticCurveTo(-22,-263,-10,-256);ctx.quadraticCurveTo(1,-264,10,-256);ctx.quadraticCurveTo(24,-260,31,-250);ctx.quadraticCurveTo(27,-238,12,-233);ctx.quadraticCurveTo(-6,-230,-21,-238);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#65586f';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-27,-251);ctx.quadraticCurveTo(-21,-244,-25,-238);ctx.moveTo(-12,-254);ctx.quadraticCurveTo(-8,-245,-10,-236);ctx.moveTo(2,-254);ctx.quadraticCurveTo(8,-247,6,-236);ctx.moveTo(17,-253);ctx.quadraticCurveTo(22,-245,21,-239);ctx.stroke();
+  ctx.fillStyle='#f6f0fa';ctx.beginPath();ctx.moveTo(-25,-253);ctx.quadraticCurveTo(-19,-257,-16,-248);ctx.lineTo(-21,-245);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(-6,-255);ctx.quadraticCurveTo(0,-259,3,-248);ctx.lineTo(-2,-245);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(14,-254);ctx.quadraticCurveTo(20,-257,23,-247);ctx.lineTo(17,-244);ctx.closePath();ctx.fill();
+  // Ink tendrils hang from the mouth and pull upward when the rift pulses.
+  ctx.strokeStyle='#07060d';ctx.lineWidth=6;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-11,-237);ctx.bezierCurveTo(-20,-226,-9,-215,-15,-205);ctx.moveTo(2,-235);ctx.bezierCurveTo(10,-223,20,-219,16,-207);ctx.moveTo(23,-243);ctx.bezierCurveTo(37,-237,35,-227,30,-220);ctx.stroke();ctx.lineCap='butt';
+  ctx.strokeStyle=accent;ctx.lineWidth=1.8;ctx.shadowColor=accent;ctx.shadowBlur=10;ctx.beginPath();ctx.moveTo(-44,-300);ctx.quadraticCurveTo(-31,-295,-35,-281);ctx.quadraticCurveTo(-28,-269,-34,-263);ctx.moveTo(42,-307);ctx.quadraticCurveTo(32,-298,40,-287);ctx.quadraticCurveTo(34,-276,43,-268);ctx.moveTo(-1,-330);ctx.quadraticCurveTo(4,-317,-4,-308);ctx.stroke();ctx.shadowBlur=0;
+  // Floating tear in reality beside the raised palm; it twists in 3D-like perspective.
+  ctx.save();ctx.translate(111,-266);ctx.rotate(Math.sin(time*2.4)*.16);ctx.strokeStyle=accent;ctx.shadowColor=accent;ctx.shadowBlur=22;ctx.lineWidth=3.5;ctx.beginPath();ctx.moveTo(0,-32);ctx.bezierCurveTo(19,-20,-11,-7,5,2);ctx.bezierCurveTo(19,11,-11,22,2,34);ctx.stroke();ctx.strokeStyle='#fff3ff';ctx.lineWidth=1.1;ctx.beginPath();ctx.moveTo(-2,-30);ctx.quadraticCurveTo(7,-19,0,-10);ctx.stroke();ctx.restore();
+  // Fine rim lights and animated robe flutter.
+  ctx.strokeStyle=accent;ctx.globalAlpha=alpha*(.4+.3*pulse);ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-47,-199);ctx.quadraticCurveTo(-36,-168,-25,-144);ctx.moveTo(41,-198);ctx.quadraticCurveTo(32,-167,22,-143);ctx.moveTo(-58,-108);ctx.quadraticCurveTo(-48,-65,-45,-24);ctx.moveTo(58,-107);ctx.quadraticCurveTo(46,-67,51,-20);ctx.stroke();
+  ctx.restore();
+}
+function drawBlackThirdEye(x,y,scale=1,alpha=1){
+  ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
+  const p=.5+.5*Math.sin(time*8);ctx.globalCompositeOperation='screen';const g=ctx.createRadialGradient(0,0,1,0,0,40);g.addColorStop(0,'rgba(0,0,0,.95)');g.addColorStop(.45,'rgba(12,9,20,.8)');g.addColorStop(.78,'rgba(193,156,78,.22)');g.addColorStop(1,'rgba(193,156,78,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,40,0,TAU);ctx.fill();
+  for(let i=0;i<13;i++){const a=time*(i%2?-.7:1.1)+i*TAU/13,r=19+(i%4)*5;ctx.fillStyle=i%3?'rgba(190,160,96,.8)':'rgba(255,225,151,.95)';ctx.globalAlpha=alpha*(.28+.55*p);ctx.beginPath();ctx.ellipse(Math.cos(a)*r,Math.sin(a)*r*.7,1.4,2.4,a,0,TAU);ctx.fill();}
+  ctx.globalCompositeOperation='source-over';ctx.globalAlpha=alpha;ctx.fillStyle='#010104';ctx.strokeStyle='#74603d';ctx.lineWidth=2.4;ctx.shadowColor='#0a0710';ctx.shadowBlur=12;ctx.beginPath();ctx.moveTo(-13,0);ctx.quadraticCurveTo(-8,-13,0,-13);ctx.quadraticCurveTo(9,-12,13,0);ctx.quadraticCurveTo(7,13,0,13);ctx.quadraticCurveTo(-9,12,-13,0);ctx.closePath();ctx.fill();ctx.stroke();ctx.shadowBlur=0;ctx.strokeStyle='rgba(227,198,127,.75)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-8,-4);ctx.quadraticCurveTo(0,-9,7,-3);ctx.moveTo(-7,4);ctx.quadraticCurveTo(0,9,8,3);ctx.stroke();ctx.restore();
+}
+function drawRiftHand(side,x,y,p,t){
+  ctx.save();ctx.translate(x,y+Math.sin(t*5+side)*4);ctx.scale(side,1);ctx.globalAlpha=.92*p;ctx.lineCap='round';ctx.lineJoin='round';
+  // Long shadow forearm and a pale, skeletal hand with curled, segmented fingers.
+  ctx.fillStyle='#090710';ctx.beginPath();ctx.moveTo(-10,-3);ctx.quadraticCurveTo(28,-26,58,-9);ctx.quadraticCurveTo(73,0,78,17);ctx.quadraticCurveTo(48,24,29,11);ctx.lineTo(-5,13);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#171222';ctx.lineWidth=21;ctx.beginPath();ctx.moveTo(12,2);ctx.quadraticCurveTo(42,-3,65,8);ctx.stroke();ctx.strokeStyle='#b7adc9';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(12,0);ctx.quadraticCurveTo(42,-5,65,6);ctx.stroke();ctx.strokeStyle='#f5eefa';ctx.lineWidth=4.2;ctx.beginPath();ctx.moveTo(65,6);ctx.quadraticCurveTo(80,0,84,-15);ctx.moveTo(65,6);ctx.quadraticCurveTo(88,6,96,1);ctx.moveTo(65,6);ctx.quadraticCurveTo(80,13,85,24);ctx.moveTo(65,6);ctx.quadraticCurveTo(69,20,66,29);ctx.moveTo(62,4);ctx.quadraticCurveTo(49,-9,43,-19);ctx.stroke();
+  ctx.strokeStyle='#9d93b0';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(75,0);ctx.lineTo(84,-15);ctx.moveTo(81,6);ctx.lineTo(96,1);ctx.moveTo(76,12);ctx.lineTo(85,24);ctx.stroke();ctx.restore();
+}
+
+function drawWarkArenaBackdrop(t){
+  const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#03040f');sky.addColorStop(.5,'#17142c');sky.addColorStop(1,'#30283c');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+  const moon=ctx.createRadialGradient(720,105,2,720,105,180);moon.addColorStop(0,'rgba(188,166,255,.3)');moon.addColorStop(1,'rgba(70,37,113,0)');ctx.fillStyle=moon;ctx.fillRect(500,-30,430,320);
+  for(let i=0;i<72;i++){const x=(i*137.7+Math.sin(i*5+t*.2)*7)%W,y=(i*61.3)%305;ctx.globalAlpha=.22+(i%4)*.1;ctx.fillStyle=i%4===0?'#d7c8ff':'#bbc7e8';ctx.fillRect(x,y,i%13===0?2:1,i%13===0?2:1);}ctx.globalAlpha=1;
+  // Jagged far ridges and dead trees are built from blocky polygons, not an image backdrop.
+  ctx.fillStyle='#0d1021';ctx.beginPath();ctx.moveTo(0,325);for(let x=0;x<=W;x+=36)ctx.lineTo(x,260+Math.sin(x*.027+t*.12)*14+(x%108===0?27:0));ctx.lineTo(W,395);ctx.lineTo(0,395);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#1b182b';for(let i=0;i<10;i++){const x=i*107-20,h=75+(i%4)*27;ctx.fillRect(x,355-h,6,h);ctx.beginPath();ctx.moveTo(x-30,365-h);ctx.lineTo(x+3,315-h);ctx.lineTo(x+33,365-h);ctx.closePath();ctx.fill();}
+  ctx.fillStyle='#292536';ctx.beginPath();ctx.moveTo(0,397);ctx.lineTo(960,397);ctx.lineTo(960,560);ctx.lineTo(0,560);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#484055';ctx.lineWidth=2;for(let i=0;i<8;i++){const y=411+i*i*2.3;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}for(let i=0;i<15;i++){const x=i*70+(i%2)*13;ctx.beginPath();ctx.moveTo(x,397);ctx.lineTo(480+(x-480)*1.5,H);ctx.stroke();}
+  for(let i=0;i<22;i++){const x=(i*53+time*11)%W,y=330+(i%8)*26;ctx.globalAlpha=.14+.12*Math.sin(time*2+i);ctx.fillStyle=i%2?'#c0a8ff':'#ff9eb8';ctx.fillRect(x,y,2,2);}ctx.globalAlpha=1;
+}
+function drawWarkHUD(){
+  roundedRect(18,15,256,60,10,'rgba(4,8,23,.82)','#69eaff');ctx.textAlign='left';ctx.fillStyle='#9defff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText(warkThirdEyeAwake?'ERROL · BLACK THIRD EYE':'ERROL · TIME CONTROL',30,33);
+  for(let i=0;i<warkPlayerMaxHP;i++){ctx.fillStyle=i<warkPlayerHP?'#7eeaff':'#343c55';ctx.beginPath();ctx.roundRect(31+i*22,41,17,9,3);ctx.fill();}
+  ctx.fillStyle='#b7c7e4';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('MANA '+Math.floor(player.mana)+'/100',30,65);
+  roundedRect(668,15,274,60,10,'rgba(8,4,20,.84)',warkFinalForm?'#ff557e':'#b69aff');ctx.textAlign='right';ctx.fillStyle=warkFinalForm?'#ff9bb1':'#d6caff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText(warkFinalForm?'WARLOCK · NULL FORM':'WARLOCK SANS · OUTSIDE SPACE',930,33);bar(682,43,237,10,warkHP/warkMaxHP,warkFinalForm?'#e83b70':'#9c79e8','');ctx.fillStyle='#f3edff';ctx.font='bold 9px ui-monospace,monospace';ctx.fillText(Math.ceil(warkHP)+' / '+warkMaxHP,930,67);
+  ctx.globalAlpha=.45+.08*Math.sin(time*3);ctx.textAlign='center';ctx.fillStyle='#d5d0ee';ctx.font='bold 9px ui-monospace,monospace';ctx.fillText('J ĐÁNH · K NULL CUT · Q TIME STOP · E WARD · R REWIND · F MANA',480,548);ctx.globalAlpha=1;
+}
+
+function drawWarkChapter(phase,t){
+  if(phase==='timeResume'){
+    drawCharaForestBackdrop(false);const p=clamp(t/2.55,0,1);drawVillageSkeleton(435,448,1.4,'errol');drawTimeControlEye(439,370,.27,.8+.2*Math.sin(time*9));drawTimeWaveRing(438,412,30+p*370,1-p*.68,.57);drawAzureLightning(440,390,55*(1-p),.48*(1-p));drawCharaPowerAura(715,425,72,true,.25);ctx.save();ctx.translate(715,431);ctx.scale(1.9,1.9);drawChara(0,0,1);ctx.restore();ctx.fillStyle='rgba(3,5,14,'+(p*.22)+')';ctx.fillRect(0,0,W,H);ctx.textAlign='center';ctx.globalAlpha=.5+.25*Math.sin(time*4);ctx.fillStyle='#b6f6ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('TIME CONTROL · RESUME',480,34);ctx.restore();return;
+  }
+  if(phase==='charaAfterTime'){
+    drawCharaForestBackdrop(false);drawVillageSkeleton(300,470,1.5,'errol');drawTimeControlEye(300,375,.24,.8+.2*Math.sin(time*9));const a=1-clamp(t/3.4,0,1);drawCharaPowerAura(740,424,42,false,a*.5);ctx.save();ctx.globalAlpha=a;ctx.translate(740,434);ctx.scale(1.8,1.8);ctx.rotate(.16);drawChara(0,0,1);ctx.restore();for(let i=0;i<38;i++){const q=(i/38+t*.15)%1;ctx.globalAlpha=a*(1-q);ctx.fillStyle=i%2?'#ff4a6d':'#ffd1dc';ctx.beginPath();ctx.arc(740+Math.cos(i*2.4+time)*q*80,420+Math.sin(i*2.4+time)*q*52,1.4,0,TAU);ctx.fill();}ctx.globalAlpha=1;ctx.textAlign='center';ctx.fillStyle='#ffabbc';ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('CHARA · LOOP RELEASED',480,42);ctx.fillStyle='#f6f2f5';ctx.font='bold 13px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Chara hạ mắt. Lần đầu tiên, cô không cố quay lại vòng lặp.',480,65);return;
+  }
+  if(phase==='warkRiftOpening'){
+    drawWarkArenaBackdrop(t);const p=clamp(t/2.85,0,1);drawWarkRift(480,198,p);ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.3+.5*p;ctx.strokeStyle='#d7c8ff';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(481,28);ctx.lineTo(465,82);ctx.lineTo(489,123);ctx.lineTo(467,164);ctx.lineTo(480,215);ctx.stroke();ctx.restore();
+    // Two oversized shadow-hands pull the sky apart from opposite sides of the dimensional seam.
+    for(const side of [-1,1])drawRiftHand(side,480+side*(230-p*38),118,p,t);
+    drawCharaEncounterBanner('SPACE RIFT · BREACH DETECTED','Hai bàn tay kéo mở một vết nứt trên bầu trời.','#c9baff');ctx.textAlign='center';ctx.fillStyle='#f6f2ff';ctx.font='1000 25px ui-monospace,monospace';ctx.shadowColor='#9272ff';ctx.shadowBlur=18;ctx.fillText('XOẸT—!!',480,270);ctx.shadowBlur=0;return;
+  }
+  if(phase==='warkEnter'){
+    drawWarkArenaBackdrop(t);const p=clamp(t/2.5,0,1);drawWarkRift(708,222,1);drawWarkLockSans(730,478,.7+p*.22,p);drawCharaEncounterBanner('ENTITY FOUND · WARK LOCK SANS','Một dáng người cao, gầy bước ra từ khe nứt.','#c7b6ff');drawAzureLightning(705,310,65,.28+.4*Math.sin(t*8));return;
+  }
+  if(phase==='warkBattleIntro'||phase==='warkBattle'||phase==='warkBossShift'||phase==='warkDown'||phase==='warkFinalBattleIntro'||phase==='warkFinalBattle'||phase==='warkVictory'){
+    drawWarkArenaBackdrop(t);drawWarkRift(722,218,phase==='warkVictory'?clamp(1-t/3.2,0,1):.9);
+    if(phase==='warkBattle'||phase==='warkBossShift'||phase==='warkFinalBattle'){
+      if(warkTelegraph>0){ctx.save();ctx.globalAlpha=.22+.22*Math.sin(time*28);ctx.strokeStyle=warkFinalForm?'#ff4e83':'#b59cff';ctx.lineWidth=4;ctx.setLineDash([12,8]);ctx.beginPath();ctx.moveTo(55,warkAttackLane);ctx.lineTo(640,warkAttackLane);ctx.stroke();ctx.setLineDash([]);ctx.restore();ctx.textAlign='left';ctx.fillStyle='#e4d8ff';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('RIFT WAVE · NÉ LÊN / XUỐNG',40,warkAttackLane-12);}
+      if(warkTimeStop>0){ctx.fillStyle='rgba(47,205,255,.13)';ctx.fillRect(0,0,W,H);for(let i=0;i<7;i++){ctx.strokeStyle=i%2?'#9bdfff':'#e1d7ff';ctx.globalAlpha=.68-i*.07;ctx.lineWidth=i===0?3:1.5;ctx.beginPath();ctx.ellipse(warkX,warkY-145,55+i*22,86+i*18,time*.08+i*.32,0,TAU);ctx.stroke();ctx.beginPath();ctx.moveTo(24+i*10,120+i*33);ctx.lineTo(120+i*11,130+i*33);ctx.stroke();}ctx.globalAlpha=1;ctx.textAlign='center';ctx.fillStyle='#baf7ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('TIME STOP · WORLD FROZEN / ERROL CAN MOVE',480,103);}
+    }
+    const warkAlpha=phase==='warkVictory'?1-clamp(t/3.8,0,1):1;drawWarkLockSans(warkX,warkY,.9,warkAlpha);
+    if(phase!=='warkVictory'){
+      if(warkShieldTimer>0){ctx.strokeStyle='#87ecff';ctx.shadowColor='#6deaff';ctx.shadowBlur=18;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(player.x,player.y-46,35+Math.sin(time*15)*3,62+Math.cos(time*12)*4,0,0,TAU);ctx.stroke();ctx.shadowBlur=0;}
+      if(warkPlayerInvuln>0&&Math.floor(time*24)%2===0)ctx.globalAlpha=.35;
+      drawVillageSkeleton(player.x,player.y,1.54,'errol');ctx.globalAlpha=1;drawTimeControlEye(player.x+4,player.y-92,.13,.7+.3*Math.sin(time*8));if(warkThirdEyeAwake)drawBlackThirdEye(player.x+2,player.y-113,.8,1);if(player.dash>0||warkActionEffect==='dash'&&warkActionEffectTimer>0){for(let i=0;i<9;i++){ctx.globalAlpha=.35*(1-i/9);ctx.fillStyle=i%2?'#ff375e':'#7deaff';ctx.fillRect(player.x-48-i*11,player.y-72+i*2,22,54);}ctx.globalAlpha=1;}
+    }
+    if(warkActionEffectTimer>0&&phase==='warkBattle'){
+      const e=clamp(warkActionEffectTimer/.65,0,1);ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=e*.8;ctx.strokeStyle=warkActionEffect==='dash'?'#ff526e':warkActionEffect==='parry'?'#d8c9ff':'#8aeeff';ctx.lineWidth=warkActionEffect==='space'?7:3;
+      for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(player.x+36+i*8,player.y-84+i*8);ctx.lineTo(warkX-34-i*9,warkY-100-i*8);ctx.stroke();}ctx.restore();
+    }
+    if(phase==='warkBattle'||phase==='warkBossShift')drawWarkHUD();
+    if(phase==='warkBattleIntro'){
+      drawCharaEncounterBanner('WARLOCK SANS · OUTSIDE SPACE','His presence drains color from the arena.','#cbbdff');ctx.textAlign='center';ctx.fillStyle='#f3eaff';ctx.font='bold 13px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ENTER / CHẠM ĐỂ CHỊU TRẬN ĐẦU TIÊN',480,518);drawCrimsonLightning(warkX,warkY-180,115,.35+.15*Math.sin(time*7));
+    }else if(phase==='warkFinalBattleIntro'){
+      drawBlackThirdEye(player.x,player.y-113,1.05,1);drawCharaEncounterBanner('THIRD EYE · NULL FORM UNSEALED','The power is almost absolute — the corruption is already spreading.','#d0b477');ctx.textAlign='center';ctx.fillStyle='#fff0cd';ctx.font='bold 13px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ENTER / CHẠM ĐỂ BƯỚC VÀO PHA CUỐI',480,518);drawCrimsonLightning(warkX,warkY-170,132,.65);
+    }else if(phase==='warkBossShift'){
+      drawCharaEncounterBanner('RIFT PHASE II · SPACE IS FRACTURING','Năng lượng quanh Wark đổi sắc — tốc độ các đợt sóng tăng lên.','#ff7197');drawCrimsonLightning(warkX,warkY-140,100,.55+.3*Math.sin(time*12));
+    }else if(phase==='warkDown'){
+      roundedRect(240,35,480,58,12,'rgba(5,4,16,.94)','#9b85e8');ctx.textAlign='center';ctx.fillStyle='#e3d6ff';ctx.font='1000 14px ui-monospace,monospace';ctx.fillText('ERROL · TIME REWIND REQUIRED',480,58);ctx.fillStyle='#fff';ctx.font='bold 11px Inter,Segoe UI,Arial,sans-serif';ctx.fillText(warkReviveReady?'Nhấn L để hồi sinh · R cũng có thể đảo ngược thời gian':'Con mắt tự kéo Errol trở lại sau vài giây',480,78);
+    }else if(phase==='warkVictory'){
+      const p=clamp(t/3.8,0,1);for(let i=0;i<14;i++){const q=(i/14+t*.16)%1;ctx.globalAlpha=(1-q)*.45;ctx.strokeStyle=i%3?'#c7a96b':'#ff426e';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(warkX+Math.cos(i*2.399)*q*170,warkY-160+Math.sin(i*2.399)*q*100);ctx.lineTo(warkX+Math.cos(i*2.399)*q*250,warkY-160+Math.sin(i*2.399)*q*150);ctx.stroke();}ctx.globalAlpha=1;drawBlackThirdEye(player.x+2,player.y-113,1.05,1);drawWarkRift(730,218,1-p*.8);ctx.textAlign='center';ctx.fillStyle='#d7bd83';ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('WARLOCK · NULL FORM COLLAPSED',480,102);ctx.fillStyle='#f7edf2';ctx.font='1000 22px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ERROL ĐÃ THẮNG — NHƯNG KHÔNG CÒN NHƯ CŨ',480,139);ctx.fillStyle='#c6b7a4';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Con mắt thứ ba vẫn mở. Cảm xúc bắt đầu bị bóng tối bẻ cong.',480,164);if(t>2.1){ctx.globalAlpha=.55+.25*Math.sin(time*2);ctx.fillStyle='#d9c48f';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('NHẤN ENTER / CHẠM ĐỂ GHIM KHOẢNH KHẮC',480,523);ctx.globalAlpha=1;}
+    }
+    return;
+  }
+}
+
+function drawWarkHudLabel(active){
+  if(warkHudActive===active)return;warkHudActive=active;
+  const change=(id,glyph,label,aria)=>{const b=document.getElementById(id);if(!b)return;const g=b.querySelector('.mobile-glyph'),sm=b.querySelector('small');if(g)g.textContent=active?glyph:(b.dataset.defaultGlyph||g.textContent);if(sm)sm.textContent=active?label:(b.dataset.defaultLabel||sm.textContent);if(aria)b.setAttribute('aria-label',active?aria:(b.dataset.defaultAria||b.getAttribute('aria-label')));};
+  if(!drawWarkHudLabel.defaults){drawWarkHudLabel.defaults={};for(const b of document.querySelectorAll('.mobile-action')){drawWarkHudLabel.defaults[b.id]={glyph:b.querySelector('.mobile-glyph')?.textContent||'',label:b.querySelector('small')?.textContent||'',aria:b.getAttribute('aria-label')||''};b.dataset.defaultGlyph=drawWarkHudLabel.defaults[b.id].glyph;b.dataset.defaultLabel=drawWarkHudLabel.defaults[b.id].label;b.dataset.defaultAria=drawWarkHudLabel.defaults[b.id].aria;}}
+  if(active){change('mobileInteract','⏸','STOP','Tạm ngừng thời gian');change('mobileSpecial','✣','CUT · K','Cắt không gian');change('mobileEye3','◷','STOP · Q','Dừng thời gian');change('mobileWard','◇','KHIÊN · E','Khiên thời gian');change('mobileCompass','↶','REWIND · R','Quay ngược thời gian');change('mobileExo','✦','MANA · F','Hồi mana');change('mobileDash','➤','LƯỚT · SPACE','Lướt thời gian');change('mobileParry','↻','HỒI SINH · L','Hồi sinh hoặc đỡ đòn');change('mobileAttack','✧','ĐÁNH · J',warkThirdEyeAwake?'Đánh Warlock Sans ở pha cuối':'Đánh Warlock Sans');}
+  else {for(const b of document.querySelectorAll('.mobile-action')){const d=drawWarkHudLabel.defaults[b.id];if(!d)continue;const g=b.querySelector('.mobile-glyph'),sm=b.querySelector('small');if(g)g.textContent=d.glyph;if(sm)sm.textContent=d.label;if(d.aria)b.setAttribute('aria-label',d.aria);}}
+}
+
+function handleCharaFinalAction(action){
+  const accepted=['attack','special','eye3','exo','dash','ward','parry','enter','click','interact','compass'];if(!accepted.includes(action)||charaFinalCooldown>0)return;
+  const mana=n=>player.mana>=n;let damage=0;
+  if(action==='attack'||action==='enter'||action==='click'){damage=44;charaFinalCooldown=.23;charaFinalAction='attack';}
+  else if(action==='special'){if(!mana(16))return;player.mana-=16;damage=112;charaFinalCooldown=.42;charaFinalAction='space';}
+  else if(action==='eye3'||action==='interact'){if(!mana(18))return;player.mana-=18;charaFinalTimeStop=1.5;charaAttackWarn=0;charaTeleportTimer=Math.max(charaTeleportTimer,1.0);damage=78;charaFinalCooldown=.5;charaFinalAction='time';}
+  else if(action==='ward'){if(!mana(10))return;player.mana-=10;charaFinalShield=1.35;charaFinalCooldown=.28;charaFinalAction='ward';}
+  else if(action==='compass'){player.x=clamp(player.x-75,135,590);charaFinalPlayerHP=Math.min(charaFinalPlayerMaxHP,charaFinalPlayerHP+1);player.mana=Math.min(100,player.mana+25);charaFinalInvuln=.65;charaFinalTimeStop=.5;charaFinalCooldown=.45;charaFinalAction='rewind';}
+  else if(action==='exo'){player.mana=100;charaFinalPlayerHP=Math.min(charaFinalPlayerMaxHP,charaFinalPlayerHP+1);damage=76;charaFinalCooldown=.6;charaFinalAction='mana';}
+  else if(action==='dash'){player.x=clamp(player.x+(player.faceX>=0?1:-1)*112,125,600);charaFinalInvuln=.65;damage=68;charaFinalCooldown=.3;charaFinalAction='dash';}
+  else if(action==='parry'){
+    charaFinalShield=.7;charaFinalCooldown=.32;charaFinalAction='parry';
+    if(charaAttackWarn>0){charaAttackWarn=0;damage=142;charaFinalTimeStop=.45;}else return;
+  }
+  if(damage>0){charaFinalHP=Math.max(0,charaFinalHP-damage);charaFinalHitFlash=.32;screenShake=Math.max(screenShake,3+damage*.06);spawnBurst(charaBattleX,408,'#ff3a66',Math.min(25,8+Math.floor(damage/8)),125+damage);sound(350+damage*2,.09,'sawtooth',.035);}
+  if(charaFinalHP<=0){charaFinalLoops++;villageCharaKills=charaFinalLoops;villageCharaPhase=charaFinalLoops>=7?'charaFinalDefeated':'charaFinalLoop';villageCharaTime=0;charaFinalLoopFlash=.8;charaAttackWarn=0;charaFinalHP=charaFinalMaxHP;player.mana=Math.min(100,player.mana+20);screenShake=11;flash=.18;spawnBurst(charaBattleX,410,'#ff2955',48,230);setStatus(charaFinalLoops>=7?'<b>CHARA · LOOP 07 / 07</b><br>Không còn đường reset nào mở ra.':'<b>CHARA · LOOP '+String(charaFinalLoops).padStart(2,'0')+' / 07</b><br>Chara bị kéo ngược về điểm cũ — mỗi lần trở lại, cô mất thêm một đường thoát.');}
+}
+function updateCharaFinalBattle(dt){
+  charaTeleportTimer=Math.max(0,charaTeleportTimer-dt);charaAttackTimer=Math.max(0,charaAttackTimer-dt);charaAttackAnim=Math.max(0,charaAttackAnim-dt);charaTeleportFlash=Math.max(0,charaTeleportFlash-dt);charaFinalCooldown=Math.max(0,charaFinalCooldown-dt);charaFinalInvuln=Math.max(0,charaFinalInvuln-dt);charaFinalHitFlash=Math.max(0,charaFinalHitFlash-dt);charaFinalTimeStop=Math.max(0,charaFinalTimeStop-dt);charaFinalShield=Math.max(0,charaFinalShield-dt);charaFinalLoopFlash=Math.max(0,charaFinalLoopFlash-dt);
+  const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0),dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0),m=Math.hypot(dx,dy);
+  if(m){player.x=clamp(player.x+dx/m*260*dt,115,600);player.y=clamp(player.y+dy/m*185*dt,382,492);player.faceX=dx/m;player.faceY=dy/m;}
+  if(charaFinalTimeStop>0)return;
+  if(charaTeleportTimer<=0){const spots=[598,700,830,635,785,660,815];charaBattleX=spots[(charaFinalLoops+Math.floor(time*1.3))%spots.length];charaTeleportTimer=Math.max(.8,1.65-charaFinalLoops*.08);charaTeleportFlash=.34;charaAttackWarn=0;spawnBurst(charaBattleX,410,'#ff2855',22,135);}
+  if(charaAttackTimer<=0&&charaAttackWarn<=0){charaAttackType=(charaAttackType+1)%4;charaAttackLane=player.y;charaAttackWarn=.58;charaAttackAnim=.72;charaAttackTimer=Math.max(.88,1.72-charaFinalLoops*.1);setStatus(['<b>CHARA · TELEPORT STRIKE</b><br>Cô biến mất rồi xuất hiện ngay sát rìa không gian.','<b>CHARA · REDLINE BARRAGE</b><br>Nhiều vệt đỏ đang khóa làn ngang của Errol.','<b>CHARA · RESET FIELD</b><br>Một vòng lặp đỏ khép dần quanh khu vực chiến đấu.','<b>CHARA · RIFT CROSS</b><br>Đòn cắt chéo sẽ quét qua vị trí hiện tại.'][charaAttackType]);}
+  if(charaAttackWarn>0){const before=charaAttackWarn;charaAttackWarn=Math.max(0,charaAttackWarn-dt);if(before>0&&charaAttackWarn===0){let hit=false;switch(charaAttackType){case 0:hit=Math.abs(player.x-charaBattleX)<165;break;case 1:hit=Math.abs(player.y-charaAttackLane)<51;break;case 2:hit=Math.abs(player.x-480)<230;break;default:hit=Math.abs((player.x-player.y)-(charaBattleX-430))<120;}
+    if(hit&&charaFinalInvuln<=0&&charaFinalShield<=0){charaFinalPlayerHP--;charaFinalInvuln=1.1;player.mana=Math.max(0,player.mana-12);screenShake=7;flash=.1;spawnBurst(player.x,player.y-30,'#ff365e',16,110);if(charaFinalPlayerHP<=0){charaFinalPlayerHP=2;charaFinalInvuln=2;charaFinalTimeStop=.65;player.mana=Math.max(player.mana,45);player.x=245;player.y=450;setStatus('<b>TIME REWIND · ERROL RESTORED</b><br>Con mắt thời gian tua lại khoảnh khắc bị trúng đòn. Đừng đứng yên khi Chara biến mất.');}else setStatus('<b>CHARA · RIFT HIT</b><br>Vệt đỏ đã chạm tới Errol. Đổi hướng trước khi đợt tiếp theo khóa vị trí.');}
+  }}
+}
+function drawCharaFinalArc(phase,t){
+  drawCharaForestBackdrop(false);
+  // Ominous red afterimages and a faint blue time-eye glow contrast with Chara's reset aura.
+  if(phase==='charaFinalIntro'){
+    drawTimeWaveRing(455,420,70+Math.sin(time*3)*12,.42,.42);drawVillageSkeleton(240,472,1.55,'errol');drawTimeControlEye(239,370,.28,.8+.2*Math.sin(time*9));drawCharaPowerAura(730,414,95,true,0);ctx.save();ctx.translate(730,435);ctx.scale(1.92,1.92);drawChara(0,0,1);ctx.restore();drawCharaEncounterBanner('CHARA · FINAL LOOP','Chara dịch chuyển trong một hào quang đỏ, liên tục bẻ ngược không gian.','#ff3159');ctx.textAlign='center';ctx.fillStyle='#fff1f4';ctx.font='bold 12px ui-monospace,monospace';ctx.fillText('ENTER / CHẠM ĐỂ BẮT ĐẦU TRẬN CUỐI',480,517);return;
+  }
+  if(phase==='charaFinalLoop'||phase==='charaFinalDefeated'){
+    const collapse=clamp(t/1.5,0,1);drawVillageSkeleton(242,472,1.5,'errol');drawTimeControlEye(239,370,.26,.9);
+    for(let i=0;i<7;i++){ctx.save();ctx.globalAlpha=.2;ctx.translate(charaBattleX+Math.cos(i*TAU/7+time)*23,416+Math.sin(i*TAU/7+time)*9);ctx.scale(1.7,1.7);drawChara(0,0,.7);ctx.restore();}
+    ctx.save();ctx.globalAlpha=phase==='charaFinalDefeated'?Math.max(0,1-t/3.5):1-collapse*.3;ctx.translate(charaBattleX,433);ctx.scale(1.85*(1+collapse*.16),1.85*(1-collapse*.25));drawChara(0,0,1);ctx.restore();drawCharaPowerAura(charaBattleX,410,90*(1-collapse*.38),true,collapse);
+    for(let i=0;i<8;i++){const q=(t*.4+i/8)%1;ctx.globalAlpha=(1-q)*.7;ctx.strokeStyle=i%2?'#ff315e':'#fff0f5';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(charaBattleX,422,50+q*160,22+q*58,time*.4+i*.3,0,TAU);ctx.stroke();}ctx.globalAlpha=1;
+    drawCharaEncounterBanner(phase==='charaFinalDefeated'?'CHARA · NO RESET LEFT':'CHARA · RESET '+String(charaFinalLoops).padStart(2,'0')+' / 07',phase==='charaFinalDefeated'?'The loop finally holds.':'Afterimages fold back into the same point.','#ff3159');if(phase==='charaFinalDefeated'){ctx.textAlign='center';ctx.fillStyle='#ffced8';ctx.font='bold 13px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Chara hạ thấp đôi mắt. Không còn một lần tái sinh nào nữa.',480,516);}return;
+  }
+  // Live phase: Chara teleports, holds a red warning lane, then releases a different attack pattern.
+  ctx.save();ctx.globalAlpha=.12;ctx.strokeStyle='#ff294f';ctx.lineWidth=1;for(let i=0;i<10;i++){ctx.beginPath();ctx.ellipse(480,425,82+i*33,25+i*9,time*.15+i*.2,0,TAU);ctx.stroke();}ctx.restore();
+  if(charaTeleportFlash>0){for(let g=3;g>=1;g--){ctx.save();ctx.globalAlpha=.1*g*charaTeleportFlash/.34;ctx.translate(charaBattleX-g*28,430);ctx.scale(1.7,1.7);drawChara(0,0,1);ctx.restore();}}
+  drawCharaPowerAura(charaBattleX,414,82,true,charaFinalHitFlash);ctx.save();ctx.translate(charaBattleX,435);ctx.rotate(Math.sin(time*12)*.04);ctx.scale(1.9,1.9);drawChara(0,0,1);ctx.restore();
+  if(charaAttackWarn>0){const p=1-charaAttackWarn/.58;ctx.save();ctx.globalAlpha=.28+.55*Math.sin(time*28);ctx.strokeStyle='#ff2854';ctx.shadowColor='#ff174b';ctx.shadowBlur=18;ctx.lineWidth=4;
+    if(charaAttackType===0){ctx.beginPath();ctx.arc(charaBattleX,418,52+p*70,-.8,Math.PI*1.1);ctx.stroke();}
+    else if(charaAttackType===1){for(let i=0;i<7;i++){ctx.beginPath();ctx.moveTo(100,charaAttackLane-70+i*20);ctx.lineTo(870,charaAttackLane-25+i*12);ctx.stroke();}}
+    else if(charaAttackType===2){ctx.beginPath();ctx.ellipse(480,428,95+p*300,35+p*80,0,0,TAU);ctx.stroke();}
+    else{ctx.beginPath();ctx.moveTo(400,300);ctx.lineTo(580,520);ctx.moveTo(540,300);ctx.lineTo(370,520);ctx.stroke();}ctx.restore();
+  }
+  drawVillageSkeleton(player.x,player.y,1.52,'errol');drawTimeControlEye(player.x,player.y-87,.16,.7+.3*Math.sin(time*8));if(charaFinalTimeStop>0){ctx.fillStyle='rgba(52,194,255,.12)';ctx.fillRect(0,0,W,H);drawTimeWaveRing(charaBattleX,415,52+(1-charaFinalTimeStop/1.5)*220,.65,.55);}
+  if(charaFinalShield>0){ctx.strokeStyle='#a8f5ff';ctx.shadowColor='#83eaff';ctx.shadowBlur=18;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(player.x,player.y-40,44,67,0,0,TAU);ctx.stroke();ctx.shadowBlur=0;}
+  if(charaFinalInvuln>0&&Math.floor(time*20)%2===0){ctx.globalAlpha=.3;drawVillageSkeleton(player.x,player.y,1.52,'errol');ctx.globalAlpha=1;}
+  // Compact gameplay HUD; leave most of the arena visible.
+  roundedRect(16,14,238,62,10,'rgba(4,7,20,.8)','#78eaff');ctx.textAlign='left';ctx.fillStyle='#9af0ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('ERROL · TIME CONTROL',29,33);for(let i=0;i<charaFinalPlayerMaxHP;i++){ctx.fillStyle=i<charaFinalPlayerHP?'#7ceaff':'#30364c';ctx.beginPath();ctx.roundRect(30+i*18,42,13,9,3);ctx.fill();}ctx.fillStyle='#dae8ff';ctx.font='bold 9px ui-monospace,monospace';ctx.fillText('MANA '+Math.floor(player.mana)+' / 100',30,67);
+  roundedRect(682,14,260,60,10,'rgba(19,3,18,.82)','#ff5274');ctx.textAlign='right';ctx.fillStyle='#ff9daf';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('CHARA · RED RESET',930,32);bar(695,42,220,10,charaFinalHP/charaFinalMaxHP,'#ff3157','');ctx.fillStyle='#fff0f5';ctx.font='bold 9px ui-monospace,monospace';ctx.fillText('LOOP '+charaFinalLoops+'/7',930,67);
+  if(charaFinalHitFlash>0){ctx.save();ctx.globalAlpha=charaFinalHitFlash*1.2;ctx.globalCompositeOperation='screen';ctx.fillStyle='#fff0f5';ctx.fillRect(0,0,W,H);ctx.restore();}
+}
+function drawCosmicDive(t){
+  ctx.save();const p=clamp(t/4.35,0,1),sky=ctx.createRadialGradient(480,320,20,480,320,720);sky.addColorStop(0,'#0a2851');sky.addColorStop(.45,'#071127');sky.addColorStop(1,'#010208');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+  for(let i=0;i<160;i++){const x=(i*137.7)%W,y=(i*71.3)%H;ctx.globalAlpha=.2+(i%5)*.1;ctx.fillStyle=i%11===0?'#a5f3ff':'#eff7ff';ctx.beginPath();ctx.arc(x,y,1+(i%4===0?1:0),0,TAU);ctx.fill();}ctx.globalAlpha=1;
+  const earthScale=.12+p*1.85;ctx.save();ctx.translate(480,500);ctx.scale(earthScale,earthScale);const eg=ctx.createRadialGradient(-20,-20,6,0,0,100);eg.addColorStop(0,'#7ff3ff');eg.addColorStop(.38,'#2381c1');eg.addColorStop(.72,'#154f88');eg.addColorStop(1,'#061022');ctx.fillStyle=eg;ctx.beginPath();ctx.arc(0,0,100,0,TAU);ctx.fill();ctx.fillStyle='#5ccf92';ctx.beginPath();ctx.moveTo(-65,-18);ctx.quadraticCurveTo(-31,-52,-8,-25);ctx.lineTo(11,-5);ctx.lineTo(-15,16);ctx.lineTo(-46,8);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(19,34);ctx.quadraticCurveTo(48,12,67,37);ctx.lineTo(52,64);ctx.lineTo(29,55);ctx.closePath();ctx.fill();ctx.restore();
+  const ex=480+Math.sin(t*1.6)*90,ey=55+p*350,tail=ctx.createLinearGradient(ex,ey-170,ex,ey+50);tail.addColorStop(0,'rgba(255,35,80,0)');tail.addColorStop(.55,'rgba(255,30,75,.6)');tail.addColorStop(1,'rgba(166,244,255,.9)');ctx.save();ctx.strokeStyle=tail;ctx.shadowColor='#ff214f';ctx.shadowBlur=25;ctx.lineWidth=18*(1-p*.5);ctx.beginPath();ctx.moveTo(ex-20,ey-150);ctx.quadraticCurveTo(ex+45,ey-65,ex,ey+20);ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(ex-20,ey-150);ctx.quadraticCurveTo(ex+45,ey-65,ex,ey+20);ctx.stroke();ctx.restore();
+  if(p>.7){const q=(p-.7)/.3,blast=ctx.createRadialGradient(ex,ey,10,ex,ey,240*q+20);blast.addColorStop(0,'rgba(255,255,255,.9)');blast.addColorStop(.22,'rgba(255,40,80,.6)');blast.addColorStop(1,'rgba(255,30,70,0)');ctx.fillStyle=blast;ctx.fillRect(ex-250,ey-240,500,480);}
+  ctx.textAlign='center';ctx.globalAlpha=.6+.35*Math.sin(time*5);ctx.fillStyle='#e5faff';ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('TIME CONTROL · ATMOSPHERIC ENTRY',480,32);ctx.globalAlpha=1;ctx.restore();
+}
+function drawWarkStoryCutscene(phase,t){
+  drawWarkArenaBackdrop(t);const errolX=300+Math.sin(t*5)*10,errolY=472;drawRiftHand(-1,220,118,.9,t);drawRiftHand(1,740,118,.9,t);
+  if(phase==='warkOnslaught'){
+    const p=clamp(t/4.25,0,1);drawWarkLockSans(685,476,.88,1);drawVillageSkeleton(errolX+(t<2?80:0),errolY,1.48,'errol');
+    for(let i=0;i<8;i++){const q=(t*1.8+i/8)%1,x=690-q*390,y=320+Math.sin(t*18+i)*65;ctx.globalAlpha=(1-q)*.7;ctx.strokeStyle=i%2?'#a98cff':'#ff436d';ctx.lineWidth=2+(1-q)*8;ctx.beginPath();ctx.moveTo(x+35,y-24);ctx.quadraticCurveTo(x-10,y+15,x-64,y+55);ctx.stroke();}ctx.globalAlpha=1;
+    drawBlackThirdEye(errolX,errolY-88,.6,.18);ctx.save();ctx.globalAlpha=.3+.45*Math.sin(t*28);ctx.strokeStyle='#ff365f';ctx.shadowColor='#ff174b';ctx.shadowBlur=20;ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(440,240);ctx.lineTo(390,380);ctx.lineTo(330,430);ctx.lineTo(255,460);ctx.stroke();ctx.restore();
+    drawCharaEncounterBanner('WARLOCK · REALITY OVERRIDE','He leaves ordinary space and attacks through it.','#c8a8ff');ctx.textAlign='center';ctx.fillStyle='#ff9db3';ctx.font='1000 24px ui-monospace,monospace';ctx.fillText('ĐẤM—ĐẤM—ĐẤM!!',480,112);return;
+  }
+  if(phase==='warkSpaceCompress'){
+    const p=clamp(t/4.1,0,1),cx=errolX+100,cy=390;drawWarkLockSans(670,476,.9,1);drawVillageSkeleton(cx,errolY,1.48,'errol');
+    const squeeze=1-p*.72;ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.8;for(let i=0;i<7;i++){const rx=45+i*53+(1-p)*160,ry=22+i*25+(1-p)*75;ctx.strokeStyle=i%2?'#c6adff':'#ff4a79';ctx.lineWidth=2+(i===6?3:0);ctx.beginPath();ctx.ellipse(cx,cy,rx*squeeze,ry*squeeze,time*.45+i*.15,0,TAU);ctx.stroke();}ctx.restore();
+    const singular=ctx.createRadialGradient(cx,cy,2,cx,cy,180*(.2+p));singular.addColorStop(0,'rgba(0,0,0,.95)');singular.addColorStop(.3,'rgba(17,8,32,.9)');singular.addColorStop(.65,'rgba(142,93,242,.42)');singular.addColorStop(1,'rgba(255,33,87,0)');ctx.fillStyle=singular;ctx.beginPath();ctx.arc(cx,cy,180*(.2+p),0,TAU);ctx.fill();
+    for(let i=0;i<18;i++){const a=i*TAU/18+t*2.8,rr=45+(i%6)*20+(1-p)*100;ctx.strokeStyle=i%2?'#fff0f7':'#bda4ff';ctx.globalAlpha=.5;ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr*.7);ctx.lineTo(cx+Math.cos(a+.06)*(rr+30),cy+Math.sin(a+.06)*(rr+30)*.7);ctx.stroke();}ctx.globalAlpha=1;
+    if(t>3.05){const q=clamp((t-3.05)/1.05,0,1),burst=ctx.createRadialGradient(cx,cy,5,cx,cy,480*q+10);burst.addColorStop(0,'rgba(255,255,255,.96)');burst.addColorStop(.18,'rgba(219,177,255,.72)');burst.addColorStop(.45,'rgba(255,38,83,.32)');burst.addColorStop(1,'rgba(255,24,70,0)');ctx.fillStyle=burst;ctx.fillRect(0,0,W,H);}
+    drawCharaEncounterBanner('REALITY COMPRESSION','Warlock nén khoảng cách thành một điểm rồi giải phóng toàn bộ áp lực.','#ff799b');return;
+  }
+  if(phase==='warkErrolGlitch'){
+    drawWarkLockSans(692,476,.9,1);drawVillageSkeleton(errolX,errolY,1.48,'errol');
+    for(let g=0;g<9;g++){const yy=300+g*20,shift=Math.sin(time*17+g)*22;ctx.globalAlpha=.22+.28*Math.sin(time*19+g);ctx.fillStyle=g%2?'#ff2455':'#7aeaff';ctx.fillRect(errolX-48+shift,yy,84+g%4*16,2+g%3);}ctx.globalAlpha=1;
+    for(let i=0;i<20;i++){const a=i*2.399+t*1.6,rr=22+(i%5)*11;ctx.globalAlpha=.48;ctx.strokeStyle=i%2?'#ff3e68':'#a5f4ff';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(errolX+Math.cos(a)*rr,errolY-80+Math.sin(a)*rr);ctx.lineTo(errolX+Math.cos(a+.7)*(rr+24),errolY-80+Math.sin(a+.7)*(rr+24));ctx.stroke();}ctx.globalAlpha=1;
+    ctx.textAlign='center';ctx.fillStyle='#ffb0c1';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('ERROL // SOURCE CODE DAMAGED',480,102);drawCharaEncounterBanner('FAULT LINE · EXISTENCE CORRUPTED','Pixels and identity fall out of sync; the soul is still holding on.','#ff7197');return;
+  }
+  if(phase==='warkErrolCounter'){
+    const p=clamp(t/2.35,0,1),x=errolX+p*220;drawWarkLockSans(690-p*70,476,.9,1);drawVillageSkeleton(x,errolY-10*Math.sin(p*Math.PI),1.5,'errol');
+    for(let i=0;i<10;i++){ctx.globalAlpha=(1-p*.65)*(.3+i*.05);ctx.strokeStyle=i%2?'#ff365f':'#e8faff';ctx.lineWidth=2+i*.65;ctx.beginPath();ctx.moveTo(x-50-i*5,errolY-70+i*6);ctx.quadraticCurveTo(x+40,errolY-135+i*10,680+i*5,errolY-90+i*4);ctx.stroke();}ctx.globalAlpha=1;
+    drawCharaEncounterBanner('ERROL · COUNTERSTRIKE','Even corrupted code can still throw one last punch.','#8deeff');return;
+  }
+  if(phase==='warkNullPointer'){
+    const p=clamp(t/3.25,0,1);drawWarkLockSans(700,476,.92,1);ctx.fillStyle='rgba(145,145,158,'+(.08+p*.3)+')';ctx.fillRect(0,0,W,H);ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#e5dcff';ctx.shadowColor='#c8aaff';ctx.shadowBlur=28;ctx.lineWidth=7;
+    for(let i=0;i<5;i++){const yy=130+i*58+Math.sin(time*4+i)*20;ctx.beginPath();ctx.moveTo(660,220+i*10);ctx.bezierCurveTo(530,yy,430,yy+75,275,420+i*9);ctx.stroke();}ctx.strokeStyle='#05050b';ctx.lineWidth=18;ctx.beginPath();ctx.moveTo(700,235);ctx.quadraticCurveTo(530,280,415,370);ctx.stroke();ctx.restore();
+    drawVillageSkeleton(280+p*10,474,1.45,'errol');for(let i=0;i<8;i++){ctx.globalAlpha=.35+.35*Math.sin(time*15+i);ctx.fillStyle=i%2?'#f4f3ff':'#ff365c';ctx.fillRect(245+Math.sin(i*3+time*12)*55,370+i*15,25+Math.sin(i+time*6)*10,2);}ctx.globalAlpha=1;
+    drawCharaEncounterBanner('NULL-POINTER STRIKE','Warlock strikes the definition of Errol, not just the body.','#c8b5ff');return;
+  }
+  if(phase==='warkVoidDrift'){
+    const space=ctx.createRadialGradient(480,290,5,480,290,590);space.addColorStop(0,'#18213e');space.addColorStop(.5,'#070a1d');space.addColorStop(1,'#010208');ctx.fillStyle=space;ctx.fillRect(0,0,W,H);
+    for(let i=0;i<180;i++){const x=(i*131.7)%W,y=(i*77.3)%H;ctx.globalAlpha=.2+(i%4)*.15;ctx.fillStyle=i%7?'#eeeaff':'#ff8caa';ctx.beginPath();ctx.arc(x,y,1+(i%3)*.4,0,TAU);ctx.fill();}ctx.globalAlpha=1;
+    const p=clamp(t/4.25,0,1);ctx.save();ctx.translate(440+Math.sin(t*1.4)*18,300+Math.sin(t*1.8)*28);ctx.rotate(Math.sin(t*1.2)*.15);ctx.globalAlpha=1-p*.28;drawVillageSkeleton(0,0,1.3,'errol');ctx.restore();
+    for(let i=0;i<24;i++){const a=i*TAU/24+time*.2,rr=55+(i%5)*13;ctx.globalAlpha=.42;ctx.strokeStyle=i%2?'#c2a7ff':'#ff456c';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(440+Math.cos(a)*rr,300+Math.sin(a)*rr);ctx.lineTo(440+Math.cos(a+.15)*(rr+18),300+Math.sin(a+.15)*(rr+18));ctx.stroke();}ctx.globalAlpha=1;
+    drawCharaEncounterBanner('ERROL · OUTSIDE THE MULTIVERSE','The source-code trace is fading. Even reset cannot find a safe checkpoint.','#c8b5ff');return;
+  }
+  if(phase==='warkDarkEnergy'){
+    const p=clamp(t/3.8,0,1);const space=ctx.createRadialGradient(480,290,5,480,290,590);space.addColorStop(0,'#171a2a');space.addColorStop(.55,'#070914');space.addColorStop(1,'#010208');ctx.fillStyle=space;ctx.fillRect(0,0,W,H);drawVillageSkeleton(450,315,1.18,'errol');
+    for(let i=0;i<46;i++){const a=i*2.399+time*.46,r=210*(1-p)+22+(i%7)*5,x=450+Math.cos(a)*r,y=290+Math.sin(a)*r*.68;const g=ctx.createRadialGradient(x,y,0,x,y,4+(i%3));g.addColorStop(0,'#17151e');g.addColorStop(.55,'#05050a');g.addColorStop(.82,'#b9a06a');g.addColorStop(1,'rgba(209,173,96,0)');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y,2.5+(i%3),3.6+(i%2),a,0,TAU);ctx.fill();ctx.strokeStyle='rgba(214,180,104,.5)';ctx.lineWidth=.6;ctx.beginPath();ctx.ellipse(x,y,2.5+(i%3),3.6+(i%2),a,0,TAU);ctx.stroke();}
+    const glow=ctx.createRadialGradient(450,276,2,450,276,80*p+10);glow.addColorStop(0,'rgba(200,166,97,.22)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.beginPath();ctx.arc(450,276,80*p+10,0,TAU);ctx.fill();drawCharaEncounterBanner('UNKNOWN ESSENCE · BLACK GOLD','Tiny liquid-like droplets drift in vacuum, then merge with Errol.','#d9c48f');return;
+  }
+  if(phase==='warkThirdEyeAwakening'){
+    const p=clamp(t/4.1,0,1),x=450,y=390;ctx.fillStyle='#02020a';ctx.fillRect(0,0,W,H);const glow=ctx.createRadialGradient(x,y-60,2,x,y-60,280);glow.addColorStop(0,'rgba(193,153,78,.28)');glow.addColorStop(.3,'rgba(23,14,38,.42)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    for(let i=0;i<64;i++){const a=i*2.399+time*.5,rr=32+(i%7)*21+(1-p)*85,xx=x+Math.cos(a)*rr,yy=y-78+Math.sin(a)*rr*.48;ctx.globalAlpha=.15+.45*p;ctx.fillStyle=i%3?'#05050a':'#c4a05e';ctx.beginPath();ctx.ellipse(xx,yy,1.2+(i%3)*.55,2.4+(i%2),a,0,TAU);ctx.fill();}ctx.globalAlpha=1;
+    drawVillageSkeleton(x,y+75,1.72,'errol');drawBlackThirdEye(x,y-14,1.25,clamp((t-.9)/2.1,0,1));drawAzureLightning(x,y-45,118,.12+p*.25);ctx.save();ctx.globalAlpha=.15+.2*p;ctx.strokeStyle='#c0a06a';ctx.lineWidth=1.6;for(let i=0;i<9;i++){const a=time*.24+i*TAU/9;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*65,y-20+Math.sin(a)*35);ctx.lineTo(x+Math.cos(a)*250,y-20+Math.sin(a)*150);ctx.stroke();}ctx.restore();
+    drawCharaEncounterBanner('THIRD EYE · CORRUPTION AWAKENS','An almost unbeatable potential opens — Errol’s emotions begin to darken.','#c4a76c');return;
+  }
+}
+
 function drawCharaEncounter(){
   const phase=villageCharaPhase,t=villageCharaTime;
+  if(phase==='cosmicDive'){drawCosmicDive(t);drawWarkHudLabel(false);return;}
+  if(['charaFinalIntro','charaFinalBattle','charaFinalLoop','charaFinalDefeated'].includes(phase)){drawWarkHudLabel(['charaFinalBattle'].includes(phase));drawCharaFinalArc(phase,t);return;}
+  if(['warkOnslaught','warkSpaceCompress','warkErrolGlitch','warkErrolCounter','warkNullPointer','warkVoidDrift','warkDarkEnergy','warkThirdEyeAwakening'].includes(phase)){drawWarkHudLabel(false);drawWarkStoryCutscene(phase,t);return;}
+  if(['timeResume','charaAfterTime','warkRiftOpening','warkEnter','warkBattleIntro','warkBattle','warkBossShift','warkDown','warkFinalBattleIntro','warkFinalBattle','warkVictory'].includes(phase)){drawWarkHudLabel(['warkBattleIntro','warkBattle','warkBossShift','warkDown','warkFinalBattleIntro','warkFinalBattle'].includes(phase));drawWarkChapter(phase,t);return;}else drawWarkHudLabel(false);
   if(['timeWaveCharge','timeWaveBurst','timeWaveZoom','earthFreeze','planetFreeze','universeFreeze','timeWaveEnd'].includes(phase)){drawTimeWaveCinematic(phase,t);return;}
   const cosmic=['soulFlight','cosmicAbsorb','timeEyeAwakening','timeEyeEnd'].includes(phase);
   drawCharaForestBackdrop(cosmic);
@@ -3514,10 +3971,10 @@ function drawCharaEncounter(){
   if(phase==='impact'){zoom=1.3+Math.sin(t*35)*.045;rot=Math.sin(t*28)*.022;focusX=700;focusY=420;}
   if(phase==='revive'){zoom=1.12+Math.sin(t*8)*.018;focusX=710;focusY=420;}
   if(phase==='playerStrike'){zoom=1.05+Math.sin(t*18)*.04;rot=Math.sin(t*18)*.018;focusX=480;focusY=420;}
-  if(phase==='absoluteMontage'){zoom=1.12+.17*Math.sin(t*5.5);rot=.04*Math.sin(t*2.3);focusX=480+Math.sin(t*3)*90;focusY=400;}
+  if(phase==='absoluteMontage'){zoom=1.06+.20*Math.sin(t*2.8);rot=.04*Math.sin(t*2.3);focusX=480+Math.sin(t*3)*90;focusY=400;}
   if(phase==='ambush'){zoom=1.16+Math.sin(t*27)*.05;rot=-.035;focusX=490;focusY=430;}
   ctx.save();ctx.translate(W/2,H/2);ctx.rotate(rot);ctx.scale(zoom,zoom);ctx.translate(-W/2,-H/2);
-  const charaX=718,charaY=430;
+  const charaX=(phase==='battle'||phase==='battleIntro'||phase==='charaRevive'||phase==='charaStruggle')?charaBattleX:718,charaY=430;
   // In the opener, the eye warns Errol before his crouched launch.
   if(['signal','crouch','redDash'].includes(phase)){
     const ex=phase==='redDash'?275+clamp(t/.92,0,1)*400:278;const ey=phase==='crouch'?457:450;
@@ -3552,7 +4009,7 @@ function drawCharaEncounter(){
     const p=clamp((t-.35)/1.55,0,1);ctx.save();ctx.translate(charaX,charaY);ctx.scale(.4+p, .4+p);drawChara(0,0,p);ctx.restore();drawCrimsonLightning(charaX,charaY-18,70,.8);
     roundedRect(268,36,424,49,12,'rgba(8,3,15,.88)','#ff4264');ctx.textAlign='center';ctx.fillStyle='#ffa0b0';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('CHARA · RESURRECTION LOOP',480,66);ctx.restore();return;
   }
-  if(phase==='battleIntro'||phase==='battle'||phase==='playerStrike'||phase==='charaDown'||phase==='charaRevive'){
+  if(phase==='battleIntro'||phase==='battle'||phase==='playerStrike'||phase==='charaDown'||phase==='charaStruggle'||phase==='charaRevive'){
     if(phase!=='playerStrike')drawVillageSkeleton(player.x,player.y,1.18,'errol');
     if(phase==='playerStrike'){
       const p=clamp(t/.46,0,1),x=villageCharaAttackStartX+(640-villageCharaAttackStartX)*p;
@@ -3577,29 +4034,47 @@ function drawCharaEncounter(){
       ctx.save();ctx.translate(x,player.y-2);ctx.rotate(Math.sin(t*18)*.08);drawVillageSkeleton(0,0,1.15,'errol');ctx.restore();drawCrimsonLightning(690,398,80,.9);
     }
     if(phase==='battleIntro'||phase==='battle'||phase==='charaRevive'){
-      const alpha=phase==='charaRevive'?clamp(t/1.3,0,1):1;ctx.save();ctx.globalAlpha=alpha;ctx.translate(charaX,charaY);ctx.scale(1.82,1.82);drawChara(0,0,alpha);ctx.restore();if(phase==='charaRevive')drawCrimsonLightning(charaX,charaY-15,56,.75);
+      const alpha=phase==='charaRevive'?clamp(t/1.3,0,1):1;drawCharaPowerAura(charaX,charaY-6,phase==='battle'?58:44,boss.blackForm,.0);ctx.save();ctx.globalAlpha=alpha;ctx.translate(charaX,charaY);ctx.scale(1.82,1.82);drawChara(0,0,alpha);ctx.restore();if(phase==='charaRevive')drawCrimsonLightning(charaX,charaY-15,56,.75);
+      if(phase==='battle'){for(let i=0;i<3;i++){ctx.save();ctx.globalAlpha=.18+i*.08;ctx.translate(charaX+(i-1)*23,charaY-2);ctx.scale(1.8,1.8);ctx.rotate((i-1)*.08);drawChara(0,0,1);ctx.restore();}drawCharaPowerAura(charaX,charaY-7,75,true,charaTeleportFlash);}
     }
     if(phase==='charaDown'){
       const p=clamp(t/.82,0,1);ctx.save();ctx.translate(charaX,charaY);ctx.globalAlpha=1-p;ctx.scale(1.82*(1+p*.5),1.82*(1-p*.55));drawChara(0,0,1-p);ctx.restore();
       for(let i=0;i<25;i++){const a=i*2.399+t*2.4,r=18+p*90;ctx.globalAlpha=1-p;ctx.fillStyle=i%2?'#ff345d':'#ffeaf0';ctx.fillRect(charaX+Math.cos(a)*r,charaY+Math.sin(a)*r*.7,3,3);}ctx.globalAlpha=1;
     }
-    if(phase==='battle'||phase==='battleIntro'){
-      roundedRect(20,18,275,48,12,'rgba(4,9,22,.84)','#ff5274');ctx.textAlign='left';ctx.fillStyle='#ffb2c2';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('CHARA · IMMORTAL',35,37);ctx.fillStyle='#fff1f4';ctx.font='bold 14px ui-monospace,monospace';ctx.fillText('HẠ GỤC '+villageCharaKills+' / 7',35,55);
+    if(phase==='charaStruggle'){
+      const p=clamp(t/2.75,0,1),dir=Math.sin(p*Math.PI*3.2),runX=clamp(714+dir*142,555,858),runY=420+Math.cos(p*Math.PI*6.4)*15;
+      // Chara tries several escape routes; each ghost trail bends backwards into the same red loop.
+      ctx.save();ctx.globalAlpha=.24;ctx.strokeStyle='#ff2f58';ctx.shadowColor='#ff234f';ctx.shadowBlur=14;ctx.lineWidth=3;
+      for(let i=0;i<5;i++){const a=time*1.8+i*TAU/5;ctx.beginPath();ctx.ellipse(714,419,76+i*23,25+i*8,a*.12,0,TAU);ctx.stroke();}ctx.restore();
+      for(let g=3;g>=1;g--){ctx.save();ctx.globalAlpha=.10*g;ctx.translate(clamp(runX-dir*g*28,535,880),runY-g*4);ctx.scale(1.72,1.72);drawChara(0,0,1);ctx.restore();}
+      ctx.save();ctx.translate(runX,runY);ctx.rotate(Math.sin(t*14)*.08);ctx.scale(1.82,1.82);drawChara(0,0,1);ctx.restore();
+      // Brief counterattack streaks show Chara still fighting even though every attempt fails.
+      if(Math.floor(t*3.1)%2===0){ctx.save();ctx.globalAlpha=.62;ctx.strokeStyle='#ff315b';ctx.shadowColor='#ff174b';ctx.shadowBlur=12;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(runX-43,runY-53);ctx.lineTo(runX+16,runY-12);ctx.moveTo(runX-30,runY-65);ctx.lineTo(runX+29,runY-23);ctx.moveTo(runX+14,runY-62);ctx.lineTo(runX-25,runY-20);ctx.stroke();ctx.restore();}
+      // A snapping line yanks the escape trail back toward the loop's centre.
+      ctx.save();ctx.globalAlpha=.45+.35*Math.sin(t*18);ctx.strokeStyle='#ff4769';ctx.shadowColor='#ff174b';ctx.shadowBlur=14;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(runX,runY-38);ctx.quadraticCurveTo(714,runY-115,714,runY-52);ctx.stroke();ctx.restore();drawCrimsonLightning(714,397,50,.52);
+      roundedRect(18,475,924,57,12,'rgba(5,6,18,.9)','#ff5274');ctx.textAlign='left';ctx.fillStyle='#ffafc2';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('CHARA · LOOP '+villageCharaKills+' / 7 · ESCAPE ATTEMPT',33,495);ctx.fillStyle='#f5eef5';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Cô lao về rìa rừng — nhưng không gian gập lại, kéo cô trở về đúng vị trí cũ.',33,516);
+      if(t>1.85){ctx.textAlign='center';ctx.fillStyle='#ff90a8';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('RESET · KHÔNG CÓ LỐI RA',714,118);}
+    }
+    if(phase==='battle'||phase==='battleIntro'||phase==='charaStruggle'){
+      roundedRect(20,18,275,48,12,'rgba(4,9,22,.84)','#ff5274');ctx.textAlign='left';ctx.fillStyle='#ffb2c2';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('CHARA · IMMORTAL',35,37);ctx.fillStyle='#fff1f4';ctx.font='bold 14px ui-monospace,monospace';ctx.fillText('VÒNG LẶP '+villageCharaKills+' / 7',35,55);
       if(phase==='battleIntro'){
         drawCharaEncounterDialogue('Chara cười khẩy: “Ngươi nhanh hơn trước rồi đấy… nhưng ta sẽ luôn quay lại.” Sau cú va chạm đầu tiên, giờ đến lượt ngươi chủ động.','ENTER / CHẠM ĐỂ BẮT ĐẦU ĐIỀU KHIỂN','#ff6687');
-      }else{
-        roundedRect(18,475,470,57,12,'rgba(5,8,19,.86)','#ff5274');ctx.textAlign='left';ctx.fillStyle='#ffbed0';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('ĐIỀU KHIỂN ERROL · MỖI ĐÒN = 1 HIT',32,495);ctx.fillStyle='#eff5ff';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('WASD DI CHUYỂN · J / K / Q / F / SPACE TẤN CÔNG',32,515);
+      }else if(phase==='battle'){
+        roundedRect(18,475,470,57,12,'rgba(5,8,19,.86)','#ff5274');ctx.textAlign='left';ctx.fillStyle='#ffbed0';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('ĐIỀU KHIỂN ERROL · ONE SHOT',32,495);ctx.fillStyle='#eff5ff';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('WASD DI CHUYỂN · J / K / Q / F / SPACE · MỖI HIT HẠ CHARA',32,515);
       }
     }
     if(phase==='charaRevive'){roundedRect(310,38,340,46,12,'rgba(10,3,18,.88)','#ff4267');ctx.textAlign='center';ctx.fillStyle='#ff9daf';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('CHARA TÁI SINH · VÒNG '+villageCharaKills+'/7',480,66);}
     ctx.restore();return;
   }
   if(phase==='absoluteMontage'){
-    const idx=Math.min(6,Math.floor(t*1.05)),px=[245,350,600,740,410,655,480][idx],py=[435,410,440,398,432,410,430][idx];
-    // Absolute montage uses rapid orbit cuts, diagonal space-slices, and seven decisive poses.
-    for(let i=0;i<8;i++){const p=(i/8+t*1.1)%1;ctx.globalAlpha=(1-p)*.8;ctx.strokeStyle=i%2?'#ff1f4d':'#fff1f5';ctx.lineWidth=2+(1-p)*2;ctx.beginPath();ctx.moveTo(20+p*920,80+i*47);ctx.lineTo(175+p*680,150+i*35);ctx.stroke();}ctx.globalAlpha=1;
-    ctx.save();ctx.translate(280,435);ctx.scale(1.18,1.18);drawVillageSkeleton(0,0,1,'errol');ctx.restore();ctx.save();ctx.translate(px,py);ctx.scale(1.65,1.65);drawChara(0,0,clamp(.5+.5*Math.sin(t*26),.15,1));ctx.restore();drawCrimsonLightning(470,330,150,.9);
-    ctx.restore();drawCharaEncounterBanner('ABSOLUTE · SEQUENCE '+String(idx+1).padStart(2,'0'),'Một nhát. Một lần gục. Một lần hồi sinh.','#ff3a60');return;
+    const idx=Math.min(6,Math.floor(t/12.6*7)),px=[245,350,600,740,410,655,480][idx],py=[435,410,440,398,432,410,430][idx];
+    // A longer seven-loop recap: orbiting camera, reversed trails, reset rings and repeated Chara silhouettes.
+    const speed=1.0+idx*.17;for(let i=0;i<14;i++){const p=(i/14+t*.22*speed)%1;ctx.globalAlpha=(1-p)*.72;ctx.strokeStyle=i%3?'#ff1f4d':'#fff1f5';ctx.lineWidth=1.5+(1-p)*2.2;ctx.beginPath();ctx.moveTo(18+p*920,66+i*31);ctx.lineTo(150+p*650,120+i*29);ctx.stroke();}ctx.globalAlpha=1;
+    for(let r=0;r<4;r++){ctx.save();ctx.globalAlpha=.22-r*.035;ctx.strokeStyle=r%2?'#ff3057':'#ffc2cf';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(520,405,90+r*47+Math.sin(t*2+r)*8,26+r*12,time*.35+r*.3,0,TAU);ctx.stroke();ctx.restore();}
+    ctx.save();ctx.translate(280,435);ctx.scale(1.18,1.18);drawVillageSkeleton(0,0,1,'errol');ctx.restore();
+    for(let ghost=3;ghost>=1;ghost--){ctx.save();ctx.globalAlpha=.12*ghost;ctx.translate(px+(ghost%2?1:-1)*ghost*33,py-ghost*8);ctx.scale(1.38+ghost*.07,1.38+ghost*.07);drawChara(0,0,.8);ctx.restore();}
+    ctx.save();ctx.translate(px,py);ctx.scale(1.62+.06*Math.sin(t*1.7),1.62+.06*Math.sin(t*1.7));drawChara(0,0,clamp(.62+.38*Math.sin(t*9),.12,1));ctx.restore();drawCrimsonLightning(470,330,150,.9);
+    ctx.restore();drawCharaEncounterBanner('ABSOLUTE · LOOP '+String(idx+1).padStart(2,'0')+' / 07','Cảnh lặp chồng lên nhau — Chara cố thoát, nhưng kết quả vẫn quay về cùng một điểm.','#ff3a60');return;
   }
   if(phase==='fatigue'||phase==='ambush'||phase==='collapse'){
     // Tired Errol can barely keep the One Shot aura alive; Chara reappears behind him.
