@@ -3944,7 +3944,7 @@ function drawWarkChapter(phase,t){
     if(phase!=='warkVictory'){
       if(warkShieldTimer>0){ctx.strokeStyle='#87ecff';ctx.shadowColor='#6deaff';ctx.shadowBlur=18;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(player.x,player.y-46,35+Math.sin(time*15)*3,62+Math.cos(time*12)*4,0,0,TAU);ctx.stroke();ctx.shadowBlur=0;}
       if(warkPlayerInvuln>0&&Math.floor(time*24)%2===0)ctx.globalAlpha=.35;
-      drawVillageSkeleton(player.x,player.y,1.54,'errol');ctx.globalAlpha=1;drawTimeControlEye(player.x-8,player.y-148,.15,.7+.3*Math.sin(time*8));if(warkThirdEyeAwake)drawBlackThirdEye(player.x+2,player.y-160,3.7,1);if(player.dash>0||warkActionEffect==='dash'&&warkActionEffectTimer>0){for(let i=0;i<9;i++){ctx.globalAlpha=.35*(1-i/9);ctx.fillStyle=i%2?'#ff375e':'#7deaff';ctx.fillRect(player.x-48-i*11,player.y-72+i*2,22,54);}ctx.globalAlpha=1;}
+      drawVillageSkeleton(player.x,player.y,1.54,'errol');ctx.globalAlpha=1;drawTimeControlEye(player.x-8,player.y-148,.15,.7+.3*Math.sin(time*8));if(warkThirdEyeAwake)drawBlackThirdEye(player.x+2,player.y-160,.24,1);if(player.dash>0||warkActionEffect==='dash'&&warkActionEffectTimer>0){for(let i=0;i<9;i++){ctx.globalAlpha=.35*(1-i/9);ctx.fillStyle=i%2?'#ff375e':'#7deaff';ctx.fillRect(player.x-48-i*11,player.y-72+i*2,22,54);}ctx.globalAlpha=1;}
     }
     if(warkActionEffectTimer>0&&phase==='warkBattle'){
       const e=clamp(warkActionEffectTimer/.65,0,1);ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=e*.8;ctx.strokeStyle=warkActionEffect==='dash'?'#ff526e':warkActionEffect==='parry'?'#d8c9ff':'#8aeeff';ctx.lineWidth=warkActionEffect==='space'?7:3;
@@ -3954,13 +3954,13 @@ function drawWarkChapter(phase,t){
     if(phase==='warkBattleIntro'){
       drawCharaEncounterBanner('WARLOCK SANS · OUTSIDE SPACE','His presence drains color from the arena.','#cbbdff');ctx.textAlign='center';ctx.fillStyle='#f3eaff';ctx.font='bold 13px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ENTER / CHẠM ĐỂ CHỊU TRẬN ĐẦU TIÊN',480,518);drawCrimsonLightning(warkX,warkY-180,115,.35+.15*Math.sin(time*7));
     }else if(phase==='warkFinalBattleIntro'){
-      drawBlackThirdEye(player.x+2,player.y-160,3.7,1);ctx.save();ctx.globalAlpha=.72+.2*Math.sin(time*5);ctx.textAlign='center';ctx.fillStyle='#e5c98d';ctx.shadowColor='#c3a66e';ctx.shadowBlur=15;ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('THIRD EYE · NULL FORM UNSEALED',480,31);ctx.shadowBlur=0;ctx.fillStyle='#fff0cd';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ENTER / CHẠM ĐỂ BẮT ĐẦU PHA CUỐI',480,518);ctx.restore();drawCrimsonLightning(warkX,warkY-170,132,.65);
+      drawBlackThirdEye(player.x+2,player.y-160,.24,1);ctx.save();ctx.globalAlpha=.72+.2*Math.sin(time*5);ctx.textAlign='center';ctx.fillStyle='#e5c98d';ctx.shadowColor='#c3a66e';ctx.shadowBlur=15;ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('THIRD EYE · NULL FORM UNSEALED',480,31);ctx.shadowBlur=0;ctx.fillStyle='#fff0cd';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ENTER / CHẠM ĐỂ BẮT ĐẦU PHA CUỐI',480,518);ctx.restore();drawCrimsonLightning(warkX,warkY-170,132,.65);
     }else if(phase==='warkBossShift'){
       drawCharaEncounterBanner('RIFT PHASE II · SPACE IS FRACTURING','Năng lượng quanh Wark đổi sắc — tốc độ các đợt sóng tăng lên.','#ff7197');drawCrimsonLightning(warkX,warkY-140,100,.55+.3*Math.sin(time*12));
     }else if(phase==='warkDown'){
       roundedRect(240,35,480,58,12,'rgba(5,4,16,.94)','#9b85e8');ctx.textAlign='center';ctx.fillStyle='#e3d6ff';ctx.font='1000 14px ui-monospace,monospace';ctx.fillText('ERROL · TIME REWIND REQUIRED',480,58);ctx.fillStyle='#fff';ctx.font='bold 11px Inter,Segoe UI,Arial,sans-serif';ctx.fillText(warkReviveReady?'Nhấn L để hồi sinh · R cũng có thể đảo ngược thời gian':'Con mắt tự kéo Errol trở lại sau vài giây',480,78);
     }else if(phase==='warkVictory'){
-      const p=clamp(t/3.8,0,1);for(let i=0;i<14;i++){const q=(i/14+t*.16)%1;ctx.globalAlpha=(1-q)*.45;ctx.strokeStyle=i%3?'#c7a96b':'#ff426e';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(warkX+Math.cos(i*2.399)*q*170,warkY-160+Math.sin(i*2.399)*q*100);ctx.lineTo(warkX+Math.cos(i*2.399)*q*250,warkY-160+Math.sin(i*2.399)*q*150);ctx.stroke();}ctx.globalAlpha=1;drawBlackThirdEye(player.x+2,player.y-160,3.7,1);drawWarkRift(730,218,1-p*.8);ctx.textAlign='center';ctx.fillStyle='#d7bd83';ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('WARLOCK · NULL FORM COLLAPSED',480,102);ctx.fillStyle='#f7edf2';ctx.font='1000 22px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ERROL ĐÃ THẮNG — NHƯNG KHÔNG CÒN NHƯ CŨ',480,139);ctx.fillStyle='#c6b7a4';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Con mắt thứ ba vẫn mở. Cảm xúc bắt đầu bị bóng tối bẻ cong.',480,164);if(t>2.1){ctx.globalAlpha=.55+.25*Math.sin(time*2);ctx.fillStyle='#d9c48f';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('NHẤN ENTER / CHẠM ĐỂ GHIM KHOẢNH KHẮC',480,523);ctx.globalAlpha=1;}
+      const p=clamp(t/3.8,0,1);for(let i=0;i<14;i++){const q=(i/14+t*.16)%1;ctx.globalAlpha=(1-q)*.45;ctx.strokeStyle=i%3?'#c7a96b':'#ff426e';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(warkX+Math.cos(i*2.399)*q*170,warkY-160+Math.sin(i*2.399)*q*100);ctx.lineTo(warkX+Math.cos(i*2.399)*q*250,warkY-160+Math.sin(i*2.399)*q*150);ctx.stroke();}ctx.globalAlpha=1;drawBlackThirdEye(player.x+2,player.y-160,.24,1);drawWarkRift(730,218,1-p*.8);ctx.textAlign='center';ctx.fillStyle='#d7bd83';ctx.font='1000 11px ui-monospace,monospace';ctx.fillText('WARLOCK · NULL FORM COLLAPSED',480,102);ctx.fillStyle='#f7edf2';ctx.font='1000 22px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('ERROL ĐÃ THẮNG — NHƯNG KHÔNG CÒN NHƯ CŨ',480,139);ctx.fillStyle='#c6b7a4';ctx.font='bold 12px Inter,Segoe UI,Arial,sans-serif';ctx.fillText('Con mắt thứ ba vẫn mở. Cảm xúc bắt đầu bị bóng tối bẻ cong.',480,164);if(t>2.1){ctx.globalAlpha=.55+.25*Math.sin(time*2);ctx.fillStyle='#d9c48f';ctx.font='bold 10px ui-monospace,monospace';ctx.fillText('NHẤN ENTER / CHẠM ĐỂ GHIM KHOẢNH KHẮC',480,523);ctx.globalAlpha=1;}
     }
     return;
   }
@@ -4105,7 +4105,7 @@ function drawWarkStoryCutscene(phase,t){
   if(phase==='warkThirdEyeAwakening'){
     const p=clamp(t/4.1,0,1),x=450,y=390;ctx.fillStyle='#02020a';ctx.fillRect(0,0,W,H);const glow=ctx.createRadialGradient(x,y-60,2,x,y-60,280);glow.addColorStop(0,'rgba(193,153,78,.28)');glow.addColorStop(.3,'rgba(23,14,38,.42)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
     for(let i=0;i<64;i++){const a=i*2.399+time*.5,rr=32+(i%7)*21+(1-p)*85,xx=x+Math.cos(a)*rr,yy=y-78+Math.sin(a)*rr*.48;ctx.globalAlpha=.15+.45*p;ctx.fillStyle=i%3?'#05050a':'#c4a05e';ctx.beginPath();ctx.ellipse(xx,yy,1.2+(i%3)*.55,2.4+(i%2),a,0,TAU);ctx.fill();}ctx.globalAlpha=1;
-    drawVillageSkeleton(x,y+75,1.72,'errol');drawBlackThirdEye(x+1,y-99,3.7,clamp((t-.9)/2.1,0,1));drawAzureLightning(x,y-78,118,.12+p*.25);ctx.save();ctx.globalAlpha=.15+.2*p;ctx.strokeStyle='#c0a06a';ctx.lineWidth=1.6;for(let i=0;i<9;i++){const a=time*.24+i*TAU/9;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*65,y-20+Math.sin(a)*35);ctx.lineTo(x+Math.cos(a)*250,y-20+Math.sin(a)*150);ctx.stroke();}ctx.restore();
+    drawVillageSkeleton(x,y+75,1.72,'errol');drawBlackThirdEye(x+1,y-99,.24,clamp((t-.9)/2.1,0,1));drawAzureLightning(x,y-78,118,.12+p*.25);ctx.save();ctx.globalAlpha=.15+.2*p;ctx.strokeStyle='#c0a06a';ctx.lineWidth=1.6;for(let i=0;i<9;i++){const a=time*.24+i*TAU/9;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*65,y-20+Math.sin(a)*35);ctx.lineTo(x+Math.cos(a)*250,y-20+Math.sin(a)*150);ctx.stroke();}ctx.restore();
     drawCharaEncounterBanner('THIRD EYE · CORRUPTION AWAKENS','An almost unbeatable potential opens — Errol’s emotions begin to darken.','#c4a76c');return;
   }
 }
@@ -4254,78 +4254,31 @@ function drawGodVeresFigure(x,footY,scale,t,alpha=1){
   // Skull, broad smile and deep-blue sockets.
   const head=ctx.createLinearGradient(-25,-280,27,-214);head.addColorStop(0,'#fff');head.addColorStop(.55,'#eef3ff');head.addColorStop(1,'#9baedb');ctx.fillStyle=head;ctx.beginPath();ctx.ellipse(0,-241,29,35,-.03,0,TAU);ctx.fill();ctx.strokeStyle='#f9fcff';ctx.lineWidth=2;ctx.stroke();
   ctx.fillStyle='#101735';ctx.beginPath();ctx.ellipse(-12,-244,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-244,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#79dfff';ctx.beginPath();ctx.ellipse(-12,-245,3,6,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-245,3,6,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#172143';ctx.beginPath();ctx.moveTo(-15,-222);ctx.quadraticCurveTo(0,-213,15,-222);ctx.lineTo(10,-216);ctx.quadraticCurveTo(0,-212,-10,-216);ctx.closePath();ctx.fill();ctx.strokeStyle='#f4f8ff';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(-8+i*5.3,-220);ctx.lineTo(-8+i*5.3,-216);ctx.stroke();}
+  ctx.fillStyle='#172143';ctx.beginPath();ctx.moveTo(-17,-222);ctx.quadraticCurveTo(0,-212,17,-222);ctx.lineTo(9,-215);ctx.lineTo(-9,-215);ctx.closePath();ctx.fill();ctx.strokeStyle='#f4f8ff';ctx.lineWidth=1;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(-11+i*5,-221);ctx.lineTo(-10+i*5,-216);ctx.stroke();}
   // Floating fragments and sigil.
   ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#dceaff';ctx.shadowColor='#6dcaff';ctx.shadowBlur=10;ctx.lineWidth=2;for(let i=0;i<6;i++){const a=t*.55+i*TAU/6,rr=112+(i%2)*22,xx=Math.cos(a)*rr,yy=-154+Math.sin(a)*rr*.5;ctx.beginPath();ctx.moveTo(xx-4,yy);ctx.lineTo(xx,yy-7);ctx.lineTo(xx+4,yy);ctx.lineTo(xx,yy+7);ctx.closePath();ctx.stroke();}ctx.restore();ctx.restore();
 }
 function drawEverythingSansFigure(x,footY,scale,t,alpha=1){
-  // Everything Sans: an almost entirely white, slender figure with glasses and a white coat.
-  // Motion stays in the rings, breathing, sleeves and soft light; no purple backdrop is baked into the sprite.
-  ctx.save();ctx.translate(x,footY+Math.sin(t*2.1)*1.2);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const halo=ctx.createRadialGradient(0,-150,3,0,-150,145);halo.addColorStop(0,'rgba(255,255,255,.56)');halo.addColorStop(.45,'rgba(200,231,255,.18)');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-150,136,164,0,0,TAU);ctx.fill();
-  // Three thin orbital rings, cool white-blue like the reference.
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<3;i++){ctx.globalAlpha=.3+.14*Math.sin(t*2.4+i);ctx.strokeStyle=i===1?'#ffffff':'#b8e7ff';ctx.lineWidth=i===0?2:1.1;ctx.beginPath();ctx.ellipse(0,-158,93+i*17,27+i*6,t*.08+i*.55,0,TAU);ctx.stroke();}ctx.restore();
-  ctx.fillStyle='rgba(0,0,0,.20)';ctx.beginPath();ctx.ellipse(0,0,42,7,0,0,TAU);ctx.fill();
-  // White trousers and shoes, narrow silhouette.
-  const pants=ctx.createLinearGradient(-24,-120,24,-2);pants.addColorStop(0,'#ffffff');pants.addColorStop(.6,'#f2f5fc');pants.addColorStop(1,'#cdd7e8');ctx.fillStyle=pants;
-  ctx.beginPath();ctx.moveTo(-18,-120);ctx.lineTo(-2,-120);ctx.lineTo(-7,-7);ctx.lineTo(-26,-3);ctx.quadraticCurveTo(-28,-8,-23,-19);ctx.closePath();ctx.fill();
-  ctx.beginPath();ctx.moveTo(2,-120);ctx.lineTo(19,-120);ctx.lineTo(25,-8);ctx.lineTo(8,-3);ctx.lineTo(5,-30);ctx.closePath();ctx.fill();
-  ctx.strokeStyle='#b8c7df';ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(-14,-101);ctx.lineTo(-18,-20);ctx.moveTo(11,-101);ctx.lineTo(15,-20);ctx.stroke();
-  ctx.fillStyle='#f7f9ff';ctx.strokeStyle='#bccce3';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-28,-6);ctx.quadraticCurveTo(-25,-13,-15,-9);ctx.lineTo(-6,-5);ctx.lineTo(-7,0);ctx.lineTo(-30,0);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(7,-5);ctx.lineTo(17,-10);ctx.quadraticCurveTo(25,-11,29,-3);ctx.lineTo(29,1);ctx.lineTo(7,1);ctx.closePath();ctx.fill();ctx.stroke();
-  // Long white coat with soft folds, rather than chunky blocks.
-  const coat=ctx.createLinearGradient(-41,-213,39,-80);coat.addColorStop(0,'#ffffff');coat.addColorStop(.5,'#f2f5fb');coat.addColorStop(1,'#cdd8eb');ctx.fillStyle=coat;ctx.strokeStyle='#d1dced';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(-20,-210);ctx.quadraticCurveTo(-42,-205,-42,-176);ctx.lineTo(-35,-132);ctx.quadraticCurveTo(-31,-113,-23,-92);ctx.lineTo(-9,-93);ctx.lineTo(-5,-151);ctx.lineTo(5,-151);ctx.lineTo(11,-92);ctx.lineTo(24,-93);ctx.quadraticCurveTo(36,-125,39,-156);ctx.lineTo(36,-191);ctx.quadraticCurveTo(30,-210,19,-210);ctx.quadraticCurveTo(0,-199,-20,-210);ctx.closePath();ctx.fill();ctx.stroke();
-  // Coattails and fine fold lines.
-  ctx.beginPath();ctx.moveTo(-30,-137);ctx.quadraticCurveTo(-50,-96,-42,-35);ctx.lineTo(-27,-42);ctx.lineTo(-21,-98);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(29,-137);ctx.quadraticCurveTo(48,-91,41,-35);ctx.lineTo(27,-42);ctx.lineTo(21,-98);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.strokeStyle='#c1cde0';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-19,-190);ctx.quadraticCurveTo(-8,-163,-13,-132);ctx.moveTo(18,-190);ctx.quadraticCurveTo(7,-158,14,-130);ctx.moveTo(0,-145);ctx.lineTo(0,-102);ctx.stroke();
-  // White sleeves and pale skeletal hands, subtly moving.
-  ctx.lineCap='round';ctx.strokeStyle='#e3e9f4';ctx.lineWidth=18;ctx.beginPath();ctx.moveTo(-27,-197);ctx.quadraticCurveTo(-47,-175,-49,-150+Math.sin(t*2.5)*2);ctx.moveTo(27,-197);ctx.quadraticCurveTo(45,-176,47,-151-Math.sin(t*2.5)*2);ctx.stroke();
-  ctx.strokeStyle='#fdfdff';ctx.lineWidth=11;ctx.beginPath();ctx.moveTo(-49,-150);ctx.lineTo(-55,-139);ctx.moveTo(47,-151);ctx.lineTo(54,-139);ctx.stroke();
-  ctx.strokeStyle='#dbe4f2';ctx.lineWidth=2.4;for(const side of [-1,1]){const hx=side*55,hy=-139+Math.sin(t*2.5+side)*2;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+side*8,hy-9);ctx.moveTo(hx,hy);ctx.lineTo(hx+side*9,hy+1);ctx.moveTo(hx,hy);ctx.lineTo(hx+side*6,hy+9);ctx.stroke();}
-  // A white wrapped collar, no red scarf and no dark clothing.
-  ctx.fillStyle='#fff';ctx.strokeStyle='#d8e0ed';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-22,-216);ctx.quadraticCurveTo(0,-228,22,-216);ctx.lineTo(25,-198);ctx.quadraticCurveTo(0,-186,-25,-198);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.beginPath();ctx.moveTo(-19,-208);ctx.quadraticCurveTo(0,-196,19,-208);ctx.stroke();
-  // Skull and familiar Sans grin.
-  const head=ctx.createLinearGradient(-28,-277,29,-205);head.addColorStop(0,'#fff');head.addColorStop(.65,'#f8faff');head.addColorStop(1,'#dbe3f0');ctx.fillStyle=head;ctx.strokeStyle='#d7e0ef';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(-30,-237);ctx.quadraticCurveTo(-36,-260,-20,-274);ctx.quadraticCurveTo(0,-285,22,-272);ctx.quadraticCurveTo(35,-258,29,-237);ctx.lineTo(19,-211);ctx.quadraticCurveTo(0,-199,-19,-211);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.fillStyle='#10152a';ctx.beginPath();ctx.ellipse(-12,-241,7,10,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-241,7,10,0,0,TAU);ctx.fill();
-  // Thin pale-blue glasses, as in the supplied Everything Sans image.
-  ctx.strokeStyle='#8fa9d4';ctx.lineWidth=2.1;ctx.beginPath();ctx.roundRect(-23,-250,21,17,4);ctx.roundRect(2,-250,21,17,4);ctx.moveTo(-2,-243);ctx.lineTo(2,-243);ctx.stroke();
-  ctx.fillStyle='#7ddfff';ctx.beginPath();ctx.ellipse(-11,-241,2.4,4.2,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-241,2.4,4.2,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#182139';ctx.beginPath();ctx.moveTo(-15,-218);ctx.quadraticCurveTo(0,-207,15,-218);ctx.lineTo(9,-211);ctx.quadraticCurveTo(0,-207,-9,-211);ctx.closePath();ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(-9+i*6,-216);ctx.lineTo(-9+i*6,-212);ctx.stroke();}
-  // Small white/cyan light motes only; the character has no baked-in purple background.
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<8;i++){const a=t*.35+i*TAU/8,rr=78+(i%3)*17;const px=Math.cos(a)*rr,py=-157+Math.sin(a)*rr*.35;ctx.globalAlpha=.25+.2*Math.sin(t*3+i);ctx.fillStyle=i%3?'#f9fbff':'#b9efff';ctx.fillRect(px,py,2,2);}ctx.restore();ctx.restore();
-}
-function drawOmniSansFigure(x,footY,scale,t,alpha=1){
-  // Omni Sans: slim blue/white coat, crimson scarf and three eyes (including the forehead eye).
-  ctx.save();ctx.translate(x,footY+Math.sin(t*2)*1.1);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const aura=ctx.createRadialGradient(0,-154,4,0,-154,140);aura.addColorStop(0,'rgba(213,249,255,.45)');aura.addColorStop(.45,'rgba(77,188,255,.12)');aura.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=aura;ctx.beginPath();ctx.ellipse(0,-151,121,164,0,0,TAU);ctx.fill();
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<3;i++){ctx.globalAlpha=.25+.18*Math.sin(t*2.5+i);ctx.strokeStyle=i===1?'#fff':'#8feeff';ctx.lineWidth=i===0?2.2:1.1;ctx.beginPath();ctx.ellipse(0,-156,72+i*18,23+i*7,t*.11+i*.45,0,TAU);ctx.stroke();}ctx.restore();
-  ctx.fillStyle='rgba(0,0,0,.27)';ctx.beginPath();ctx.ellipse(0,0,42,7,0,0,TAU);ctx.fill();
-  // Slender trousers, sneakers and a fitted blue puffer jacket.
-  const pants=ctx.createLinearGradient(-20,-124,20,0);pants.addColorStop(0,'#171f32');pants.addColorStop(1,'#080d1a');ctx.fillStyle=pants;ctx.beginPath();ctx.moveTo(-17,-121);ctx.lineTo(-1,-121);ctx.lineTo(-6,-8);ctx.lineTo(-24,-3);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(2,-121);ctx.lineTo(18,-121);ctx.lineTo(23,-7);ctx.lineTo(7,-3);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#e9f3ff';ctx.beginPath();ctx.moveTo(-25,-5);ctx.quadraticCurveTo(-19,-12,-9,-6);ctx.lineTo(-5,0);ctx.lineTo(-29,1);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(6,-5);ctx.lineTo(15,-10);ctx.quadraticCurveTo(25,-9,28,-1);ctx.lineTo(7,1);ctx.closePath();ctx.fill();
-  const jacket=ctx.createLinearGradient(-34,-219,34,-122);jacket.addColorStop(0,'#80b8ee');jacket.addColorStop(.4,'#3474c5');jacket.addColorStop(1,'#17417b');ctx.fillStyle=jacket;ctx.strokeStyle='#a9d8ff';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(-17,-211);ctx.quadraticCurveTo(-38,-207,-37,-179);ctx.lineTo(-29,-144);ctx.quadraticCurveTo(-24,-131,-12,-129);ctx.lineTo(-3,-142);ctx.lineTo(3,-142);ctx.lineTo(12,-129);ctx.quadraticCurveTo(26,-131,30,-146);ctx.lineTo(37,-180);ctx.quadraticCurveTo(37,-205,18,-211);ctx.quadraticCurveTo(0,-203,-17,-211);ctx.closePath();ctx.fill();ctx.stroke();
-  // Narrow jacket seams and pale shirt; avoid making the silhouette bulky.
-  ctx.strokeStyle='#c2e6ff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-24,-197);ctx.quadraticCurveTo(-17,-177,-21,-151);ctx.moveTo(24,-197);ctx.quadraticCurveTo(17,-177,21,-151);ctx.moveTo(0,-198);ctx.lineTo(0,-143);ctx.stroke();
-  ctx.fillStyle='#f8fbff';ctx.beginPath();ctx.moveTo(-12,-202);ctx.lineTo(12,-202);ctx.lineTo(10,-151);ctx.lineTo(-10,-151);ctx.closePath();ctx.fill();
-  // Sleeves and white skeletal hands, subtly swinging with the idle animation.
-  ctx.lineCap='round';ctx.strokeStyle='#285fa8';ctx.lineWidth=17;ctx.beginPath();ctx.moveTo(-28,-197);ctx.quadraticCurveTo(-46,-178,-43,-151+Math.sin(t*2.4)*2);ctx.moveTo(28,-197);ctx.quadraticCurveTo(45,-178,43,-151-Math.sin(t*2.4)*2);ctx.stroke();ctx.strokeStyle='#f0f6ff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-43,-151);ctx.lineTo(-49,-141);ctx.moveTo(43,-151);ctx.lineTo(49,-141);ctx.stroke();
-  ctx.strokeStyle='#eef7ff';ctx.lineWidth=2.2;for(const side of [-1,1]){const hx=side*49,hy=-141+Math.sin(t*2.4+side)*2;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+side*8,hy-8);ctx.moveTo(hx,hy);ctx.lineTo(hx+side*9,hy+1);ctx.moveTo(hx,hy);ctx.lineTo(hx+side*6,hy+8);ctx.stroke();}
-  // Crimson scarf, compact and visible but not oversized.
-  ctx.fillStyle='#92213a';ctx.beginPath();ctx.moveTo(-20,-214);ctx.quadraticCurveTo(0,-225,20,-213);ctx.lineTo(17,-198);ctx.quadraticCurveTo(0,-190,-18,-198);ctx.closePath();ctx.fill();ctx.fillStyle='#b92b49';ctx.beginPath();ctx.moveTo(-8,-201);ctx.lineTo(5,-199);ctx.lineTo(16,-170);ctx.lineTo(7,-168);ctx.closePath();ctx.fill();ctx.fillStyle='#ed657b';ctx.beginPath();ctx.moveTo(-15,-211);ctx.quadraticCurveTo(0,-206,14,-211);ctx.lineTo(11,-205);ctx.quadraticCurveTo(0,-200,-13,-205);ctx.closePath();ctx.fill();
-  // Skull with two sockets plus a distinct third forehead eye.
-  const head=ctx.createLinearGradient(-26,-279,27,-206);head.addColorStop(0,'#fff');head.addColorStop(.62,'#f0f5ff');head.addColorStop(1,'#c4d6f0');ctx.fillStyle=head;ctx.strokeStyle='#f8fbff';ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(-28,-239);ctx.quadraticCurveTo(-34,-260,-19,-275);ctx.quadraticCurveTo(0,-286,20,-273);ctx.quadraticCurveTo(34,-260,28,-239);ctx.lineTo(18,-215);ctx.quadraticCurveTo(0,-204,-18,-215);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.fillStyle='#10182a';ctx.beginPath();ctx.ellipse(-12,-241,7,10,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-241,7,10,0,0,TAU);ctx.fill();ctx.fillStyle='#6fe5ff';ctx.beginPath();ctx.ellipse(-12,-242,2.4,4.2,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-242,2.4,4.2,0,0,TAU);ctx.fill();
-  // Forehead eye: small oval, centered, not a giant third eye emblem.
-  ctx.fillStyle='#06101c';ctx.strokeStyle='#81eaff';ctx.lineWidth=1.3;ctx.beginPath();ctx.ellipse(0,-262,4.7,5.8,0,0,TAU);ctx.fill();ctx.stroke();ctx.fillStyle='#83f0ff';ctx.beginPath();ctx.ellipse(0,-262,1.5,2.3,0,0,TAU);ctx.fill();
-  // Simple Sans grin.
-  ctx.fillStyle='#18213a';ctx.beginPath();ctx.moveTo(-15,-220);ctx.quadraticCurveTo(0,-211,15,-220);ctx.lineTo(10,-214);ctx.quadraticCurveTo(0,-210,-10,-214);ctx.closePath();ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(-9+i*6,-218);ctx.lineTo(-9+i*6,-214);ctx.stroke();}
-  // Orbiting particles keep Omni moving without a giant static glow.
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<8;i++){const a=t*.5+i*TAU/8,rr=82+(i%3)*14;ctx.globalAlpha=.32+.22*Math.sin(t*3+i);ctx.fillStyle=i%3?'#a5f3ff':'#fff';ctx.beginPath();ctx.arc(Math.cos(a)*rr,-157+Math.sin(a)*rr*.36,1.5+(i%2),0,TAU);ctx.fill();}ctx.restore();ctx.restore();
+  // Bright, overloaded presence: pale padded jacket, dark trousers, crimson scarf and glitch tears.
+  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
+  const halo=ctx.createRadialGradient(0,-150,5,0,-150,155);halo.addColorStop(0,'rgba(255,248,224,.55)');halo.addColorStop(.45,'rgba(255,94,142,.18)');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-148,145,174,0,0,TAU);ctx.fill();
+  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<9;i++){const yy=-245+i*27+Math.sin(t*4+i)*7;ctx.globalAlpha=.16+.12*Math.sin(t*5+i);ctx.fillStyle=i%2?'#79edff':'#ff5987';ctx.fillRect(-105+(i*31%64),yy,65+(i*17%90),2+(i%3));}ctx.restore();
+  ctx.fillStyle='rgba(0,0,0,.45)';ctx.beginPath();ctx.ellipse(0,0,56,10,0,0,TAU);ctx.fill();
+  ctx.fillStyle='#090b16';ctx.beginPath();ctx.moveTo(-21,-115);ctx.lineTo(20,-115);ctx.lineTo(28,-7);ctx.lineTo(8,0);ctx.lineTo(0,-68);ctx.lineTo(-12,0);ctx.lineTo(-31,-5);ctx.closePath();ctx.fill();
+  // Puffy quilted jacket built with curves, not simple blocks.
+  const j=ctx.createLinearGradient(-48,-220,45,-118);j.addColorStop(0,'#faf6ff');j.addColorStop(.5,'#b8c4dc');j.addColorStop(1,'#697caa');ctx.fillStyle=j;ctx.beginPath();ctx.moveTo(-25,-207);ctx.bezierCurveTo(-51,-216,-55,-190,-48,-172);ctx.quadraticCurveTo(-43,-153,-27,-145);ctx.lineTo(-12,-134);ctx.lineTo(0,-151);ctx.lineTo(12,-134);ctx.lineTo(30,-145);ctx.quadraticCurveTo(47,-157,49,-178);ctx.bezierCurveTo(51,-200,40,-215,22,-207);ctx.quadraticCurveTo(0,-198,-25,-207);ctx.closePath();ctx.fill();ctx.strokeStyle='#eff3ff';ctx.lineWidth=2;ctx.stroke();
+  ctx.strokeStyle='#e1e8ff';ctx.lineWidth=3;for(let side of [-1,1])for(let r=0;r<3;r++){ctx.beginPath();ctx.moveTo(side*(27+r*4),-198+r*18);ctx.quadraticCurveTo(side*(47+r*2),-190+r*18,side*(42+r*2),-174+r*18);ctx.stroke();}
+  // arms and cuffs
+  ctx.strokeStyle='#b8c7e7';ctx.lineWidth=20;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-33,-194);ctx.lineTo(-57,-157);ctx.stroke();ctx.beginPath();ctx.moveTo(33,-194);ctx.lineTo(56,-157);ctx.stroke();ctx.strokeStyle='#f4f6ff';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(-57,-157);ctx.lineTo(-63,-145);ctx.moveTo(56,-157);ctx.lineTo(63,-145);ctx.stroke();
+  // scarf
+  ctx.fillStyle='#6e183b';ctx.beginPath();ctx.moveTo(-18,-210);ctx.quadraticCurveTo(0,-196,21,-210);ctx.lineTo(27,-194);ctx.quadraticCurveTo(0,-179,-25,-194);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(7,-195);ctx.lineTo(23,-162);ctx.lineTo(12,-158);ctx.lineTo(-2,-192);ctx.closePath();ctx.fill();
+  // skull
+  ctx.fillStyle='#f4f4fb';ctx.beginPath();ctx.ellipse(0,-232,31,31,0,0,TAU);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#101323';ctx.beginPath();ctx.ellipse(-12,-236,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-236,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#67e8ff';ctx.fillRect(-14,-239,4,5);ctx.fillStyle='#ff75ac';ctx.fillRect(10,-239,4,5);ctx.fillStyle='#161523';ctx.beginPath();ctx.moveTo(-16,-216);ctx.quadraticCurveTo(0,-207,16,-216);ctx.lineTo(10,-209);ctx.lineTo(-10,-209);ctx.closePath();ctx.fill();
+  // Corruption edges and floating data fragments
+  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<11;i++){const y=-260+i*28+Math.sin(t*7+i)*3;ctx.globalAlpha=.3+.35*Math.sin(t*6+i);ctx.strokeStyle=i%2?'#ff497b':'#7aeaff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-39+(i%3)*9,y);ctx.lineTo(-49+(i%5)*16,y+3);ctx.lineTo(-41+(i%4)*14,y+7);ctx.stroke();}ctx.restore();ctx.restore();
 }
 
 function drawGodFigure(x,footY,scale,kind,t,alpha=1){
-  if(kind==='omni')return drawOmniSansFigure(x,footY,scale,t,alpha);
   if(kind==='godveres')return drawGodVeresFigure(x,footY,scale,t,alpha);
   if(kind==='everything')return drawEverythingSansFigure(x,footY,scale,t,alpha);
   const palette={
@@ -4369,56 +4322,12 @@ function drawGodFigure(x,footY,scale,kind,t,alpha=1){
   else {ctx.strokeStyle=palette.a;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-303);ctx.lineTo(0,-274);ctx.moveTo(-14,-289);ctx.lineTo(14,-289);ctx.stroke();}
   ctx.restore();
 }
-function drawErrolFurHood(x,footY,scale=1,alpha=1,trimOnly=false){
-  // A modest fur-lined hood layered around Errol's original blue jacket and red scarf.
-  // It is only an outline/trim: no replacement costume, no purple background, no oversized spikes.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  if(!trimOnly){
-    ctx.fillStyle='#1c2737';ctx.beginPath();ctx.moveTo(-24,-76);ctx.bezierCurveTo(-31,-88,-31,-105,-22,-116);ctx.quadraticCurveTo(-11,-128,2,-126);ctx.quadraticCurveTo(19,-125,27,-110);ctx.bezierCurveTo(32,-99,30,-86,24,-75);ctx.lineTo(17,-72);ctx.quadraticCurveTo(0,-81,-17,-72);ctx.closePath();ctx.fill();
-    ctx.strokeStyle='#d7dce4';ctx.lineWidth=6;ctx.lineJoin='round';ctx.stroke();
-    ctx.strokeStyle='#f6f6f8';ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(-24,-99);ctx.quadraticCurveTo(-20,-111,-12,-116);ctx.moveTo(-22,-88);ctx.quadraticCurveTo(-18,-98,-12,-102);ctx.moveTo(22,-99);ctx.quadraticCurveTo(18,-111,11,-115);ctx.moveTo(23,-87);ctx.quadraticCurveTo(18,-98,12,-102);ctx.stroke();
-    // Just a few short fur tufts at the crown.
-    ctx.fillStyle='#dce1e9';ctx.beginPath();ctx.moveTo(-14,-118);ctx.quadraticCurveTo(-18,-126,-11,-124);ctx.lineTo(-5,-119);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(1,-125);ctx.quadraticCurveTo(1,-132,7,-125);ctx.lineTo(9,-119);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(13,-119);ctx.quadraticCurveTo(22,-126,20,-117);ctx.lineTo(16,-113);ctx.closePath();ctx.fill();
-  }else{
-    // Repeated short stitches on the outer rim make the fur visible without obscuring the skull.
-    ctx.strokeStyle='#f4f6f9';ctx.lineWidth=2;ctx.lineCap='round';for(let i=0;i<4;i++){const yy=-109+i*7;ctx.beginPath();ctx.moveTo(-25+i*.8,yy);ctx.lineTo(-21+i*.8,yy+3);ctx.moveTo(25-i*.8,yy);ctx.lineTo(21-i*.8,yy+3);ctx.stroke();}
-  }
-  ctx.restore();
-}
-function drawErrolCorruptionMotes(x,footY,scale,corruption){
-  ctx.save();ctx.globalCompositeOperation='screen';
-  const cy=footY-67*scale;
-  for(let i=0;i<18;i++){
-    const a=time*(i%2?.46:-.38)+i*TAU/18,rr=(26+(i%4)*7)*scale;
-    const px=x+Math.cos(a)*rr,py=cy+Math.sin(a)*rr*.8;
-    ctx.globalAlpha=corruption*(.18+.22*Math.sin(time*4+i));ctx.fillStyle=i%4===0?'#ff596b':i%3===0?'#d3c7a7':'#0b0b12';
-    ctx.beginPath();ctx.moveTo(px,py-2-i%3);ctx.lineTo(px+3,py);ctx.lineTo(px,py+3);ctx.lineTo(px-2,py);ctx.closePath();ctx.fill();
-  }
-  // A few short glitch scratches hug the figure; no large halo panel is drawn.
-  ctx.globalAlpha=.18*corruption;ctx.strokeStyle='#ff5268';ctx.lineWidth=1.2;for(let i=0;i<4;i++){const yy=footY-(87-i*14)*scale+Math.sin(time*5+i)*3;ctx.beginPath();ctx.moveTo(x-31*scale,yy);ctx.lineTo(x-23*scale,yy-3);ctx.lineTo(x-27*scale,yy+3);ctx.moveTo(x+30*scale,yy+5);ctx.lineTo(x+22*scale,yy+1);ctx.lineTo(x+27*scale,yy+8);ctx.stroke();}
-  ctx.restore();
-}
-function drawCompactErrolThirdEye(x,y,alpha=1){
-  // Small, centered, pitch-black eye with only a tiny warm metallic glint.
-  ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle='#040407';ctx.strokeStyle='#2d2a28';ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(x,y,4.1,3.15,-.08,0,TAU);ctx.fill();ctx.stroke();
-  ctx.fillStyle='#1d1811';ctx.beginPath();ctx.ellipse(x+.2,y+.2,1.7,2.05,0,0,TAU);ctx.fill();ctx.fillStyle='#c2a86f';ctx.globalAlpha=alpha*.68;ctx.beginPath();ctx.arc(x-1.05,y-.85,.7,0,TAU);ctx.fill();ctx.restore();
-}
-function drawErrolAbdomenScar(x,footY,scale=1,alpha=1){
-  // Canon scar is a single diagonal mark across the abdomen, never on the chest or stomach as a symbol.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;ctx.lineCap='round';ctx.lineJoin='round';
-  ctx.strokeStyle='rgba(37,18,27,.88)';ctx.lineWidth=3.1;ctx.beginPath();ctx.moveTo(-8,-41);ctx.lineTo(7,-31);ctx.stroke();
-  ctx.strokeStyle='#c9b7ad';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-7,-42);ctx.lineTo(7,-32);ctx.stroke();
-  ctx.restore();
-}
 function drawGodErrol(x,footY,scale=1.3,corruption=1){
-  if(corruption>.12)drawErrolCorruptionMotes(x,footY,scale,corruption);
-  drawErrolFurHood(x,footY,scale,.95,false);
+  if(corruption>.12)drawCharaPowerAura(x,footY-75*scale,46+corruption*23,true,.2+.35*corruption);
   drawVillageSkeleton(x,footY,scale,'errol');
-  drawErrolFurHood(x,footY,scale,.9,true);
-  const headY=footY-100*scale;
-  drawCompactErrolThirdEye(x,headY,.94);
-  drawErrolAbdomenScar(x,footY,scale,.88);
-  if(corruption>.35){ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.13+.13*Math.sin(time*8);ctx.strokeStyle='#be9b62';ctx.lineWidth=1.1;ctx.beginPath();ctx.moveTo(x-17*scale,headY-6*scale);ctx.lineTo(x-25*scale,headY-16*scale);ctx.moveTo(x+17*scale,headY-6*scale);ctx.lineTo(x+24*scale,headY-14*scale);ctx.stroke();ctx.restore();}
+  const headY=footY-101*scale;
+  drawBlackThirdEye(x,headY,6.3*scale,.68+.3*Math.sin(time*7));
+  if(corruption>.35){ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.14+.18*Math.sin(time*8);ctx.strokeStyle='#a58aff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-21*scale,headY-8*scale);ctx.lineTo(x-31*scale,headY-22*scale);ctx.moveTo(x+18*scale,headY-7*scale);ctx.lineTo(x+30*scale,headY-19*scale);ctx.stroke();ctx.restore();}
 }
 function drawGodArcLabel(title,subtitle,color='#d2c4ff'){
   ctx.save();ctx.textAlign='center';ctx.shadowColor=color;ctx.shadowBlur=12;ctx.fillStyle=color;ctx.font='1000 13px ui-monospace,monospace';ctx.fillText(title,480,28);ctx.shadowBlur=0;ctx.fillStyle='#f5f4ff';ctx.font='bold 11px Inter,Segoe UI,Arial,sans-serif';ctx.fillText(subtitle,480,48);ctx.restore();
@@ -4539,7 +4448,7 @@ function drawGodArcScene(phase,t){
     return;
   }
   if(phase==='godArcPapyrusVoice'){
-    drawGodErrol(465,475,1.35,.45);drawCompactErrolThirdEye(465,475-100*1.35,.94);
+    drawGodErrol(465,475,1.35,.45);drawBlackThirdEye(465,475-101*1.35,6.5,.5+.3*Math.sin(t*4));
     const heartY=210+Math.sin(t*1.3)*9;drawSoulHeartFragment(480,heartY,.95,.9,'#a5f4ff');
     for(let i=0;i<22;i++){const a=t*.55+i*TAU/22,r=60+(i%4)*17;ctx.globalAlpha=.23;ctx.strokeStyle=i%2?'#a4f7ff':'#eddaff';ctx.beginPath();ctx.arc(480,heartY,r,a,a+.48);ctx.stroke();}ctx.globalAlpha=1;
     drawGodArcLabel('PAPYRUS · “ANH HAI, ĐỦ RỒI…”','Giọng nói kéo Errol khỏi cơn tha hóa.','#a8f5ff');
