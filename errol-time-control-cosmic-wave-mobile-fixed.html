@@ -3440,9 +3440,9 @@ function updateCharaEncounter(dt){
   else if(villageCharaPhase==='warkBossShift'&&t>=1.8){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkAttackCooldown=warkThirdEyeAwake?.65:.85;warkTimeStop=0;setStatus(warkThirdEyeAwake?'<b>WARLOCK · NULL FORM</b><br>Không gian rạn vỡ quanh hắn — lần này, Errol có thể đánh trả.':'<b>WARLOCK · PHASE II</b><br>Vết nứt mở lại; các đợt tấn công nhanh và khó đoán hơn.');}
   else if(villageCharaPhase==='warkDown'&&t>=5.2){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkPlayerHP=Math.max(1,warkReviveReady?2:1);warkReviveReady=false;player.mana=Math.max(55,player.mana);warkPlayerInvuln=1.8;warkTimeStop=1.1;setStatus('<b>TIME REWIND · ERROL TRỞ LẠI</b><br>Con mắt kéo Errol ra khỏi khoảnh khắc vừa gục ngã.');}
   else if(villageCharaPhase==='warkVictory'&&t>=4.2){villageCharaPhase='godArcRampage';villageCharaTime=0;godArcOmniHits=0;godArcTrioHits=0;godArcFiveMoves=0;godArcSceneFlash=0;screenShake=9;flash=.22;setStatus('<b>THIRD EYE · CORRUPTION SPREADS</b><br>Warlock đã ngã xuống, nhưng cảm xúc Errol đang mục ruỗng. Những thế giới khác bắt đầu tan rã dưới bước chân cậu.');announce.textContent='Sau khi đánh bại Warlock, con mắt thứ ba tha hóa Errol. Cậu bắt đầu tàn phá các vũ trụ khác, và sự chấn động đánh thức Omni Sans.';}
-  else if(villageCharaPhase==='godArcRampage'&&t>=24.0){villageCharaPhase='omniSansArrival';villageCharaTime=0;screenShake=14;flash=.28;setStatus('<b>OMNI SANS · COSMIC SIGNATURE LOCKED</b><br>Hết thế giới này đến thế giới khác đã chìm trong biển lửa đỏ. Khi đa vũ trụ gần thành tàn tích, Omni Sans chặn đường Errol.');announce.textContent='Errol đã tàn phá thế giới nối tiếp thế giới. Bầu trời đỏ, các hành tinh rạn vỡ, thực tại bị xé ra. Chỉ khi đa vũ trụ gần sụp đổ, Omni Sans mới xuất hiện.';sound(430,.26,'triangle',.05);}
+  else if(villageCharaPhase==='godArcRampage'&&t>=8.2){villageCharaPhase='omniSansArrival';villageCharaTime=0;screenShake=8;flash=.16;setStatus('<b>OMNI SANS · COSMIC SIGNATURE LOCKED</b><br>Một luồng sức mạnh trắng xanh chặn trước đường đi của Errol. Omni Sans đã tìm tới nguồn nhiễu loạn.');sound(430,.26,'triangle',.05);}
   else if(villageCharaPhase==='omniSansArrival'&&t>=3.6){villageCharaPhase='omniSansDuel';villageCharaTime=0;godArcOmniHits=0;godArcMoveCooldown=0;player.x=250;player.y=466;player.mana=100;setStatus('<b>OMNI SANS VS ERROL · GẦN NHƯ NGANG SỨC</b><br>Điều khiển Errol: di chuyển bằng WASD/joystick, dùng các nút kỹ năng để tung đòn. Sau chuỗi va chạm, hai vị thần khác sẽ cảm nhận được chấn động.');announce.textContent='Omni Sans đối đầu Errol. Hai bên gần như ngang sức, nhưng con mắt thứ ba giúp Errol dần chiếm ưu thế.';}
-  else if(villageCharaPhase==='omniSansDuel'&&((godArcOmniHits>=7&&t>=14)||t>=26)){villageCharaPhase='godTrioArrival';villageCharaTime=0;godArcTrioHits=0;screenShake=16;flash=.26;setStatus('<b>REALITY DISTURBANCE · TWO MORE GODS</b><br>Gần như mọi thế giới đã hóa tàn tích. Everything Sans và Godveres Sans xé rách tầng không gian cuối cùng để đứng cạnh Omni Sans.');announce.textContent='Omni Sans và Errol đã đánh đến mức nhiều lớp thực tại cùng rung chuyển. Chỉ lúc đó Everything Sans và Godveres Sans mới xuất hiện, hợp sức với Omni để ngăn Errol.';}
+  else if(villageCharaPhase==='omniSansDuel'&&((godArcOmniHits>=7&&t>=6.5)||t>=22)){villageCharaPhase='godTrioArrival';villageCharaTime=0;godArcTrioHits=0;screenShake=10;flash=.18;setStatus('<b>REALITY DISTURBANCE · TWO MORE GODS</b><br>Chấn động vượt khỏi một vũ trụ. Everything Sans và Godveres Sans cùng xuất hiện để ngăn Errol.');announce.textContent='Trận giữa Omni Sans và Errol làm rung chuyển thực tại. Everything Sans và Godveres Sans xuất hiện; ba vị thần lập thành một đội để ngăn chặn Errol.';}
   else if(villageCharaPhase==='godTrioArrival'&&t>=4.0){villageCharaPhase='godTrioBattle';villageCharaTime=0;godArcTrioHits=0;godArcMoveCooldown=0;player.x=250;player.y=466;player.mana=100;setStatus('<b>THE THREE GODS · FINAL CONFRONTATION</b><br>Omni Sans, Everything Sans và Godveres Sans hợp lực. Đánh trả bằng mọi kỹ năng — nhưng luồng áp lực đang khóa dần thời gian.');}
   else if(villageCharaPhase==='godTrioBattle'&&((godArcTrioHits>=8&&t>=7.5)||t>=20)){villageCharaPhase='godTrioOverwhelm';villageCharaTime=0;screenShake=22;flash=.34;player.inv=0;setStatus('<b>TRI-GOD COLLISION · TIME SEALED</b><br>Ba luồng sức mạnh giao nhau. Một vết sáng xé ngang thân Errol; thời gian bị khóa, khiến cậu không thể dùng quyền năng quay ngược.');announce.textContent='Ba vị thần phối hợp đòn đánh khiến Errol bị thương nặng và đóng băng thời gian. Con mắt không thể lập tức quay ngược khoảnh khắc này.';}
   else if(villageCharaPhase==='godTrioOverwhelm'&&t>=4.4){villageCharaPhase='godArcDarkAbsorb';villageCharaTime=0;godArcSceneFlash=0;setStatus('<b>DARK INSTINCT · WARLOCK RESIDUE</b><br>Bản năng đen trỗi dậy. Năng lượng còn sót lại từ trận chiến Warlock bị hút ngược vào cơ thể Errol.');}
@@ -4152,135 +4152,7 @@ function drawGodArcBackdrop(t,broken=0){
     ctx.restore();
   }
 }
-function drawCorruptionApocalypseBackdrop(t,level=0){
-  // A deliberately escalating, animated catastrophe: burning city -> dying planet -> shattered multiverse.
-  level=clamp(level,0,1);
-  const sky=ctx.createLinearGradient(0,0,0,H);
-  sky.addColorStop(0,'#13010a');sky.addColorStop(.22,level<.35?'#7d1020':'#5d0a26');sky.addColorStop(.58,'#2c0718');sky.addColorStop(1,'#07030b');
-  ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
-  // Blood-red sun / collapsing horizon.
-  const sunX=level<.42?735:620, sunY=112+Math.sin(t*.36)*4, sunR=112+level*44;
-  ctx.save();ctx.globalCompositeOperation='screen';
-  const sunGlow=ctx.createRadialGradient(sunX,sunY,4,sunX,sunY,sunR*2.4);sunGlow.addColorStop(0,'rgba(255,72,84,.68)');sunGlow.addColorStop(.35,'rgba(223,24,62,.28)');sunGlow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=sunGlow;ctx.fillRect(sunX-sunR*2.4,sunY-sunR*2.4,sunR*4.8,sunR*4.8);
-  ctx.fillStyle='#7b1028';ctx.beginPath();ctx.arc(sunX,sunY,sunR,0,TAU);ctx.fill();ctx.strokeStyle='#ff6b7a';ctx.globalAlpha=.7;ctx.lineWidth=2;ctx.beginPath();ctx.arc(sunX,sunY,sunR+7+Math.sin(t*2)*2,0,TAU);ctx.stroke();ctx.restore();
-  // Cracked planet surface emerges as the carnage spreads beyond one world.
-  if(level>.22){
-    const p=clamp((level-.22)/.5,0,1),px=700,py=210,pr=90+45*p;
-    ctx.save();ctx.globalAlpha=.22+.55*p;ctx.fillStyle='#160711';ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.fill();
-    ctx.save();ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.clip();
-    ctx.fillStyle='#8d1937';ctx.beginPath();ctx.ellipse(px-pr*.23,py-pr*.12,pr*.42,pr*.22,-.45,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(px+pr*.3,py+pr*.28,pr*.25,pr*.18,.5,0,TAU);ctx.fill();
-    ctx.strokeStyle='#ff596f';ctx.lineWidth=2.1;for(let i=0;i<12;i++){const a=i*2.399+t*.07,rr=pr*(.15+(i%4)*.17);ctx.beginPath();ctx.moveTo(px+Math.cos(a)*rr,py+Math.sin(a)*rr);ctx.lineTo(px+Math.cos(a+.11)*(pr*.9),py+Math.sin(a+.11)*(pr*.9));ctx.stroke();}
-    ctx.restore();ctx.strokeStyle='#ff6074';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.stroke();ctx.restore();
-  }
-  // City skyline, with destroyed buildings and fiery windows.
-  const cityFade=1-clamp((level-.4)/.38,0,1)*.72;
-  ctx.save();ctx.globalAlpha=cityFade;
-  for(let i=0;i<19;i++){
-    const x=i*56-18, bw=28+(i*13%25), bh=65+(i*47%115), lean=Math.sin(i*4.7)*8+(i%4===0?10:0), top=405-bh;
-    ctx.fillStyle=i%3===0?'#16040e':i%2?'#200611':'#2c0715';ctx.beginPath();ctx.moveTo(x,430);ctx.lineTo(x+lean,top);ctx.lineTo(x+bw+lean*.4,top+5);ctx.lineTo(x+bw+lean,430);ctx.closePath();ctx.fill();
-    ctx.strokeStyle=i%2?'rgba(255,83,101,.35)':'rgba(255,165,105,.26)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+lean*.5,top+14);ctx.lineTo(x+bw*.5,top+bh*.48);ctx.lineTo(x+bw*.25,top+bh*.65);ctx.stroke();
-    for(let row=0;row<Math.floor(bh/17);row++)for(let col=0;col<2;col++){
-      if((i+row+col)%4===0)continue;ctx.fillStyle=(i+row+col)%3===0?'#ffb15c':'#b52846';ctx.globalAlpha=cityFade*(.45+.35*Math.sin(t*4+i+row));ctx.fillRect(x+7+col*11+lean*.4,top+14+row*15,4,6);
-    }ctx.globalAlpha=cityFade;
-  }
-  ctx.restore();
-  // Flames animate along the ruined skyline.
-  ctx.save();ctx.globalCompositeOperation='screen';
-  for(let i=0;i<17;i++){
-    const x=(i*61+Math.sin(t*1.3+i)*8)%W, base=423-(i%4)*5, h=18+(i%5)*7+Math.abs(Math.sin(t*5+i))*22;
-    ctx.globalAlpha=.55+.3*Math.sin(t*6+i);ctx.fillStyle=i%3===0?'#ffe093':'#ff452b';ctx.beginPath();ctx.moveTo(x-9,base);ctx.quadraticCurveTo(x-13,base-h*.45,x+Math.sin(t*5+i)*5,base-h);ctx.quadraticCurveTo(x+10,base-h*.55,x+9,base);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#ffb06b';ctx.globalAlpha=.6;ctx.beginPath();ctx.moveTo(x-3,base);ctx.quadraticCurveTo(x-4,base-h*.4,x+1,base-h*.68);ctx.quadraticCurveTo(x+5,base-h*.3,x+4,base);ctx.closePath();ctx.fill();
-  }
-  ctx.restore();
-  // A flowing crimson river of corrupted energy, stylized rather than graphic.
-  ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';ctx.lineJoin='round';
-  ctx.globalAlpha=.24;ctx.strokeStyle='#ff164a';ctx.lineWidth=34;ctx.beginPath();ctx.moveTo(-30,510);ctx.bezierCurveTo(180,463,260,530,430,496);ctx.bezierCurveTo(600,455,720,520,990,475);ctx.stroke();
-  ctx.globalAlpha=.8;ctx.strokeStyle='#ff365d';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-30,510+Math.sin(t*2)*6);ctx.bezierCurveTo(180,463+Math.cos(t*1.7)*8,260,530,430,496+Math.sin(t*2.2)*8);ctx.bezierCurveTo(600,455,720,520,990,475+Math.cos(t*1.9)*9);ctx.stroke();
-  for(let i=0;i<28;i++){const u=(i/28+t*.055)%1,x=-20+u*1000,y=500+Math.sin(u*13+t*1.4)*18;ctx.globalAlpha=.35+.4*Math.sin(t*4+i);ctx.fillStyle=i%3?'#ff8291':'#ffd79e';ctx.fillRect(x,y,4+(i%4),2+(i%2));}
-  ctx.restore();
-  // Distant figures fleeing; only silhouettes, no graphic detail.
-  if(level<.6){
-    ctx.save();ctx.globalAlpha=.5;
-    for(let i=0;i<9;i++){const x=(i*113+t*(13+i%3*5))%W,y=445+(i%3)*6,s=.45+(i%3)*.1;
-      ctx.strokeStyle='#07030a';ctx.fillStyle='#07030a';ctx.lineWidth=4*s;ctx.beginPath();ctx.arc(x,y-17*s,5*s,0,TAU);ctx.fill();ctx.beginPath();ctx.moveTo(x,y-12*s);ctx.lineTo(x-3*s,y+2*s);ctx.lineTo(x-10*s,y+10*s);ctx.moveTo(x-3*s,y+2*s);ctx.lineTo(x+6*s,y+10*s);ctx.moveTo(x-2*s,y-8*s);ctx.lineTo(x-13*s,y-15*s);ctx.moveTo(x-2*s,y-8*s);ctx.lineTo(x+8*s,y-14*s);ctx.stroke();
-    }
-    ctx.restore();
-    if(level<.25){ctx.save();ctx.globalAlpha=.18+.12*Math.sin(t*3);ctx.fillStyle='#ffb2b8';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('AAAA—',120+Math.sin(t)*18,370);ctx.fillText('RUN!',800+Math.cos(t*.8)*15,385);ctx.restore();}
-  }
-  // Multi-universe phase: fragmented worlds suspended in the red void.
-  if(level>.55){
-    const p=clamp((level-.55)/.45,0,1);ctx.save();ctx.globalCompositeOperation='screen';
-    for(let i=0;i<7;i++){
-      const x=70+i*137+Math.sin(t*.5+i)*23,y=80+(i%3)*74,rr=12+(i%3)*10;
-      ctx.globalAlpha=.28+.36*p;ctx.strokeStyle=['#ff6577','#ffca82','#bfa3ff'][i%3];ctx.lineWidth=1.6;ctx.beginPath();ctx.arc(x,y,rr,0,TAU);ctx.stroke();ctx.beginPath();ctx.ellipse(x,y,rr*1.7,rr*.45,t*.2+i,0,TAU);ctx.stroke();
-      for(let k=0;k<5;k++){const a=k*TAU/5+t*.18+i;ctx.fillStyle=i%2?'#ff9fae':'#e9c7ff';ctx.beginPath();ctx.moveTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);ctx.lineTo(x+Math.cos(a+.3)*(rr+11),y+Math.sin(a+.3)*(rr+11));ctx.lineTo(x+Math.cos(a-.2)*(rr+5),y+Math.sin(a-.2)*(rr+5));ctx.closePath();ctx.fill();}
-    }
-    ctx.restore();
-  }
-  // Falling embers, spatial cracks and a continuous shockwave make the scene visibly alive.
-  ctx.save();ctx.globalCompositeOperation='screen';
-  for(let i=0;i<95;i++){const x=(i*97.31+Math.sin(i*2.2+t*.55)*26+W)%W;const y=((i*59.3+t*(19+i%4*11))%535);ctx.globalAlpha=.18+(i%4)*.12;ctx.fillStyle=i%6===0?'#fff1c6':i%3===0?'#ff8b80':'#ff3659';ctx.fillRect(x,y,1+(i%3),3+(i%5));}
-  const waveR=130+((t*86)%470);ctx.globalAlpha=.12+.08*Math.sin(t*4);ctx.strokeStyle='#ff4c74';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(470,365,waveR,waveR*.23,-.04,0,TAU);ctx.stroke();
-  if(level>.65){for(let i=0;i<7;i++){const x=70+i*132+Math.sin(t*1.5+i)*16,y=50+(i%4)*73;ctx.globalAlpha=.2+.2*Math.sin(t*3+i);ctx.strokeStyle=i%2?'#ff5477':'#f5c5ff';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(x-20,y-25);ctx.lineTo(x+7,y-2);ctx.lineTo(x-12,y+15);ctx.lineTo(x+18,y+44);ctx.stroke();}}
-  ctx.restore();
-  // dark vignette pins the scene to an oppressive, end-of-world palette.
-  const vignette=ctx.createRadialGradient(480,280,100,480,280,610);vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(0,0,0,.48)');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
-}
-
-function drawGodVeresFigure(x,footY,scale,t,alpha=1){
-  // Based on the user's reference: navy long coat, outstretched arms and crossed red/blue chest sash.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const aura=ctx.createRadialGradient(0,-160,3,0,-160,175);aura.addColorStop(0,'rgba(224,244,255,.55)');aura.addColorStop(.4,'rgba(103,106,255,.22)');aura.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=aura;ctx.beginPath();ctx.ellipse(0,-157,170,182,0,0,TAU);ctx.fill();
-  ctx.fillStyle='rgba(0,0,0,.5)';ctx.beginPath();ctx.ellipse(0,0,83,13,0,0,TAU);ctx.fill();
-  // Portal rings radiate behind the god.
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<4;i++){ctx.globalAlpha=.22+.11*Math.sin(t*2+i);ctx.strokeStyle=i%2?'#b9caff':'#f5fdff';ctx.lineWidth=i===0?3:1.3;ctx.beginPath();ctx.ellipse(0,-154,104+i*24,37+i*8,t*.12+i*.22,0,TAU);ctx.stroke();}ctx.restore();
-  // Long coat tails.
-  const coat=ctx.createLinearGradient(-70,-200,72,-10);coat.addColorStop(0,'#264f9d');coat.addColorStop(.5,'#142b63');coat.addColorStop(1,'#071126');ctx.fillStyle=coat;
-  ctx.beginPath();ctx.moveTo(-29,-207);ctx.quadraticCurveTo(-90,-188,-67,-111);ctx.lineTo(-92,-32);ctx.lineTo(-50,-54);ctx.lineTo(-24,-119);ctx.lineTo(-14,-165);ctx.closePath();ctx.fill();
-  ctx.beginPath();ctx.moveTo(28,-207);ctx.quadraticCurveTo(88,-188,67,-111);ctx.lineTo(93,-30);ctx.lineTo(50,-54);ctx.lineTo(22,-119);ctx.lineTo(14,-165);ctx.closePath();ctx.fill();
-  // Dark torso and fitted trousers.
-  ctx.fillStyle='#080b18';ctx.beginPath();ctx.moveTo(-26,-150);ctx.lineTo(26,-150);ctx.lineTo(22,-75);ctx.lineTo(13,-12);ctx.lineTo(-12,-12);ctx.lineTo(-22,-75);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#070b17';ctx.beginPath();ctx.moveTo(-18,-14);ctx.lineTo(-4,-14);ctx.lineTo(-9,0);ctx.lineTo(-31,0);ctx.quadraticCurveTo(-28,-8,-18,-14);ctx.fill();ctx.beginPath();ctx.moveTo(4,-14);ctx.lineTo(18,-14);ctx.quadraticCurveTo(28,-8,31,0);ctx.lineTo(9,0);ctx.closePath();ctx.fill();
-  // Arms spread in a commanding, horizontal pose.
-  ctx.lineCap='round';ctx.strokeStyle='#17366f';ctx.lineWidth=27;ctx.beginPath();ctx.moveTo(-24,-190);ctx.lineTo(-76,-168);ctx.lineTo(-128,-170);ctx.stroke();ctx.beginPath();ctx.moveTo(24,-190);ctx.lineTo(76,-168);ctx.lineTo(128,-170);ctx.stroke();
-  ctx.strokeStyle='#91a9e8';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-36,-184);ctx.lineTo(-76,-166);ctx.moveTo(36,-184);ctx.lineTo(76,-166);ctx.stroke();
-  ctx.fillStyle='#dae2f7';for(const side of [-1,1]){const hx=side*132,hy=-169;ctx.beginPath();ctx.ellipse(hx,hy,12,8,side*.1,0,TAU);ctx.fill();ctx.strokeStyle='#dae2f7';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(hx+side*5,hy);ctx.lineTo(hx+side*18,hy-10);ctx.moveTo(hx+side*4,hy);ctx.lineTo(hx+side*18,hy+1);ctx.moveTo(hx+side*2,hy+2);ctx.lineTo(hx+side*13,hy+12);ctx.moveTo(hx-side*3,hy+3);ctx.lineTo(hx+side*5,hy+13);ctx.stroke();}
-  // White shirt and scarf.
-  ctx.fillStyle='#e9f0ff';ctx.beginPath();ctx.moveTo(-24,-206);ctx.quadraticCurveTo(0,-219,24,-206);ctx.lineTo(28,-153);ctx.quadraticCurveTo(0,-141,-28,-153);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#19203b';ctx.beginPath();ctx.moveTo(-30,-210);ctx.quadraticCurveTo(0,-226,30,-210);ctx.lineTo(24,-185);ctx.quadraticCurveTo(0,-172,-24,-185);ctx.closePath();ctx.fill();
-  // Red and blue X sash, signature from the reference.
-  ctx.save();ctx.beginPath();ctx.moveTo(-25,-203);ctx.lineTo(25,-203);ctx.lineTo(27,-159);ctx.lineTo(-27,-159);ctx.closePath();ctx.clip();ctx.fillStyle='#c62a50';ctx.fillRect(-32,-207,64,50);ctx.strokeStyle='#2f6bbb';ctx.lineWidth=13;ctx.beginPath();ctx.moveTo(-28,-203);ctx.lineTo(28,-160);ctx.moveTo(28,-203);ctx.lineTo(-28,-160);ctx.stroke();ctx.restore();
-  ctx.strokeStyle='#bfcaf0';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-21,-148);ctx.lineTo(-23,-113);ctx.moveTo(21,-148);ctx.lineTo(23,-113);ctx.stroke();
-  // Skull, broad smile and deep-blue sockets.
-  const head=ctx.createLinearGradient(-25,-280,27,-214);head.addColorStop(0,'#fff');head.addColorStop(.55,'#eef3ff');head.addColorStop(1,'#9baedb');ctx.fillStyle=head;ctx.beginPath();ctx.ellipse(0,-241,29,35,-.03,0,TAU);ctx.fill();ctx.strokeStyle='#f9fcff';ctx.lineWidth=2;ctx.stroke();
-  ctx.fillStyle='#101735';ctx.beginPath();ctx.ellipse(-12,-244,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-244,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#79dfff';ctx.beginPath();ctx.ellipse(-12,-245,3,6,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-245,3,6,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#172143';ctx.beginPath();ctx.moveTo(-17,-222);ctx.quadraticCurveTo(0,-212,17,-222);ctx.lineTo(9,-215);ctx.lineTo(-9,-215);ctx.closePath();ctx.fill();ctx.strokeStyle='#f4f8ff';ctx.lineWidth=1;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(-11+i*5,-221);ctx.lineTo(-10+i*5,-216);ctx.stroke();}
-  // Floating fragments and sigil.
-  ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#dceaff';ctx.shadowColor='#6dcaff';ctx.shadowBlur=10;ctx.lineWidth=2;for(let i=0;i<6;i++){const a=t*.55+i*TAU/6,rr=112+(i%2)*22,xx=Math.cos(a)*rr,yy=-154+Math.sin(a)*rr*.5;ctx.beginPath();ctx.moveTo(xx-4,yy);ctx.lineTo(xx,yy-7);ctx.lineTo(xx+4,yy);ctx.lineTo(xx,yy+7);ctx.closePath();ctx.stroke();}ctx.restore();ctx.restore();
-}
-function drawEverythingSansFigure(x,footY,scale,t,alpha=1){
-  // Bright, overloaded presence: pale padded jacket, dark trousers, crimson scarf and glitch tears.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const halo=ctx.createRadialGradient(0,-150,5,0,-150,155);halo.addColorStop(0,'rgba(255,248,224,.55)');halo.addColorStop(.45,'rgba(255,94,142,.18)');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-148,145,174,0,0,TAU);ctx.fill();
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<9;i++){const yy=-245+i*27+Math.sin(t*4+i)*7;ctx.globalAlpha=.16+.12*Math.sin(t*5+i);ctx.fillStyle=i%2?'#79edff':'#ff5987';ctx.fillRect(-105+(i*31%64),yy,65+(i*17%90),2+(i%3));}ctx.restore();
-  ctx.fillStyle='rgba(0,0,0,.45)';ctx.beginPath();ctx.ellipse(0,0,56,10,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#090b16';ctx.beginPath();ctx.moveTo(-21,-115);ctx.lineTo(20,-115);ctx.lineTo(28,-7);ctx.lineTo(8,0);ctx.lineTo(0,-68);ctx.lineTo(-12,0);ctx.lineTo(-31,-5);ctx.closePath();ctx.fill();
-  // Puffy quilted jacket built with curves, not simple blocks.
-  const j=ctx.createLinearGradient(-48,-220,45,-118);j.addColorStop(0,'#faf6ff');j.addColorStop(.5,'#b8c4dc');j.addColorStop(1,'#697caa');ctx.fillStyle=j;ctx.beginPath();ctx.moveTo(-25,-207);ctx.bezierCurveTo(-51,-216,-55,-190,-48,-172);ctx.quadraticCurveTo(-43,-153,-27,-145);ctx.lineTo(-12,-134);ctx.lineTo(0,-151);ctx.lineTo(12,-134);ctx.lineTo(30,-145);ctx.quadraticCurveTo(47,-157,49,-178);ctx.bezierCurveTo(51,-200,40,-215,22,-207);ctx.quadraticCurveTo(0,-198,-25,-207);ctx.closePath();ctx.fill();ctx.strokeStyle='#eff3ff';ctx.lineWidth=2;ctx.stroke();
-  ctx.strokeStyle='#e1e8ff';ctx.lineWidth=3;for(let side of [-1,1])for(let r=0;r<3;r++){ctx.beginPath();ctx.moveTo(side*(27+r*4),-198+r*18);ctx.quadraticCurveTo(side*(47+r*2),-190+r*18,side*(42+r*2),-174+r*18);ctx.stroke();}
-  // arms and cuffs
-  ctx.strokeStyle='#b8c7e7';ctx.lineWidth=20;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-33,-194);ctx.lineTo(-57,-157);ctx.stroke();ctx.beginPath();ctx.moveTo(33,-194);ctx.lineTo(56,-157);ctx.stroke();ctx.strokeStyle='#f4f6ff';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(-57,-157);ctx.lineTo(-63,-145);ctx.moveTo(56,-157);ctx.lineTo(63,-145);ctx.stroke();
-  // scarf
-  ctx.fillStyle='#6e183b';ctx.beginPath();ctx.moveTo(-18,-210);ctx.quadraticCurveTo(0,-196,21,-210);ctx.lineTo(27,-194);ctx.quadraticCurveTo(0,-179,-25,-194);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(7,-195);ctx.lineTo(23,-162);ctx.lineTo(12,-158);ctx.lineTo(-2,-192);ctx.closePath();ctx.fill();
-  // skull
-  ctx.fillStyle='#f4f4fb';ctx.beginPath();ctx.ellipse(0,-232,31,31,0,0,TAU);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#101323';ctx.beginPath();ctx.ellipse(-12,-236,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-236,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#67e8ff';ctx.fillRect(-14,-239,4,5);ctx.fillStyle='#ff75ac';ctx.fillRect(10,-239,4,5);ctx.fillStyle='#161523';ctx.beginPath();ctx.moveTo(-16,-216);ctx.quadraticCurveTo(0,-207,16,-216);ctx.lineTo(10,-209);ctx.lineTo(-10,-209);ctx.closePath();ctx.fill();
-  // Corruption edges and floating data fragments
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<11;i++){const y=-260+i*28+Math.sin(t*7+i)*3;ctx.globalAlpha=.3+.35*Math.sin(t*6+i);ctx.strokeStyle=i%2?'#ff497b':'#7aeaff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-39+(i%3)*9,y);ctx.lineTo(-49+(i%5)*16,y+3);ctx.lineTo(-41+(i%4)*14,y+7);ctx.stroke();}ctx.restore();ctx.restore();
-}
-
 function drawGodFigure(x,footY,scale,kind,t,alpha=1){
-  if(kind==='godveres')return drawGodVeresFigure(x,footY,scale,t,alpha);
-  if(kind==='everything')return drawEverythingSansFigure(x,footY,scale,t,alpha);
   const palette={
     omni:{a:'#8ef3ff',b:'#d8fdff',c:'#4d96db',dark:'#101a36',eye:'#53e8ff',edge:'#efffff'},
     everything:{a:'#ffe8a1',b:'#fff7de',c:'#dc9f4b',dark:'#201934',eye:'#ffe26f',edge:'#fff4c6'},
@@ -4342,40 +4214,24 @@ function drawShatteringUniverse(x,y,r,p,color,t){
   ctx.restore();
 }
 function drawGodArcScene(phase,t){
-  const apocPhases=['godArcRampage','omniSansArrival','omniSansDuel','godTrioArrival','godTrioBattle','godTrioOverwhelm'];
-  if(apocPhases.includes(phase)){const lv=phase==='godArcRampage'?clamp(t/24,0,1):phase==='omniSansArrival'||phase==='omniSansDuel'?.84:1;drawCorruptionApocalypseBackdrop(t,lv);}
-  else drawGodArcBackdrop(t,phase==='godArcDarkAbsorb'||phase==='godArcFiveMoves');
-  const ramp=clamp(t/24,0,1);
+  drawGodArcBackdrop(t,phase==='godTrioOverwhelm'||phase==='godArcDarkAbsorb'||phase==='godArcFiveMoves');
+  const ramp=clamp(t/8.2,0,1);
   if(phase==='godArcRampage'){
-    // Errol crosses multiple worlds. The backdrop itself evolves with the level of corruption.
-    const p=clamp(t/24,0,1);
-    const worldName=p<.22?'THÀNH PHỐ · BẦU TRỜI ĐỎ':p<.48?'HÀNH TINH · LỤC ĐỊA NỨT VỠ':p<.75?'NHIỀU THẾ GIỚI · SÓNG TÀN PHÁ':'ĐA VŨ TRỤ · THỰC TẠI RẠN VỠ';
-    const ex=115+p*700,ey=411-Math.sin(t*1.08)*25;
-    // A huge moving corruption wake follows Errol across the burning world.
-    ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';
-    for(let i=0;i<8;i++){const yy=405+i*6+Math.sin(t*2+i)*10;ctx.globalAlpha=.08+(i%3)*.035;ctx.strokeStyle=i%2?'#ff204f':'#c7a4ff';ctx.lineWidth=2+i%3;ctx.beginPath();ctx.moveTo(0,yy+16);ctx.bezierCurveTo(ex*.35,yy-35,ex*.72,yy+48,ex+24,ey+10+i*3);ctx.stroke();}
-    ctx.restore();
-    // Timed reality strikes land in different regions, every one with its own pulse.
-    for(let i=0;i<5;i++){
-      const phaseT=(t*.72+i*1.73)%6.2;
-      if(phaseT<.72){const xx=90+i*194+Math.sin(t+i)*25, yy=360+(i%2)*38, q=phaseT/.72;
-        ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=(1-q)*.75;ctx.strokeStyle=i%2?'#ff8c85':'#f4d5ff';ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=18;ctx.lineWidth=2+q*5;ctx.beginPath();ctx.moveTo(xx-45,80);ctx.lineTo(xx+12,170);ctx.lineTo(xx-8,215);ctx.lineTo(xx+18,270);ctx.lineTo(xx,yy);ctx.stroke();ctx.beginPath();ctx.ellipse(xx,yy,14+q*78,6+q*24,0,0,TAU);ctx.stroke();ctx.restore();}
-    }
-    drawGodErrol(ex,472,1.53,.84+.16*Math.sin(t*3.8));
-    // Status is a slim animated caption, not a static notice panel.
-    drawGodArcLabel('THIRD EYE · WORLD AFTER WORLD',worldName,'#ff93a6');
-    roundedRect(22,64,250,8,4,'rgba(20,2,10,.55)','rgba(255,110,134,.45)');ctx.fillStyle='#ff4569';ctx.fillRect(24,66,246*p,4);
-    ctx.textAlign='left';ctx.fillStyle='#ff9fad';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('REALITY COLLAPSE // '+Math.min(99,Math.floor(p*100))+'%',22,89);
-    if(p>.75){ctx.save();ctx.globalAlpha=.18+.1*Math.sin(t*4);ctx.fillStyle='#ff1b4d';ctx.fillRect(0,0,W,H);ctx.restore();}
+    const colors=['#78eaff','#b49aff','#ff70b6','#ffca7b','#9affd9'];
+    for(let i=0;i<5;i++){const x=100+i*190,y=150+(i%2)*69,p=clamp((t-i*1.35)/1.5,0,1);drawShatteringUniverse(x,y,34+(i%2)*10,p,colors[i],t+i);}
+    const ex=100+clamp(t/7.9,0,1)*740,ey=400-Math.sin(t*2)*80;
+    ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#c3a4ff';ctx.lineWidth=18;ctx.globalAlpha=.25;ctx.beginPath();ctx.moveTo(ex-100,ey-80);ctx.quadraticCurveTo(ex-30,ey-25,ex+24,ey+12);ctx.stroke();ctx.globalAlpha=1;ctx.strokeStyle='#f3eaff';ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(ex-70,ey-65);ctx.lineTo(ex+7,ey+9);ctx.stroke();ctx.restore();
+    drawGodErrol(ex,474,1.25,.75+.25*Math.sin(t*4));
+    drawGodArcLabel('THIRD EYE · CORRUPTION SPREADS','Các thế giới lần lượt vỡ vụn khi Errol đi qua.','#d7a8ff');
+    ctx.textAlign='left';ctx.fillStyle='#ff9fc5';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('REALITY COLLAPSE // '+Math.min(99,Math.floor(t/8.2*99))+'%',22,78);
     return;
   }
   if(phase==='omniSansArrival'||phase==='omniSansDuel'){
     drawShatteringUniverse(490,174,63,.1,'#72dfff',t);
     const p=phase==='omniSansArrival'?clamp(t/3.6,0,1):1;
     ctx.save();ctx.globalAlpha=p;ctx.strokeStyle='#8cf2ff';ctx.shadowColor='#8cf2ff';ctx.shadowBlur=24;ctx.lineWidth=5;ctx.beginPath();ctx.ellipse(717,270,90+Math.sin(t*3)*5,150,Math.sin(t*1.2)*.08,0,TAU);ctx.stroke();ctx.restore();
-    drawGodErrol(245+(phase==='omniSansDuel'?Math.sin(t*3)*12:0),478,1.48,1);
-    drawGodFigure(755,478,1.02,'omni',time,phase==='omniSansArrival'?p:1);
-    ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<7;i++){const a=time*.46+i*TAU/7,rx=220+Math.sin(time*2+i)*20;ctx.globalAlpha=.2+.18*Math.sin(time*4+i);ctx.strokeStyle=i%2?'#9af4ff':'#f4e9ff';ctx.lineWidth=i%3===0?3:1.4;ctx.beginPath();ctx.moveTo(755+Math.cos(a)*rx*.58,246+Math.sin(a)*105);ctx.lineTo(245,365);ctx.stroke();}ctx.restore();
+    drawGodErrol(250+(phase==='omniSansDuel'?Math.sin(t*3)*10:0),478,1.3,1);
+    drawGodFigure(705,478,.83,'omni',time,phase==='omniSansArrival'?p:1);
     if(phase==='omniSansDuel'){
       for(let i=0;i<Math.min(7,godArcOmniHits);i++){ctx.save();ctx.globalAlpha=.2+.25*Math.sin(time*8+i);ctx.strokeStyle=i%2?'#a5f4ff':'#d9b6ff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(315+i*24,425-i%3*22);ctx.lineTo(600+i*12,310+i%4*27);ctx.stroke();ctx.restore();}
       roundedRect(18,66,220,42,9,'rgba(5,9,24,.78)','#65eaff');ctx.textAlign='left';ctx.fillStyle='#a7f5ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('OMNI SANS · WILL '+Math.max(0,7-godArcOmniHits)+'/7',31,82);ctx.fillStyle='#efffff';ctx.fillRect(31,91,190*(1-godArcOmniHits/7),4);
@@ -4385,15 +4241,12 @@ function drawGodArcScene(phase,t){
     return;
   }
   if(phase==='godTrioArrival'||phase==='godTrioBattle'){
-    drawGodErrol(240,478,1.46,phase==='godTrioBattle'?1:.82);
+    drawGodErrol(250,478,1.3,phase==='godTrioBattle'?1:.82);
     const appear=phase==='godTrioArrival'?clamp(t/4,0,1):1;
-    // The gods dominate the ruined skyline instead of looking like tiny support characters.
-    drawGodFigure(535,478,.91,'omni',time,appear);drawGodFigure(705,478,.91,'everything',time,appear);drawGodFigure(865,478,.88,'godveres',time,appear);
-    ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<3;i++){const gx=[535,705,865][i],col=['#72eaff','#ffcb72','#b9a0ff'][i];ctx.globalAlpha=appear*(.16+.12*Math.sin(time*3+i));const halo=ctx.createRadialGradient(gx,265,4,gx,265,190);halo.addColorStop(0,col+'55');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.fillRect(gx-190,70,380,400);for(let k=0;k<6;k++){const a=time*.43+i+k*TAU/6;ctx.strokeStyle=col;ctx.lineWidth=k===0?3:1.3;ctx.beginPath();ctx.moveTo(gx+Math.cos(a)*65,270+Math.sin(a)*78);ctx.lineTo(gx+Math.cos(a)*145,270+Math.sin(a)*155);ctx.stroke();}}ctx.restore();
+    drawGodFigure(590,478,.66,'omni',time,appear);drawGodFigure(738,478,.66,'everything',time,appear);drawGodFigure(874,478,.66,'godveres',time,appear);
     if(phase==='godTrioArrival'){
       for(let i=0;i<3;i++){const x=590+i*142;ctx.save();ctx.globalAlpha=appear*.7;ctx.strokeStyle=['#7eeaff','#ffe49a','#b6a0ff'][i];ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,280,54+Math.sin(t*5+i)*5,112,0,0,TAU);ctx.stroke();ctx.restore();}
-      drawGodArcLabel('THE THREE GODS · LAST LINE OF REALITY','Omni Sans · Everything Sans · Godveres Sans','#fff0c9');
-      ctx.save();ctx.globalAlpha=.7;ctx.fillStyle='#ffadb9';ctx.font='1000 10px ui-monospace,monospace';ctx.textAlign='center';ctx.fillText('THE MULTIVERSE IS FAILING',480,532);ctx.restore();
+      drawGodArcLabel('THE THREE GODS · SUMMONED BY THE COLLAPSE','Omni Sans, Everything Sans và Godveres Sans cùng xuất hiện.','#d8ceff');
     }else{
       for(let i=0;i<3;i++){
         const x=610+i*120,y=255+Math.sin(time*4+i)*22,angle=time*1.3+i*TAU/3;
