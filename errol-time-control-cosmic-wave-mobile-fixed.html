@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#050713">
 <meta name="description" content="Sans Omni God Errol: Soul Loop — game hành động web trong vũ trụ Protoveres.">
-<title>ERROL CHRONICLES · CORRUPTION ARC V8</title>
+<title>ERROL CHRONICLES · WARK LOCK SANS REMASTER V5</title>
 <style>
 :root{color-scheme:dark;--bg:#050713;--panel:#0c1227;--cyan:#66f2ff;--purple:#a78bfa;--gold:#ffdc7a;--text:#edf6ff;--muted:#97a8c9;--line:#263457}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% 0%,#1b1645 0,#080b1a 50%,#03040a 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}body{padding:clamp(8px,2vw,22px)}
@@ -387,8 +387,6 @@ let villageCharaPhase='idle',villageCharaTime=0,villageCharaKills=0,villageChara
 let warkHP=180,warkMaxHP=180,warkPhase=1,warkX=700,warkY=430,warkTimeStop=0,warkShieldTimer=0,warkPlayerInvuln=0,warkPlayerHP=3,warkPlayerMaxHP=3,warkReviveReady=true,warkAttackCooldown=1.55,warkTelegraph=0,warkAttackLane=440,warkAttackType=0,warkAttackCount=0,warkActionCooldown=0,warkTimeStopCooldown=0,warkRewindCooldown=0,warkManaCooldown=0,warkDashCooldown=0,warkLastX=260,warkLastY=450,warkBossHit=0,warkActionEffectTimer=0,warkActionEffect='time',warkFinalForm=false,warkHudActive=false;
 let charaBattleX=718,charaTeleportTimer=1.45,charaTeleportFlash=0,charaAttackTimer=1.25,charaAttackWarn=0,charaAttackType=0,charaAttackLane=430,charaAttackAnim=0,charaFinalLoops=0,charaFinalHP=280,charaFinalMaxHP=280,charaFinalPlayerHP=5,charaFinalPlayerMaxHP=5,charaFinalInvuln=0,charaFinalCooldown=0,charaFinalHitFlash=0,charaFinalTimeStop=0,charaFinalShield=0,charaFinalAction='attack',charaFinalLoopFlash=0;
 let warkThirdEyeAwake=false,warkCodeEraseTimer=0,warkCompression=0,warkNullSlash=0,warkFinalEyePulse=0,warkStoryClock=0,warkFinalAttackFlash=0;
-let godArcOmniHits=0,godArcTrioHits=0,godArcFiveMoves=0,godArcMoveCooldown=0,godArcSceneFlash=0,godArcLastMove='attack',godArcEyePulse=0;
-const GOD_ARC_PHASES=['godArcRampage','omniSansArrival','omniSansDuel','godTrioArrival','godTrioBattle','godTrioOverwhelm','godArcDarkAbsorb','godArcFiveMoves','godArcOmniSeal','godArcPapyrusVoice','godArcCollapse','godArcNormalAwakened','godArcEnd'];
 let fishingHoldTimer=null;
 
 // Three entry modes + bookmarks are local to this browser. Checkpoints store real runtime state,
@@ -413,7 +411,7 @@ const checkpointRefs={
  get villageMorning(){return villageMorning},set villageMorning(v){villageMorning=v}, get villageMorningDoorStage(){return villageMorningDoorStage},set villageMorningDoorStage(v){villageMorningDoorStage=v}, get villageMorningDoorTimer(){return villageMorningDoorTimer},set villageMorningDoorTimer(v){villageMorningDoorTimer=v}, get villageAuraPenaltyTimer(){return villageAuraPenaltyTimer},set villageAuraPenaltyTimer(v){villageAuraPenaltyTimer=v}, get villageFestivalActive(){return villageFestivalActive},set villageFestivalActive(v){villageFestivalActive=v}, get villageFestivalStep(){return villageFestivalStep},set villageFestivalStep(v){villageFestivalStep=v}, get villageFestivalComplete(){return villageFestivalComplete},set villageFestivalComplete(v){villageFestivalComplete=v}, get villageFestivalUnlocked(){return villageFestivalUnlocked},set villageFestivalUnlocked(v){villageFestivalUnlocked=v}, get villageFestivalTime(){return villageFestivalTime},set villageFestivalTime(v){villageFestivalTime=v}, get villageFestivalToast(){return villageFestivalToast},set villageFestivalToast(v){villageFestivalToast=v}, get villageFestivalToastTimer(){return villageFestivalToastTimer},set villageFestivalToastTimer(v){villageFestivalToastTimer=v}, get villageFeastStartTime(){return villageFeastStartTime},set villageFeastStartTime(v){villageFeastStartTime=v}, get villageFeastErrolStartX(){return villageFeastErrolStartX},set villageFeastErrolStartX(v){villageFeastErrolStartX=v}, get villageFeastErrolStartY(){return villageFeastErrolStartY},set villageFeastErrolStartY(v){villageFeastErrolStartY=v}, get villageFestivalTableSetTime(){return villageFestivalTableSetTime},set villageFestivalTableSetTime(v){villageFestivalTableSetTime=v}, get villageNightTask(){return villageNightTask},set villageNightTask(v){villageNightTask=v},
  get villageFishingPhase(){return villageFishingPhase},set villageFishingPhase(v){villageFishingPhase=v}, get villageFishingTime(){return villageFishingTime},set villageFishingTime(v){villageFishingTime=v}, get villageFishingCatchCount(){return villageFishingCatchCount},set villageFishingCatchCount(v){villageFishingCatchCount=v}, get villageFishingViewerBase(){return villageFishingViewerBase},set villageFishingViewerBase(v){villageFishingViewerBase=v}, get villageFishingTrailTime(){return villageFishingTrailTime},set villageFishingTrailTime(v){villageFishingTrailTime=v}, get villageFishingPullProgress(){return villageFishingPullProgress},set villageFishingPullProgress(v){villageFishingPullProgress=v}, get villageFishingAssist(){return villageFishingAssist},set villageFishingAssist(v){villageFishingAssist=v}, get villageFishingHelpTime(){return villageFishingHelpTime},set villageFishingHelpTime(v){villageFishingHelpTime=v}, get villageFishingLastCatch(){return villageFishingLastCatch},set villageFishingLastCatch(v){villageFishingLastCatch=v}, get villageFishingToast(){return villageFishingToast},set villageFishingToast(v){villageFishingToast=v}, get villageFishingToastTimer(){return villageFishingToastTimer},set villageFishingToastTimer(v){villageFishingToastTimer=v}, get villageFishingReturnTime(){return villageFishingReturnTime},set villageFishingReturnTime(v){villageFishingReturnTime=v}, get villageFishBasketDelivered(){return villageFishBasketDelivered},set villageFishBasketDelivered(v){villageFishBasketDelivered=v},
  get villageAncestralTravelTime(){return villageAncestralTravelTime},set villageAncestralTravelTime(v){villageAncestralTravelTime=v}, get villageAncestralTime(){return villageAncestralTime},set villageAncestralTime(v){villageAncestralTime=v}, get villageAncestralPhase(){return villageAncestralPhase},set villageAncestralPhase(v){villageAncestralPhase=v}, get villageAncestralRestored(){return villageAncestralRestored},set villageAncestralRestored(v){villageAncestralRestored=v}, get villageFinalFeastTime(){return villageFinalFeastTime},set villageFinalFeastTime(v){villageFinalFeastTime=v}, get villageFinalDishesTime(){return villageFinalDishesTime},set villageFinalDishesTime(v){villageFinalDishesTime=v}, get villageTVTime(){return villageTVTime},set villageTVTime(v){villageTVTime=v}, get villageFarewellTime(){return villageFarewellTime},set villageFarewellTime(v){villageFarewellTime=v},
- get villageCharaPhase(){return villageCharaPhase},set villageCharaPhase(v){villageCharaPhase=v}, get villageCharaTime(){return villageCharaTime},set villageCharaTime(v){villageCharaTime=v}, get villageCharaKills(){return villageCharaKills},set villageCharaKills(v){villageCharaKills=v}, get villageCharaAction(){return villageCharaAction},set villageCharaAction(v){villageCharaAction=v}, get villageCharaAttackStartX(){return villageCharaAttackStartX},set villageCharaAttackStartX(v){villageCharaAttackStartX=v}, get villageCharaAttackCooldown(){return villageCharaAttackCooldown},set villageCharaAttackCooldown(v){villageCharaAttackCooldown=v}, get villageCharaMontageIndex(){return villageCharaMontageIndex},set villageCharaMontageIndex(v){villageCharaMontageIndex=v}, get villageCharaCosmicProgress(){return villageCharaCosmicProgress},set villageCharaCosmicProgress(v){villageCharaCosmicProgress=v}, get villageCharaHeartY(){return villageCharaHeartY},set villageCharaHeartY(v){villageCharaHeartY=v}, get villageCharaHeartX(){return villageCharaHeartX},set villageCharaHeartX(v){villageCharaHeartX=v}, get villageCharaFinalPrompt(){return villageCharaFinalPrompt},set villageCharaFinalPrompt(v){villageCharaFinalPrompt=v}, get warkHP(){return warkHP},set warkHP(v){warkHP=v}, get warkMaxHP(){return warkMaxHP},set warkMaxHP(v){warkMaxHP=v}, get warkPhase(){return warkPhase},set warkPhase(v){warkPhase=v}, get warkX(){return warkX},set warkX(v){warkX=v}, get warkY(){return warkY},set warkY(v){warkY=v}, get warkTimeStop(){return warkTimeStop},set warkTimeStop(v){warkTimeStop=v}, get warkShieldTimer(){return warkShieldTimer},set warkShieldTimer(v){warkShieldTimer=v}, get warkPlayerInvuln(){return warkPlayerInvuln},set warkPlayerInvuln(v){warkPlayerInvuln=v}, get warkPlayerHP(){return warkPlayerHP},set warkPlayerHP(v){warkPlayerHP=v}, get warkPlayerMaxHP(){return warkPlayerMaxHP},set warkPlayerMaxHP(v){warkPlayerMaxHP=v}, get warkReviveReady(){return warkReviveReady},set warkReviveReady(v){warkReviveReady=v}, get warkAttackCooldown(){return warkAttackCooldown},set warkAttackCooldown(v){warkAttackCooldown=v}, get warkTelegraph(){return warkTelegraph},set warkTelegraph(v){warkTelegraph=v}, get warkAttackLane(){return warkAttackLane},set warkAttackLane(v){warkAttackLane=v}, get warkAttackType(){return warkAttackType},set warkAttackType(v){warkAttackType=v}, get warkAttackCount(){return warkAttackCount},set warkAttackCount(v){warkAttackCount=v}, get warkActionCooldown(){return warkActionCooldown},set warkActionCooldown(v){warkActionCooldown=v}, get warkTimeStopCooldown(){return warkTimeStopCooldown},set warkTimeStopCooldown(v){warkTimeStopCooldown=v}, get warkRewindCooldown(){return warkRewindCooldown},set warkRewindCooldown(v){warkRewindCooldown=v}, get warkManaCooldown(){return warkManaCooldown},set warkManaCooldown(v){warkManaCooldown=v}, get warkDashCooldown(){return warkDashCooldown},set warkDashCooldown(v){warkDashCooldown=v}, get warkLastX(){return warkLastX},set warkLastX(v){warkLastX=v}, get warkLastY(){return warkLastY},set warkLastY(v){warkLastY=v}, get warkBossHit(){return warkBossHit},set warkBossHit(v){warkBossHit=v}, get warkActionEffectTimer(){return warkActionEffectTimer},set warkActionEffectTimer(v){warkActionEffectTimer=v}, get warkActionEffect(){return warkActionEffect},set warkActionEffect(v){warkActionEffect=v}, get warkFinalForm(){return warkFinalForm},set warkFinalForm(v){warkFinalForm=v}, get godArcOmniHits(){return godArcOmniHits},set godArcOmniHits(v){godArcOmniHits=v}, get godArcTrioHits(){return godArcTrioHits},set godArcTrioHits(v){godArcTrioHits=v}, get godArcFiveMoves(){return godArcFiveMoves},set godArcFiveMoves(v){godArcFiveMoves=v}, get godArcMoveCooldown(){return godArcMoveCooldown},set godArcMoveCooldown(v){godArcMoveCooldown=v}, get godArcSceneFlash(){return godArcSceneFlash},set godArcSceneFlash(v){godArcSceneFlash=v}, get godArcLastMove(){return godArcLastMove},set godArcLastMove(v){godArcLastMove=v}, get godArcEyePulse(){return godArcEyePulse},set godArcEyePulse(v){godArcEyePulse=v}, get villageGrandpa(){return villageGrandpa},set villageGrandpa(v){villageGrandpa=v}, get villageKid(){return villageKid},set villageKid(v){villageKid=v}, get villageSnow(){return villageSnow},set villageSnow(v){villageSnow=v}, get villagePines(){return villagePines},set villagePines(v){villagePines=v}
+ get villageCharaPhase(){return villageCharaPhase},set villageCharaPhase(v){villageCharaPhase=v}, get villageCharaTime(){return villageCharaTime},set villageCharaTime(v){villageCharaTime=v}, get villageCharaKills(){return villageCharaKills},set villageCharaKills(v){villageCharaKills=v}, get villageCharaAction(){return villageCharaAction},set villageCharaAction(v){villageCharaAction=v}, get villageCharaAttackStartX(){return villageCharaAttackStartX},set villageCharaAttackStartX(v){villageCharaAttackStartX=v}, get villageCharaAttackCooldown(){return villageCharaAttackCooldown},set villageCharaAttackCooldown(v){villageCharaAttackCooldown=v}, get villageCharaMontageIndex(){return villageCharaMontageIndex},set villageCharaMontageIndex(v){villageCharaMontageIndex=v}, get villageCharaCosmicProgress(){return villageCharaCosmicProgress},set villageCharaCosmicProgress(v){villageCharaCosmicProgress=v}, get villageCharaHeartY(){return villageCharaHeartY},set villageCharaHeartY(v){villageCharaHeartY=v}, get villageCharaHeartX(){return villageCharaHeartX},set villageCharaHeartX(v){villageCharaHeartX=v}, get villageCharaFinalPrompt(){return villageCharaFinalPrompt},set villageCharaFinalPrompt(v){villageCharaFinalPrompt=v}, get warkHP(){return warkHP},set warkHP(v){warkHP=v}, get warkMaxHP(){return warkMaxHP},set warkMaxHP(v){warkMaxHP=v}, get warkPhase(){return warkPhase},set warkPhase(v){warkPhase=v}, get warkX(){return warkX},set warkX(v){warkX=v}, get warkY(){return warkY},set warkY(v){warkY=v}, get warkTimeStop(){return warkTimeStop},set warkTimeStop(v){warkTimeStop=v}, get warkShieldTimer(){return warkShieldTimer},set warkShieldTimer(v){warkShieldTimer=v}, get warkPlayerInvuln(){return warkPlayerInvuln},set warkPlayerInvuln(v){warkPlayerInvuln=v}, get warkPlayerHP(){return warkPlayerHP},set warkPlayerHP(v){warkPlayerHP=v}, get warkPlayerMaxHP(){return warkPlayerMaxHP},set warkPlayerMaxHP(v){warkPlayerMaxHP=v}, get warkReviveReady(){return warkReviveReady},set warkReviveReady(v){warkReviveReady=v}, get warkAttackCooldown(){return warkAttackCooldown},set warkAttackCooldown(v){warkAttackCooldown=v}, get warkTelegraph(){return warkTelegraph},set warkTelegraph(v){warkTelegraph=v}, get warkAttackLane(){return warkAttackLane},set warkAttackLane(v){warkAttackLane=v}, get warkAttackType(){return warkAttackType},set warkAttackType(v){warkAttackType=v}, get warkAttackCount(){return warkAttackCount},set warkAttackCount(v){warkAttackCount=v}, get warkActionCooldown(){return warkActionCooldown},set warkActionCooldown(v){warkActionCooldown=v}, get warkTimeStopCooldown(){return warkTimeStopCooldown},set warkTimeStopCooldown(v){warkTimeStopCooldown=v}, get warkRewindCooldown(){return warkRewindCooldown},set warkRewindCooldown(v){warkRewindCooldown=v}, get warkManaCooldown(){return warkManaCooldown},set warkManaCooldown(v){warkManaCooldown=v}, get warkDashCooldown(){return warkDashCooldown},set warkDashCooldown(v){warkDashCooldown=v}, get warkLastX(){return warkLastX},set warkLastX(v){warkLastX=v}, get warkLastY(){return warkLastY},set warkLastY(v){warkLastY=v}, get warkBossHit(){return warkBossHit},set warkBossHit(v){warkBossHit=v}, get warkActionEffectTimer(){return warkActionEffectTimer},set warkActionEffectTimer(v){warkActionEffectTimer=v}, get warkActionEffect(){return warkActionEffect},set warkActionEffect(v){warkActionEffect=v}, get warkFinalForm(){return warkFinalForm},set warkFinalForm(v){warkFinalForm=v}, get villageGrandpa(){return villageGrandpa},set villageGrandpa(v){villageGrandpa=v}, get villageKid(){return villageKid},set villageKid(v){villageKid=v}, get villageSnow(){return villageSnow},set villageSnow(v){villageSnow=v}, get villagePines(){return villagePines},set villagePines(v){villagePines=v}
 };
 function currentProgressPoint(){
  if(state==='intro')return 5;
@@ -425,7 +423,7 @@ function currentProgressPoint(){
   const phaseBonus={arrivalDialogue:0,explore:1,roomMessage:2,brushing:3,sleeping:4,morningWake:5,fishFeastMorningWake:6,festivalMoveKitchen:7,fishingTravel:7,ancestralDeparture:8,oneShotCharge:9,oneShotFocus:10,oneShotCuts:11,barrierRestored:12,finalSleeping:13,timeEyeAwakening:14,timeEyeEnd:15};
   if(villageHouseRoom==='fishingLake')return 71+Math.min(7,villageFishingCatchCount)*.1;
   if(villageHouseRoom==='festivalYard')return 60+villageFestivalStep*.1;
-  if(villageHouseRoom==='charaEncounter'){if(GOD_ARC_PHASES.includes(villageCharaPhase))return 123+GOD_ARC_PHASES.indexOf(villageCharaPhase)*.01+(godArcFiveMoves*.001);if(['timeResume','charaAfterTime','warkRiftOpening','warkEnter','warkBattleIntro','warkBattle','warkBossShift','warkDown','warkVictory'].includes(villageCharaPhase))return 121+(warkPhase*.1)+(warkMaxHP?((warkMaxHP-warkHP)/warkMaxHP)*.01:0);return 110+Math.min(7,villageCharaKills)*.1;}
+  if(villageHouseRoom==='charaEncounter'){if(['timeResume','charaAfterTime','warkRiftOpening','warkEnter','warkBattleIntro','warkBattle','warkBossShift','warkDown','warkVictory'].includes(villageCharaPhase))return 121+(warkPhase*.1)+(warkMaxHP?((warkMaxHP-warkHP)/warkMaxHP)*.01:0);return 110+Math.min(7,villageCharaKills)*.1;}
   return (roomOrder[villageHouseRoom]||40)+(phaseBonus[villageHousePhase]||0)*.01;
  }
  return highestStoryProgress||0;
@@ -439,7 +437,7 @@ function currentPointTitle(){
  if(state==='villageArrival')return 'Đến thôn làng';if(state==='villageWake')return 'Tỉnh dậy ở thôn làng';if(state==='villageDialogue')return 'Gặp ông cháu Sans';if(state==='village')return 'Ngoài căn nhà của ông cháu Sans';
  if(state==='villageInterior'){
   const rooms={living:'Phòng khách',longFoyer:'Hành lang dài',kitchen:'Nhà bếp',bathroom:'Phòng tắm',bedroom:'Phòng ngủ Errol',kidRoom:'Phòng nhóc Sans · TV',festivalYard:'Lễ hội làng',fishingTrail:'Đường đến hồ câu',fishingLake:'Hồ câu cá · '+villageFishingCatchCount+'/8',fishingReturn:'Mang cá về nhà',ancestralTrail:'Đường tới di tích tổ tiên',ancestralBarrier:'Hàng rào tổ tiên · One Shot',fishFeastYard:'Bữa tiệc cá cuối cùng',outsideDishes:'Rửa bát cùng dân làng',farewellMorning:'Chia tay thôn làng',charaEncounter:'Đối đầu Chara · '+villageCharaKills+'/7'};
-  if(villageHouseRoom==='charaEncounter'&&GOD_ARC_PHASES.includes(villageCharaPhase)){const names={godArcRampage:'Tha hóa · Các vũ trụ sụp đổ',omniSansArrival:'Omni Sans xuất hiện',omniSansDuel:'Đối đầu Omni Sans · '+godArcOmniHits+'/7',godTrioArrival:'Everything Sans & Godveres Sans',godTrioBattle:'Ba vị thần Sans · '+godArcTrioHits+'/8',godTrioOverwhelm:'Thời gian bị khóa · Đòn hợp lực',godArcDarkAbsorb:'Bản năng đen · Hấp thụ năng lượng',godArcFiveMoves:'Third Eye · Đòn thứ '+godArcFiveMoves+'/5',godArcOmniSeal:'Omni Sans bị phong ấn',godArcPapyrusVoice:'Tiếng gọi của Papyrus',godArcCollapse:'Errol gục xuống',godArcNormalAwakened:'Errol trở lại bình thường',godArcEnd:'Kết thúc chương · Tự chủ giữa tha hóa'};return names[villageCharaPhase]||'God Arc';} if(villageHouseRoom==='charaEncounter'&&String(villageCharaPhase).startsWith('wark'))return 'Wark Lock Sans · '+(villageCharaPhase==='warkBattle'?'Trận đấu · '+Math.ceil(warkHP)+' HP':villageCharaPhase.replace(/([A-Z])/g,' $1'));
+  if(villageHouseRoom==='charaEncounter'&&String(villageCharaPhase).startsWith('wark'))return 'Wark Lock Sans · '+(villageCharaPhase==='warkBattle'?'Trận đấu · '+Math.ceil(warkHP)+' HP':villageCharaPhase.replace(/([A-Z])/g,' $1'));
   if(villageHouseRoom==='charaEncounter'&&['timeResume','charaAfterTime'].includes(villageCharaPhase))return 'Time Control · Thời gian trở lại';
   return (rooms[villageHouseRoom]||villageHouseRoom)+' · '+String(villageHousePhase).replace(/([A-Z])/g,' $1');
  }
@@ -576,11 +574,6 @@ function machinePlayStep(dt){
   if(room==='charaEncounter'){
    if(villageCharaPhase==='timeEyeEnd'&&machineStateElapsed>1.2){handleCharaEncounterAction('enter');return;}
    if(villageCharaPhase==='timeWaveEnd'&&machineStateElapsed>3){handleCharaEncounterAction('enter');machineActionTimer=.5;return;}
-   if(villageCharaPhase==='omniSansDuel'&&machineActionTimer<=0){handleCharaEncounterAction(['attack','special','dash','eye3','compass','attack','exo'][godArcOmniHits%7]);machineActionTimer=.38;return;}
-   if(villageCharaPhase==='godTrioBattle'&&machineActionTimer<=0){handleCharaEncounterAction(['special','attack','eye3','dash','ward','exo','compass','attack'][godArcTrioHits%8]);machineActionTimer=.32;return;}
-   if(villageCharaPhase==='godArcFiveMoves'&&machineActionTimer<=0){handleCharaEncounterAction(['special','dash','eye3','attack','exo'][godArcFiveMoves%5]);machineActionTimer=.52;return;}
-   if(villageCharaPhase==='godArcPapyrusVoice'&&machineStateElapsed>1.6){handleCharaEncounterAction('enter');machineActionTimer=.5;return;}
-   if(villageCharaPhase==='godArcEnd'&&machineStateElapsed>2.3){machineMode=false;machineModeTag.hidden=true;setStatus('<b>CHẾ ĐỘ MÁY · ĐÃ TỚI ĐIỂM KẾT HIỆN CÓ</b><br>Errol đã trở lại chính mình. Chương tiếp theo chưa được nối vào tuyến tự chơi.');return;}
    machineUseRouteRoom();return;
   }
   machineUseRouteRoom();return;
@@ -646,7 +639,7 @@ function say(text,color='#dff8ff',seconds=2.5){dialogue=text;dialogueColor=color
 function setStatus(html){statusCopy.innerHTML=html}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
-function reset(){state='title';runtimeError='';time=0;elapsed=0;screenShake=0;flash=0;dialogue='';dialogueTimer=0;introIndex=0;introShown=0;introTypeTime=0;reviveTimer=0;reviveShown=0;reviveTypeTime=0;reviveText='';reviveParticleClock=0;awakeningText='';awakeningShown=0;awakeningTypeTime=0;papyrusCutsceneTime=0;papyrusLineIndex=0;papyrusTextShown=0;papyrusTypeTime=0;papyrusLineHold=0;papyrusLineStartTime=0;papyrusClosing=false;papyrusClosingTime=0;villageArrivalTime=0;villageWakeTime=0;villageWakeEyesOpen=false;villageWakeDialogueShown=0;villageWakeDialogueTime=0;villageWakeHold=0;villageCameraX=0;villageTime=0;villageDialogueIndex=0;villageDialogueShown=0;villageDialogueTypeTime=0;villageDialogueKind='meeting';villageActiveDialogueLines=null;villageStage='approach';villageInviteTimer=0;villageNudgeCount=0;villageInteriorTime=0;villageHousePhase='arrivalDialogue';villageHouseRoom='living';villageHouseLineIndex=0;villageHouseLineShown=0;villageHouseLineTypeTime=0;villageHouseWalkTime=0;villageHouseMessage='';villageHouseSpeaker='Sans Omni God Errol';villageHouseMessageShown=0;villageHouseMessageTypeTime=0;villageHouseBrushed=false;villageHouseBrushTime=0;villageHouseDoorSlam=0;villageHouseSleepTime=0;villageHouseMessageReturnPhase='explore';villageHouseDoorReturnX=650;villageCompanionsFollowing=false;villageMorning=false;villageMorningDoorStage='locked';villageMorningDoorTimer=0;villageAuraPenaltyTimer=0;villageFestivalActive=false;villageFestivalStep=0;villageFestivalComplete=false;villageFestivalUnlocked=false;villageFestivalTime=0;villageFestivalToast='';villageFestivalToastTimer=0;villageNightTask='none';villageFishingPhase='idle';villageFishingTime=0;villageFishingCatchCount=0;villageFishingViewerBase=218;villageFishingReturnTime=0;villageFishBasketDelivered=false;villageAncestralTravelTime=0;villageAncestralTime=0;villageAncestralPhase='idle';villageAncestralRestored=false;villageFinalFeastTime=0;villageFinalDishesTime=0;villageTVTime=0;villageFarewellTime=0;villageCharaPhase='idle';villageCharaTime=0;villageCharaKills=0;villageCharaAction='attack';villageCharaAttackStartX=255;villageCharaAttackCooldown=0;villageCharaMontageIndex=0;villageCharaCosmicProgress=0;villageCharaHeartY=0;villageCharaHeartX=0;villageCharaFinalPrompt=false;warkHP=180;warkMaxHP=180;warkPhase=1;warkX=700;warkY=430;warkTimeStop=0;warkShieldTimer=0;warkPlayerInvuln=0;warkPlayerHP=3;warkPlayerMaxHP=3;warkReviveReady=true;warkAttackCooldown=1.55;warkTelegraph=0;warkAttackLane=440;warkAttackType=0;warkAttackCount=0;warkActionCooldown=0;warkTimeStopCooldown=0;warkRewindCooldown=0;warkManaCooldown=0;warkDashCooldown=0;warkLastX=260;warkLastY=450;warkBossHit=0;warkActionEffectTimer=0;warkActionEffect='time';warkFinalForm=false;warkHudActive=false;charaBattleX=718;charaTeleportTimer=1.45;charaTeleportFlash=0;charaAttackTimer=1.25;charaAttackWarn=0;charaAttackType=0;charaAttackLane=430;charaAttackAnim=0;charaFinalLoops=0;charaFinalHP=charaFinalMaxHP=280;charaFinalPlayerHP=charaFinalPlayerMaxHP=5;charaFinalInvuln=0;charaFinalCooldown=0;charaFinalHitFlash=0;charaFinalTimeStop=0;charaFinalShield=0;charaFinalAction='attack';charaFinalLoopFlash=0;warkThirdEyeAwake=false;warkCodeEraseTimer=0;warkCompression=0;warkNullSlash=0;warkFinalEyePulse=0;warkStoryClock=0;warkFinalAttackFlash=0;godArcOmniHits=0;godArcTrioHits=0;godArcFiveMoves=0;godArcMoveCooldown=0;godArcSceneFlash=0;godArcLastMove='attack';godArcEyePulse=0;villageGrandpa={x:920,y:421,visible:true,entering:false};villageKid={x:1000,y:427,visible:true,entering:false};bolts=[];hazards=[];sparks=[];particles=[];floating=[];trail=[];loopIndex=1;Object.assign(player,{x:190,y:300,hp:1,maxHp:1,mana:0,inv:0,dash:0,attack:0,slash:0,hit:0,faceX:1,faceY:0,parry:0,shield:0,eye3Cooldown:0,wardCooldown:0,compassCooldown:0,exoCooldown:0,moveSpeed:245,awakened:false,overdriveDraining:false,overdriveFreeKills:0,papyrusRescueUsed:false,oneShotEye:false});Object.assign(boss,{x:715,y:280,hp:480,maxHp:480,phase:1,ai:'idle',aiTimer:1.0,attackCooldown:1.1,hit:0,slash:0,shotClock:0,pattern:0,warning:0,resCount:0,blackForm:false,reviveVisible:false,teleportFlash:0,teleportCooldown:0,dodgeCooldown:0});setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Errol tỉnh dậy giữa tàn tích của một dòng thời gian đã bị xóa. Một giọng nói quen thuộc vang lên từ bên kia vòng lặp…');}
+function reset(){state='title';runtimeError='';time=0;elapsed=0;screenShake=0;flash=0;dialogue='';dialogueTimer=0;introIndex=0;introShown=0;introTypeTime=0;reviveTimer=0;reviveShown=0;reviveTypeTime=0;reviveText='';reviveParticleClock=0;awakeningText='';awakeningShown=0;awakeningTypeTime=0;papyrusCutsceneTime=0;papyrusLineIndex=0;papyrusTextShown=0;papyrusTypeTime=0;papyrusLineHold=0;papyrusLineStartTime=0;papyrusClosing=false;papyrusClosingTime=0;villageArrivalTime=0;villageWakeTime=0;villageWakeEyesOpen=false;villageWakeDialogueShown=0;villageWakeDialogueTime=0;villageWakeHold=0;villageCameraX=0;villageTime=0;villageDialogueIndex=0;villageDialogueShown=0;villageDialogueTypeTime=0;villageDialogueKind='meeting';villageActiveDialogueLines=null;villageStage='approach';villageInviteTimer=0;villageNudgeCount=0;villageInteriorTime=0;villageHousePhase='arrivalDialogue';villageHouseRoom='living';villageHouseLineIndex=0;villageHouseLineShown=0;villageHouseLineTypeTime=0;villageHouseWalkTime=0;villageHouseMessage='';villageHouseSpeaker='Sans Omni God Errol';villageHouseMessageShown=0;villageHouseMessageTypeTime=0;villageHouseBrushed=false;villageHouseBrushTime=0;villageHouseDoorSlam=0;villageHouseSleepTime=0;villageHouseMessageReturnPhase='explore';villageHouseDoorReturnX=650;villageCompanionsFollowing=false;villageMorning=false;villageMorningDoorStage='locked';villageMorningDoorTimer=0;villageAuraPenaltyTimer=0;villageFestivalActive=false;villageFestivalStep=0;villageFestivalComplete=false;villageFestivalUnlocked=false;villageFestivalTime=0;villageFestivalToast='';villageFestivalToastTimer=0;villageNightTask='none';villageFishingPhase='idle';villageFishingTime=0;villageFishingCatchCount=0;villageFishingViewerBase=218;villageFishingReturnTime=0;villageFishBasketDelivered=false;villageAncestralTravelTime=0;villageAncestralTime=0;villageAncestralPhase='idle';villageAncestralRestored=false;villageFinalFeastTime=0;villageFinalDishesTime=0;villageTVTime=0;villageFarewellTime=0;villageCharaPhase='idle';villageCharaTime=0;villageCharaKills=0;villageCharaAction='attack';villageCharaAttackStartX=255;villageCharaAttackCooldown=0;villageCharaMontageIndex=0;villageCharaCosmicProgress=0;villageCharaHeartY=0;villageCharaHeartX=0;villageCharaFinalPrompt=false;warkHP=180;warkMaxHP=180;warkPhase=1;warkX=700;warkY=430;warkTimeStop=0;warkShieldTimer=0;warkPlayerInvuln=0;warkPlayerHP=3;warkPlayerMaxHP=3;warkReviveReady=true;warkAttackCooldown=1.55;warkTelegraph=0;warkAttackLane=440;warkAttackType=0;warkAttackCount=0;warkActionCooldown=0;warkTimeStopCooldown=0;warkRewindCooldown=0;warkManaCooldown=0;warkDashCooldown=0;warkLastX=260;warkLastY=450;warkBossHit=0;warkActionEffectTimer=0;warkActionEffect='time';warkFinalForm=false;warkHudActive=false;charaBattleX=718;charaTeleportTimer=1.45;charaTeleportFlash=0;charaAttackTimer=1.25;charaAttackWarn=0;charaAttackType=0;charaAttackLane=430;charaAttackAnim=0;charaFinalLoops=0;charaFinalHP=charaFinalMaxHP=280;charaFinalPlayerHP=charaFinalPlayerMaxHP=5;charaFinalInvuln=0;charaFinalCooldown=0;charaFinalHitFlash=0;charaFinalTimeStop=0;charaFinalShield=0;charaFinalAction='attack';charaFinalLoopFlash=0;warkThirdEyeAwake=false;warkCodeEraseTimer=0;warkCompression=0;warkNullSlash=0;warkFinalEyePulse=0;warkStoryClock=0;warkFinalAttackFlash=0;villageGrandpa={x:920,y:421,visible:true,entering:false};villageKid={x:1000,y:427,visible:true,entering:false};bolts=[];hazards=[];sparks=[];particles=[];floating=[];trail=[];loopIndex=1;Object.assign(player,{x:190,y:300,hp:1,maxHp:1,mana:0,inv:0,dash:0,attack:0,slash:0,hit:0,faceX:1,faceY:0,parry:0,shield:0,eye3Cooldown:0,wardCooldown:0,compassCooldown:0,exoCooldown:0,moveSpeed:245,awakened:false,overdriveDraining:false,overdriveFreeKills:0,papyrusRescueUsed:false,oneShotEye:false});Object.assign(boss,{x:715,y:280,hp:480,maxHp:480,phase:1,ai:'idle',aiTimer:1.0,attackCooldown:1.1,hit:0,slash:0,shotClock:0,pattern:0,warning:0,resCount:0,blackForm:false,reviveVisible:false,teleportFlash:0,teleportCooldown:0,dodgeCooldown:0});setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Errol tỉnh dậy giữa tàn tích của một dòng thời gian đã bị xóa. Một giọng nói quen thuộc vang lên từ bên kia vòng lặp…');}
 function startGame(){gamePaused=false;mainMenuOverlay.hidden=true;checkpointMenu.hidden=true;machinePrevToken='';machineActionTimer=.45;machineStateElapsed=0;machineFightElapsed=0;machineStopAtTimeEyeEnd=false;clearMachineMovement();reset();state='intro';introIndex=0;introShown=0;introTypeTime=0;announce.textContent='Đối thoại mở đầu: Chara và Sans Omni God Errol.';setStatus('<b>CHƯƠNG 01 · VÒNG LẶP LINH HỒN</b><br>Chara và Sans Omni God Errol đối mặt trước khi trận chiến bắt đầu. Nhấn Enter hoặc chạm màn hình để hiện hết câu / chuyển lời thoại.');syncGameChrome();}
 function advanceIntro(){
   if(state==='reviveDialogue'){advanceReviveDialogue();return;}
@@ -1018,20 +1011,12 @@ charaFinalFrames.projectile = new Image(); charaFinalFrames.projectile.decoding 
 
 
 function drawFinalCharaSprite(x, baseY, targetHeight=134, frame='idle', alpha=1, opts={}) {
-  let im = charaFinalFrames[frame] || charaFinalFrames.idle;
-  // While a requested action frame is still decoding, keep Chara visible with the loaded idle sprite.
+  const im = charaFinalFrames[frame] || charaFinalFrames.idle;
   if (!im || !im.complete || !im.naturalWidth) {
-    const idle = charaFinalFrames.idle;
-    if (idle && idle.complete && idle.naturalWidth) im = idle;
-    else {
-      ctx.save();ctx.globalAlpha*=alpha;ctx.translate(x+(opts.dx||0),baseY-targetHeight*.48+(opts.dy||0));ctx.rotate(opts.rot||0);const sc=targetHeight/62;ctx.scale(sc*(opts.sx||1),sc);drawChara(0,0,alpha);ctx.restore();return;
-    }
+    ctx.save();ctx.globalAlpha*=alpha;ctx.translate(x+(opts.dx||0),baseY-targetHeight*.48+(opts.dy||0));ctx.rotate(opts.rot||0);const sc=targetHeight/62;ctx.scale(sc*(opts.sx||1),sc);drawChara(0,0,alpha);ctx.restore();return;
   }
   const h=targetHeight, w=h*im.naturalWidth/im.naturalHeight;
-  // Face the player: sprites were authored looking right, so mirror them when Chara is to Errol's right.
-  const faceLeft = typeof opts.faceLeft === 'boolean' ? opts.faceLeft :
-    (state==='villageInterior' && villageHouseRoom==='charaEncounter' && player.x < x);
-  ctx.save();ctx.globalAlpha*=alpha;ctx.translate(x+(opts.dx||0),baseY+(opts.dy||0));ctx.rotate(opts.rot||0);ctx.scale((opts.sx||1)*(faceLeft?-1:1),1);
+  ctx.save();ctx.globalAlpha*=alpha;ctx.translate(x+(opts.dx||0),baseY+(opts.dy||0));ctx.rotate(opts.rot||0);ctx.scale(opts.sx||1,1);
   // Crisp image edges; the sprite's red aura and pose remain animated by movement and attack timing.
   ctx.imageSmoothingEnabled=false;ctx.drawImage(im,-w/2,-h,w,h);ctx.restore();
 }
@@ -1039,10 +1024,7 @@ function finalCharaFrameForSkill(type) {
   return type===0 ? 'dash' : type===1 ? 'projectile' : type===2 ? 'idle' : type===3 ? 'slash' : 'dash';
 }
 function drawCharaFinalAttackEmbellishment(type,x,baseY,p) {
-  ctx.save();
-  // Mirror directional attack trails together with Chara, so every slash/projectile travels toward Errol.
-  if(player.x < x){ctx.translate(x,0);ctx.scale(-1,1);ctx.translate(-x,0);}
-  ctx.globalCompositeOperation='screen';ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#ff3158';ctx.shadowColor='#ff174b';ctx.shadowBlur=16;ctx.lineWidth=2.5+2*p;
+  ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#ff3158';ctx.shadowColor='#ff174b';ctx.shadowBlur=16;ctx.lineWidth=2.5+2*p;
   if(type===0){
     ctx.beginPath();ctx.arc(x-8,baseY-65,30+68*p,-1.1,1.05);ctx.stroke();
     ctx.strokeStyle='#fff2f5';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-45,baseY-90);ctx.lineTo(x+60,baseY-26);ctx.stroke();
@@ -3439,18 +3421,6 @@ function updateCharaEncounter(dt){
   else if(villageCharaPhase==='warkThirdEyeAwakening'&&t>=4.1){villageCharaPhase='warkFinalBattleIntro';villageCharaTime=0;warkThirdEyeAwake=true;warkFinalForm=true;warkPhase=1;warkMaxHP=warkHP=2600;warkPlayerMaxHP=7;warkPlayerHP=7;warkReviveReady=true;player.mana=100;player.x=235;player.y=470;player.inv=2;warkPlayerInvuln=2;warkActionCooldown=0;warkTimeStop=0;warkTelegraph=0;warkAttackCount=0;warkAttackCooldown=.8;warkSetStatus('BLACK THIRD EYE · AWAKENED','Tiềm năng gần như bất khả chiến bại đã thức tỉnh — nhưng cảm xúc của Errol bắt đầu đổi khác.');}
   else if(villageCharaPhase==='warkBossShift'&&t>=1.8){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkAttackCooldown=warkThirdEyeAwake?.65:.85;warkTimeStop=0;setStatus(warkThirdEyeAwake?'<b>WARLOCK · NULL FORM</b><br>Không gian rạn vỡ quanh hắn — lần này, Errol có thể đánh trả.':'<b>WARLOCK · PHASE II</b><br>Vết nứt mở lại; các đợt tấn công nhanh và khó đoán hơn.');}
   else if(villageCharaPhase==='warkDown'&&t>=5.2){villageCharaPhase=warkThirdEyeAwake?'warkFinalBattle':'warkBattle';villageCharaTime=0;warkPlayerHP=Math.max(1,warkReviveReady?2:1);warkReviveReady=false;player.mana=Math.max(55,player.mana);warkPlayerInvuln=1.8;warkTimeStop=1.1;setStatus('<b>TIME REWIND · ERROL TRỞ LẠI</b><br>Con mắt kéo Errol ra khỏi khoảnh khắc vừa gục ngã.');}
-  else if(villageCharaPhase==='warkVictory'&&t>=4.2){villageCharaPhase='godArcRampage';villageCharaTime=0;godArcOmniHits=0;godArcTrioHits=0;godArcFiveMoves=0;godArcSceneFlash=0;screenShake=9;flash=.22;setStatus('<b>THIRD EYE · CORRUPTION SPREADS</b><br>Warlock đã ngã xuống, nhưng cảm xúc Errol đang mục ruỗng. Những thế giới khác bắt đầu tan rã dưới bước chân cậu.');announce.textContent='Sau khi đánh bại Warlock, con mắt thứ ba tha hóa Errol. Cậu bắt đầu tàn phá các vũ trụ khác, và sự chấn động đánh thức Omni Sans.';}
-  else if(villageCharaPhase==='godArcRampage'&&t>=24.0){villageCharaPhase='omniSansArrival';villageCharaTime=0;screenShake=14;flash=.28;setStatus('<b>OMNI SANS · COSMIC SIGNATURE LOCKED</b><br>Hết thế giới này đến thế giới khác đã chìm trong biển lửa đỏ. Khi đa vũ trụ gần thành tàn tích, Omni Sans chặn đường Errol.');announce.textContent='Errol đã tàn phá thế giới nối tiếp thế giới. Bầu trời đỏ, các hành tinh rạn vỡ, thực tại bị xé ra. Chỉ khi đa vũ trụ gần sụp đổ, Omni Sans mới xuất hiện.';sound(430,.26,'triangle',.05);}
-  else if(villageCharaPhase==='omniSansArrival'&&t>=3.6){villageCharaPhase='omniSansDuel';villageCharaTime=0;godArcOmniHits=0;godArcMoveCooldown=0;player.x=250;player.y=466;player.mana=100;setStatus('<b>OMNI SANS VS ERROL · GẦN NHƯ NGANG SỨC</b><br>Điều khiển Errol: di chuyển bằng WASD/joystick, dùng các nút kỹ năng để tung đòn. Sau chuỗi va chạm, hai vị thần khác sẽ cảm nhận được chấn động.');announce.textContent='Omni Sans đối đầu Errol. Hai bên gần như ngang sức, nhưng con mắt thứ ba giúp Errol dần chiếm ưu thế.';}
-  else if(villageCharaPhase==='omniSansDuel'&&((godArcOmniHits>=7&&t>=14)||t>=26)){villageCharaPhase='godTrioArrival';villageCharaTime=0;godArcTrioHits=0;screenShake=16;flash=.26;setStatus('<b>REALITY DISTURBANCE · TWO MORE GODS</b><br>Gần như mọi thế giới đã hóa tàn tích. Everything Sans và Godveres Sans xé rách tầng không gian cuối cùng để đứng cạnh Omni Sans.');announce.textContent='Omni Sans và Errol đã đánh đến mức nhiều lớp thực tại cùng rung chuyển. Chỉ lúc đó Everything Sans và Godveres Sans mới xuất hiện, hợp sức với Omni để ngăn Errol.';}
-  else if(villageCharaPhase==='godTrioArrival'&&t>=4.0){villageCharaPhase='godTrioBattle';villageCharaTime=0;godArcTrioHits=0;godArcMoveCooldown=0;player.x=250;player.y=466;player.mana=100;setStatus('<b>THE THREE GODS · FINAL CONFRONTATION</b><br>Omni Sans, Everything Sans và Godveres Sans hợp lực. Đánh trả bằng mọi kỹ năng — nhưng luồng áp lực đang khóa dần thời gian.');}
-  else if(villageCharaPhase==='godTrioBattle'&&((godArcTrioHits>=8&&t>=7.5)||t>=20)){villageCharaPhase='godTrioOverwhelm';villageCharaTime=0;screenShake=22;flash=.34;player.inv=0;setStatus('<b>TRI-GOD COLLISION · TIME SEALED</b><br>Ba luồng sức mạnh giao nhau. Một vết sáng xé ngang thân Errol; thời gian bị khóa, khiến cậu không thể dùng quyền năng quay ngược.');announce.textContent='Ba vị thần phối hợp đòn đánh khiến Errol bị thương nặng và đóng băng thời gian. Con mắt không thể lập tức quay ngược khoảnh khắc này.';}
-  else if(villageCharaPhase==='godTrioOverwhelm'&&t>=4.4){villageCharaPhase='godArcDarkAbsorb';villageCharaTime=0;godArcSceneFlash=0;setStatus('<b>DARK INSTINCT · WARLOCK RESIDUE</b><br>Bản năng đen trỗi dậy. Năng lượng còn sót lại từ trận chiến Warlock bị hút ngược vào cơ thể Errol.');}
-  else if(villageCharaPhase==='godArcDarkAbsorb'&&t>=4.2){villageCharaPhase='godArcFiveMoves';villageCharaTime=0;godArcFiveMoves=0;godArcMoveCooldown=0;setStatus('<b>THIRD EYE · FIVE MOVES</b><br>Errol bắt đầu chuỗi năm động tác. Mỗi lần nhấn kỹ năng sẽ tung một đòn khác nhau; sức mạnh đang nén Omni Sans thành một điểm tồn tại.');announce.textContent='Errol hấp thụ năng lượng từ trận chiến Warlock. Với con mắt thứ ba, cậu chỉ cần năm động tác để nén Omni Sans thành một nhãn cầu duy nhất.';}
-  else if(villageCharaPhase==='godArcOmniSeal'&&t>=2.6){villageCharaPhase='godArcPapyrusVoice';villageCharaTime=0;setStatus('<b>PAPYRUS · VOICE FROM THE SOUL</b><br>“Anh hai… đủ rồi. Đừng làm tổn thương ai thêm nữa. Đây không phải điều em đã hy sinh để anh trở thành.”');announce.textContent='Ngay khi Errol định tiếp tục hủy diệt ba vị thần, giọng Papyrus vang lên và cầu xin anh dừng lại.';sound(740,.5,'sine',.06);}
-  else if(villageCharaPhase==='godArcPapyrusVoice'&&t>=5.4){villageCharaPhase='godArcCollapse';villageCharaTime=0;screenShake=10;flash=.22;setStatus('<b>ERROL · DARK FORM INTERRUPTED</b><br>Giọng Papyrus xuyên qua cơn tha hóa. Errol khựng lại, năng lượng tràn quá giới hạn và cậu gục xuống.');}
-  else if(villageCharaPhase==='godArcCollapse'&&t>=3.4){villageCharaPhase='godArcNormalAwakened';villageCharaTime=0;screenShake=0;warkFinalForm=false;setStatus('<b>ERROL · RETURN TO SELF</b><br>Cậu trở lại hình dạng bình thường, nhưng sức mạnh vẫn còn nguyên ở đỉnh cao. Con mắt thứ ba lắng xuống — chưa biến mất hoàn toàn.');}
-  else if(villageCharaPhase==='godArcNormalAwakened'&&t>=4.6){villageCharaPhase='godArcEnd';villageCharaTime=0;setStatus('<b>CHƯƠNG TIẾP THEO · VƯỢT QUA THA HÓA</b><br>Ba vị thần còn sống. Errol vẫn mang sức mạnh gần như vô hạn, nhưng lời Papyrus đã ngăn cậu đánh mất chính mình.');announce.textContent='Errol ngất đi và trở về trạng thái bình thường, vẫn giữ được sức mạnh cực lớn. Tiếng nói của Papyrus đã ngăn cậu phá hủy các vị thần.';}
   if(villageCharaPhase==='battle'){
     const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0);
     const dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0);const m=Math.hypot(dx,dy);
@@ -3461,52 +3431,10 @@ function updateCharaEncounter(dt){
     if(charaAttackWarn>0){const was=charaAttackWarn;charaAttackWarn=Math.max(0,charaAttackWarn-dt);if(was>0&&charaAttackWarn===0){const hit=Math.abs(player.y-charaAttackLane)<44&&player.x>235;if(hit){screenShake=7;flash=.08;spawnBurst(player.x,player.y-24,'#ff3a61',12,100);setStatus('<b>CHARA · REDLINE HIT</b><br>Vệt chém đỏ quét qua làn này. Đổi hướng liên tục để thoát khỏi vòng lặp.');}}}
   }
   if(villageCharaPhase==='charaFinalBattle')updateCharaFinalBattle(dt);
-  if(['omniSansDuel','godTrioBattle'].includes(villageCharaPhase)){
-    godArcMoveCooldown=Math.max(0,godArcMoveCooldown-dt);godArcSceneFlash=Math.max(0,godArcSceneFlash-dt);godArcEyePulse+=dt;
-    const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0);
-    const dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0);const m=Math.hypot(dx,dy);
-    if(m){player.x=clamp(player.x+dx/m*245*dt,110,475);player.y=clamp(player.y+dy/m*180*dt,390,486);player.faceX=dx/m;player.faceY=dy/m;}
-  }
-  if(villageCharaPhase==='godArcFiveMoves'){godArcMoveCooldown=Math.max(0,godArcMoveCooldown-dt);godArcSceneFlash=Math.max(0,godArcSceneFlash-dt);godArcEyePulse+=dt;}
   if(['warkBattle','warkDown','warkBossShift','warkVictory','warkFinalBattle'].includes(villageCharaPhase))updateWarkFight(dt);
-}
-function handleGodArcAction(action){
-  const accepted=['attack','special','eye3','exo','dash','ward','parry','enter','click','interact','compass'];
-  if(!accepted.includes(action))return false;
-  if(villageCharaPhase==='omniSansDuel'){
-    if(godArcMoveCooldown>0)return true;
-    godArcOmniHits++;godArcLastMove=action;godArcMoveCooldown=.34;godArcSceneFlash=.48;
-    const colors=['#8eefff','#9f8cff','#fff1a6','#ff6eaa'];spawnBurst(690+(godArcOmniHits%3)*16,420,colors[(godArcOmniHits-1)%colors.length],18,190);screenShake=3+godArcOmniHits*.35;
-    const names={attack:'SOUL STRIKE',special:'SPACE-CUT',eye3:'TIME LOCK',exo:'NULL SURGE',dash:'REDLINE DASH',ward:'VOID WARD',parry:'PERFECT PARRY',compass:'CHRONO REWIND',enter:'COSMIC IMPACT',click:'RIFT SLASH',interact:'THIRD-EYE PULSE'};
-    setStatus('<b>ERROL VS OMNI SANS · '+godArcOmniHits+'/7</b><br>'+names[action]+' — hai luồng sức mạnh va vào nhau, khiến rìa thực tại rung lên.');
-    if(godArcOmniHits>=7&&villageCharaTime>3.2){villageCharaPhase='godTrioArrival';villageCharaTime=0;godArcTrioHits=0;setStatus('<b>REALITY DISTURBANCE</b><br>Everything Sans và Godveres Sans xuất hiện từ hai khe không gian.');}
-    return true;
-  }
-  if(villageCharaPhase==='godTrioBattle'){
-    if(godArcMoveCooldown>0)return true;
-    godArcTrioHits++;godArcLastMove=action;godArcMoveCooldown=.30;godArcSceneFlash=.42;
-    const colors=['#ff5c83','#b9a3ff','#73eaff','#ffe89a'];spawnBurst(585+(godArcTrioHits%3)*105,365+(godArcTrioHits%2)*24,colors[(godArcTrioHits-1)%colors.length],17,180);screenShake=4+godArcTrioHits*.45;
-    const names={attack:'SOUL STRIKE',special:'SPACE-CUT',eye3:'TIME LOCK',exo:'MANA SURGE',dash:'REDLINE DASH',ward:'VOID WARD',parry:'PARRY COUNTER',compass:'REWIND',enter:'COSMIC IMPACT',click:'RIFT SLASH',interact:'THIRD-EYE PULSE'};
-    setStatus('<b>TRI-GOD COLLISION · '+godArcTrioHits+'/8</b><br>Errol tung '+names[action]+', nhưng ba vị thần đã bắt đầu khóa dòng thời gian quanh cậu.');
-    return true;
-  }
-  if(villageCharaPhase==='godArcFiveMoves'){
-    if(godArcMoveCooldown>0)return true;
-    godArcFiveMoves++;godArcLastMove=action;godArcMoveCooldown=.42;godArcSceneFlash=.75;screenShake=5+godArcFiveMoves*1.6;
-    const colors=['#a78bfa','#ff5b9f','#73eaff','#ffe08b','#05040b'];spawnBurst(680,350,colors[(godArcFiveMoves-1)%colors.length],28+godArcFiveMoves*7,190+godArcFiveMoves*25);
-    const moves=['NULL STEP','REALITY FOLD','CHRONO BREAK','OMNI SEAL','FIVE-FOLD ERASURE'];
-    setStatus('<b>THIRD EYE · MOVE '+godArcFiveMoves+'/5 · '+moves[godArcFiveMoves-1]+'</b><br>Một đòn khác nhau xé qua trường năng lượng; Omni Sans bị kéo dần vào điểm đen giữa hai bàn tay Errol.');
-    if(godArcFiveMoves>=5){villageCharaPhase='godArcOmniSeal';villageCharaTime=0;screenShake=16;flash=.28;setStatus('<b>OMNI SANS · SEALED INTO A SINGLE EYE</b><br>Thân ảnh Omni tan thành ánh sáng và bị nén thành một nhãn cầu duy nhất — Errol chuẩn bị quay sang hai vị thần còn lại.');announce.textContent='Năm động tác của Errol nén Omni Sans thành một nhãn cầu duy nhất. Ngay khi cậu chuẩn bị tiếp tục, linh hồn Papyrus lên tiếng.';}
-    return true;
-  }
-  if(villageCharaPhase==='godArcPapyrusVoice'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){
-    villageCharaPhase='godArcCollapse';villageCharaTime=0;screenShake=10;flash=.22;setStatus('<b>ERROL · DARK FORM INTERRUPTED</b><br>Errol nghe thấy giọng Papyrus và khựng lại. Năng lượng tràn quá giới hạn, cậu gục xuống.');return true;
-  }
-  return false;
 }
 function handleCharaEncounterAction(action){
   if(state!=='villageInterior'||villageHouseRoom!=='charaEncounter')return;
-  if(GOD_ARC_PHASES.includes(villageCharaPhase)&&handleGodArcAction(action))return;
   if(villageCharaPhase==='timeWaveEnd'&&(action==='enter'||action==='click'||action==='interact'||action==='start')){villageCharaFinalPrompt=false;villageCharaPhase='cosmicDive';villageCharaTime=0;screenShake=4;player.mana=100;setStatus('<b>RETURN VECTOR · EARTH LOCKED</b><br>Errol rời khỏi vũ trụ, khóa điểm đến trên Trái Đất rồi lao thẳng xuống.');announce.textContent='Thời gian tiếp tục trôi. Errol từ ngoài vũ trụ lao xuống Trái Đất, nơi Chara đã hồi phục và đang chờ đối đầu lần nữa.';sound(95,.36,'sawtooth',.06);return;}
   if(villageCharaPhase==='charaFinalIntro'&&['enter','click','interact','start','attack'].includes(action)){villageCharaPhase='charaFinalBattle';villageCharaTime=0;setStatus('<b>CHARA · LOOP 01 / 07</b><br>Chara bắt đầu dịch chuyển và tung đòn liên hoàn. Né các đường chém rồi phản công bằng kỹ năng.');return;}
   if(villageCharaPhase==='charaFinalBattle'){handleCharaFinalAction(action);return;}
@@ -3981,9 +3909,9 @@ function handleCharaFinalAction(action){
   else if(action==='special'){if(!mana(16))return;player.mana-=16;damage=112;charaFinalCooldown=.42;charaFinalAction='space';}
   else if(action==='eye3'||action==='interact'){if(!mana(18))return;player.mana-=18;charaFinalTimeStop=1.5;charaAttackWarn=0;charaTeleportTimer=Math.max(charaTeleportTimer,1.0);damage=78;charaFinalCooldown=.5;charaFinalAction='time';}
   else if(action==='ward'){if(!mana(10))return;player.mana-=10;charaFinalShield=1.35;charaFinalCooldown=.28;charaFinalAction='ward';}
-  else if(action==='compass'){player.x=clamp(player.x-75,115,860);charaFinalPlayerHP=Math.min(charaFinalPlayerMaxHP,charaFinalPlayerHP+1);player.mana=Math.min(100,player.mana+25);charaFinalInvuln=.65;charaFinalTimeStop=.5;charaFinalCooldown=.45;charaFinalAction='rewind';}
+  else if(action==='compass'){player.x=clamp(player.x-75,135,590);charaFinalPlayerHP=Math.min(charaFinalPlayerMaxHP,charaFinalPlayerHP+1);player.mana=Math.min(100,player.mana+25);charaFinalInvuln=.65;charaFinalTimeStop=.5;charaFinalCooldown=.45;charaFinalAction='rewind';}
   else if(action==='exo'){player.mana=100;charaFinalPlayerHP=Math.min(charaFinalPlayerMaxHP,charaFinalPlayerHP+1);damage=76;charaFinalCooldown=.6;charaFinalAction='mana';}
-  else if(action==='dash'){player.x=clamp(player.x+(player.faceX>=0?1:-1)*112,115,860);charaFinalInvuln=.65;damage=68;charaFinalCooldown=.3;charaFinalAction='dash';}
+  else if(action==='dash'){player.x=clamp(player.x+(player.faceX>=0?1:-1)*112,125,600);charaFinalInvuln=.65;damage=68;charaFinalCooldown=.3;charaFinalAction='dash';}
   else if(action==='parry'){
     charaFinalShield=.7;charaFinalCooldown=.32;charaFinalAction='parry';
     if(charaAttackWarn>0){charaAttackWarn=0;damage=142;charaFinalTimeStop=.45;}else return;
@@ -3994,7 +3922,7 @@ function handleCharaFinalAction(action){
 function updateCharaFinalBattle(dt){
   charaTeleportTimer=Math.max(0,charaTeleportTimer-dt);charaAttackTimer=Math.max(0,charaAttackTimer-dt);charaAttackAnim=Math.max(0,charaAttackAnim-dt);charaTeleportFlash=Math.max(0,charaTeleportFlash-dt);charaFinalCooldown=Math.max(0,charaFinalCooldown-dt);charaFinalInvuln=Math.max(0,charaFinalInvuln-dt);charaFinalHitFlash=Math.max(0,charaFinalHitFlash-dt);charaFinalTimeStop=Math.max(0,charaFinalTimeStop-dt);charaFinalShield=Math.max(0,charaFinalShield-dt);charaFinalLoopFlash=Math.max(0,charaFinalLoopFlash-dt);
   const dx=(keys.KeyD||keys.ArrowRight||held.right?1:0)-(keys.KeyA||keys.ArrowLeft||held.left?1:0),dy=(keys.KeyS||keys.ArrowDown||held.down?1:0)-(keys.KeyW||keys.ArrowUp||held.up?1:0),m=Math.hypot(dx,dy);
-  if(m){player.x=clamp(player.x+dx/m*260*dt,105,860);player.y=clamp(player.y+dy/m*185*dt,382,492);player.faceX=dx/m;player.faceY=dy/m;}
+  if(m){player.x=clamp(player.x+dx/m*260*dt,115,600);player.y=clamp(player.y+dy/m*185*dt,382,492);player.faceX=dx/m;player.faceY=dy/m;}
   if(charaFinalTimeStop>0)return;
   if(charaTeleportTimer<=0){const spots=[598,700,830,635,785,660,815];charaBattleX=spots[(charaFinalLoops+Math.floor(time*1.3))%spots.length];charaTeleportTimer=Math.max(.8,1.65-charaFinalLoops*.08);charaTeleportFlash=.34;charaAttackWarn=0;spawnBurst(charaBattleX,410,'#ff2855',22,135);}
   if(charaAttackTimer<=0&&charaAttackWarn<=0){charaAttackType=(charaAttackType+1)%5;charaAttackLane=player.y;charaAttackWarn=.66;charaAttackAnim=.82;charaAttackTimer=Math.max(.72,1.48-charaFinalLoops*.095);setStatus(['<b>CHARA · TELEPORT STRIKE</b><br>Cô biến mất, rồi xuất hiện sát Errol bằng một cú chém tức thời.','<b>CHARA · REDLINE BARRAGE</b><br>Bão lưỡi chém đỏ khóa nhiều làn cùng lúc.','<b>CHARA · RESET FIELD</b><br>Vòng reset co siết quanh chiến trường, đừng mắc kẹt bên trong.','<b>CHARA · RIFT CROSS</b><brHai nhát chém giao nhau quét ngang không gian.','<b>CHARA · TELEPORT ECHO</b><brBốn ảnh dịch chuyển đồng thời hội tụ vào vị trí của Errol.'][charaAttackType]);}
@@ -4027,13 +3955,11 @@ function drawCharaFinalArc(phase,t){
   const attackActive=charaAttackAnim>0;
   const attackProgress=attackActive?clamp(1-charaAttackAnim/.82,0,1):0;
   const frame=attackActive?finalCharaFrameForSkill(charaAttackType):'idle';
-  const dashTravel=attackActive&&charaAttackType===0?Math.sin(attackProgress*Math.PI)*Math.max(0,Math.abs(charaBattleX-player.x)-92)*.72:0;
-  const charaDrawX=charaBattleX+(player.x<charaBattleX?-dashTravel:dashTravel);
+  const lunge=attackActive&&charaAttackType===0?Math.sin(attackProgress*Math.PI)*23:0;
   const bob=attackActive&&charaAttackType===2?Math.sin(time*18)*5:Math.sin(time*7)*2;
-  drawCharaPowerAura(charaDrawX,418,82,true,charaFinalHitFlash);
-  // The main sprite is always drawn at full alpha; only its trailing echoes are translucent.
-  drawFinalCharaSprite(charaDrawX,466,136,frame,1,{dy:bob,rot:attackActive&&charaAttackType===0?-.055:Math.sin(time*10)*.018,sx:attackActive&&charaAttackType===2?1.04+.04*Math.sin(time*16):1});
-  if(attackActive)drawCharaFinalAttackEmbellishment(charaAttackType,charaDrawX,466,attackProgress);
+  drawCharaPowerAura(charaBattleX,418,82,true,charaFinalHitFlash);
+  drawFinalCharaSprite(charaBattleX,466,136,frame,1,{dx:lunge,dy:bob,rot:attackActive&&charaAttackType===0?-.055:Math.sin(time*10)*.018,sx:attackActive&&charaAttackType===2?1.04+.04*Math.sin(time*16):1});
+  if(attackActive)drawCharaFinalAttackEmbellishment(charaAttackType,charaBattleX,466,attackProgress);
   if(charaAttackWarn>0){const p=1-charaAttackWarn/.58;ctx.save();ctx.globalAlpha=.28+.55*Math.sin(time*28);ctx.strokeStyle='#ff2854';ctx.shadowColor='#ff174b';ctx.shadowBlur=18;ctx.lineWidth=4;
     if(charaAttackType===0){ctx.beginPath();ctx.arc(charaBattleX,418,45+p*92,-.95,Math.PI*1.2);ctx.stroke();ctx.beginPath();ctx.moveTo(charaBattleX-42,382);ctx.lineTo(charaBattleX+62,454);ctx.stroke();}
     else if(charaAttackType===1){for(let i=0;i<10;i++){ctx.beginPath();ctx.moveTo(72,charaAttackLane-88+i*18);ctx.lineTo(900,charaAttackLane-46+i*11);ctx.stroke();}}
@@ -4110,370 +4036,8 @@ function drawWarkStoryCutscene(phase,t){
   }
 }
 
-
-function drawBlackThirdEye(x,y,r=8,alpha=1){
-  ctx.save();ctx.globalAlpha=alpha;ctx.globalCompositeOperation='screen';
-  const g=ctx.createRadialGradient(x,y,1,x,y,r*4.2);g.addColorStop(0,'rgba(4,3,10,.98)');g.addColorStop(.38,'rgba(16,8,28,.9)');g.addColorStop(.72,'rgba(139,113,255,.24)');g.addColorStop(1,'rgba(130,80,255,0)');
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*4.2,0,TAU);ctx.fill();
-  ctx.globalCompositeOperation='source-over';ctx.shadowColor='#b99aff';ctx.shadowBlur=12;
-  ctx.fillStyle='#05030b';ctx.beginPath();ctx.ellipse(x,y,r*1.1,r*.88,-.08,0,TAU);ctx.fill();
-  ctx.strokeStyle='#8c70c8';ctx.lineWidth=Math.max(1,r*.13);ctx.stroke();
-  ctx.fillStyle='#1b1230';ctx.beginPath();ctx.ellipse(x,y,r*.45,r*.56,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#05040b';ctx.beginPath();ctx.arc(x,y,r*.25,0,TAU);ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.85)';ctx.beginPath();ctx.arc(x-r*.26,y-r*.22,Math.max(.7,r*.1),0,TAU);ctx.fill();
-  ctx.restore();
-}
-function drawGodArcBackdrop(t,broken=0){
-  const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#03040e');sky.addColorStop(.42,'#10132e');sky.addColorStop(.8,'#090b1c');sky.addColorStop(1,'#03040a');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
-  const neb=ctx.createRadialGradient(490,168,20,490,168,550);neb.addColorStop(0,'rgba(83,57,174,.32)');neb.addColorStop(.45,'rgba(40,47,126,.16)');neb.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=neb;ctx.fillRect(0,0,W,430);
-  for(let i=0;i<180;i++){
-    const x=(i*137.7+Math.sin(i*2.3+t*(.12+i%3*.025))*13+W)%W;
-    const y=(i*71.3+Math.cos(i*1.7+t*.17)*8+560)%420;
-    ctx.globalAlpha=.18+(i%5)*.11;ctx.fillStyle=i%13===0?'#f9ddff':i%4===0?'#75eaff':'#d9dfff';
-    ctx.beginPath();ctx.arc(x,y,.6+(i%4)*.36,0,TAU);ctx.fill();
-  }ctx.globalAlpha=1;
-  // distant broken ring-worlds
-  for(let j=0;j<3;j++){
-    const x=155+j*330,y=132+(j%2)*52,r=35+(j%2)*13;
-    ctx.save();ctx.globalAlpha=.18+.08*Math.sin(t*1.4+j);
-    ctx.strokeStyle=['#75eaff','#b49aff','#ff83c9'][j];ctx.lineWidth=2;
-    ctx.beginPath();ctx.ellipse(x,y,r*1.9,r*.55,-.25,0,TAU);ctx.stroke();
-    ctx.beginPath();ctx.ellipse(x,y,r*2.2,r*.72,.22,0,TAU);ctx.stroke();ctx.restore();
-  }
-  // horizon floor and perspective grid
-  const floor=ctx.createLinearGradient(0,402,0,560);floor.addColorStop(0,'rgba(27,27,59,.1)');floor.addColorStop(1,'rgba(9,11,26,.97)');ctx.fillStyle=floor;ctx.fillRect(0,402,W,158);
-  ctx.save();ctx.globalAlpha=.19;ctx.strokeStyle='#7f78c7';ctx.lineWidth=1;
-  for(let i=0;i<8;i++){const y=408+i*i*2.5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-  for(let i=0;i<15;i++){const x=i*74-50;ctx.beginPath();ctx.moveTo(x,402);ctx.lineTo(480+(x-480)*1.42,560);ctx.stroke();}
-  ctx.restore();
-  if(broken){
-    ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.18+.13*Math.sin(t*8);
-    for(let i=0;i<7;i++){const x=80+i*137+Math.sin(t*2+i)*22,y=60+(i%3)*94;ctx.strokeStyle=i%2?'#ff507d':'#8f7bff';ctx.lineWidth=i%2?2:1;ctx.beginPath();ctx.moveTo(x,y-46);ctx.lineTo(x-13,y-13);ctx.lineTo(x+11,y+9);ctx.lineTo(x-16,y+37);ctx.lineTo(x+4,y+68);ctx.stroke();}
-    ctx.restore();
-  }
-}
-function drawCorruptionApocalypseBackdrop(t,level=0){
-  // A deliberately escalating, animated catastrophe: burning city -> dying planet -> shattered multiverse.
-  level=clamp(level,0,1);
-  const sky=ctx.createLinearGradient(0,0,0,H);
-  sky.addColorStop(0,'#13010a');sky.addColorStop(.22,level<.35?'#7d1020':'#5d0a26');sky.addColorStop(.58,'#2c0718');sky.addColorStop(1,'#07030b');
-  ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
-  // Blood-red sun / collapsing horizon.
-  const sunX=level<.42?735:620, sunY=112+Math.sin(t*.36)*4, sunR=112+level*44;
-  ctx.save();ctx.globalCompositeOperation='screen';
-  const sunGlow=ctx.createRadialGradient(sunX,sunY,4,sunX,sunY,sunR*2.4);sunGlow.addColorStop(0,'rgba(255,72,84,.68)');sunGlow.addColorStop(.35,'rgba(223,24,62,.28)');sunGlow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=sunGlow;ctx.fillRect(sunX-sunR*2.4,sunY-sunR*2.4,sunR*4.8,sunR*4.8);
-  ctx.fillStyle='#7b1028';ctx.beginPath();ctx.arc(sunX,sunY,sunR,0,TAU);ctx.fill();ctx.strokeStyle='#ff6b7a';ctx.globalAlpha=.7;ctx.lineWidth=2;ctx.beginPath();ctx.arc(sunX,sunY,sunR+7+Math.sin(t*2)*2,0,TAU);ctx.stroke();ctx.restore();
-  // Cracked planet surface emerges as the carnage spreads beyond one world.
-  if(level>.22){
-    const p=clamp((level-.22)/.5,0,1),px=700,py=210,pr=90+45*p;
-    ctx.save();ctx.globalAlpha=.22+.55*p;ctx.fillStyle='#160711';ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.fill();
-    ctx.save();ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.clip();
-    ctx.fillStyle='#8d1937';ctx.beginPath();ctx.ellipse(px-pr*.23,py-pr*.12,pr*.42,pr*.22,-.45,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(px+pr*.3,py+pr*.28,pr*.25,pr*.18,.5,0,TAU);ctx.fill();
-    ctx.strokeStyle='#ff596f';ctx.lineWidth=2.1;for(let i=0;i<12;i++){const a=i*2.399+t*.07,rr=pr*(.15+(i%4)*.17);ctx.beginPath();ctx.moveTo(px+Math.cos(a)*rr,py+Math.sin(a)*rr);ctx.lineTo(px+Math.cos(a+.11)*(pr*.9),py+Math.sin(a+.11)*(pr*.9));ctx.stroke();}
-    ctx.restore();ctx.strokeStyle='#ff6074';ctx.lineWidth=2;ctx.beginPath();ctx.arc(px,py,pr,0,TAU);ctx.stroke();ctx.restore();
-  }
-  // City skyline, with destroyed buildings and fiery windows.
-  const cityFade=1-clamp((level-.4)/.38,0,1)*.72;
-  ctx.save();ctx.globalAlpha=cityFade;
-  for(let i=0;i<19;i++){
-    const x=i*56-18, bw=28+(i*13%25), bh=65+(i*47%115), lean=Math.sin(i*4.7)*8+(i%4===0?10:0), top=405-bh;
-    ctx.fillStyle=i%3===0?'#16040e':i%2?'#200611':'#2c0715';ctx.beginPath();ctx.moveTo(x,430);ctx.lineTo(x+lean,top);ctx.lineTo(x+bw+lean*.4,top+5);ctx.lineTo(x+bw+lean,430);ctx.closePath();ctx.fill();
-    ctx.strokeStyle=i%2?'rgba(255,83,101,.35)':'rgba(255,165,105,.26)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+lean*.5,top+14);ctx.lineTo(x+bw*.5,top+bh*.48);ctx.lineTo(x+bw*.25,top+bh*.65);ctx.stroke();
-    for(let row=0;row<Math.floor(bh/17);row++)for(let col=0;col<2;col++){
-      if((i+row+col)%4===0)continue;ctx.fillStyle=(i+row+col)%3===0?'#ffb15c':'#b52846';ctx.globalAlpha=cityFade*(.45+.35*Math.sin(t*4+i+row));ctx.fillRect(x+7+col*11+lean*.4,top+14+row*15,4,6);
-    }ctx.globalAlpha=cityFade;
-  }
-  ctx.restore();
-  // Flames animate along the ruined skyline.
-  ctx.save();ctx.globalCompositeOperation='screen';
-  for(let i=0;i<17;i++){
-    const x=(i*61+Math.sin(t*1.3+i)*8)%W, base=423-(i%4)*5, h=18+(i%5)*7+Math.abs(Math.sin(t*5+i))*22;
-    ctx.globalAlpha=.55+.3*Math.sin(t*6+i);ctx.fillStyle=i%3===0?'#ffe093':'#ff452b';ctx.beginPath();ctx.moveTo(x-9,base);ctx.quadraticCurveTo(x-13,base-h*.45,x+Math.sin(t*5+i)*5,base-h);ctx.quadraticCurveTo(x+10,base-h*.55,x+9,base);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#ffb06b';ctx.globalAlpha=.6;ctx.beginPath();ctx.moveTo(x-3,base);ctx.quadraticCurveTo(x-4,base-h*.4,x+1,base-h*.68);ctx.quadraticCurveTo(x+5,base-h*.3,x+4,base);ctx.closePath();ctx.fill();
-  }
-  ctx.restore();
-  // A flowing crimson river of corrupted energy, stylized rather than graphic.
-  ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';ctx.lineJoin='round';
-  ctx.globalAlpha=.24;ctx.strokeStyle='#ff164a';ctx.lineWidth=34;ctx.beginPath();ctx.moveTo(-30,510);ctx.bezierCurveTo(180,463,260,530,430,496);ctx.bezierCurveTo(600,455,720,520,990,475);ctx.stroke();
-  ctx.globalAlpha=.8;ctx.strokeStyle='#ff365d';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-30,510+Math.sin(t*2)*6);ctx.bezierCurveTo(180,463+Math.cos(t*1.7)*8,260,530,430,496+Math.sin(t*2.2)*8);ctx.bezierCurveTo(600,455,720,520,990,475+Math.cos(t*1.9)*9);ctx.stroke();
-  for(let i=0;i<28;i++){const u=(i/28+t*.055)%1,x=-20+u*1000,y=500+Math.sin(u*13+t*1.4)*18;ctx.globalAlpha=.35+.4*Math.sin(t*4+i);ctx.fillStyle=i%3?'#ff8291':'#ffd79e';ctx.fillRect(x,y,4+(i%4),2+(i%2));}
-  ctx.restore();
-  // Distant figures fleeing; only silhouettes, no graphic detail.
-  if(level<.6){
-    ctx.save();ctx.globalAlpha=.5;
-    for(let i=0;i<9;i++){const x=(i*113+t*(13+i%3*5))%W,y=445+(i%3)*6,s=.45+(i%3)*.1;
-      ctx.strokeStyle='#07030a';ctx.fillStyle='#07030a';ctx.lineWidth=4*s;ctx.beginPath();ctx.arc(x,y-17*s,5*s,0,TAU);ctx.fill();ctx.beginPath();ctx.moveTo(x,y-12*s);ctx.lineTo(x-3*s,y+2*s);ctx.lineTo(x-10*s,y+10*s);ctx.moveTo(x-3*s,y+2*s);ctx.lineTo(x+6*s,y+10*s);ctx.moveTo(x-2*s,y-8*s);ctx.lineTo(x-13*s,y-15*s);ctx.moveTo(x-2*s,y-8*s);ctx.lineTo(x+8*s,y-14*s);ctx.stroke();
-    }
-    ctx.restore();
-    if(level<.25){ctx.save();ctx.globalAlpha=.18+.12*Math.sin(t*3);ctx.fillStyle='#ffb2b8';ctx.font='1000 12px ui-monospace,monospace';ctx.fillText('AAAA—',120+Math.sin(t)*18,370);ctx.fillText('RUN!',800+Math.cos(t*.8)*15,385);ctx.restore();}
-  }
-  // Multi-universe phase: fragmented worlds suspended in the red void.
-  if(level>.55){
-    const p=clamp((level-.55)/.45,0,1);ctx.save();ctx.globalCompositeOperation='screen';
-    for(let i=0;i<7;i++){
-      const x=70+i*137+Math.sin(t*.5+i)*23,y=80+(i%3)*74,rr=12+(i%3)*10;
-      ctx.globalAlpha=.28+.36*p;ctx.strokeStyle=['#ff6577','#ffca82','#bfa3ff'][i%3];ctx.lineWidth=1.6;ctx.beginPath();ctx.arc(x,y,rr,0,TAU);ctx.stroke();ctx.beginPath();ctx.ellipse(x,y,rr*1.7,rr*.45,t*.2+i,0,TAU);ctx.stroke();
-      for(let k=0;k<5;k++){const a=k*TAU/5+t*.18+i;ctx.fillStyle=i%2?'#ff9fae':'#e9c7ff';ctx.beginPath();ctx.moveTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);ctx.lineTo(x+Math.cos(a+.3)*(rr+11),y+Math.sin(a+.3)*(rr+11));ctx.lineTo(x+Math.cos(a-.2)*(rr+5),y+Math.sin(a-.2)*(rr+5));ctx.closePath();ctx.fill();}
-    }
-    ctx.restore();
-  }
-  // Falling embers, spatial cracks and a continuous shockwave make the scene visibly alive.
-  ctx.save();ctx.globalCompositeOperation='screen';
-  for(let i=0;i<95;i++){const x=(i*97.31+Math.sin(i*2.2+t*.55)*26+W)%W;const y=((i*59.3+t*(19+i%4*11))%535);ctx.globalAlpha=.18+(i%4)*.12;ctx.fillStyle=i%6===0?'#fff1c6':i%3===0?'#ff8b80':'#ff3659';ctx.fillRect(x,y,1+(i%3),3+(i%5));}
-  const waveR=130+((t*86)%470);ctx.globalAlpha=.12+.08*Math.sin(t*4);ctx.strokeStyle='#ff4c74';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(470,365,waveR,waveR*.23,-.04,0,TAU);ctx.stroke();
-  if(level>.65){for(let i=0;i<7;i++){const x=70+i*132+Math.sin(t*1.5+i)*16,y=50+(i%4)*73;ctx.globalAlpha=.2+.2*Math.sin(t*3+i);ctx.strokeStyle=i%2?'#ff5477':'#f5c5ff';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(x-20,y-25);ctx.lineTo(x+7,y-2);ctx.lineTo(x-12,y+15);ctx.lineTo(x+18,y+44);ctx.stroke();}}
-  ctx.restore();
-  // dark vignette pins the scene to an oppressive, end-of-world palette.
-  const vignette=ctx.createRadialGradient(480,280,100,480,280,610);vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(0,0,0,.48)');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
-}
-
-function drawGodVeresFigure(x,footY,scale,t,alpha=1){
-  // Based on the user's reference: navy long coat, outstretched arms and crossed red/blue chest sash.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const aura=ctx.createRadialGradient(0,-160,3,0,-160,175);aura.addColorStop(0,'rgba(224,244,255,.55)');aura.addColorStop(.4,'rgba(103,106,255,.22)');aura.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=aura;ctx.beginPath();ctx.ellipse(0,-157,170,182,0,0,TAU);ctx.fill();
-  ctx.fillStyle='rgba(0,0,0,.5)';ctx.beginPath();ctx.ellipse(0,0,83,13,0,0,TAU);ctx.fill();
-  // Portal rings radiate behind the god.
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<4;i++){ctx.globalAlpha=.22+.11*Math.sin(t*2+i);ctx.strokeStyle=i%2?'#b9caff':'#f5fdff';ctx.lineWidth=i===0?3:1.3;ctx.beginPath();ctx.ellipse(0,-154,104+i*24,37+i*8,t*.12+i*.22,0,TAU);ctx.stroke();}ctx.restore();
-  // Long coat tails.
-  const coat=ctx.createLinearGradient(-70,-200,72,-10);coat.addColorStop(0,'#264f9d');coat.addColorStop(.5,'#142b63');coat.addColorStop(1,'#071126');ctx.fillStyle=coat;
-  ctx.beginPath();ctx.moveTo(-29,-207);ctx.quadraticCurveTo(-90,-188,-67,-111);ctx.lineTo(-92,-32);ctx.lineTo(-50,-54);ctx.lineTo(-24,-119);ctx.lineTo(-14,-165);ctx.closePath();ctx.fill();
-  ctx.beginPath();ctx.moveTo(28,-207);ctx.quadraticCurveTo(88,-188,67,-111);ctx.lineTo(93,-30);ctx.lineTo(50,-54);ctx.lineTo(22,-119);ctx.lineTo(14,-165);ctx.closePath();ctx.fill();
-  // Dark torso and fitted trousers.
-  ctx.fillStyle='#080b18';ctx.beginPath();ctx.moveTo(-26,-150);ctx.lineTo(26,-150);ctx.lineTo(22,-75);ctx.lineTo(13,-12);ctx.lineTo(-12,-12);ctx.lineTo(-22,-75);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#070b17';ctx.beginPath();ctx.moveTo(-18,-14);ctx.lineTo(-4,-14);ctx.lineTo(-9,0);ctx.lineTo(-31,0);ctx.quadraticCurveTo(-28,-8,-18,-14);ctx.fill();ctx.beginPath();ctx.moveTo(4,-14);ctx.lineTo(18,-14);ctx.quadraticCurveTo(28,-8,31,0);ctx.lineTo(9,0);ctx.closePath();ctx.fill();
-  // Arms spread in a commanding, horizontal pose.
-  ctx.lineCap='round';ctx.strokeStyle='#17366f';ctx.lineWidth=27;ctx.beginPath();ctx.moveTo(-24,-190);ctx.lineTo(-76,-168);ctx.lineTo(-128,-170);ctx.stroke();ctx.beginPath();ctx.moveTo(24,-190);ctx.lineTo(76,-168);ctx.lineTo(128,-170);ctx.stroke();
-  ctx.strokeStyle='#91a9e8';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-36,-184);ctx.lineTo(-76,-166);ctx.moveTo(36,-184);ctx.lineTo(76,-166);ctx.stroke();
-  ctx.fillStyle='#dae2f7';for(const side of [-1,1]){const hx=side*132,hy=-169;ctx.beginPath();ctx.ellipse(hx,hy,12,8,side*.1,0,TAU);ctx.fill();ctx.strokeStyle='#dae2f7';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(hx+side*5,hy);ctx.lineTo(hx+side*18,hy-10);ctx.moveTo(hx+side*4,hy);ctx.lineTo(hx+side*18,hy+1);ctx.moveTo(hx+side*2,hy+2);ctx.lineTo(hx+side*13,hy+12);ctx.moveTo(hx-side*3,hy+3);ctx.lineTo(hx+side*5,hy+13);ctx.stroke();}
-  // White shirt and scarf.
-  ctx.fillStyle='#e9f0ff';ctx.beginPath();ctx.moveTo(-24,-206);ctx.quadraticCurveTo(0,-219,24,-206);ctx.lineTo(28,-153);ctx.quadraticCurveTo(0,-141,-28,-153);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#19203b';ctx.beginPath();ctx.moveTo(-30,-210);ctx.quadraticCurveTo(0,-226,30,-210);ctx.lineTo(24,-185);ctx.quadraticCurveTo(0,-172,-24,-185);ctx.closePath();ctx.fill();
-  // Red and blue X sash, signature from the reference.
-  ctx.save();ctx.beginPath();ctx.moveTo(-25,-203);ctx.lineTo(25,-203);ctx.lineTo(27,-159);ctx.lineTo(-27,-159);ctx.closePath();ctx.clip();ctx.fillStyle='#c62a50';ctx.fillRect(-32,-207,64,50);ctx.strokeStyle='#2f6bbb';ctx.lineWidth=13;ctx.beginPath();ctx.moveTo(-28,-203);ctx.lineTo(28,-160);ctx.moveTo(28,-203);ctx.lineTo(-28,-160);ctx.stroke();ctx.restore();
-  ctx.strokeStyle='#bfcaf0';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-21,-148);ctx.lineTo(-23,-113);ctx.moveTo(21,-148);ctx.lineTo(23,-113);ctx.stroke();
-  // Skull, broad smile and deep-blue sockets.
-  const head=ctx.createLinearGradient(-25,-280,27,-214);head.addColorStop(0,'#fff');head.addColorStop(.55,'#eef3ff');head.addColorStop(1,'#9baedb');ctx.fillStyle=head;ctx.beginPath();ctx.ellipse(0,-241,29,35,-.03,0,TAU);ctx.fill();ctx.strokeStyle='#f9fcff';ctx.lineWidth=2;ctx.stroke();
-  ctx.fillStyle='#101735';ctx.beginPath();ctx.ellipse(-12,-244,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-244,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#79dfff';ctx.beginPath();ctx.ellipse(-12,-245,3,6,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-245,3,6,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#172143';ctx.beginPath();ctx.moveTo(-17,-222);ctx.quadraticCurveTo(0,-212,17,-222);ctx.lineTo(9,-215);ctx.lineTo(-9,-215);ctx.closePath();ctx.fill();ctx.strokeStyle='#f4f8ff';ctx.lineWidth=1;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(-11+i*5,-221);ctx.lineTo(-10+i*5,-216);ctx.stroke();}
-  // Floating fragments and sigil.
-  ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#dceaff';ctx.shadowColor='#6dcaff';ctx.shadowBlur=10;ctx.lineWidth=2;for(let i=0;i<6;i++){const a=t*.55+i*TAU/6,rr=112+(i%2)*22,xx=Math.cos(a)*rr,yy=-154+Math.sin(a)*rr*.5;ctx.beginPath();ctx.moveTo(xx-4,yy);ctx.lineTo(xx,yy-7);ctx.lineTo(xx+4,yy);ctx.lineTo(xx,yy+7);ctx.closePath();ctx.stroke();}ctx.restore();ctx.restore();
-}
-function drawEverythingSansFigure(x,footY,scale,t,alpha=1){
-  // Bright, overloaded presence: pale padded jacket, dark trousers, crimson scarf and glitch tears.
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const halo=ctx.createRadialGradient(0,-150,5,0,-150,155);halo.addColorStop(0,'rgba(255,248,224,.55)');halo.addColorStop(.45,'rgba(255,94,142,.18)');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-148,145,174,0,0,TAU);ctx.fill();
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<9;i++){const yy=-245+i*27+Math.sin(t*4+i)*7;ctx.globalAlpha=.16+.12*Math.sin(t*5+i);ctx.fillStyle=i%2?'#79edff':'#ff5987';ctx.fillRect(-105+(i*31%64),yy,65+(i*17%90),2+(i%3));}ctx.restore();
-  ctx.fillStyle='rgba(0,0,0,.45)';ctx.beginPath();ctx.ellipse(0,0,56,10,0,0,TAU);ctx.fill();
-  ctx.fillStyle='#090b16';ctx.beginPath();ctx.moveTo(-21,-115);ctx.lineTo(20,-115);ctx.lineTo(28,-7);ctx.lineTo(8,0);ctx.lineTo(0,-68);ctx.lineTo(-12,0);ctx.lineTo(-31,-5);ctx.closePath();ctx.fill();
-  // Puffy quilted jacket built with curves, not simple blocks.
-  const j=ctx.createLinearGradient(-48,-220,45,-118);j.addColorStop(0,'#faf6ff');j.addColorStop(.5,'#b8c4dc');j.addColorStop(1,'#697caa');ctx.fillStyle=j;ctx.beginPath();ctx.moveTo(-25,-207);ctx.bezierCurveTo(-51,-216,-55,-190,-48,-172);ctx.quadraticCurveTo(-43,-153,-27,-145);ctx.lineTo(-12,-134);ctx.lineTo(0,-151);ctx.lineTo(12,-134);ctx.lineTo(30,-145);ctx.quadraticCurveTo(47,-157,49,-178);ctx.bezierCurveTo(51,-200,40,-215,22,-207);ctx.quadraticCurveTo(0,-198,-25,-207);ctx.closePath();ctx.fill();ctx.strokeStyle='#eff3ff';ctx.lineWidth=2;ctx.stroke();
-  ctx.strokeStyle='#e1e8ff';ctx.lineWidth=3;for(let side of [-1,1])for(let r=0;r<3;r++){ctx.beginPath();ctx.moveTo(side*(27+r*4),-198+r*18);ctx.quadraticCurveTo(side*(47+r*2),-190+r*18,side*(42+r*2),-174+r*18);ctx.stroke();}
-  // arms and cuffs
-  ctx.strokeStyle='#b8c7e7';ctx.lineWidth=20;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-33,-194);ctx.lineTo(-57,-157);ctx.stroke();ctx.beginPath();ctx.moveTo(33,-194);ctx.lineTo(56,-157);ctx.stroke();ctx.strokeStyle='#f4f6ff';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(-57,-157);ctx.lineTo(-63,-145);ctx.moveTo(56,-157);ctx.lineTo(63,-145);ctx.stroke();
-  // scarf
-  ctx.fillStyle='#6e183b';ctx.beginPath();ctx.moveTo(-18,-210);ctx.quadraticCurveTo(0,-196,21,-210);ctx.lineTo(27,-194);ctx.quadraticCurveTo(0,-179,-25,-194);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(7,-195);ctx.lineTo(23,-162);ctx.lineTo(12,-158);ctx.lineTo(-2,-192);ctx.closePath();ctx.fill();
-  // skull
-  ctx.fillStyle='#f4f4fb';ctx.beginPath();ctx.ellipse(0,-232,31,31,0,0,TAU);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#101323';ctx.beginPath();ctx.ellipse(-12,-236,7,11,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(12,-236,7,11,0,0,TAU);ctx.fill();ctx.fillStyle='#67e8ff';ctx.fillRect(-14,-239,4,5);ctx.fillStyle='#ff75ac';ctx.fillRect(10,-239,4,5);ctx.fillStyle='#161523';ctx.beginPath();ctx.moveTo(-16,-216);ctx.quadraticCurveTo(0,-207,16,-216);ctx.lineTo(10,-209);ctx.lineTo(-10,-209);ctx.closePath();ctx.fill();
-  // Corruption edges and floating data fragments
-  ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<11;i++){const y=-260+i*28+Math.sin(t*7+i)*3;ctx.globalAlpha=.3+.35*Math.sin(t*6+i);ctx.strokeStyle=i%2?'#ff497b':'#7aeaff';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-39+(i%3)*9,y);ctx.lineTo(-49+(i%5)*16,y+3);ctx.lineTo(-41+(i%4)*14,y+7);ctx.stroke();}ctx.restore();ctx.restore();
-}
-
-function drawGodFigure(x,footY,scale,kind,t,alpha=1){
-  if(kind==='godveres')return drawGodVeresFigure(x,footY,scale,t,alpha);
-  if(kind==='everything')return drawEverythingSansFigure(x,footY,scale,t,alpha);
-  const palette={
-    omni:{a:'#8ef3ff',b:'#d8fdff',c:'#4d96db',dark:'#101a36',eye:'#53e8ff',edge:'#efffff'},
-    everything:{a:'#ffe8a1',b:'#fff7de',c:'#dc9f4b',dark:'#201934',eye:'#ffe26f',edge:'#fff4c6'},
-    godveres:{a:'#c1a5ff',b:'#e9dcff',c:'#6c79ed',dark:'#11102c',eye:'#b89aff',edge:'#f2eaff'}
-  }[kind]||{a:'#bca5ff',b:'#f2eaff',c:'#7e71cf',dark:'#11102b',eye:'#b89aff',edge:'#f2eaff'};
-  ctx.save();ctx.translate(x,footY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;
-  const halo=ctx.createRadialGradient(0,-150,4,0,-150,126);halo.addColorStop(0,palette.a+'55');halo.addColorStop(.5,palette.c+'22');halo.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=halo;ctx.beginPath();ctx.ellipse(0,-147,130,160,0,0,TAU);ctx.fill();
-  ctx.fillStyle='rgba(0,0,0,.38)';ctx.beginPath();ctx.ellipse(0,1,57,10,0,0,TAU);ctx.fill();
-  // Orbiting authority rings, interrupted to suggest the gods are bending the rules of reality.
-  ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle=palette.a;ctx.lineWidth=1.7;ctx.globalAlpha=alpha*(.32+.16*Math.sin(t*2.7));
-  ctx.beginPath();ctx.ellipse(0,-153,80,22,-.28,0,TAU);ctx.stroke();ctx.beginPath();ctx.ellipse(0,-151,98,29,.22,0,TAU);ctx.stroke();
-  for(let i=0;i<7;i++){const a=t*(i%2?-.8:.65)+i*TAU/7;const ox=Math.cos(a)*(79+(i%3)*8),oy=-154+Math.sin(a)*(23+(i%3)*3);ctx.fillStyle=palette.a;ctx.beginPath();ctx.moveTo(ox,oy-5);ctx.lineTo(ox+4,oy);ctx.lineTo(ox,oy+5);ctx.lineTo(ox-4,oy);ctx.closePath();ctx.fill();}
-  ctx.restore();
-  // Cape and robes, layered curved silhouettes rather than box shapes.
-  ctx.fillStyle=palette.dark;ctx.beginPath();ctx.moveTo(-27,-212);ctx.bezierCurveTo(-65,-207,-67,-162,-54,-121);ctx.bezierCurveTo(-51,-81,-68,-35,-61,-12);ctx.quadraticCurveTo(-42,-4,-24,-11);ctx.bezierCurveTo(-17,-55,-30,-93,-22,-130);ctx.closePath();ctx.fill();
-  ctx.beginPath();ctx.moveTo(26,-214);ctx.bezierCurveTo(64,-204,66,-165,50,-122);ctx.bezierCurveTo(39,-84,51,-38,64,-12);ctx.quadraticCurveTo(44,-4,24,-12);ctx.bezierCurveTo(13,-52,18,-92,19,-130);ctx.closePath();ctx.fill();
-  const robe=ctx.createLinearGradient(-33,-190,40,-8);robe.addColorStop(0,palette.dark);robe.addColorStop(.5,'#080b19');robe.addColorStop(1,palette.c);ctx.fillStyle=robe;
-  ctx.beginPath();ctx.moveTo(-28,-205);ctx.quadraticCurveTo(-5,-223,27,-202);ctx.lineTo(35,-136);ctx.quadraticCurveTo(22,-70,44,-10);ctx.quadraticCurveTo(0,1,-43,-10);ctx.quadraticCurveTo(-27,-79,-36,-137);ctx.closePath();ctx.fill();
-  ctx.strokeStyle=palette.a;ctx.lineWidth=1.5;ctx.globalAlpha=alpha*.8;
-  ctx.beginPath();ctx.moveTo(-18,-178);ctx.quadraticCurveTo(-1,-137,3,-98);ctx.quadraticCurveTo(-14,-70,-20,-31);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(19,-179);ctx.quadraticCurveTo(1,-135,10,-106);ctx.quadraticCurveTo(27,-72,23,-29);ctx.stroke();ctx.globalAlpha=alpha;
-  // arms and pale bone hands
-  ctx.strokeStyle=palette.b;ctx.lineWidth=9;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-25,-187);ctx.quadraticCurveTo(-51,-158,-55,-112);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(25,-187);ctx.quadraticCurveTo(51,-161,49,-126);ctx.stroke();
-  ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-55,-112);ctx.lineTo(-70,-100);ctx.moveTo(-55,-112);ctx.lineTo(-53,-93);ctx.moveTo(-55,-112);ctx.lineTo(-43,-97);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(49,-126);ctx.lineTo(58,-116);ctx.moveTo(49,-126);ctx.lineTo(48,-106);ctx.moveTo(49,-126);ctx.lineTo(37,-113);ctx.stroke();
-  // skull and jaw
-  const head=ctx.createLinearGradient(-32,-260,30,-190);head.addColorStop(0,palette.b);head.addColorStop(.6,'#dbe3f4');head.addColorStop(1,palette.c);
-  ctx.fillStyle=head;ctx.beginPath();ctx.moveTo(-31,-222);ctx.quadraticCurveTo(-41,-246,-24,-261);ctx.quadraticCurveTo(0,-276,25,-258);ctx.quadraticCurveTo(42,-244,30,-219);ctx.lineTo(20,-199);ctx.quadraticCurveTo(0,-187,-19,-199);ctx.closePath();ctx.fill();
-  ctx.strokeStyle=palette.a;ctx.lineWidth=1.6;ctx.stroke();
-  ctx.fillStyle='#03040b';ctx.beginPath();ctx.ellipse(-14,-237,7.3,12,0,0,TAU);ctx.fill();ctx.beginPath();ctx.ellipse(13,-238,8,12,0,0,TAU);ctx.fill();
-  ctx.save();ctx.shadowColor=palette.eye;ctx.shadowBlur=12;ctx.fillStyle=palette.eye;ctx.beginPath();ctx.ellipse(kind==='everything'?13:-14,-238,3.1,6,0,0,TAU);ctx.fill();ctx.restore();
-  ctx.fillStyle='#10101b';ctx.beginPath();ctx.moveTo(-15,-210);ctx.quadraticCurveTo(0,-202,16,-210);ctx.lineTo(10,-197);ctx.lineTo(-8,-197);ctx.closePath();ctx.fill();
-  ctx.strokeStyle=palette.edge;ctx.lineWidth=1.1;for(let i=0;i<5;i++){const tx=-10+i*5;ctx.beginPath();ctx.moveTo(tx,-208);ctx.lineTo(tx+1,-201);ctx.stroke();}
-  // signature mark for each god
-  if(kind==='omni'){ctx.strokeStyle=palette.a;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-285,15,t*.9,t*.9+Math.PI*1.55);ctx.stroke();ctx.beginPath();ctx.moveTo(-18,-284);ctx.lineTo(0,-302);ctx.lineTo(18,-284);ctx.stroke();}
-  else if(kind==='everything'){ctx.strokeStyle=palette.a;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-20,-284);ctx.lineTo(0,-295);ctx.lineTo(20,-284);ctx.lineTo(0,-273);ctx.closePath();ctx.stroke();}
-  else {ctx.strokeStyle=palette.a;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-303);ctx.lineTo(0,-274);ctx.moveTo(-14,-289);ctx.lineTo(14,-289);ctx.stroke();}
-  ctx.restore();
-}
-function drawGodErrol(x,footY,scale=1.3,corruption=1){
-  if(corruption>.12)drawCharaPowerAura(x,footY-75*scale,46+corruption*23,true,.2+.35*corruption);
-  drawVillageSkeleton(x,footY,scale,'errol');
-  const headY=footY-101*scale;
-  drawBlackThirdEye(x,headY,6.3*scale,.68+.3*Math.sin(time*7));
-  if(corruption>.35){ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=.14+.18*Math.sin(time*8);ctx.strokeStyle='#a58aff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-21*scale,headY-8*scale);ctx.lineTo(x-31*scale,headY-22*scale);ctx.moveTo(x+18*scale,headY-7*scale);ctx.lineTo(x+30*scale,headY-19*scale);ctx.stroke();ctx.restore();}
-}
-function drawGodArcLabel(title,subtitle,color='#d2c4ff'){
-  ctx.save();ctx.textAlign='center';ctx.shadowColor=color;ctx.shadowBlur=12;ctx.fillStyle=color;ctx.font='1000 13px ui-monospace,monospace';ctx.fillText(title,480,28);ctx.shadowBlur=0;ctx.fillStyle='#f5f4ff';ctx.font='bold 11px Inter,Segoe UI,Arial,sans-serif';ctx.fillText(subtitle,480,48);ctx.restore();
-}
-function drawShatteringUniverse(x,y,r,p,color,t){
-  ctx.save();ctx.globalCompositeOperation='screen';
-  const g=ctx.createRadialGradient(x-r*.3,y-r*.4,2,x,y,r*1.35);g.addColorStop(0,'#edfaff');g.addColorStop(.22,color);g.addColorStop(.65,'#253767');g.addColorStop(1,'rgba(5,7,20,.1)');
-  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*(1-p*.15),0,TAU);ctx.fill();
-  ctx.globalAlpha=.75;ctx.strokeStyle=color;ctx.lineWidth=1.5;
-  for(let k=0;k<8;k++){const a=k*TAU/8+t*.08;const len=r*(.2+p*.65);ctx.beginPath();ctx.moveTo(x+Math.cos(a)*r*.28,y+Math.sin(a)*r*.28);ctx.lineTo(x+Math.cos(a+.12)*len,y+Math.sin(a+.12)*len);ctx.stroke();}
-  for(let i=0;i<12;i++){const a=i*TAU/12+t*.12,rr=r*(.62+p*.7);const xx=x+Math.cos(a)*rr,yy=y+Math.sin(a)*rr;ctx.globalAlpha=clamp(p*1.5,0,.8);ctx.fillStyle=i%2?'#d8faff':color;ctx.beginPath();ctx.moveTo(xx,yy);ctx.lineTo(xx+Math.cos(a+.35)*8,yy+Math.sin(a+.35)*8);ctx.lineTo(xx+Math.cos(a-.24)*4,yy+Math.sin(a-.24)*4);ctx.closePath();ctx.fill();}
-  ctx.restore();
-}
-function drawGodArcScene(phase,t){
-  const apocPhases=['godArcRampage','omniSansArrival','omniSansDuel','godTrioArrival','godTrioBattle','godTrioOverwhelm'];
-  if(apocPhases.includes(phase)){const lv=phase==='godArcRampage'?clamp(t/24,0,1):phase==='omniSansArrival'||phase==='omniSansDuel'?.84:1;drawCorruptionApocalypseBackdrop(t,lv);}
-  else drawGodArcBackdrop(t,phase==='godArcDarkAbsorb'||phase==='godArcFiveMoves');
-  const ramp=clamp(t/24,0,1);
-  if(phase==='godArcRampage'){
-    // Errol crosses multiple worlds. The backdrop itself evolves with the level of corruption.
-    const p=clamp(t/24,0,1);
-    const worldName=p<.22?'THÀNH PHỐ · BẦU TRỜI ĐỎ':p<.48?'HÀNH TINH · LỤC ĐỊA NỨT VỠ':p<.75?'NHIỀU THẾ GIỚI · SÓNG TÀN PHÁ':'ĐA VŨ TRỤ · THỰC TẠI RẠN VỠ';
-    const ex=115+p*700,ey=411-Math.sin(t*1.08)*25;
-    // A huge moving corruption wake follows Errol across the burning world.
-    ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';
-    for(let i=0;i<8;i++){const yy=405+i*6+Math.sin(t*2+i)*10;ctx.globalAlpha=.08+(i%3)*.035;ctx.strokeStyle=i%2?'#ff204f':'#c7a4ff';ctx.lineWidth=2+i%3;ctx.beginPath();ctx.moveTo(0,yy+16);ctx.bezierCurveTo(ex*.35,yy-35,ex*.72,yy+48,ex+24,ey+10+i*3);ctx.stroke();}
-    ctx.restore();
-    // Timed reality strikes land in different regions, every one with its own pulse.
-    for(let i=0;i<5;i++){
-      const phaseT=(t*.72+i*1.73)%6.2;
-      if(phaseT<.72){const xx=90+i*194+Math.sin(t+i)*25, yy=360+(i%2)*38, q=phaseT/.72;
-        ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=(1-q)*.75;ctx.strokeStyle=i%2?'#ff8c85':'#f4d5ff';ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=18;ctx.lineWidth=2+q*5;ctx.beginPath();ctx.moveTo(xx-45,80);ctx.lineTo(xx+12,170);ctx.lineTo(xx-8,215);ctx.lineTo(xx+18,270);ctx.lineTo(xx,yy);ctx.stroke();ctx.beginPath();ctx.ellipse(xx,yy,14+q*78,6+q*24,0,0,TAU);ctx.stroke();ctx.restore();}
-    }
-    drawGodErrol(ex,472,1.53,.84+.16*Math.sin(t*3.8));
-    // Status is a slim animated caption, not a static notice panel.
-    drawGodArcLabel('THIRD EYE · WORLD AFTER WORLD',worldName,'#ff93a6');
-    roundedRect(22,64,250,8,4,'rgba(20,2,10,.55)','rgba(255,110,134,.45)');ctx.fillStyle='#ff4569';ctx.fillRect(24,66,246*p,4);
-    ctx.textAlign='left';ctx.fillStyle='#ff9fad';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('REALITY COLLAPSE // '+Math.min(99,Math.floor(p*100))+'%',22,89);
-    if(p>.75){ctx.save();ctx.globalAlpha=.18+.1*Math.sin(t*4);ctx.fillStyle='#ff1b4d';ctx.fillRect(0,0,W,H);ctx.restore();}
-    return;
-  }
-  if(phase==='omniSansArrival'||phase==='omniSansDuel'){
-    drawShatteringUniverse(490,174,63,.1,'#72dfff',t);
-    const p=phase==='omniSansArrival'?clamp(t/3.6,0,1):1;
-    ctx.save();ctx.globalAlpha=p;ctx.strokeStyle='#8cf2ff';ctx.shadowColor='#8cf2ff';ctx.shadowBlur=24;ctx.lineWidth=5;ctx.beginPath();ctx.ellipse(717,270,90+Math.sin(t*3)*5,150,Math.sin(t*1.2)*.08,0,TAU);ctx.stroke();ctx.restore();
-    drawGodErrol(245+(phase==='omniSansDuel'?Math.sin(t*3)*12:0),478,1.48,1);
-    drawGodFigure(755,478,1.02,'omni',time,phase==='omniSansArrival'?p:1);
-    ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<7;i++){const a=time*.46+i*TAU/7,rx=220+Math.sin(time*2+i)*20;ctx.globalAlpha=.2+.18*Math.sin(time*4+i);ctx.strokeStyle=i%2?'#9af4ff':'#f4e9ff';ctx.lineWidth=i%3===0?3:1.4;ctx.beginPath();ctx.moveTo(755+Math.cos(a)*rx*.58,246+Math.sin(a)*105);ctx.lineTo(245,365);ctx.stroke();}ctx.restore();
-    if(phase==='omniSansDuel'){
-      for(let i=0;i<Math.min(7,godArcOmniHits);i++){ctx.save();ctx.globalAlpha=.2+.25*Math.sin(time*8+i);ctx.strokeStyle=i%2?'#a5f4ff':'#d9b6ff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(315+i*24,425-i%3*22);ctx.lineTo(600+i*12,310+i%4*27);ctx.stroke();ctx.restore();}
-      roundedRect(18,66,220,42,9,'rgba(5,9,24,.78)','#65eaff');ctx.textAlign='left';ctx.fillStyle='#a7f5ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('OMNI SANS · WILL '+Math.max(0,7-godArcOmniHits)+'/7',31,82);ctx.fillStyle='#efffff';ctx.fillRect(31,91,190*(1-godArcOmniHits/7),4);
-      roundedRect(722,66,220,42,9,'rgba(15,7,28,.8)','#b7a0ff');ctx.fillStyle='#d1c0ff';ctx.fillText('ERROL · THIRD EYE',735,82);ctx.fillStyle='#d8b5ff';ctx.fillRect(735,91,190,4);
-      ctx.textAlign='center';ctx.fillStyle='#d9efff';ctx.font='bold 10px Inter,Arial';ctx.fillText('Nhấn J/K/Q/E/R/F/Space/L để đánh trả',480,536);
-    }else drawGodArcLabel('OMNI SANS · ARRIVAL','Một vị thần chặn đường Errol, cảm nhận được sự tha hóa.','#89f0ff');
-    return;
-  }
-  if(phase==='godTrioArrival'||phase==='godTrioBattle'){
-    drawGodErrol(240,478,1.46,phase==='godTrioBattle'?1:.82);
-    const appear=phase==='godTrioArrival'?clamp(t/4,0,1):1;
-    // The gods dominate the ruined skyline instead of looking like tiny support characters.
-    drawGodFigure(535,478,.91,'omni',time,appear);drawGodFigure(705,478,.91,'everything',time,appear);drawGodFigure(865,478,.88,'godveres',time,appear);
-    ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<3;i++){const gx=[535,705,865][i],col=['#72eaff','#ffcb72','#b9a0ff'][i];ctx.globalAlpha=appear*(.16+.12*Math.sin(time*3+i));const halo=ctx.createRadialGradient(gx,265,4,gx,265,190);halo.addColorStop(0,col+'55');halo.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=halo;ctx.fillRect(gx-190,70,380,400);for(let k=0;k<6;k++){const a=time*.43+i+k*TAU/6;ctx.strokeStyle=col;ctx.lineWidth=k===0?3:1.3;ctx.beginPath();ctx.moveTo(gx+Math.cos(a)*65,270+Math.sin(a)*78);ctx.lineTo(gx+Math.cos(a)*145,270+Math.sin(a)*155);ctx.stroke();}}ctx.restore();
-    if(phase==='godTrioArrival'){
-      for(let i=0;i<3;i++){const x=590+i*142;ctx.save();ctx.globalAlpha=appear*.7;ctx.strokeStyle=['#7eeaff','#ffe49a','#b6a0ff'][i];ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,280,54+Math.sin(t*5+i)*5,112,0,0,TAU);ctx.stroke();ctx.restore();}
-      drawGodArcLabel('THE THREE GODS · LAST LINE OF REALITY','Omni Sans · Everything Sans · Godveres Sans','#fff0c9');
-      ctx.save();ctx.globalAlpha=.7;ctx.fillStyle='#ffadb9';ctx.font='1000 10px ui-monospace,monospace';ctx.textAlign='center';ctx.fillText('THE MULTIVERSE IS FAILING',480,532);ctx.restore();
-    }else{
-      for(let i=0;i<3;i++){
-        const x=610+i*120,y=255+Math.sin(time*4+i)*22,angle=time*1.3+i*TAU/3;
-        ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle=['#77eaff','#ffe39b','#b99cff'][i];ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=12;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,y,44+Math.sin(time*7+i)*4,95,angle*.18,0,TAU);ctx.stroke();ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(250+Math.sin(time*3+i)*25,360+Math.cos(time*4+i)*38);ctx.stroke();ctx.restore();
-      }
-      for(let i=0;i<Math.min(8,godArcTrioHits);i++){ctx.save();ctx.globalAlpha=.2+.3*Math.sin(time*7+i);ctx.strokeStyle=i%2?'#ffe69a':'#88eaff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(300+i*22,360);ctx.lineTo(580+i*25,280+(i%3)*28);ctx.stroke();ctx.restore();}
-      roundedRect(18,66,220,42,9,'rgba(5,9,24,.78)','#e2a9ff');ctx.textAlign='left';ctx.fillStyle='#e4c5ff';ctx.font='1000 10px ui-monospace,monospace';ctx.fillText('TRI-GOD RESONANCE '+godArcTrioHits+'/8',31,82);ctx.fillStyle='#c4afff';ctx.fillRect(31,91,190*(godArcTrioHits/8),4);
-      ctx.textAlign='center';ctx.fillStyle='#eadfff';ctx.font='bold 10px Inter,Arial';ctx.fillText('Errol có thể chống trả, nhưng ba luồng sức mạnh đang khóa thời gian.',480,536);
-    }
-    return;
-  }
-  if(phase==='godTrioOverwhelm'){
-    // Frozen palette and a huge converging pressure wave, without a static full-screen notice.
-    ctx.save();ctx.fillStyle='rgba(155,187,218,.24)';ctx.fillRect(0,0,W,H);ctx.globalCompositeOperation='screen';
-    const g=ctx.createRadialGradient(680,310,2,680,310,320);g.addColorStop(0,'rgba(238,245,255,.78)');g.addColorStop(.38,'rgba(154,171,215,.24)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(330,-20,650,520);
-    for(let i=0;i<22;i++){const a=i*TAU/22+t*.15,r=245-t*20;ctx.strokeStyle=i%2?'#a6c8ee':'#e6dbff';ctx.lineWidth=i%3===0?2.6:1;ctx.globalAlpha=.35;ctx.beginPath();ctx.moveTo(680+Math.cos(a)*r,260+Math.sin(a)*r*.7);ctx.lineTo(440+Math.cos(a)*28,360+Math.sin(a)*20);ctx.stroke();}
-    ctx.restore();drawGodErrol(300,480,1.35,.42);
-    drawGodFigure(610,478,.64,'omni',time,1);drawGodFigure(755,478,.64,'everything',time,1);drawGodFigure(887,478,.64,'godveres',time,1);
-    // A bright non-graphic crack across the aura signals the story injury.
-    ctx.save();ctx.globalCompositeOperation='screen';ctx.strokeStyle='#e5f2ff';ctx.shadowColor='#c3d9ff';ctx.shadowBlur=16;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(242,369);ctx.lineTo(278,390);ctx.lineTo(257,408);ctx.lineTo(293,431);ctx.stroke();ctx.restore();
-    drawGodArcLabel('TIME SEALED · TRI-GOD COLLISION','Thời gian bị khóa; Errol không thể quay ngược khoảnh khắc này.','#e2e9f8');
-    return;
-  }
-  if(phase==='godArcDarkAbsorb'){
-    drawGodErrol(470,463,1.42,.65);
-    const p=clamp(t/4.2,0,1);ctx.save();ctx.globalCompositeOperation='screen';
-    for(let i=0;i<64;i++){const a=i*2.399+t*(.6+i%5*.11),r=185*(1-p)+14;const x=470+Math.cos(a)*r,y=328+Math.sin(a)*r*.68;ctx.globalAlpha=.28+.58*p;ctx.fillStyle=i%6===0?'#d8c0ff':i%3===0?'#d2b56e':'#05040b';ctx.beginPath();ctx.ellipse(x,y,1.4+(i%3)*.7,2.4+(i%4),a,0,TAU);ctx.fill();}
-    const core=ctx.createRadialGradient(470,328,1,470,328,72);core.addColorStop(0,'#020207');core.addColorStop(.35,'rgba(6,4,17,.95)');core.addColorStop(.65,'rgba(162,139,218,.3)');core.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=core;ctx.beginPath();ctx.arc(470,328,72,0,TAU);ctx.fill();ctx.restore();
-    drawGodArcLabel('DARK INSTINCT · WARLOCK RESIDUE','Những hạt năng lượng đen ánh kim chảy vào con mắt thứ ba.','#d4c3ff');
-    return;
-  }
-  if(phase==='godArcFiveMoves'||phase==='godArcOmniSeal'){
-    const move=godArcFiveMoves;
-    drawGodErrol(250,478,1.36,1);
-    if(phase==='godArcOmniSeal'){
-      drawGodFigure(660,478,.77,'omni',time,.18);
-      const x=690,y=265,rad=20+Math.sin(t*7)*3;ctx.save();ctx.globalCompositeOperation='screen';const g=ctx.createRadialGradient(x,y,1,x,y,115);g.addColorStop(0,'rgba(5,3,13,.98)');g.addColorStop(.32,'rgba(8,5,19,.9)');g.addColorStop(.65,'rgba(160,128,255,.32)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,115,0,TAU);ctx.fill();ctx.strokeStyle='#b9a5ff';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,y,rad*1.4,rad,0,0,TAU);ctx.stroke();drawBlackThirdEye(x,y,rad*.75,1);ctx.restore();
-      drawGodFigure(775,478,.58,'everything',time,.68);drawGodFigure(890,478,.58,'godveres',time,.68);
-      drawGodArcLabel('OMNI SANS · SEALED INTO A SINGLE EYE','Errol quay lại phía hai vị thần còn lại.','#d3c4ff');return;
-    }
-    // Each press has its own angle, color, and geometry to feel like five distinct actions.
-    const a=-.8+move*.34,x=670,y=285,reach=110+move*24;
-    ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';ctx.shadowBlur=17;ctx.shadowColor=['#a58aff','#ff6fa8','#76efff','#ffe79c','#d9c4ff'][Math.max(0,move-1)]||'#b9a5ff';ctx.strokeStyle=ctx.shadowColor;ctx.lineWidth=3+move;
-    if(move===1){ctx.beginPath();ctx.moveTo(300,380);ctx.lineTo(410,300);ctx.lineTo(500,250);ctx.stroke();}
-    else if(move===2){ctx.beginPath();ctx.ellipse(545,320,reach*.55,reach*.32,a,0,TAU);ctx.stroke();ctx.beginPath();ctx.moveTo(500,345);ctx.lineTo(620,250);ctx.stroke();}
-    else if(move===3){ctx.beginPath();ctx.arc(560,300,reach*.55,t,t+Math.PI*1.6);ctx.stroke();ctx.beginPath();ctx.moveTo(545,300);ctx.lineTo(590,257);ctx.moveTo(545,300);ctx.lineTo(600,333);ctx.stroke();}
-    else if(move===4){ctx.beginPath();ctx.moveTo(395,260);ctx.lineTo(605,360);ctx.moveTo(395,360);ctx.lineTo(605,260);ctx.stroke();ctx.beginPath();ctx.arc(500,310,55,t,t+Math.PI*1.8);ctx.stroke();}
-    else {for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(365+i*22,250+i*8);ctx.lineTo(635+i*12,365-i*12);ctx.stroke();}}
-    ctx.restore();
-    drawGodFigure(700,478,.72,'omni',time,Math.max(.1,1-move*.16));drawGodArcLabel('THIRD EYE · FIVE MOVES','Bấm kỹ năng 5 lần để hoàn tất chuỗi động tác.','#d4bfff');
-    roundedRect(350,500,260,25,8,'rgba(3,4,14,.76)','#9e8bdb');ctx.fillStyle='#c9b5ff';ctx.fillRect(360,508,240*(move/5),8);ctx.textAlign='center';ctx.fillStyle='#f6f0ff';ctx.font='1000 9px ui-monospace,monospace';ctx.fillText('MOVE '+move+' / 5',480,518);
-    return;
-  }
-  if(phase==='godArcPapyrusVoice'){
-    drawGodErrol(465,475,1.35,.45);drawBlackThirdEye(465,475-101*1.35,6.5,.5+.3*Math.sin(t*4));
-    const heartY=210+Math.sin(t*1.3)*9;drawSoulHeartFragment(480,heartY,.95,.9,'#a5f4ff');
-    for(let i=0;i<22;i++){const a=t*.55+i*TAU/22,r=60+(i%4)*17;ctx.globalAlpha=.23;ctx.strokeStyle=i%2?'#a4f7ff':'#eddaff';ctx.beginPath();ctx.arc(480,heartY,r,a,a+.48);ctx.stroke();}ctx.globalAlpha=1;
-    drawGodArcLabel('PAPYRUS · “ANH HAI, ĐỦ RỒI…”','Giọng nói kéo Errol khỏi cơn tha hóa.','#a8f5ff');
-    roundedRect(170,392,620,66,12,'rgba(4,8,19,.78)','#84e7ff');ctx.textAlign='center';ctx.fillStyle='#e6faff';ctx.font='bold 13px Inter,Arial';ctx.fillText('“Anh không cần phải hủy diệt họ để chứng minh mình mạnh.”',480,419);ctx.fillStyle='#8cdfff';ctx.font='bold 10px Inter,Arial';ctx.fillText('— Papyrus, linh hồn bên trong Errol',480,440);return;
-  }
-  if(phase==='godArcCollapse'){
-    drawGodArcBackdrop(t,1);const p=clamp(t/3.4,0,1);ctx.save();ctx.globalAlpha=1-p*.5;ctx.translate(450,470+p*10);ctx.rotate(p*.11);drawGodErrol(0,0,1.28,.15);ctx.restore();
-    const fade=ctx.createRadialGradient(470,285,8,470,285,360);fade.addColorStop(0,'rgba(9,7,20,.05)');fade.addColorStop(1,`rgba(2,3,10,${p*.72})`);ctx.fillStyle=fade;ctx.fillRect(0,0,W,H);
-    drawGodArcLabel('ERROL · DARK FORM INTERRUPTED','Cơn tha hóa gãy nhịp khi Papyrus gọi tên anh.','#bca8ff');return;
-  }
-  if(phase==='godArcNormalAwakened'||phase==='godArcEnd'){
-    drawGodArcBackdrop(t,.15);
-    drawGodFigure(635,478,.62,'omni',time,.88);drawGodFigure(775,478,.62,'everything',time,.88);drawGodFigure(900,478,.62,'godveres',time,.88);
-    drawGodErrol(315,478,1.35,phase==='godArcEnd'?.22:.38);
-    if(phase==='godArcEnd'){
-      drawGodArcLabel('THE MULTIVERSE · AFTER THE FALL','Errol vẫn giữ sức mạnh, nhưng lựa chọn của cậu chưa kết thúc.','#c9b5ff');
-      roundedRect(140,110,680,70,12,'rgba(5,6,18,.72)','#8e7cc6');ctx.textAlign='center';ctx.fillStyle='#f4efff';ctx.font='bold 13px Inter,Arial';ctx.fillText('Papyrus: “Sức mạnh không quyết định anh là ai. Chính anh mới quyết định điều đó.”',480,140);ctx.fillStyle='#bdaeff';ctx.font='bold 10px Inter,Arial';ctx.fillText('CHƯƠNG KẾT · THA HÓA BỊ NGẮT LẠI, NHƯNG MỐI NGUY VẪN CÒN',480,161);
-    }else drawGodArcLabel('ERROL · BACK TO HIMSELF','Cậu tỉnh lại. Con mắt thứ ba lắng xuống; sức mạnh vẫn còn.','#a8f4ff');
-    return;
-  }
-}
-
 function drawCharaEncounter(){
   const phase=villageCharaPhase,t=villageCharaTime;
-  if(GOD_ARC_PHASES.includes(phase)){drawWarkHudLabel(true);drawGodArcScene(phase,t);return;}
   if(phase==='cosmicDive'){drawCosmicDive(t);drawWarkHudLabel(false);return;}
   if(['charaFinalIntro','charaFinalBattle','charaFinalLoop','charaFinalDefeated'].includes(phase)){drawWarkHudLabel(['charaFinalBattle'].includes(phase));drawCharaFinalArc(phase,t);return;}
   if(['warkOnslaught','warkSpaceCompress','warkErrolGlitch','warkErrolCounter','warkNullPointer','warkVoidDrift','warkDarkEnergy','warkThirdEyeAwakening'].includes(phase)){drawWarkHudLabel(false);drawWarkStoryCutscene(phase,t);return;}
