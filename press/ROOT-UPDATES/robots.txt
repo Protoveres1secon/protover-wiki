@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://protoveres1secon.github.io/protover-wiki/sitemap.xml
+Sitemap: https://protoveres1secon.github.io/protover-wiki/press/sitemap.xml

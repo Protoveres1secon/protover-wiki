@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b49">
+  <title>Protoveres Press | News, Perspectives & Discovery</title>
+  <meta name="description" content="Protoveres Press is the digital newspaper of the Protoveres community, sharing news, research, perspectives and discoveries. Free to read, no account required.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://protoveres1secon.github.io/protover-wiki/press/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Protoveres Press">
+  <meta property="og:title" content="Protoveres Press | News, Perspectives & Discovery">
+  <meta property="og:description" content="Independent in thought. Clear in information. Explore news, research and perspectives from Protoveres.">
+  <meta property="og:url" content="https://protoveres1secon.github.io/protover-wiki/press/">
+  <meta property="og:image" content="https://protoveres1secon.github.io/protover-wiki/press/assets/social-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Protoveres Press">
+  <meta name="twitter:description" content="News, perspectives and discovery from Protoveres.">
+  <meta name="twitter:image" content="https://protoveres1secon.github.io/protover-wiki/press/assets/social-card.svg">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"NewsMediaOrganization",
+    "name":"Protoveres Press",
+    "url":"https://protoveres1secon.github.io/protover-wiki/press/",
+    "description":"The digital newspaper of the Protoveres community, sharing news, research, perspectives and discoveries.",
+    "logo":"https://protoveres1secon.github.io/protover-wiki/press/assets/favicon.svg"
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="site">
+  <div class="utility"><div class="utility-inner"><div class="utility-label">Digital newspaper · Protoveres</div><div class="utility-links"><a href="../" aria-label="Protoveres Main Web">Main Web</a><a href="#about">About the Press</a><span>Free to read · No account required</span></div></div></div>
+  <header class="masthead">
+    <div class="masthead-main">
+      <a class="mark" href="./" aria-label="Protoveres Press home">P</a>
+      <div class="brand"><a href="./"><h1>PROTO VERES PRESS</h1></a><p>News · Research · Perspectives · Discovery</p></div>
+      <div class="masthead-side"><strong>INDEPENDENT IN THOUGHT</strong>Clear in information</div>
+    </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="./">Home</a>
+      <a href="#latest">Latest</a>
+      <a href="#research">Research</a>
+      <a href="#perspectives">Perspectives</a>
+      <a href="#about">About</a>
+      <a href="../">Protoveres Main Web</a>
+    </nav>
+  </header>
+  <div class="breaking"><strong>NEWS DESK</strong><span id="breakingText">The newsroom is preparing its first stories. New reports will appear here after publication.</span></div>
+  <section class="intro">
+    <div><div class="eyebrow">Information · Perspectives · Discovery</div><h2>News and perspectives</h2><p>The digital newspaper of Protoveres.</p></div>
+    <div class="intro-note"><strong id="todayDate">Today's edition</strong><br>Independent in thought. Clear in information.</div>
+  </section>
+  <main class="content">
+    <div class="toolbar">
+      <div class="toolbar-left"><div class="section-label">Latest stories</div><span id="storyCount" style="font:11px Arial,sans-serif;color:var(--muted)">0 stories</span></div>
+      <div class="toolbar-right"><label class="sr-only" for="storySearch">Search stories</label><input class="search" id="storySearch" type="search" placeholder="Search Protoveres Press…"><label class="sr-only" for="layoutSelect">Choose story layout</label><select class="select" id="layoutSelect"><option value="mosaic">Magazine mosaic</option><option value="hero">Lead story</option><option value="magazine">Magazine columns</option><option value="grid">Three-column grid</option><option value="list">Horizontal list</option><option value="compact">Compact grid</option><option value="split">Lead + side stories</option><option value="cinema">Large image cards</option><option value="headlines">Headlines</option><option value="ribbon">Horizontal ribbon</option></select><button class="theme-button" id="themeToggle" type="button" aria-label="Toggle light and dark mode">Dark mode</button></div>
+    </div>
+    <section id="latest" aria-labelledby="latestHeading"><h2 class="sr-only" id="latestHeading">Latest stories</h2><div class="story-grid" id="storyGrid" data-layout="mosaic"><div class="empty-state"><div class="empty-state-mark">P</div><h3>The first edition is being prepared</h3><p>No stories have been published yet. Please check back soon.</p></div></div></section>
+    <div class="lower-grid">
+      <section id="research"><div class="section-head"><h2>Research & discoveries</h2><span class="eyebrow">Protoveres</span></div><div id="researchList" class="empty-state"><h3>Research updates will appear here</h3><p>Published research stories will be listed in this section.</p></div></section>
+      <aside>
+        <div class="side-panel" id="about"><h3>About Protoveres Press</h3><p>Protoveres Press is the digital newspaper of the Protoveres community. It shares news, research, perspectives and discoveries. Reading is free and does not require an account.</p></div>
+        <div class="side-panel" id="perspectives"><h3>Editorial principles</h3><p>Clear information, thoughtful perspectives and transparent corrections. All stories are published by the Protoveres Press newsroom.</p></div>
+        <div class="side-panel"><h3>Explore Protoveres</h3><p>Visit the main community website for the wider Protoveres project.</p><p style="margin-top:9px"><a href="../">Visit Protoveres Main Web →</a></p></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><div class="footer-inner"><div><strong>PROTO VERES PRESS</strong><br>News · Research · Perspectives · Discovery<br>© <span id="year"></span> Protoveres Press</div><div>Free to read. No account required.<br><a href="../">Protoveres Main Web</a> · <a href="#about">About the Press</a></div></div></footer>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>

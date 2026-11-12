@@ -1,0 +1,13 @@
+PROTO VERES PRESS — STEP 1: ZERO ARTICLES
+
+Public article count: 0
+Published sample stories: 0
+Draft sample stories: 0
+
+The homepage intentionally displays its empty newsroom state until the editor adds and publishes real articles.
+
+Target GitHub repository: Protoveres1secon/protover-wiki
+Target folder: press/
+Expected public URL: https://protoveres1secon.github.io/protover-wiki/press/
+
+This package does not delete or modify the existing Main Web files. Upload the contents of the press/ folder into the repository's press/ folder, then apply ROOT-UPDATES/robots.txt and ROOT-UPDATES/sitemap.xml to the repository root as described in README-GITHUB-UPLOAD.md.
